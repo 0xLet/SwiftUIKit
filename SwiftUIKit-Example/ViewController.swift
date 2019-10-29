@@ -14,12 +14,16 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         view.embed {
-            let someView = UIView()
-            someView.backgroundColor = .brown
+            let someView = View(backgroundColor: .brown)
             return someView.vstack {
-                let title = UILabel()
-                title.text = "Hello World"
-                return [title]
+                let title = Label("Hello World")
+                let body = Label("This is some body text")
+                let someNumber = Label("456")
+                let hstack = HStack {
+                    [body, Spacer(), someNumber]
+                }
+                
+                return [title, hstack]
             }
         }
     }
