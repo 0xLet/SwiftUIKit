@@ -12,9 +12,15 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.embed {
+            let someView = UIView()
+            someView.backgroundColor = .brown
+            return someView.vstack {
+                let title = UILabel()
+                title.text = "Hello World"
+                return [title]
+            }
+        }
     }
-
-
 }
-
