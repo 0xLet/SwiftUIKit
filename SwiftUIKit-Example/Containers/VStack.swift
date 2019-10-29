@@ -12,6 +12,7 @@ class VStack: UIView {
     var views: [UIView] = []
     
     init(withSpacing spacing: Float = 0,
+         padding: Float = 0,
          alignment: UIStackView.Alignment = .fill,
          distribution: UIStackView.Distribution = .fill,
          closure: () -> [UIView]) {
@@ -19,9 +20,10 @@ class VStack: UIView {
         super.init(frame: .zero)
         
         vstack(withSpacing: spacing,
-              alignment: alignment,
-              distribution: distribution,
-              closure: closure)
+               padding: padding,
+               alignment: alignment,
+               distribution: distribution,
+               closure: closure)
     }
     
     required init?(coder aDecoder: NSCoder) {

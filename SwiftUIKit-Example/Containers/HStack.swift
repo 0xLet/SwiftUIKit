@@ -12,6 +12,7 @@ class HStack: UIView {
     var views: [UIView] = []
     
     init(withSpacing spacing: Float = 0,
+         padding: Float = 0,
          alignment: UIStackView.Alignment = .fill,
          distribution: UIStackView.Distribution = .fill,
          closure: () -> [UIView]) {
@@ -19,6 +20,7 @@ class HStack: UIView {
         super.init(frame: .zero)
         
         hstack(withSpacing: spacing,
+               padding: padding,
                alignment: alignment,
                distribution: distribution,
                closure: closure)

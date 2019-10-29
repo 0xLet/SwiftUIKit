@@ -11,10 +11,11 @@ import UIKit
 extension UIView {
     @discardableResult
     func stack(withSpacing spacing: Float = 0,
-                alignment: UIStackView.Alignment = .fill,
-                distribution: UIStackView.Distribution = .fill,
-                axis: NSLayoutConstraint.Axis,
-                closure: () -> [UIView]) -> Self {
+               padding: Float = 0,
+               alignment: UIStackView.Alignment = .fill,
+               distribution: UIStackView.Distribution = .fill,
+               axis: NSLayoutConstraint.Axis,
+               closure: () -> [UIView]) -> Self {
         let viewsInVStack = closure()
         
         let stackView = UIStackView(arrangedSubviews: viewsInVStack)
@@ -24,7 +25,7 @@ extension UIView {
         stackView.axis = axis
         
         embed {
-            stackView
+            stackView.padding(padding)
         }
         
         return self
@@ -32,26 +33,30 @@ extension UIView {
     
     @discardableResult
     func vstack(withSpacing spacing: Float = 0,
+                padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
                 closure: () -> [UIView]) -> Self {
         return stack(withSpacing: spacing,
+                     padding: padding,
                      alignment: alignment,
                      distribution: distribution,
                      axis: .vertical,
-                     closure: closure)
+            closure: closure)
     }
     
     @discardableResult
     func hstack(withSpacing spacing: Float = 0,
+    padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
                 closure: () -> [UIView]) -> Self {
         return stack(withSpacing: spacing,
+                     padding: padding,
                      alignment: alignment,
                      distribution: distribution,
                      axis: .horizontal,
-                     closure: closure)
+            closure: closure)
     }
     
     @discardableResult
@@ -66,7 +71,28 @@ extension UIView {
             viewToEmbed.bottomAnchor.constraint(equalTo: bottomAnchor, constant: CGFloat(-padding)),
             viewToEmbed.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat(padding)),
             viewToEmbed.trailingAnchor.constraint(equalTo: trailingAnchor, constant: CGFloat(-padding))
-            ])
+        ])
+        
+        return self
+    }
+    
+    func padding(_ padding: Float = 8) -> View {
+        return View(backgroundColor: backgroundColor)
+            .embed(withPadding: padding) {
+                self
+        }
+    }
+    
+    func frame(height: Float? = nil, width: Float? = nil) -> Self {
+        
+        if let height = height {
+            heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
+        }
+        
+        if let width = width {
+            widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
+        }
+        
         
         return self
     }

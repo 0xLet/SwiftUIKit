@@ -15,11 +15,15 @@ class ViewController: UIViewController {
         
         view.embed {
             let someView = View(backgroundColor: .brown)
-            return someView.vstack {
+            return someView.vstack(padding: 16) {
                 let title = Label("Hello World")
+                    .frame(height: 400)
+                    .padding(16)
+                
                 let body = Label("This is some body text")
                 let someNumber = Label("456")
-                let hstack = HStack {
+                
+                let hstack = HStack(padding: 32) {
                     [body, Spacer(), someNumber]
                 }
                 
