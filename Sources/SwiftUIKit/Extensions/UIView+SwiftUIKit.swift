@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension UIView {
+public extension UIView {
     @discardableResult
     func stack(withSpacing spacing: Float = 0,
                padding: Float = 0,
@@ -96,7 +96,7 @@ extension UIView {
     }
 }
 
-extension UIView {
+public extension UIView {
     @discardableResult
     func debug() -> Self {
         var randomColor: UIColor {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Spacer: UIView {
+public class Spacer: UIView {
     private var height: Float?
     private var width: Float?
     
