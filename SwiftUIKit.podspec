@@ -5,9 +5,10 @@ s.ios.deployment_target = '9.0'
 s.name = "SwiftUIKit"
 s.summary = "UIKit implementation of SwiftUI"
 s.requires_arc = true
+s.swift_version = '5.0'
 
 # 2
-s.version = "0.1.0"
+s.version = "0.1.1"
 
 # 3
 s.license = { :type => 'MIT' }
@@ -25,5 +26,5 @@ s.source = { :git => "https://github.com/zmeriksen/SwiftUIKit.git", :tag => "#{s
 s.ios.framework = "UIKit"
 
 # 8
-s.source_files = "SwiftUIKit/**/*.{swift}"
+s.source_files = "Sources/**/*.swift"
 end
