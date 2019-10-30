@@ -2,7 +2,7 @@
 
 UIKit version of SwiftUI
 
-## Example use
+## Example Code
 ```Swift
 import UIKit
 import SwiftUIKit
@@ -41,3 +41,7 @@ class ViewController: UIViewController {
     }
 }
 ```
+
+## Example View
+
+![Example SwiftUIKit](assets/exampleView_01.png)
