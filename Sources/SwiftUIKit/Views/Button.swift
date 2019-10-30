@@ -11,7 +11,7 @@ public class Button: UIButton {
     private var action: () -> Void
     
     public init(_ title: String,
-                action: () -> Void,
+                action: @escaping () -> Void,
                 forEvent event: UIControl.Event = .touchUpInside) {
         self.action = action
         super.init(frame: .zero)
