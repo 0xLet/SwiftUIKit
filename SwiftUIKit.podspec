@@ -16,10 +16,10 @@ s.license = { :type => 'MIT' }
 s.author = { "Zach Eriksen" => "zmeriksen@icloud.com" }
 
 # 5
-s.homepage = "https://github.com/zmeriksen/SwiftUIKit" rel="nofollow noreferrer noopener" target="_blank">https://github.com/zmeriksen/SwiftUIKit"
+s.homepage = "https://github.com/zmeriksen/SwiftUIKit"
 
 # 6
-s.source = { :git => "https://github.com/zmeriksen/SwiftUIKit.git" rel="nofollow noreferrer noopener" target="_blank">https://github.com/zmeriksen/SwiftUIKit.git", :tag => "#{s.version}"}
+s.source = { :git => "https://github.com/zmeriksen/SwiftUIKit.git", :tag => "#{s.version}"}
 
 # 7
 s.framework = "Foundation"
