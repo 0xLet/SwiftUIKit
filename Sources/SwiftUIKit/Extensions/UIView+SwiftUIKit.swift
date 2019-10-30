@@ -95,6 +95,12 @@ public extension UIView {
         
         return self
     }
+    
+    func layer(_ closure: (CALayer) -> Void) -> Self {
+        closure(layer)
+        
+        return self
+    }
 }
 
 public extension UIView {
