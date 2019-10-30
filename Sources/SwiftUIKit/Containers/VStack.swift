@@ -10,9 +10,9 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class VStack: UIView {
-    var views: [UIView] = []
+    public var views: [UIView] = []
     
-    init(withSpacing spacing: Float = 0,
+    public init(withSpacing spacing: Float = 0,
          padding: Float = 0,
          alignment: UIStackView.Alignment = .fill,
          distribution: UIStackView.Distribution = .fill,

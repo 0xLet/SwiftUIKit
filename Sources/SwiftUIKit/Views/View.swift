@@ -9,7 +9,7 @@
 import UIKit
 
 public class View: UIView {
-    init(backgroundColor: UIColor? = .white) {
+    public init(backgroundColor: UIColor? = .white) {
         super.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
