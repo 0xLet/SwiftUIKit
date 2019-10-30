@@ -13,7 +13,7 @@ public class Spacer: UIView {
     private var height: Float?
     private var width: Float?
     
-    init(height: Float? = nil, width: Float? = nil) {
+    public init(height: Float? = nil, width: Float? = nil) {
         self.height = height
         self.width = width
         super.init(frame: .zero)
