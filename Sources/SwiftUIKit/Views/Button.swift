@@ -2,11 +2,12 @@
 //  File.swift
 //  
 //
-//  Created by CRi on 10/30/19.
+//  Created by Zach Eriksen on 10/30/19.
 //
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class Button: UIButton {
     private var action: () -> Void
     
@@ -22,6 +23,8 @@ public class Button: UIButton {
         self.setTitleColor(titleColor, for: .normal)
         self.setTitle(title, for: .normal)
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
+        
+        accessibility(label: title, traits: .button)
     }
     
     required init?(coder: NSCoder) {
