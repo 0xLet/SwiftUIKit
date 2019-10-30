@@ -22,7 +22,7 @@ s.homepage = "https://github.com/zmeriksen/SwiftUIKit"
 s.source = { :git => "https://github.com/zmeriksen/SwiftUIKit.git", :tag => "#{s.version}"}
 
 # 7
-s.framework = "Foundation"
+s.ios.framework = "UIKit"
 
 # 8
 s.source_files = "SwiftUIKit/**/*.{swift}"
