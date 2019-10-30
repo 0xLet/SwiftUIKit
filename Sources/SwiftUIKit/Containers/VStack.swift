@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class VStack: UIView {
     var views: [UIView] = []
     

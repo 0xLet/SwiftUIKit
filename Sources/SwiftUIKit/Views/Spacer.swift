@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class Spacer: UIView {
     private var height: Float?
     private var width: Float?
