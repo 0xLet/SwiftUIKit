@@ -10,7 +10,7 @@ s.requires_arc = true
 s.version = "0.1.0"
 
 # 3
-s.license = { :type => "http://choosealicense.com/licenses/mit/" rel="nofollow noreferrer noopener" target="_blank">MIT", :file => "LICENSE" }
+s.license = { :type => 'MIT' }
 
 # 4
 s.author = { "Zach Eriksen" => "zmeriksen@icloud.com" }
