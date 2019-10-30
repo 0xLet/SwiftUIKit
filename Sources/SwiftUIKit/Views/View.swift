@@ -2,12 +2,13 @@
 //  View.swift
 //  SwiftUIKit-Example
 //
-//  Created by CRi on 10/29/19.
+//  Created by Zach Eriksen on 10/29/19.
 //  Copyright © 2019 oneleif. All rights reserved.
 //
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class View: UIView {
     public init(backgroundColor: UIColor? = .white) {
         super.init(frame: .zero)

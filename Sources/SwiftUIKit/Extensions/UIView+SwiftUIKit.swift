@@ -77,11 +77,13 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
     func padding(_ padding: Float = 8) -> View {
         return View(backgroundColor: backgroundColor)
             .embed(withPadding: padding) { self }
     }
     
+    @discardableResult
     func frame(height: Float? = nil, width: Float? = nil) -> Self {
         
         if let height = height {
@@ -96,8 +98,21 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
     func layer(_ closure: (CALayer) -> Void) -> Self {
         closure(layer)
+        
+        return self
+    }
+    
+    @discardableResult
+    func accessibility(label: String? = nil,
+                       identifier: String? = nil,
+                       traits: UIAccessibilityTraits? = nil) -> Self {
+        
+        label.map { accessibilityLabel = $0 }
+        identifier.map { accessibilityIdentifier = $0 }
+        traits.map { accessibilityTraits = $0 }
         
         return self
     }
@@ -107,7 +122,10 @@ public extension UIView {
     @discardableResult
     func debug() -> Self {
         var randomColor: UIColor {
-            return UIColor(red: CGFloat.random(in: 0 ... 255) / 255, green: CGFloat.random(in: 0 ... 255) / 255, blue: CGFloat.random(in: 0 ... 255) / 255, alpha: 1)
+            return UIColor(red: CGFloat.random(in: 0 ... 255) / 255,
+                           green: CGFloat.random(in: 0 ... 255) / 255,
+                           blue: CGFloat.random(in: 0 ... 255) / 255,
+                           alpha: 1)
         }
         func getSubViews(forView view: UIView) -> [UIView] {
             var views: [UIView] = []
