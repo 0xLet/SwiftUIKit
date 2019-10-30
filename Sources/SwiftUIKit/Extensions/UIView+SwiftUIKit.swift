@@ -8,6 +8,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public extension UIView {
     @discardableResult
     func stack(withSpacing spacing: Float = 0,
