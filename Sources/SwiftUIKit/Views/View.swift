@@ -8,7 +8,7 @@
 
 import UIKit
 
-class View: UIView {
+public class View: UIView {
     init(backgroundColor: UIColor? = .white) {
         super.init(frame: .zero)
         

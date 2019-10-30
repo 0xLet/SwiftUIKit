@@ -8,7 +8,7 @@
 
 import UIKit
 
-class HStack: UIView {
+public class HStack: UIView {
     var views: [UIView] = []
     
     init(withSpacing spacing: Float = 0,

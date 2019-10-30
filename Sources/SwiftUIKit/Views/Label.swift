@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Label: UILabel {
+public class Label: UILabel {
     init(_ text: String) {
         super.init(frame: .zero)
         
