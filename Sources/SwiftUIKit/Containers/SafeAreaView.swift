@@ -21,8 +21,8 @@ public class SafeAreaView: UIView {
         NSLayoutConstraint.activate([
             view.leadingAnchor.constraint(equalTo: margins.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: margins.trailingAnchor),
-            view.topAnchor.constraintEqualToSystemSpacingBelow(guide.topAnchor, multiplier: 1.0),
-            guide.bottomAnchor.constraintEqualToSystemSpacingBelow(view.bottomAnchor, multiplier: 1.0)
+            view.topAnchor.constraint(equalToSystemSpacingBelow: guide.topAnchor, multiplier: 1.0),
+            guide.bottomAnchor.constraint(equalToSystemSpacingBelow: view.bottomAnchor, multiplier: 1.0)
         ])
     }
     
