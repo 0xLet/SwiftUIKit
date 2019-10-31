@@ -62,29 +62,18 @@ public extension UIView {
     
     @discardableResult
     func embed(withPadding padding: Float = 0,
-               respectSafeArea: Bool = true,
                closure: () -> UIView) -> Self {
         let viewToEmbed = closure()
         viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
         addSubview(viewToEmbed)
-        if #available(iOS 11, *),
-            respectSafeArea {
-            let margins = layoutMarginsGuide
-            let guide = safeAreaLayoutGuide
-            NSLayoutConstraint.activate([
-                topAnchor.constraint(equalTo: guide.topAnchor, constant: CGFloat(padding)),
-                bottomAnchor.constraint(equalTo: guide.bottomAnchor, constant: CGFloat(-padding)),
-                leadingAnchor.constraint(equalTo: margins.leadingAnchor, constant: CGFloat(padding)),
-                trailingAnchor.constraint(equalTo: margins.trailingAnchor, constant: CGFloat(-padding))
-            ])
-        } else {
-            NSLayoutConstraint.activate([
-                viewToEmbed.topAnchor.constraint(equalTo: topAnchor, constant: CGFloat(padding)),
-                viewToEmbed.bottomAnchor.constraint(equalTo: bottomAnchor, constant: CGFloat(-padding)),
-                viewToEmbed.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat(padding)),
-                viewToEmbed.trailingAnchor.constraint(equalTo: trailingAnchor, constant: CGFloat(-padding))
-            ])
-        }
+        
+        NSLayoutConstraint.activate([
+            viewToEmbed.topAnchor.constraint(equalTo: topAnchor, constant: CGFloat(padding)),
+            viewToEmbed.bottomAnchor.constraint(equalTo: bottomAnchor, constant: CGFloat(-padding)),
+            viewToEmbed.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat(padding)),
+            viewToEmbed.trailingAnchor.constraint(equalTo: trailingAnchor, constant: CGFloat(-padding))
+        ])
+        
         return self
     }
     
