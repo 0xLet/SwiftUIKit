@@ -25,8 +25,8 @@ public extension UIView {
         stackView.distribution = distribution
         stackView.axis = axis
         
-        embed {
-            stackView.padding(padding)
+        embed(withPadding: padding) {
+            stackView
         }
         
         return self
@@ -43,12 +43,12 @@ public extension UIView {
                      alignment: alignment,
                      distribution: distribution,
                      axis: .vertical,
-            closure: closure)
+                     closure: closure)
     }
     
     @discardableResult
     func hstack(withSpacing spacing: Float = 0,
-    padding: Float = 0,
+                padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
                 closure: () -> [UIView]) -> Self {
@@ -57,7 +57,7 @@ public extension UIView {
                      alignment: alignment,
                      distribution: distribution,
                      axis: .horizontal,
-            closure: closure)
+                     closure: closure)
     }
     
     @discardableResult
@@ -77,10 +77,25 @@ public extension UIView {
         return self
     }
     
+    @available(iOS 11.0, *)
+    @discardableResult
+    func safeArea(withPadding padding: Float = 0) -> Self {
+        NSLayoutConstraint.activate([
+            topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: CGFloat(padding)),
+            bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: CGFloat(-padding)),
+            leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: CGFloat(padding)),
+            trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: CGFloat(-padding))
+        ])
+        return self
+    }
+    
     @discardableResult
     func padding(_ padding: Float = 8) -> View {
         return View(backgroundColor: backgroundColor)
             .embed(withPadding: padding) { self }
+            .accessibility(label: accessibilityLabel,
+                           identifier: accessibilityIdentifier,
+                           traits: accessibilityTraits)
     }
     
     @discardableResult
@@ -93,7 +108,6 @@ public extension UIView {
         if let width = width {
             widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
         }
-        
         
         return self
     }
@@ -135,8 +149,15 @@ public extension UIView {
             }
             return views
         }
+        let subviews = getSubViews(forView: self)
         
-        getSubViews(forView: self).forEach { $0.backgroundColor = randomColor }
+        print("DEBUG LOG:")
+        print("Root Debug View: \(self)")
+        print("Number of Views: \(subviews.count + 1)")
+        
+        subviews.forEach {
+            $0.backgroundColor = randomColor
+        }
         
         return self
     }
