@@ -6,6 +6,10 @@ final class SwiftUIKitTests: XCTestCase {
     func testLabelADA() {
         let label = Label("SomeString")
             .accessibility(identifier: "SomeID")
+            .padding()
+            .padding()
+            .padding()
+            .debug()
         
         assert(label.accessibilityLabel == "SomeString")
         assert(label.accessibilityIdentifier == "SomeID")
