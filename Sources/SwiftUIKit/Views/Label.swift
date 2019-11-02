@@ -25,12 +25,14 @@ public class Label: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
     
+    @discardableResult
     func font(_ font: UIFont) -> Self {
         self.font = font
         
         return self
     }
     
+    @discardableResult
     func font(_ textStyle: UIFont.TextStyle) -> Self {
         return self.font(UIFont.preferredFont(forTextStyle: textStyle))
     }

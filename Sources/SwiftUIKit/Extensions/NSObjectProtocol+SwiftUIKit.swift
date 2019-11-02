@@ -8,6 +8,7 @@
 import Foundation
 
 public extension NSObjectProtocol {
+    @discardableResult
     func configure(_ closure: (Self) -> Void) -> Self {
         closure(self)
         
