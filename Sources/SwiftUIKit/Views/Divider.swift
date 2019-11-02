@@ -10,10 +10,10 @@ import UIKit
 @available(iOS 9.0, *)
 public class Divider: UIView {
     public init(_ axis: NSLayoutConstraint.Axis = .horizontal,
-                backgroundColor: UIColor? = .black) {
+                color: UIColor? = .black) {
         super.init(frame: .zero)
         
-        self.backgroundColor = backgroundColor
+        self.backgroundColor = color
         
         if axis == .horizontal {
             frame(height: 1)
