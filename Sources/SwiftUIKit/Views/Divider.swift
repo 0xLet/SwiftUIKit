@@ -9,8 +9,8 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class Divider: UIView {
-    public init(backgroundColor: UIColor? = .black,
-                axis: NSLayoutConstraint.Axis = .horizontal) {
+    public init(_ axis: NSLayoutConstraint.Axis = .horizontal,
+                backgroundColor: UIColor? = .black) {
         super.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
