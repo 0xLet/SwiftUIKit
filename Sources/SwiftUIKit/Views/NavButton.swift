@@ -11,7 +11,6 @@ import UIKit
 public class NavButton: Button {
     private var destination: UIViewController
     private var style: Navigate.NavigationStyle
-    private var tapHandler: (() -> Void)?
     
     public init(_ title: String,
                 destination: UIViewController,
@@ -19,13 +18,15 @@ public class NavButton: Button {
                 titleColor: UIColor = .white,
                 backgroundColor: UIColor? = nil,
                 _ tapHandler: (() -> Void)? = nil) {
+        
         self.destination = destination
         self.style = style
-        self.tapHandler = tapHandler
+        
         super.init(title,
                    titleColor: titleColor,
                    backgroundColor: backgroundColor,
                    forEvent: .touchUpInside) {
+                    tapHandler?()
                     Navigate.shared.go(destination,
                                        style: style)
         }
