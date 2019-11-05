@@ -83,7 +83,7 @@ public class Image: UIImageView {
     }
     
     @discardableResult
-    func contentMode(_ mode: UIView.ContentMode) -> Self {
+    func aspect(_ mode: UIView.ContentMode) -> Self {
         self.contentMode = mode
         
         return self
