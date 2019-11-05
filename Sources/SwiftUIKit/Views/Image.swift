@@ -84,7 +84,7 @@ public class Image: UIImageView {
     
     @discardableResult
     func contentMode(_ mode: UIView.ContentMode) -> Self {
-        contentMode = mode
+        self.contentMode = mode
         
         return self
     }
