@@ -16,20 +16,7 @@ public class Image: UIImageView {
     public init(_ color: UIColor) {
         super.init(frame: .zero)
         
-        let frame = CGRect(origin: .zero,
-                           size: CGSize(width: 1, height: 1))
-        
-        UIGraphicsBeginImageContext(frame.size)
-        
-        let context = UIGraphicsGetCurrentContext()
-        context!.setFillColor(color.cgColor)
-        context!.fill(frame)
-        
-        let image = UIGraphicsGetImageFromCurrentImageContext()
-        
-        UIGraphicsEndImageContext()
-        
-        self.image = image
+        self.image = Image.image(fromColor: color)
     }
     
     public init(_ url: URL) {
@@ -42,18 +29,14 @@ public class Image: UIImageView {
                     print("Image \(#function) Error!")
                     print("Issue loading Image with url: \(url.absoluteString)")
                     print("Error: \(error?.localizedDescription ?? "-1")")
-                    if #available(iOS 13.0, *) {
-                        self?.update(image: .remove)
-                    }
+                    self?.update(color: .red)
                     return
             }
             guard let image = UIImage(data: data) else {
                 print("Image \(#function) Error!")
                 print("Issue loading Image with url: \(url.absoluteString)")
                 print("Error: Could not create UIImage from data")
-                if #available(iOS 13.0, *) {
-                    self?.update(image: .remove)
-                }
+                self?.update(color: .red)
                 return
             }
             self?.update(image: image)
@@ -69,9 +52,7 @@ public class Image: UIImageView {
             print("Image \(#function) Error!")
             print("Issue loading Image with name: \(name)")
             print("Error: Could not locate Image")
-            if #available(iOS 13.0, *) {
-                update(image: .remove)
-            }
+            update(color: .red)
             return
         }
         
@@ -94,4 +75,28 @@ public class Image: UIImageView {
             self?.image = image
         }
     }
+    
+    private func update(color: UIColor) {
+        DispatchQueue.main.async { [weak self] in
+            self?.image = Image.image(fromColor: color)
+        }
+    }
+    
+    private static func image(fromColor color: UIColor) -> UIImage? {
+        let frame = CGRect(origin: .zero,
+                           size: CGSize(width: 1, height: 1))
+        
+        UIGraphicsBeginImageContext(frame.size)
+        
+        let context = UIGraphicsGetCurrentContext()
+        context!.setFillColor(color.cgColor)
+        context!.fill(frame)
+        
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        
+        UIGraphicsEndImageContext()
+        
+        return image
+    }
 }
+
