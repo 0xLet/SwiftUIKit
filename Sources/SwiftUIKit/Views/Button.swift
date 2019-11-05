@@ -15,7 +15,7 @@ public class Button: UIButton {
                 titleColor: UIColor = .white,
                 backgroundColor: UIColor? = nil,
                 forEvent event: UIControl.Event = .touchUpInside,
-                action: @escaping () -> Void) {
+                _ action: @escaping () -> Void) {
         self.action = action
         super.init(frame: .zero)
         

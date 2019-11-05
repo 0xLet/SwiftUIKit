@@ -16,7 +16,7 @@ public extension UIView {
                alignment: UIStackView.Alignment = .fill,
                distribution: UIStackView.Distribution = .fill,
                axis: NSLayoutConstraint.Axis,
-               closure: () -> [UIView]) -> Self {
+               _ closure: () -> [UIView]) -> Self {
         let viewsInVStack = closure()
         
         let stackView = UIStackView(arrangedSubviews: viewsInVStack)
@@ -37,13 +37,13 @@ public extension UIView {
                 padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
-                closure: () -> [UIView]) -> Self {
+                _ closure: () -> [UIView]) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
                      distribution: distribution,
                      axis: .vertical,
-                     closure: closure)
+                     closure)
     }
     
     @discardableResult
@@ -51,18 +51,18 @@ public extension UIView {
                 padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
-                closure: () -> [UIView]) -> Self {
+                _ closure: () -> [UIView]) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
                      distribution: distribution,
                      axis: .horizontal,
-                     closure: closure)
+                     closure)
     }
     
     @discardableResult
     func embed(withPadding padding: Float = 0,
-               closure: () -> UIView) -> Self {
+               _ closure: () -> UIView) -> Self {
         let viewToEmbed = closure()
         viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
         addSubview(viewToEmbed)

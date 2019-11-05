@@ -9,7 +9,7 @@ import UIKit
 
 @available(iOS 11.0, *)
 public class SafeAreaView: UIView {
-    public init(closure: () -> UIView) {
+    public init(_ closure: () -> UIView) {
         let view = closure()
         super.init(frame: .zero)
         
