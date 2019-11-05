@@ -12,7 +12,7 @@ public class ScrollView: UIScrollView {
     public init(_ closure: (() -> UIView)? = nil) {
         super.init(frame: .zero)
         
-        _ = closure.map { embed(closure: $0) }
+        _ = closure.map { embed($0) }
     }
     
     required init?(coder: NSCoder) {

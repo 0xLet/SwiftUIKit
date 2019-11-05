@@ -14,7 +14,7 @@ public class Slider: UISlider {
     public init(value: Float,
                 from: Float,
                 to: Float,
-                valueChangedHandler: ((Float) -> Void)? = nil) {
+                _ valueChangedHandler: ((Float) -> Void)? = nil) {
         
         super.init(frame: .zero)
         
