@@ -7,7 +7,7 @@ s.summary = "UIKit implementation of SwiftUI"
 s.requires_arc = true
 s.swift_version = '5.0'
 
-s.version = "0.4.1"
+s.version = "0.5.0"
 
 s.license = { :type => 'MIT' }
 s.author = { "Zach Eriksen" => "zmeriksen@icloud.com" }
