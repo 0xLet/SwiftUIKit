@@ -16,7 +16,7 @@ public class HStack: UIView {
          padding: Float = 0,
          alignment: UIStackView.Alignment = .fill,
          distribution: UIStackView.Distribution = .fill,
-         closure: () -> [UIView]) {
+         _ closure: () -> [UIView]) {
         views = closure()
         super.init(frame: .zero)
         
@@ -24,7 +24,7 @@ public class HStack: UIView {
                padding: padding,
                alignment: alignment,
                distribution: distribution,
-               closure: closure)
+               closure)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -16,7 +16,7 @@ public extension UIView {
                alignment: UIStackView.Alignment = .fill,
                distribution: UIStackView.Distribution = .fill,
                axis: NSLayoutConstraint.Axis,
-               closure: () -> [UIView]) -> Self {
+               _ closure: () -> [UIView]) -> Self {
         let viewsInVStack = closure()
         
         let stackView = UIStackView(arrangedSubviews: viewsInVStack)
@@ -25,8 +25,8 @@ public extension UIView {
         stackView.distribution = distribution
         stackView.axis = axis
         
-        embed {
-            stackView.padding(padding)
+        embed(withPadding: padding) {
+            stackView
         }
         
         return self
@@ -37,32 +37,32 @@ public extension UIView {
                 padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
-                closure: () -> [UIView]) -> Self {
+                _ closure: () -> [UIView]) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
                      distribution: distribution,
                      axis: .vertical,
-            closure: closure)
+                     closure)
     }
     
     @discardableResult
     func hstack(withSpacing spacing: Float = 0,
-    padding: Float = 0,
+                padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
-                closure: () -> [UIView]) -> Self {
+                _ closure: () -> [UIView]) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
                      distribution: distribution,
                      axis: .horizontal,
-            closure: closure)
+                     closure)
     }
     
     @discardableResult
     func embed(withPadding padding: Float = 0,
-               closure: () -> UIView) -> Self {
+               _ closure: () -> UIView) -> Self {
         let viewToEmbed = closure()
         viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
         addSubview(viewToEmbed)
@@ -81,6 +81,9 @@ public extension UIView {
     func padding(_ padding: Float = 8) -> View {
         return View(backgroundColor: backgroundColor)
             .embed(withPadding: padding) { self }
+            .accessibility(label: accessibilityLabel,
+                           identifier: accessibilityIdentifier,
+                           traits: accessibilityTraits)
     }
     
     @discardableResult
@@ -93,7 +96,6 @@ public extension UIView {
         if let width = width {
             widthAnchor.constraint(equalToConstant: CGFloat(width)).isActive = true
         }
-        
         
         return self
     }
@@ -135,8 +137,15 @@ public extension UIView {
             }
             return views
         }
+        let subviews = getSubViews(forView: self)
         
-        getSubViews(forView: self).forEach { $0.backgroundColor = randomColor }
+        print("DEBUG LOG:")
+        print("Root Debug View: \(self)")
+        print("Number of Views: \(subviews.count + 1)")
+        
+        subviews.forEach {
+            $0.backgroundColor = randomColor
+        }
         
         return self
     }
