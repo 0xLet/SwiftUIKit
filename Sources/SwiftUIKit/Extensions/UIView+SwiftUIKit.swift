@@ -101,6 +101,33 @@ public extension UIView {
     }
     
     @discardableResult
+    func offset(x: Float? = nil, y: Float? = nil) -> Self {
+        
+        if let x = x {
+            center.x += CGFloat(x)
+        }
+        if let y = y {
+            center.y += CGFloat(y)
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func center(x: Float? = nil, y: Float? = nil) -> Self {
+        
+        if let x = x {
+            center.x = CGFloat(x)
+        }
+        if let y = y {
+            center.y = CGFloat(y)
+        }
+        
+        return self
+    }
+    
+    
+    @discardableResult
     func layer(_ closure: (CALayer) -> Void) -> Self {
         closure(layer)
         
