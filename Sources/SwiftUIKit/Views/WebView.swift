@@ -20,6 +20,7 @@ public class WebView: WKWebView {
     }
 }
 
+@available(iOS 9.0, *)
 public extension WebView {
     convenience init(baseURL: URL? = nil, _ htmlString: () -> String) {
         self.init()
