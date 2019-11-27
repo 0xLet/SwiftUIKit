@@ -11,14 +11,17 @@ import UIKit
 public class Table: UITableView {
     private var data: [UIView]
     private var defaultCellHeight: Float?
+    private var estimatedCellHeight: Float?
     
     private var didSelectHandler: ((UIView) -> Void)?
     private var configureCell: ((UITableViewCell) -> Void)?
     
     public init(defaultCellHeight: Float? = nil,
+                estimatedCellHeight: Float? = nil,
                 _ closure: () -> [UIView]) {
         
         self.defaultCellHeight = defaultCellHeight
+        self.estimatedCellHeight = estimatedCellHeight
         self.data = closure()
         
         super.init(frame: .zero, style: .plain)
@@ -62,6 +65,7 @@ extension Table: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
+        cell.contentView.translatesAutoresizingMaskIntoConstraints = false
         configureCell?(cell)
         cell.contentView.embed {
             self.data[indexPath.row]
@@ -73,6 +77,13 @@ extension Table: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let height = defaultCellHeight else {
             return UITableView.automaticDimension
+        }
+        return CGFloat(height)
+    }
+    
+    public func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let height = estimatedCellHeight else {
+            return 44
         }
         return CGFloat(height)
     }
