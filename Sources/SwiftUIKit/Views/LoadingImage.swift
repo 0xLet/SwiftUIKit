@@ -13,6 +13,7 @@ public class LoadingImage: UIView {
         super.init(frame: .zero)
         embed {
             LoadingView()
+                .start()
         }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
