@@ -9,10 +9,11 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class LoadingImage: UIView {
-    public init(_ url: URL) {
+    public init(_ url: URL, loadingTint: UIColor? = nil) {
         super.init(frame: .zero)
         embed {
             LoadingView()
+                .configure { $0.tintColor = loadingTint }
                 .start()
         }
         let request = URLRequest(url: url)
