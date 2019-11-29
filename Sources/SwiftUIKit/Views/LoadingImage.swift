@@ -13,7 +13,7 @@ public class LoadingImage: UIView {
         super.init(frame: .zero)
         embed {
             LoadingView()
-                .configure { $0.tintColor = loadingTint }
+                .configure { $0.color = loadingTint }
                 .start()
         }
         let request = URLRequest(url: url)
