@@ -27,6 +27,22 @@ public class HStack: UIView {
                closure)
     }
     
+    public init(withSpacing spacing: Float = 0,
+         padding: Float = 0,
+         alignment: UIStackView.Alignment = .fill,
+         distribution: UIStackView.Distribution = .fill,
+         _ closure: () -> [UIView?]) {
+        views = closure()
+            .compactMap { $0 }
+        super.init(frame: .zero)
+        
+        hstack(withSpacing: spacing,
+               padding: padding,
+               alignment: alignment,
+               distribution: distribution)
+               { views }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

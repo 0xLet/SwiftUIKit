@@ -16,8 +16,9 @@ public extension UIView {
                alignment: UIStackView.Alignment = .fill,
                distribution: UIStackView.Distribution = .fill,
                axis: NSLayoutConstraint.Axis,
-               _ closure: () -> [UIView]) -> Self {
+               _ closure: () -> [UIView?]) -> Self {
         let viewsInVStack = closure()
+            .compactMap { $0 }
         
         let stackView = UIStackView(arrangedSubviews: viewsInVStack)
         stackView.spacing = CGFloat(spacing)
@@ -37,7 +38,7 @@ public extension UIView {
                 padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView]) -> Self {
+                _ closure: () -> [UIView?]) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
@@ -51,7 +52,7 @@ public extension UIView {
                 padding: Float = 0,
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView]) -> Self {
+                _ closure: () -> [UIView?]) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,

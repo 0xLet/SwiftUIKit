@@ -21,7 +21,6 @@ public class Image: UIImageView {
     
     public init(_ url: URL) {
         super.init(frame: .zero)
-        
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             guard let data = data,
