@@ -79,6 +79,13 @@ public extension UIView {
     }
     
     @discardableResult
+    func clear() -> Self {
+        subviews.forEach { $0.removeFromSuperview() }
+        
+        return self
+    }
+    
+    @discardableResult
     func padding(_ padding: Float = 8) -> View {
         return View(backgroundColor: backgroundColor)
             .embed(withPadding: padding) { self }
