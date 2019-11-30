@@ -65,7 +65,6 @@ extension Table: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
-        cell.contentView.translatesAutoresizingMaskIntoConstraints = false
         configureCell?(cell)
         cell.contentView.embed {
             self.data[indexPath.row]
