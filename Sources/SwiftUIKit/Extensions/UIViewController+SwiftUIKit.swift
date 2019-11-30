@@ -33,4 +33,12 @@ public extension UIViewController {
                            style: style,
                            completion: completion)
     }
+    
+    @available(iOS 11.0, *)
+    /// Create a ViewController with Safe Area
+    class func safe(_ closure: (() -> UIView)) -> UIViewController {
+        return UIViewController {
+            SafeAreaView(closure)
+        }
+    }
 }
