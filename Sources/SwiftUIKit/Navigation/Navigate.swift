@@ -83,8 +83,7 @@ public class Navigate {
             return
         }
         
-        if let presentingVC = controller.visibleViewController,
-            presentingVC.isBeingPresented {
+        if let presentingVC = controller.visibleViewController {
             presentingVC.dismiss(animated: true)
         }
     }
