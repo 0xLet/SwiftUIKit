@@ -66,9 +66,7 @@ public class Navigate {
             return
         }
         
-        if let presentingVC = controller.presentingViewController {
-            presentingVC.dismiss(animated: true)
-        }
+        dismiss()
         
         if toRoot {
             controller.popToRootViewController(animated: true)
@@ -85,7 +83,8 @@ public class Navigate {
             return
         }
         
-        if let presentingVC = controller.presentingViewController {
+        if let presentingVC = controller.visibleViewController,
+            presentingVC.isBeingPresented {
             presentingVC.dismiss(animated: true)
         }
     }
