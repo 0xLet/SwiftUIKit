@@ -49,7 +49,7 @@ public class Navigate {
                    to: UIViewController,
                    style: NavigationStyle,
                    completion: (() -> Void)? = nil) {
-       
+        
         switch style {
         case .push:
             from.show(to, sender: self)
@@ -66,10 +66,41 @@ public class Navigate {
             return
         }
         
+        if let presentingVC = controller.presentingViewController {
+            presentingVC.dismiss(animated: true)
+        }
+        
         if toRoot {
             controller.popToRootViewController(animated: true)
         }
         
         controller.popViewController(animated: true)
+    }
+    
+    public func dismiss() {
+        guard let controller = navigationController else {
+            print("Navigate \(#function) Error!")
+            print("Issue trying to dismiss presentingViewController")
+            print("Error: Could not unwrap navigationController")
+            return
+        }
+        
+        if let presentingVC = controller.presentingViewController {
+            presentingVC.dismiss(animated: true)
+        }
+    }
+    
+    public func alert(title: String) {
+        
+        let alert = UIAlertController(title: title, message: "Soemthing", preferredStyle: .alert)
+        
+        go(alert, style: .modal)
+    }
+    
+    public func actionSheet(title: String) {
+        
+        let actionSheet = UIAlertController(title: title, message: "Soemthing", preferredStyle: .actionSheet)
+        
+        go(actionSheet, style: .modal)
     }
 }
