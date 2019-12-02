@@ -26,6 +26,48 @@ public class Navigate {
         return self
     }
     
+    @discardableResult
+    public func configure(navigationControllerTitle title: String) -> Self {
+        navigationController?.title = title
+        
+        return self
+    }
+    
+    @discardableResult
+    public func configure(visibleViewControllerTitle title: String) -> Self {
+        navigationController?.visibleViewController?.title = title
+        
+        return self
+    }
+    
+    @discardableResult
+    public func setLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
+        navigationController?.visibleViewController?.navigationItem.setLeftBarButton(barButton, animated: animated)
+        
+        return self
+    }
+    
+    @discardableResult
+    public func setRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
+        navigationController?.visibleViewController?.navigationItem.setRightBarButton(barButton, animated: animated)
+        
+        return self
+    }
+    
+    @discardableResult
+       public func setLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
+           navigationController?.visibleViewController?.navigationItem.setLeftBarButtonItems(barButtons, animated: animated)
+           
+           return self
+       }
+       
+       @discardableResult
+       public func setRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
+           navigationController?.visibleViewController?.navigationItem.setRightBarButtonItems(barButtons, animated: animated)
+           
+           return self
+       }
+    
     public func go(_ viewController: UIViewController,
                    style: NavigationStyle,
                    completion: (() -> Void)? = nil) {
@@ -88,16 +130,20 @@ public class Navigate {
         }
     }
     
-    public func alert(title: String) {
+    public func alert(title: String, message: String, _ closure: @escaping (UIAlertController) -> Void) {
         
-        let alert = UIAlertController(title: title, message: "Soemthing", preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message:message, preferredStyle: .alert)
+        
+        closure(alert)
         
         go(alert, style: .modal)
     }
     
-    public func actionSheet(title: String) {
+    public func actionSheet(title: String, message: String, _ closure: @escaping (UIAlertController) -> Void) {
         
-        let actionSheet = UIAlertController(title: title, message: "Soemthing", preferredStyle: .actionSheet)
+        let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        closure(actionSheet)
         
         go(actionSheet, style: .modal)
     }
