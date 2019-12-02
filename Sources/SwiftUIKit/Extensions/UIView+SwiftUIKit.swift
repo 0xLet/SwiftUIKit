@@ -78,6 +78,8 @@ public extension UIView {
         return self
     }
     
+    
+    
     @discardableResult
     func clear() -> Self {
         subviews.forEach { $0.removeFromSuperview() }
@@ -150,6 +152,50 @@ public extension UIView {
         label.map { accessibilityLabel = $0 }
         identifier.map { accessibilityIdentifier = $0 }
         traits.map { accessibilityTraits = $0 }
+        
+        return self
+    }
+}
+
+public extension UIView {
+    @discardableResult
+    func navigateConfigure(controller: UINavigationController?) -> Self {
+        Navigate.shared.configure(controller: controller)
+        
+        return self
+    }
+    
+    @discardableResult
+    func navigateSet(title: String) -> Self {
+        Navigate.shared.set(title: title)
+        
+        return self
+    }
+    
+    @discardableResult
+    func navigateSetLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
+        Navigate.shared.setLeft(barButton: barButton)
+        
+        return self
+    }
+    
+    @discardableResult
+    func navigateSetRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
+        Navigate.shared.setRight(barButton: barButton)
+        
+        return self
+    }
+    
+    @discardableResult
+    func navigateSetLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
+        Navigate.shared.setLeft(barButtons: barButtons)
+        
+        return self
+    }
+    
+    @discardableResult
+    func navigateSetRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
+        Navigate.shared.setRight(barButtons: barButtons)
         
         return self
     }
