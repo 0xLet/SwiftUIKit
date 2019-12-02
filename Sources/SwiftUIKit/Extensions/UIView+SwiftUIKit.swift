@@ -78,8 +78,6 @@ public extension UIView {
         return self
     }
     
-    
-    
     @discardableResult
     func clear() -> Self {
         subviews.forEach { $0.removeFromSuperview() }
