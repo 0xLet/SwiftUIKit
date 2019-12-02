@@ -27,14 +27,7 @@ public class Navigate {
     }
     
     @discardableResult
-    public func configure(navigationControllerTitle title: String) -> Self {
-        navigationController?.title = title
-        
-        return self
-    }
-    
-    @discardableResult
-    public func configure(visibleViewControllerTitle title: String) -> Self {
+    public func set(title: String) -> Self {
         navigationController?.visibleViewController?.title = title
         
         return self
@@ -55,18 +48,18 @@ public class Navigate {
     }
     
     @discardableResult
-       public func setLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
-           navigationController?.visibleViewController?.navigationItem.setLeftBarButtonItems(barButtons, animated: animated)
-           
-           return self
-       }
-       
-       @discardableResult
-       public func setRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
-           navigationController?.visibleViewController?.navigationItem.setRightBarButtonItems(barButtons, animated: animated)
-           
-           return self
-       }
+    public func setLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
+        navigationController?.visibleViewController?.navigationItem.setLeftBarButtonItems(barButtons, animated: animated)
+        
+        return self
+    }
+    
+    @discardableResult
+    public func setRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
+        navigationController?.visibleViewController?.navigationItem.setRightBarButtonItems(barButtons, animated: animated)
+        
+        return self
+    }
     
     public func go(_ viewController: UIViewController,
                    style: NavigationStyle,
