@@ -123,18 +123,28 @@ public class Navigate {
         }
     }
     
-    public func alert(title: String, message: String, _ closure: ((UIAlertController) -> Void)? = nil) {
+    public func alert(title: String,
+                      message: String,
+                      withActions actions: [UIAlertAction] = [],
+                      _ closure: ((UIAlertController) -> Void)? = nil) {
         
         let alert = UIAlertController(title: title, message:message, preferredStyle: .alert)
+        
+        actions.forEach { alert.addAction($0) }
         
         closure?(alert)
         
         go(alert, style: .modal)
     }
     
-    public func actionSheet(title: String, message: String, _ closure: ((UIAlertController) -> Void)? = nil) {
+    public func actionSheet(title: String,
+                            message: String,
+                            withActions actions: [UIAlertAction] = [],
+                            _ closure: ((UIAlertController) -> Void)? = nil) {
         
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        
+        actions.forEach { actionSheet.addAction($0) }
         
         closure?(actionSheet)
         
