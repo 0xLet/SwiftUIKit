@@ -123,20 +123,20 @@ public class Navigate {
         }
     }
     
-    public func alert(title: String, message: String, _ closure: @escaping (UIAlertController) -> Void) {
+    public func alert(title: String, message: String, _ closure: ((UIAlertController) -> Void)? = nil) {
         
         let alert = UIAlertController(title: title, message:message, preferredStyle: .alert)
         
-        closure(alert)
+        closure?(alert)
         
         go(alert, style: .modal)
     }
     
-    public func actionSheet(title: String, message: String, _ closure: @escaping (UIAlertController) -> Void) {
+    public func actionSheet(title: String, message: String, _ closure: ((UIAlertController) -> Void)? = nil) {
         
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
-        closure(actionSheet)
+        closure?(actionSheet)
         
         go(actionSheet, style: .modal)
     }
