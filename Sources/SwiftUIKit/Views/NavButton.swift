@@ -32,8 +32,24 @@ public class NavButton: Button {
         }
     }
     
+    public init(_ tapHandler: (() -> Void)? = nil,
+                destination: UIViewController,
+                style: Navigate.NavigationStyle,
+                _ closure: () -> UIView) {
+        
+        self.destination = destination
+        self.style = style
+        
+        super.init({
+            tapHandler?()
+            Navigate.shared.go(destination,
+                               style: style)
+        },
+                   forEvent: .touchUpInside,
+                   closure)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
