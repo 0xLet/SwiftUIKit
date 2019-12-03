@@ -153,6 +153,15 @@ public extension UIView {
         
         return self
     }
+    
+    @discardableResult
+    func gesture(_ closure: () -> UIGestureRecognizer) -> Self {
+        let gesture = closure()
+        
+        addGestureRecognizer(gesture)
+        
+        return self
+    }
 }
 
 public extension UIView {
