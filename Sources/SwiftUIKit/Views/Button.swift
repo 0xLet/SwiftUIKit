@@ -36,7 +36,7 @@ public class Button: UIButton {
         embed {
             closure()
             .padding(0)
-            .gesture(UITapGestureRecognizer(target: self, action: #selector(handleButtonTap)))
+            .gesture { UITapGestureRecognizer(target: self, action: #selector(handleButtonTap)) }
         }
         
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
