@@ -212,7 +212,7 @@ public class Navigate {
         var topAnchor: NSLayoutConstraint?
         
         if #available(iOS 11.0, *) {
-            topAnchor = NSLayoutConstraint(item: toast, attribute: .top, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
+            topAnchor = NSLayoutConstraint(item: toast, attribute: .top, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: -60)
             NSLayoutConstraint.activate(
                 [
                     toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
@@ -223,7 +223,7 @@ public class Navigate {
                     .compactMap { $0 }
             )
         } else {
-            topAnchor = NSLayoutConstraint(item: toast, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 0)
+            topAnchor = NSLayoutConstraint(item: toast, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: -60)
             NSLayoutConstraint.activate(
                 [
                     toast.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
@@ -239,6 +239,7 @@ public class Navigate {
         DispatchQueue.main.async {
             toast.layoutIfNeeded()
             topAnchor?.constant = toast.frame.height
+            
             UIView.animate(withDuration: animationInDuration) {
                 toast.layoutIfNeeded()
             }
@@ -251,8 +252,7 @@ public class Navigate {
                     toast.layoutIfNeeded()
                 }) { didComplete in
                     if didComplete {
-                        print("TO DESTROY")
-//                        self.destroyToast()
+                        self.destroyToast()
                     } else {
                         print("Some else completed this animation")
                     }
@@ -260,6 +260,7 @@ public class Navigate {
             }
         }
     }
+    
     public func destroyToast() {
         toast?.removeFromSuperview()
         toast = nil
