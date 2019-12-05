@@ -187,6 +187,11 @@ public class Navigate {
                       tapHandler: @escaping (UIView) -> Void = { $0.removeFromSuperview() },
                       _ closure: @escaping () -> UIView) {
         
+        // Don't allow more than one Toast to be present
+        guard toast == nil else {
+            return
+        }
+        
         didTapToastHandler = tapHandler
         toast = View { closure().padding(16) }
             .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
@@ -231,15 +236,17 @@ public class Navigate {
         }
         
         DispatchQueue.main.async {
+            topAnchor?.constant = toast.frame.height
             UIView.animate(withDuration: animationInDuration) {
-                topAnchor?.constant = toast.frame.height
+                toast.layoutIfNeeded()
             }
         }
         
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
+                topAnchor?.constant = -toast.frame.height
                 UIView.animate(withDuration: animationOutDuration) {
-                    topAnchor?.constant = -toast.frame.height
+                    toast.layoutIfNeeded()
                 }
             }
         }
@@ -253,5 +260,7 @@ public class Navigate {
             return
         }
         didTapToastHandler?(toast)
+        self.toast = nil
+        self.didTapToastHandler = nil
     }
 }
