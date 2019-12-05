@@ -193,9 +193,16 @@ public class Navigate {
             return
         }
         didTapToastHandler = tapHandler
-        toast = View { closure().padding(8) }
-            .padding(padding)
-            .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
+        switch style {
+        case .custom:
+            toast = closure()
+        default:
+            toast = View { closure().padding(8) }
+                .padding(padding)
+                .layer { $0.cornerRadius = 8 }
+                .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
+        }
+        
         toast?.translatesAutoresizingMaskIntoConstraints = false
         toast?.alpha = 0
         
