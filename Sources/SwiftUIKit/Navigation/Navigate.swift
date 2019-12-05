@@ -208,15 +208,14 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 0)
-        let trailingAnchor = NSLayoutConstraint(item: toast, attribute: .trailing, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: containerView.frame.width)
+        let centerAnchor = NSLayoutConstraint(item: toast, attribute: .centerY, relatedBy: .equal, toItem: nil, attribute: .centerY, multiplier: 1, constant: -(containerView.frame.width * 2))
         
             NSLayoutConstraint.activate(
                 [
                     toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
                     toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                    leadingAnchor,
-                    trailingAnchor,
+                    toast.widthAnchor.constraint(equalTo: containerView.widthAnchor),
+                    centerAnchor,
                     ]
             )
         
@@ -227,9 +226,7 @@ public class Navigate {
         
         // Animation In
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-        
-            trailingAnchor.constant = 0
-            leadingAnchor.constant = 0
+            centerAnchor.constant = containerView.frame.width / 2
             
             UIView.animate(withDuration: animationInDuration) {
                 toast.layoutIfNeeded()
@@ -239,7 +236,7 @@ public class Navigate {
         // Animation Out
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
-                leadingAnchor.constant = containerView.frame.width
+                centerAnchor.constant = containerView.frame.width * 2
                 UIView.animate(withDuration: animationOutDuration, animations: {
                     toast.layoutIfNeeded()
                 }) { didComplete in
