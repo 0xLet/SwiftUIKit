@@ -205,23 +205,24 @@ public class Navigate {
                 print("Error: Could not unwrap navigationController")
                 return
         }
-    
+        
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-            NSLayoutConstraint.activate(
-                [
-                    toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
-                    toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
-                    toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
-                    toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                    ]
-            )
+        NSLayoutConstraint.activate(
+            [
+                toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
+                toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
+                toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
+                toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+            ]
+        )
+        
         // Animation In
         DispatchQueue.main.async {
+            toast.layoutIfNeeded()
             UIView.animate(withDuration: animationInDuration) {
                 toast.alpha = 1
-                toast.layoutIfNeeded()
             }
         }
         
