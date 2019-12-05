@@ -25,15 +25,15 @@ public class Navigate {
         public var color: UIColor {
             switch self {
             case .error:
-                return .systemRed
+                return .red
             case .warning:
-                return .systemYellow
+                return .yellow
             case .success:
-                return .systemGreen
+                return .green
             case .info:
-                return .systemBlue
+                return .blue
             case .debug:
-                return .systemGray
+                return .gray
             case .custom:
                 return .clear
             }

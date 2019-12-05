@@ -9,10 +9,10 @@ import UIKit
 
 public extension UIAlertAction {
     class var cancel: UIAlertAction {
-        UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        return UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     }
     
     class var dismiss: UIAlertAction {
-        UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+        return UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
     }
 }
