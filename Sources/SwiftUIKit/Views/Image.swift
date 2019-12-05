@@ -9,6 +9,8 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class Image: UIImageView {
+    private var onCompletionHandler: (Image, UIImage?) -> Void = { _,_ in }
+    
     public init(_ image: UIImage) {
         super.init(image: image)
     }
@@ -19,7 +21,9 @@ public class Image: UIImageView {
         self.image = Image.image(fromColor: color)
     }
     
-    public init(_ url: URL) {
+    public init(_ url: URL, onCompletion: @escaping (Image, UIImage?) -> Void = { _,_ in }) {
+        self.onCompletionHandler = onCompletion
+        
         super.init(frame: .zero)
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
@@ -29,6 +33,9 @@ public class Image: UIImageView {
                     print("Issue loading Image with url: \(url.absoluteString)")
                     print("Error: \(error?.localizedDescription ?? "-1")")
                     self?.update(color: .red)
+                    if let self = self {
+                        self.onCompletionHandler(self, nil)
+                    }
                     return
             }
             guard let image = UIImage(data: data) else {
@@ -36,9 +43,16 @@ public class Image: UIImageView {
                 print("Issue loading Image with url: \(url.absoluteString)")
                 print("Error: Could not create UIImage from data")
                 self?.update(color: .red)
+                if let self = self {
+                    self.onCompletionHandler(self, nil)
+                }
                 return
             }
             self?.update(image: image)
+            if let self = self {
+                self.onCompletionHandler(self, image)
+            }
+            
         }
         
         task.resume()
