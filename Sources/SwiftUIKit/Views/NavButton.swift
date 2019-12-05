@@ -15,7 +15,7 @@ public class NavButton: Button {
     public init(_ title: String,
                 destination: UIViewController,
                 style: Navigate.NavigationStyle,
-                titleColor: UIColor = .white,
+                titleColor: UIColor? = nil,
                 backgroundColor: UIColor? = nil,
                 _ tapHandler: (() -> Void)? = nil) {
         
