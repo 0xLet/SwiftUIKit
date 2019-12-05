@@ -209,8 +209,8 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide.leadingAnchor, attribute: .leading, multiplier: 1, constant: 0)
-        let trailingAnchor = NSLayoutConstraint(item: toast, attribute: .trailing, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide.trailingAnchor, attribute: .trailing, multiplier: 1, constant: 0)
+        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 0)
+        let trailingAnchor = NSLayoutConstraint(item: toast, attribute: .trailing, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: 0)
         
             NSLayoutConstraint.activate(
                 [
