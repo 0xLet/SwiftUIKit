@@ -182,8 +182,9 @@ public class Navigate {
     @available(iOS 11.0, *)
     public func toast(style: ToastStyle = .custom,
                       secondsToPersist: Double? = nil,
-                      animationInDuration: Double = 1,
-                      animationOutDuration: Double = 1,
+                      animationInDuration: Double = 0.5,
+                      animationOutDuration: Double = 0.5,
+                      padding: Float = 8,
                       tapHandler: @escaping (UIView) -> Void = { $0.removeFromSuperview() },
                       _ closure: @escaping () -> UIView) {
         
@@ -192,7 +193,8 @@ public class Navigate {
             return
         }
         didTapToastHandler = tapHandler
-        toast = View { closure().padding(16) }
+        toast = View { closure().padding(8) }
+            .padding(padding)
             .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         toast?.translatesAutoresizingMaskIntoConstraints = false
         toast?.alpha = 0
