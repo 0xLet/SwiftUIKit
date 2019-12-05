@@ -153,8 +153,18 @@ public extension UIView {
         
         return self
     }
+    
+    @discardableResult
+    func gesture(_ closure: () -> UIGestureRecognizer) -> Self {
+        let gesture = closure()
+        
+        addGestureRecognizer(gesture)
+        
+        return self
+    }
 }
 
+@available(iOS 9.0, *)
 public extension UIView {
     @discardableResult
     func navigateConfigure(controller: UINavigationController?) -> Self {

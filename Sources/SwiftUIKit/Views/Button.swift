@@ -12,7 +12,7 @@ public class Button: UIButton {
     private var action: () -> Void
     
     public init(_ title: String,
-                titleColor: UIColor = .white,
+                titleColor: UIColor? = nil,
                 backgroundColor: UIColor? = nil,
                 forEvent event: UIControl.Event = .touchUpInside,
                 _ action: @escaping () -> Void) {
@@ -20,11 +20,26 @@ public class Button: UIButton {
         super.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
-        self.setTitleColor(titleColor, for: .normal)
+        self.setTitleColor(titleColor ?? .blue, for: .normal)
         self.setTitle(title, for: .normal)
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
         
         accessibility(label: title, traits: .button)
+    }
+    
+    public init(_ action: @escaping () -> Void,
+                forEvent event: UIControl.Event = .touchUpInside,
+                _ closure: () -> UIView) {
+        self.action = action
+        super.init(frame: .zero)
+        
+        embed {
+            closure()
+            .padding(0)
+            .gesture { UITapGestureRecognizer(target: self, action: #selector(handleButtonTap)) }
+        }
+        
+        self.addTarget(self, action: #selector(handleButtonTap), for: event)
     }
     
     required init?(coder: NSCoder) {
