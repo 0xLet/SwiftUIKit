@@ -181,12 +181,14 @@ public class Navigate {
         
         let view = View { closure().padding(16) }
         
+        view.translatesAutoresizingMaskIntoConstraints = false
+        
         controller.visibleViewController?.view.addSubview(view)
+        controller.visibleViewController?.view.bringSubviewToFront(view)
         
         NSLayoutConstraint.activate([
             view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
             view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            view.heightAnchor.constraint(equalToConstant: 44),
             view.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
             view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0)
         ])
