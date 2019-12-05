@@ -181,8 +181,10 @@ public class Navigate {
     // MARK: Toasts & Messages
     
     public func toast(style: ToastStyle = .custom,
-                      secondsToPersist: Double?,
-                      tapHandler: @escaping (UIView) -> Void,
+                      secondsToPersist: Double? = nil,
+                      animationInDuration: Double = 1,
+                      animationOutDuration: Double = 1,
+                      tapHandler: @escaping (UIView) -> Void = { $0.removeFromSuperview() },
                       _ closure: @escaping () -> UIView) {
         
         didTapToastHandler = tapHandler
@@ -216,6 +218,36 @@ public class Navigate {
                 toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
                 toast.topAnchor.constraint(equalTo: containerView.topAnchor, constant: controller.navigationBar.frame.height)
             ])
+        }
+        
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: animationInDuration) {
+                 if #available(iOS 11.0, *) {
+                           NSLayoutConstraint.activate([
+                            toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 0)
+                           ])
+                       } else {
+                           NSLayoutConstraint.activate([
+                               toast.topAnchor.constraint(equalTo: containerView.topAnchor, constant: controller.navigationBar.frame.height)
+                           ])
+                       }
+            }
+        }
+        
+        if let timeToLive = secondsToPersist {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
+                UIView.animate(withDuration: animationOutDuration) {
+                     if #available(iOS 11.0, *) {
+                               NSLayoutConstraint.activate([
+                                toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: -toast.frame.height)
+                               ])
+                           } else {
+                               NSLayoutConstraint.activate([
+                                   toast.topAnchor.constraint(equalTo: containerView.topAnchor, constant: controller.navigationBar.frame.height - toast.frame.height)
+                               ])
+                           }
+                }
+            }
         }
     }
     
