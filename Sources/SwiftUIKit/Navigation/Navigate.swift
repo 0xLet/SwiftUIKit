@@ -208,7 +208,7 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        let centerAnchor = NSLayoutConstraint(item: toast, attribute: .centerY, relatedBy: .equal, toItem: nil, attribute: .centerY, multiplier: 1, constant: -(containerView.frame.width * 2))
+        let centerAnchor = NSLayoutConstraint(item: toast, attribute: .centerY, relatedBy: .equal, toItem: containerView, attribute: .centerY, multiplier: 1, constant: -(containerView.frame.width * 2))
         
             NSLayoutConstraint.activate(
                 [
