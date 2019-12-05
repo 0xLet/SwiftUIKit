@@ -126,6 +126,7 @@ public class Navigate {
     public func alert(title: String,
                       message: String,
                       withActions actions: [UIAlertAction] = [],
+                      secondsToPersist: Double?,
                       _ closure: ((UIAlertController) -> Void)? = nil) {
         
         let alert = UIAlertController(title: title, message:message, preferredStyle: .alert)
@@ -133,6 +134,18 @@ public class Navigate {
         actions.forEach { alert.addAction($0) }
         
         closure?(alert)
+        
+        if let timeToLive = secondsToPersist {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
+                if alert.isFirstResponder {
+                    alert.dismiss(animated: true) {
+                        print("Alert Dismissed due to secondsToPersist being \(secondsToPersist!)")
+                    }
+                } else {
+                    print("Alert Dismissed for other reasons")
+                }
+            }
+        }
         
         go(alert, style: .modal)
     }
