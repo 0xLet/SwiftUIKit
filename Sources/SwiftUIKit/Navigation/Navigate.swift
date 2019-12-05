@@ -191,9 +191,10 @@ public class Navigate {
         guard toast == nil else {
             return
         }
-        
+        let toastCustomView = closure()
+        toastCustomView.translatesAutoresizingMaskIntoConstraints = false
         didTapToastHandler = tapHandler
-        toast = View { closure().padding(16) }
+        toast = View { toastCustomView.padding(16) }
             .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         toast?.translatesAutoresizingMaskIntoConstraints = false
         
@@ -205,6 +206,8 @@ public class Navigate {
                 print("Error: Could not unwrap navigationController")
                 return
         }
+        // Testing... 
+        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
