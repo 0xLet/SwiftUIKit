@@ -209,24 +209,26 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        NSLayoutConstraint.activate(
-            [
-                toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
-                toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
-                toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
-            ]
-        )
+        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide.leadingAnchor, attribute: .leading, multiplier: 1, constant: 0)
+        let trailingAnchor = NSLayoutConstraint(item: toast, attribute: .trailing, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide.trailingAnchor, attribute: .trailing, multiplier: 1, constant: 0)
+        
+            NSLayoutConstraint.activate(
+                [
+                    toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
+                    toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+                    leadingAnchor,
+                    trailingAnchor,
+                    ]
+            )
         
         
         DispatchQueue.main.async {
+            trailingAnchor.constant = containerView.frame.width
+            
             toast.layoutIfNeeded()
             
-            NSLayoutConstraint.activate(
-                [
-                    toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
-                ]
-            )
+            trailingAnchor.constant = 0
+            
             UIView.animate(withDuration: animationInDuration) {
                 toast.layoutIfNeeded()
             }
@@ -234,11 +236,7 @@ public class Navigate {
         
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
-                NSLayoutConstraint.activate(
-                    [
-                        toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
-                    ]
-                )
+                leadingAnchor.constant = containerView.frame.width
                 UIView.animate(withDuration: animationOutDuration, animations: {
                     toast.layoutIfNeeded()
                 }) { didComplete in
