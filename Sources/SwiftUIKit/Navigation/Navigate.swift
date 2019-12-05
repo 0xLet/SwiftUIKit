@@ -204,48 +204,42 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
+        var topAnchor: NSLayoutConstraint?
+        
         if #available(iOS 11.0, *) {
-            NSLayoutConstraint.activate([
-                toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
-                toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
-                toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 0)
-            ])
+            topAnchor = NSLayoutConstraint(item: toast, attribute: .top, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate(
+                [
+                    toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
+                    toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
+                    toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+                    topAnchor
+                    ]
+                    .compactMap { $0 }
+            )
         } else {
-            NSLayoutConstraint.activate([
-                toast.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                toast.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                toast.topAnchor.constraint(equalTo: containerView.topAnchor, constant: controller.navigationBar.frame.height)
-            ])
+            topAnchor = NSLayoutConstraint(item: toast, attribute: .top, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: 0)
+            NSLayoutConstraint.activate(
+                [
+                    toast.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                    toast.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                    toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+                    topAnchor
+                    ]
+                    .compactMap { $0 }
+            )
         }
         
         DispatchQueue.main.async {
             UIView.animate(withDuration: animationInDuration) {
-                 if #available(iOS 11.0, *) {
-                           NSLayoutConstraint.activate([
-                            toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 0)
-                           ])
-                       } else {
-                           NSLayoutConstraint.activate([
-                               toast.topAnchor.constraint(equalTo: containerView.topAnchor, constant: controller.navigationBar.frame.height)
-                           ])
-                       }
+                topAnchor?.constant = toast.frame.height
             }
         }
         
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
                 UIView.animate(withDuration: animationOutDuration) {
-                     if #available(iOS 11.0, *) {
-                               NSLayoutConstraint.activate([
-                                toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: -toast.frame.height)
-                               ])
-                           } else {
-                               NSLayoutConstraint.activate([
-                                   toast.topAnchor.constraint(equalTo: containerView.topAnchor, constant: controller.navigationBar.frame.height - toast.frame.height)
-                               ])
-                           }
+                    topAnchor?.constant = -toast.frame.height
                 }
             }
         }
