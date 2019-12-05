@@ -245,11 +245,22 @@ public class Navigate {
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
                 topAnchor?.constant = -toast.frame.height
-                UIView.animate(withDuration: animationOutDuration) {
+                UIView.animate(withDuration: animationOutDuration, animations: {
                     toast.layoutIfNeeded()
+                }) { didComplete in
+                    if didComplete {
+                        self.destroyToast()
+                    } else {
+                        print("Some else completed this animation")
+                    }
                 }
             }
         }
+    }
+    public func destroyToast() {
+        toast?.removeFromSuperview()
+        toast = nil
+        didTapToastHandler = nil
     }
     
     @objc private func userTappedOnToast() {
@@ -260,7 +271,6 @@ public class Navigate {
             return
         }
         didTapToastHandler?(toast)
-        self.toast = nil
-        self.didTapToastHandler = nil
+        destroyToast()
     }
 }
