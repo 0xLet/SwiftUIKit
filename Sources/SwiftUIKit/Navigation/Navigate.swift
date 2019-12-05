@@ -198,6 +198,7 @@ public class Navigate {
     // MARK: Toasts & Messages
     @available(iOS 11.0, *)
     public func toast(style: ToastStyle = .custom,
+                      pinToTop: Bool = true,
                       secondsToPersist: Double? = nil,
                       animationInDuration: Double = 0.5,
                       animationOutDuration: Double = 0.5,
@@ -216,11 +217,19 @@ public class Navigate {
             toast = closure()
                 .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         default:
-            toast = View { closure().padding(8).configure { $0.backgroundColor = style.color } }
-                .padding(padding)
-                .configure { $0.clipsToBounds = true }
+            toast = View {
+                closure()
+                    .padding(8)
+                    .configure {
+                        $0.backgroundColor = style.color
+                        $0.clipsToBounds = true
+                }
                 .layer { $0.cornerRadius = 8 }
-                .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
+                
+            }
+            .padding(padding)
+                
+            .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         }
         
         toast?.translatesAutoresizingMaskIntoConstraints = false
@@ -238,9 +247,11 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
+        let pinConstraint = pinToTop ? toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor) : toast.bottomAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.bottomAnchor)
+        
         NSLayoutConstraint.activate(
             [
-                toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
+                pinConstraint,
                 toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
                 toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
                 toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
