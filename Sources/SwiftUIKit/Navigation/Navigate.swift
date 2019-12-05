@@ -14,7 +14,18 @@ public class Navigate {
         case modal
     }
     
+    public enum ToastStyle {
+        case error
+        case warning
+        case success
+        case info
+        case debug
+        case custom
+    }
+    
     private var navigationController: UINavigationController?
+    private var toast: UIView?
+    private var didTapToastHandler: ((UIView) -> Void)?
     
     public static var shared: Navigate = Navigate()
     
@@ -169,28 +180,52 @@ public class Navigate {
     
     // MARK: Toasts & Messages
     
-    public func toast(_ closure: @escaping () -> UIView) {
+    public func toast(style: ToastStyle = .custom,
+                      secondsToPersist: Double?,
+                      tapHandler: @escaping (UIView) -> Void,
+                      _ closure: @escaping () -> UIView) {
+        
+        didTapToastHandler = tapHandler
+        toast = View { closure().padding(16) }
+            .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
+        toast?.translatesAutoresizingMaskIntoConstraints = false
         
         guard let controller = navigationController,
-            let containerView = controller.visibleViewController?.view else {
-            print("Navigate \(#function) Error!")
-            print("Issue trying to dismiss presentingViewController")
-            print("Error: Could not unwrap navigationController")
-            return
+            let containerView = controller.visibleViewController?.view,
+            let toast = toast else {
+                print("Navigate \(#function) Error!")
+                print("Issue trying to dismiss presentingViewController")
+                print("Error: Could not unwrap navigationController")
+                return
         }
         
-        let view = View { closure().padding(16) }
+        controller.visibleViewController?.view.addSubview(toast)
+        controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        view.translatesAutoresizingMaskIntoConstraints = false
-        
-        controller.visibleViewController?.view.addSubview(view)
-        controller.visibleViewController?.view.bringSubviewToFront(view)
-        
-        NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-            view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-            view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0)
-        ])
+        if #available(iOS 11.0, *) {
+            NSLayoutConstraint.activate([
+                toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
+                toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
+                toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+                toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor, constant: 0)
+            ])
+        } else {
+            NSLayoutConstraint.activate([
+                toast.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                toast.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+                toast.topAnchor.constraint(equalTo: containerView.topAnchor, constant: controller.navigationBar.frame.height)
+            ])
+        }
+    }
+    
+    @objc private func userTappedOnToast() {
+        guard let toast = toast else {
+            print("Toast \(#function) Error!")
+            print("Issue trying to dismiss Toast")
+            print("Error: Could not unwrap Toast")
+            return
+        }
+        didTapToastHandler?(toast)
     }
 }
