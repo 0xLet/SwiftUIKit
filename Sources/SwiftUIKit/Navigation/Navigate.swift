@@ -206,8 +206,6 @@ public class Navigate {
                 print("Error: Could not unwrap navigationController")
                 return
         }
-        // Testing... 
-        containerView.translatesAutoresizingMaskIntoConstraints = false
         
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
