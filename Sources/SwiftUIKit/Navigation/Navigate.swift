@@ -235,7 +235,9 @@ public class Navigate {
             )
         }
         
+        
         DispatchQueue.main.async {
+            toast.layoutIfNeeded()
             topAnchor?.constant = toast.frame.height
             UIView.animate(withDuration: animationInDuration) {
                 toast.layoutIfNeeded()
@@ -249,7 +251,8 @@ public class Navigate {
                     toast.layoutIfNeeded()
                 }) { didComplete in
                     if didComplete {
-                        self.destroyToast()
+                        print("TO DESTROY")
+//                        self.destroyToast()
                     } else {
                         print("Some else completed this animation")
                     }
