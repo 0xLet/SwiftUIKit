@@ -21,6 +21,23 @@ public class Navigate {
         case info
         case debug
         case custom
+        
+        public var color: UIColor {
+            switch self {
+            case .error:
+                return .systemRed
+            case .warning:
+                return .systemYellow
+            case .success:
+                return .systemGreen
+            case .info:
+                return .systemBlue
+            case .debug:
+                return .systemGray
+            case .custom:
+                return .clear
+            }
+        }
     }
     
     private var navigationController: UINavigationController?
@@ -193,12 +210,15 @@ public class Navigate {
             return
         }
         didTapToastHandler = tapHandler
+        
         switch style {
         case .custom:
             toast = closure()
+                .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         default:
-            toast = View { closure().padding(8) }
+            toast = View { closure().padding(8).configure { $0.backgroundColor = style.color } }
                 .padding(padding)
+                .configure { $0.clipsToBounds = true }
                 .layer { $0.cornerRadius = 8 }
                 .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         }
@@ -244,8 +264,6 @@ public class Navigate {
                 }) { didComplete in
                     if didComplete {
                         self.destroyToast()
-                    } else {
-                        print("Some else completed this animation")
                     }
                 }
             }
