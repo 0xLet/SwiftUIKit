@@ -195,6 +195,7 @@ public class Navigate {
         toast = View { closure().padding(16) }
             .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         toast?.translatesAutoresizingMaskIntoConstraints = false
+        toast?.alpha = 0
         
         guard let controller = navigationController,
             let containerView = controller.visibleViewController?.view,
@@ -208,27 +209,18 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        let centerAnchor = NSLayoutConstraint(item: toast, attribute: .centerX, relatedBy: .equal, toItem: containerView, attribute: .centerX, multiplier: 1, constant: -(containerView.frame.width * 2))
-        
             NSLayoutConstraint.activate(
                 [
                     toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
+                    toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
+                    toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
                     toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                    toast.widthAnchor.constraint(equalTo: containerView.widthAnchor),
-                    centerAnchor,
                     ]
             )
-        
-        // Load Init View
-        DispatchQueue.main.async {
-            toast.layoutIfNeeded()
-        }
-        
         // Animation In
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            centerAnchor.constant = containerView.frame.width / 2
-            
+        DispatchQueue.main.async {
             UIView.animate(withDuration: animationInDuration) {
+                toast.alpha = 1
                 toast.layoutIfNeeded()
             }
         }
@@ -236,8 +228,8 @@ public class Navigate {
         // Animation Out
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
-                centerAnchor.constant = containerView.frame.width * 2
                 UIView.animate(withDuration: animationOutDuration, animations: {
+                    toast.alpha = 0
                     toast.layoutIfNeeded()
                 }) { didComplete in
                     if didComplete {
