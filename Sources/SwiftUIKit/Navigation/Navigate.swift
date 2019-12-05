@@ -209,36 +209,32 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        var topAnchor: NSLayoutConstraint?
+        let heightAnchor = NSLayoutConstraint(item: toast, attribute: .height, relatedBy: .lessThanOrEqual, toItem: nil, attribute: .height, multiplier: 1, constant: 0)
         
         if #available(iOS 11.0, *) {
-            topAnchor = NSLayoutConstraint(item: toast, attribute: .top, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .top, multiplier: 1, constant: -60)
             NSLayoutConstraint.activate(
                 [
                     toast.leadingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.leadingAnchor),
                     toast.trailingAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.trailingAnchor),
-                    toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                    topAnchor
+                    toast.topAnchor.constraint(equalTo: containerView.safeAreaLayoutGuide.topAnchor),
+                    heightAnchor
                     ]
-                    .compactMap { $0 }
             )
         } else {
-            topAnchor = NSLayoutConstraint(item: toast, attribute: .bottom, relatedBy: .equal, toItem: containerView, attribute: .top, multiplier: 1, constant: -60)
             NSLayoutConstraint.activate(
                 [
                     toast.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
                     toast.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                    toast.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
-                    topAnchor
+                    toast.topAnchor.constraint(equalTo: containerView.topAnchor),
+                    heightAnchor
                     ]
-                    .compactMap { $0 }
             )
         }
         
         
         DispatchQueue.main.async {
             toast.layoutIfNeeded()
-            topAnchor?.constant = toast.frame.height
+            heightAnchor.constant = toast.frame.height
             
             UIView.animate(withDuration: animationInDuration) {
                 toast.layoutIfNeeded()
@@ -247,7 +243,7 @@ public class Navigate {
         
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
-                topAnchor?.constant = -toast.frame.height
+                heightAnchor.constant = 0
                 UIView.animate(withDuration: animationOutDuration, animations: {
                     toast.layoutIfNeeded()
                 }) { didComplete in
