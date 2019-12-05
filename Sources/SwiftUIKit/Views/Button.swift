@@ -12,7 +12,7 @@ public class Button: UIButton {
     private var action: () -> Void
     
     public init(_ title: String,
-                titleColor: UIColor = .white,
+                titleColor: UIColor? = nil,
                 backgroundColor: UIColor? = nil,
                 forEvent event: UIControl.Event = .touchUpInside,
                 _ action: @escaping () -> Void) {
