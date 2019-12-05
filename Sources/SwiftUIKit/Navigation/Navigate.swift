@@ -224,14 +224,16 @@ public class Navigate {
         // Load Init View
         DispatchQueue.main.async {
             trailingAnchor.constant = containerView.frame.width
+            leadingAnchor.constant = -containerView.frame.width
             
             toast.layoutIfNeeded()
         }
         
         // Animation In
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-            
+        
             trailingAnchor.constant = 0
+            leadingAnchor.constant = 0
             
             UIView.animate(withDuration: animationInDuration) {
                 toast.layoutIfNeeded()
@@ -241,6 +243,7 @@ public class Navigate {
         // Animation Out
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
+                trailingAnchor.constant = -containerView.frame.width
                 leadingAnchor.constant = containerView.frame.width
                 UIView.animate(withDuration: animationOutDuration, animations: {
                     toast.layoutIfNeeded()
