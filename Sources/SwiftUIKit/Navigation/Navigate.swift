@@ -208,7 +208,7 @@ public class Navigate {
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: -containerView.frame.width)
+        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: containerView.frame.width)
         let trailingAnchor = NSLayoutConstraint(item: toast, attribute: .trailing, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: containerView.frame.width)
         
             NSLayoutConstraint.activate(
@@ -239,7 +239,7 @@ public class Navigate {
         // Animation Out
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
-                trailingAnchor.constant = -containerView.frame.width
+                trailingAnchor.constant = containerView.frame.width
                 leadingAnchor.constant = containerView.frame.width
                 UIView.animate(withDuration: animationOutDuration, animations: {
                     toast.layoutIfNeeded()
