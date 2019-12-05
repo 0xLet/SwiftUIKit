@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class Navigate {
     public enum NavigationStyle {
         case push
@@ -15,9 +16,9 @@ public class Navigate {
     
     private var navigationController: UINavigationController?
     
-    public static var shared: Navigate = {
-        return Navigate()
-    }()
+    public static var shared: Navigate = Navigate()
+    
+    // MARK: Configure NavigationController
     
     @discardableResult
     public func configure(controller: UINavigationController?) -> Self {
@@ -60,6 +61,8 @@ public class Navigate {
         
         return self
     }
+    
+    // MARK: Navigation
     
     public func go(_ viewController: UIViewController,
                    style: NavigationStyle,
@@ -123,6 +126,8 @@ public class Navigate {
         }
     }
     
+    // MARK: Alert
+    
     public func alert(title: String,
                       message: String,
                       withActions actions: [UIAlertAction] = [],
@@ -138,17 +143,15 @@ public class Navigate {
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
                 if alert.isFirstResponder {
-                    alert.dismiss(animated: true) {
-                        print("Alert Dismissed due to secondsToPersist being \(secondsToPersist!)")
-                    }
-                } else {
-                    print("Alert Dismissed for other reasons")
+                    alert.dismiss(animated: true)
                 }
             }
         }
         
         go(alert, style: .modal)
     }
+    
+    // MARK: ActionSheet
     
     public func actionSheet(title: String,
                             message: String,
@@ -162,5 +165,29 @@ public class Navigate {
         closure?(actionSheet)
         
         go(actionSheet, style: .modal)
+    }
+    
+    // MARK: Toasts & Messages
+    
+    public func toast(_ closure: @escaping () -> UIView) {
+        
+        guard let controller = navigationController,
+            let containerView = controller.visibleViewController?.view else {
+            print("Navigate \(#function) Error!")
+            print("Issue trying to dismiss presentingViewController")
+            print("Error: Could not unwrap navigationController")
+            return
+        }
+        
+        let view = View { closure().padding(16) }
+        
+        controller.visibleViewController?.view.addSubview(view)
+        
+        NSLayoutConstraint.activate([
+            view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+            view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+            view.heightAnchor.constraint(greaterThanOrEqualToConstant: 60),
+            view.topAnchor.constraint(equalTo: containerView.topAnchor, constant: 0)
+        ])
     }
 }

@@ -164,6 +164,7 @@ public extension UIView {
     }
 }
 
+@available(iOS 9.0, *)
 public extension UIView {
     @discardableResult
     func navigateConfigure(controller: UINavigationController?) -> Self {
