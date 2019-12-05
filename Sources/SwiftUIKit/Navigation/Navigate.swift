@@ -191,10 +191,8 @@ public class Navigate {
         guard toast == nil else {
             return
         }
-        let toastCustomView = closure()
-        toastCustomView.translatesAutoresizingMaskIntoConstraints = false
         didTapToastHandler = tapHandler
-        toast = View { toastCustomView.padding(16) }
+        toast = View { closure().padding(16) }
             .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         toast?.translatesAutoresizingMaskIntoConstraints = false
         
@@ -206,12 +204,12 @@ public class Navigate {
                 print("Error: Could not unwrap navigationController")
                 return
         }
-        
+    
         controller.visibleViewController?.view.addSubview(toast)
         controller.visibleViewController?.view.bringSubviewToFront(toast)
         
-        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: 0)
-        let trailingAnchor = NSLayoutConstraint(item: toast, attribute: .trailing, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: 0)
+        let leadingAnchor = NSLayoutConstraint(item: toast, attribute: .leading, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .leading, multiplier: 1, constant: -containerView.frame.width)
+        let trailingAnchor = NSLayoutConstraint(item: toast, attribute: .trailing, relatedBy: .equal, toItem: containerView.safeAreaLayoutGuide, attribute: .trailing, multiplier: 1, constant: containerView.frame.width)
         
             NSLayoutConstraint.activate(
                 [
@@ -224,9 +222,6 @@ public class Navigate {
         
         // Load Init View
         DispatchQueue.main.async {
-            trailingAnchor.constant = containerView.frame.width
-            leadingAnchor.constant = -containerView.frame.width
-            
             toast.layoutIfNeeded()
         }
         
