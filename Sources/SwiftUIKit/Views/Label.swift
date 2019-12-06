@@ -10,6 +10,16 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class Label: UILabel {
+    private var shouldHideIfBlank: Bool = false
+    
+    public override var text: String? {
+        didSet {
+            if shouldHideIfBlank {
+                isHidden = text?.isEmpty ?? true
+            }
+        }
+    }
+    
     public init(_ text: String) {
         super.init(frame: .zero)
         
@@ -26,6 +36,13 @@ public class Label: UILabel {
     }
     
     @discardableResult
+    public func number(ofLines lines: Int) -> Self {
+        numberOfLines = lines
+        
+        return self
+    }
+    
+    @discardableResult
     public func font(_ font: UIFont) -> Self {
         self.font = font
         
@@ -35,6 +52,13 @@ public class Label: UILabel {
     @discardableResult
     public func font(_ textStyle: UIFont.TextStyle) -> Self {
         return self.font(UIFont.preferredFont(forTextStyle: textStyle))
+    }
+    
+    @discardableResult
+    public func hideIfBlank() -> Self {
+        shouldHideIfBlank = true
+        
+        return self
     }
 }
 
