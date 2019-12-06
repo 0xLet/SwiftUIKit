@@ -10,15 +10,6 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class Label: UILabel {
-    private var shouldHideIfBlank: Bool = false
-    
-    public override var text: String? {
-        didSet {
-            if shouldHideIfBlank {
-                isHidden = text?.isEmpty ?? true
-            }
-        }
-    }
     
     public init(_ text: String) {
         super.init(frame: .zero)
@@ -56,7 +47,7 @@ public class Label: UILabel {
     
     @discardableResult
     public func hideIfBlank() -> Self {
-        shouldHideIfBlank = true
+        isHidden = text?.isEmpty ?? true
         
         return self
     }
