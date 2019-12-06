@@ -134,6 +134,19 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
+    func hide(if shouldHide: () -> Bool) -> Self {
+        isHidden = shouldHide()
+        
+        return self
+    }
+    
+    @discardableResult
+    func hide(if shouldHide: Bool) -> Self {
+        isHidden = shouldHide
+        
+        return self
+    }
     
     @discardableResult
     func layer(_ closure: (CALayer) -> Void) -> Self {
