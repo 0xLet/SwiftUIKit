@@ -48,7 +48,7 @@ class ViewController: UIViewController {
 
 # oneleif Project
 
-![](Public/images/homeLogo.png)
+![](https://github.com/oneleif/olWebsite/blob/master/Public/images/homeLogo.png?raw=true)
 
 ### Project Info
 
