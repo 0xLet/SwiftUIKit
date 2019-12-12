@@ -22,6 +22,17 @@ public class Label: UILabel {
         accessibility(label: text, traits: .staticText)
     }
     
+    public init(_ attributedText: AttributedString) {
+        super.init(frame: .zero)
+        
+        self.attributedText = attributedText
+        
+        if #available(iOS 10.0, *) {
+            adjustsFontForContentSizeCategory = true
+        }
+        accessibility(label: attributedText.mutableString.description, traits: .staticText)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
