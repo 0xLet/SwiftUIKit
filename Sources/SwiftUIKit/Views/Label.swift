@@ -65,7 +65,6 @@ public class Label: UILabel {
     
     @discardableResult
     public func apply(attributes: StringAttributes) -> Self {
-        
         attributedText = AttributedString(string: text ?? "", attributes: attributes)
         
         return self
@@ -73,7 +72,6 @@ public class Label: UILabel {
     
     @discardableResult
     public func apply(attributes: StringAttributes, range: ClosedRange<Int>) -> Self {
-        
         attributedText = AttributedString(attributedString: attributedText ?? AttributedString(string: text ?? ""))
             .set(attributes: attributes, range: range)
         
