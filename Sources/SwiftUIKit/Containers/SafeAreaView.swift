@@ -7,8 +7,13 @@
 
 import UIKit
 
+/// A View that respects the SafeArea
 @available(iOS 11.0, *)
 public class SafeAreaView: UIView {
+    
+    /// Create a SafeAreaView
+    /// - Parameters:
+    ///     - closure: A trailing closure that accepts a view
     public init(_ closure: () -> UIView) {
         let view = closure()
         super.init(frame: .zero)

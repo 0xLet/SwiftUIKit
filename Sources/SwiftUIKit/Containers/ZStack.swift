@@ -6,11 +6,18 @@
 //
 
 import UIKit
+import SwiftUI
 
+/// ZStack:
+/// A view which stacks its children views in order
 @available(iOS 9.0, *)
 public class ZStack: UIView {
+    /// The views that the ZStack contains
     public var views: [UIView] = []
     
+    /// Create a ZStack
+    /// - Parameters:
+    ///     - closure: A trailing closure that accepts an array of views
     public init(_ closure: () -> [UIView]) {
         views = closure()
         super.init(frame: .zero)
@@ -21,6 +28,9 @@ public class ZStack: UIView {
         }
     }
     
+    /// Create a ZStack
+    /// - Parameters:
+    ///     - closure: A trailing closure that accepts an array of optional views
     public init(_ closure: () -> [UIView?]) {
            views = closure()
                .compactMap { $0 }
