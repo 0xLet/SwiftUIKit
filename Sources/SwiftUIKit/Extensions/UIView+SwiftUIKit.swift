@@ -239,6 +239,8 @@ public extension UIView {
 
 @available(iOS 9.0, *)
 public extension UIView {
+    
+    /// Configure the Navigate Singleton with the Root Navigation Controller
     @discardableResult
     func navigateConfigure(controller: UINavigationController?) -> Self {
         Navigate.shared.configure(controller: controller)
@@ -246,6 +248,9 @@ public extension UIView {
         return self
     }
     
+    /// Set the visibleViewController's title
+    /// - Parameters:
+    ///     - title: The title of the currentViewController
     @discardableResult
     func navigateSet(title: String) -> Self {
         Navigate.shared.set(title: title)
@@ -253,6 +258,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the left barButton
+    /// - Parameters:
+    ///     - barButton: The UIBarButtonItem to be set
+    ///     - animated: Should animate setting the left UIBarButtonItem
     @discardableResult
     func navigateSetLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         Navigate.shared.setLeft(barButton: barButton)
@@ -260,6 +269,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the right barButton
+    /// - Parameters:
+    ///     - barButton: The UIBarButtonItem to be set
+    ///     - animated: Should animate setting the right UIBarButtonItem
     @discardableResult
     func navigateSetRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         Navigate.shared.setRight(barButton: barButton)
@@ -267,6 +280,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the left barButtons
+    /// - Parameters:
+    ///     - barButton: The [UIBarButtonItem] to be set
+    ///     - animated: Should animate setting the left [UIBarButtonItem]
     @discardableResult
     func navigateSetLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         Navigate.shared.setLeft(barButtons: barButtons)
@@ -274,6 +291,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the right barButtons
+    /// - Parameters:
+    ///     - barButton: The [UIBarButtonItem] to be set
+    ///     - animated: Should animate setting the right [UIBarButtonItem]
     @discardableResult
     func navigateSetRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         Navigate.shared.setRight(barButtons: barButtons)
@@ -283,6 +304,8 @@ public extension UIView {
 }
 
 public extension UIView {
+    
+    /// Debug the view by coloring all subviews random colors and count the number of views
     @discardableResult
     func debug() -> Self {
         var randomColor: UIColor {
