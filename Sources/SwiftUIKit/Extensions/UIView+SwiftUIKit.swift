@@ -175,6 +175,27 @@ public extension UIView {
         
         return self
     }
+    
+    @discardableResult
+    func background(color: UIColor) -> Self {
+        backgroundColor = color
+        
+        return self
+    }
+    
+    @discardableResult
+    func clipsToBounds(_ shouldClip: Bool = true) -> Self {
+        self.clipsToBounds = shouldClip
+        
+        return self
+    }
+    
+    @discardableResult
+    func corner(radius: Float) -> Self {
+        layer.cornerRadius = CGFloat(radius)
+        
+        return self
+    }
 }
 
 @available(iOS 9.0, *)
