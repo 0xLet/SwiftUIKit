@@ -91,8 +91,6 @@ public class Label: UILabel {
         
         return self
     }
-    
-    
 }
 
 @available(iOS 9.0, *)
