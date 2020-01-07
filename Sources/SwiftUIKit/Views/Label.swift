@@ -77,6 +77,22 @@ public class Label: UILabel {
         
         return self
     }
+    
+    @discardableResult
+    public func text(alignment: NSTextAlignment) -> Self {
+        textAlignment = alignment
+        
+        return self
+    }
+    
+    @discardableResult
+    public func text(color: UIColor) -> Self {
+        textColor = color
+        
+        return self
+    }
+    
+    
 }
 
 @available(iOS 9.0, *)
