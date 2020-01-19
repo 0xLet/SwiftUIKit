@@ -66,9 +66,8 @@ extension Table: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         configureCell?(cell)
-        cell.contentView.embed {
-            self.data[indexPath.row]
-        }
+        cell.contentView.clear()
+            .embed { self.data[indexPath.row] }
         
         return cell
     }
