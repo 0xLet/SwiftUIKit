@@ -9,11 +9,16 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class LoadingImage: UIView {
-    public init(_ url: URL) {
+    public init(_ url: URL, loadingTint: UIColor? = nil) {
         super.init(frame: .zero)
         embed {
             LoadingView()
-                .start()
+                .configure {
+                    if let tint = loadingTint {
+                        $0.color = tint
+                    }
+            }
+            .start()
         }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
