@@ -120,18 +120,21 @@ public class DynamicTable<T>: UITableView, UITableViewDelegate, UITableViewDataS
 
 @available(iOS 9.0, *)
 public extension DynamicTable {
+    @discardableResult
     func didSelectHandler(_ action: @escaping (UITableViewCell) -> Void) -> Self {
         self.didSelectHandler = action
         
         return self
     }
     
+    @discardableResult
     func configureCell(_ action: @escaping (UITableViewCell, IndexPath, T) -> Void) -> Self {
         self.configureCell = action
         
         return self
     }
     
+    @discardableResult
     func add(_ data: () -> [T]) -> Self {
         self.data += data()
         
