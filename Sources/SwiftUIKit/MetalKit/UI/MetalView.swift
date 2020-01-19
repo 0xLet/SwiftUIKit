@@ -16,6 +16,8 @@ public class MetalView: MTKView {
         
         super.init(frame: .zero, device: renderer.device)
         
+        framebufferOnly = false
+        
         self.renderer.load(metalView: self)
     }
     
