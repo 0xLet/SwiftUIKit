@@ -55,25 +55,33 @@ public class LoadingImage: UIView {
     }
     
     private func update(image: UIImage) {
-        let contentMode = self.contentMode
         DispatchQueue.main.async { [weak self] in
-            self?
-                .clear()
+            guard let self = self else {
+                print("Image \(#function) Error!")
+                print("Issue loading Image: \(image)")
+                print("Error: Self was nil")
+                return
+            }
+            self.clear()
                 .embed {
                     Image(image)
-                        .contentMode(contentMode)
+                        .contentMode(self.contentMode)
             }
         }
     }
     
     private func update(color: UIColor) {
-        let contentMode = self.contentMode
         DispatchQueue.main.async { [weak self] in
-            self?
-                .clear()
+            guard let self = self else {
+                print("Image \(#function) Error!")
+                print("Issue loading Color: \(color)")
+                print("Error: Self was nil")
+                return
+            }
+            self.clear()
                 .embed {
                     Image(color)
-                        .contentMode(contentMode)
+                        .contentMode(self.contentMode)
             }
         }
     }
