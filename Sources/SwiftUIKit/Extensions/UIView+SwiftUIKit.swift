@@ -243,6 +243,10 @@ public extension UIView {
 }
 
 public extension UIView {
+    var allSubviews: [UIView] {
+        return getSubviews(forView: self)
+    }
+    
     @discardableResult
     func debug() -> Self {
         var randomColor: UIColor {
@@ -251,15 +255,8 @@ public extension UIView {
                            blue: CGFloat.random(in: 0 ... 255) / 255,
                            alpha: 1)
         }
-        func getSubViews(forView view: UIView) -> [UIView] {
-            var views: [UIView] = []
-            for view in view.subviews {
-                views.append(view)
-                views.append(contentsOf: getSubViews(forView: view))
-            }
-            return views
-        }
-        let subviews = getSubViews(forView: self)
+        
+        let subviews = allSubviews
         
         print("DEBUG LOG:")
         print("Root Debug View: \(self)")
@@ -270,6 +267,15 @@ public extension UIView {
         }
         
         return self
+    }
+    
+    private func getSubviews(forView view: UIView) -> [UIView] {
+        var views: [UIView] = []
+        for view in view.subviews {
+            views.append(view)
+            views.append(contentsOf: getSubviews(forView: view))
+        }
+        return views
     }
 }
 

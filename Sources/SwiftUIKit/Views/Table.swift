@@ -66,8 +66,13 @@ extension Table: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         
         configureCell?(cell)
-        cell.contentView.embed {
-            self.data[indexPath.row]
+        cell.contentView.clear()
+            .embed { self.data[indexPath.row] }
+        
+        // Start LoadingViews
+        if let view = cell.contentView.allSubviews.first(where: { $0 is LoadingView }),
+            let loadingView = view as? LoadingView {
+            loadingView.start()
         }
         
         return cell

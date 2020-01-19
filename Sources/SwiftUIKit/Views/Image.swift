@@ -19,31 +19,6 @@ public class Image: UIImageView {
         self.image = Image.image(fromColor: color)
     }
     
-    public init(_ url: URL) {
-        super.init(frame: .zero)
-        let request = URLRequest(url: url)
-        let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
-            guard let data = data,
-                error == nil else {
-                    print("Image \(#function) Error!")
-                    print("Issue loading Image with url: \(url.absoluteString)")
-                    print("Error: \(error?.localizedDescription ?? "-1")")
-                    self?.update(color: .red)
-                    return
-            }
-            guard let image = UIImage(data: data) else {
-                print("Image \(#function) Error!")
-                print("Issue loading Image with url: \(url.absoluteString)")
-                print("Error: Could not create UIImage from data")
-                self?.update(color: .red)
-                return
-            }
-            self?.update(image: image)
-        }
-        
-        task.resume()
-    }
-    
     public init(_ name: String) {
         super.init(frame: .zero)
         
