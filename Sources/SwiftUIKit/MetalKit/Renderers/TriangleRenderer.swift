@@ -14,7 +14,7 @@ public class TriangleRenderer: NSObject {
     public var vertexBuffer: MTLBuffer?
     public var pipelineState: MTLRenderPipelineState?
     
-    public var vertexShaderName: String = "vertex_main_moving"
+    public var vertexShaderName: String = "vertex_main"
     public var fragmentShaderName: String = "fragment_main"
     var timer: Float = 0
     
@@ -41,9 +41,8 @@ extension TriangleRenderer: Renderer {
     }
     
     public func load(metalView: MTKView) {
-        let path = Bundle.main.path(forResource: "Shaders", ofType: "metal")
-        let input = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8)
-        let library = try? device.makeLibrary(source: input!, options: nil)
+        let defaultLibrary = try? device.makeLibrary(source: defaultShaders, options: nil)
+        let library = device.makeDefaultLibrary() ?? defaultLibrary
         
         let vertexFunction = library?.makeFunction(name: vertexShaderName)
         let fragmentFunction = library?.makeFunction(name: fragmentShaderName)

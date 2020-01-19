@@ -42,14 +42,18 @@ public class CustomRenderer: NSObject {
     }
     
     public func vertex(shaderName: () -> String) -> Self {
-        let library = device.makeDefaultLibrary()
+        let defaultLibrary = try? device.makeLibrary(source: defaultShaders, options: nil)
+        let library = device.makeDefaultLibrary() ?? defaultLibrary
+        
         vertexFunction = library?.makeFunction(name: shaderName())
         
         return self
     }
     
     public func fragment(shaderName: () -> String) -> Self {
-        let library = device.makeDefaultLibrary()
+        let defaultLibrary = try? device.makeLibrary(source: defaultShaders, options: nil)
+        let library = device.makeDefaultLibrary() ?? defaultLibrary
+        
         fragmentFunction = library?.makeFunction(name: shaderName())
         
         return self
