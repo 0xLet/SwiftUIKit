@@ -40,7 +40,10 @@ extension MeshRenderer: Renderer {
     }
 
     public func load(metalView: MTKView) {
-        let library = device.makeDefaultLibrary()
+        let path = Bundle.main.path(forResource: "Shaders", ofType: "metal")
+        let input = try? String(contentsOfFile: path!, encoding: String.Encoding.utf8)
+        let library = try? device.makeLibrary(source: input!, options: nil)
+        
         let vertexFunction = library?.makeFunction(name: vertexShaderName)
         let fragmentFunction = library?.makeFunction(name: fragmentShaderName)
         
