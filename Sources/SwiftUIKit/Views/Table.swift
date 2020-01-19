@@ -39,12 +39,14 @@ public class Table: UITableView {
 
 @available(iOS 9.0, *)
 public extension Table {
+    @discardableResult
     func didSelectHandler(_ action: @escaping (UIView) -> Void) -> Self {
         self.didSelectHandler = action
         
         return self
     }
     
+    @discardableResult
     func configureCell(_ action: @escaping (UITableViewCell) -> Void) -> Self {
         self.configureCell = action
         
