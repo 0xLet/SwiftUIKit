@@ -69,10 +69,10 @@ public extension Renderer {
         configuredEncoder.endEncoding()
         
         // compute code goes here
-        if let drawable = view.currentDrawable,
+        if let cps = computePipelineState,
+            let drawable = view.currentDrawable,
             let computeEncoder = commandBuffer.makeComputeCommandEncoder(),
-            let configuredComputeEncoder = configure(computeEncoder: computeEncoder),
-            let cps = computePipelineState {
+            let configuredComputeEncoder = configure(computeEncoder: computeEncoder) {
             
             configuredComputeEncoder.setComputePipelineState(cps)
             configuredComputeEncoder.setTexture(drawable.texture, index: 0)
