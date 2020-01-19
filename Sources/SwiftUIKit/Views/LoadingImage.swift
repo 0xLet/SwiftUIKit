@@ -55,18 +55,26 @@ public class LoadingImage: UIView {
     }
     
     private func update(image: UIImage) {
+        let contentMode = self.contentMode
         DispatchQueue.main.async { [weak self] in
             self?
                 .clear()
-                .embed { Image(image) }
+                .embed {
+                    Image(image)
+                        .contentMode(contentMode)
+            }
         }
     }
     
     private func update(color: UIColor) {
+        let contentMode = self.contentMode
         DispatchQueue.main.async { [weak self] in
             self?
                 .clear()
-                .embed { Image(color) }
+                .embed {
+                    Image(color)
+                        .contentMode(contentMode)
+            }
         }
     }
 }
