@@ -35,6 +35,7 @@ public class CustomRenderer: NSObject {
         
     }
     
+    @discardableResult
     public func mesh(_ closure: (MTLDevice) -> MDLMesh) -> Self {
         do{
             mesh = try MTKMesh(mesh: closure(device), device: device)
@@ -46,6 +47,7 @@ public class CustomRenderer: NSObject {
         return self
     }
     
+    @discardableResult
     public func vertex(shaderName: () -> String) -> Self {
         let defaultLibrary = try? device.makeLibrary(source: defaultShaders, options: nil)
         let library = device.makeDefaultLibrary() ?? defaultLibrary
@@ -55,6 +57,7 @@ public class CustomRenderer: NSObject {
         return self
     }
     
+    @discardableResult
     public func fragment(shaderName: () -> String) -> Self {
         let defaultLibrary = try? device.makeLibrary(source: defaultShaders, options: nil)
         let library = device.makeDefaultLibrary() ?? defaultLibrary
@@ -64,12 +67,14 @@ public class CustomRenderer: NSObject {
         return self
     }
     
+    @discardableResult
     public func clear(color: () -> MTLClearColor) -> Self {
         clearColor = color()
         
         return self
     }
     
+    @discardableResult
     public func render(encoder: @escaping (MTLRenderCommandEncoder) -> Void) -> Self {
         renderMethod = encoder
         
@@ -102,17 +107,16 @@ extension CustomRenderer: Renderer {
     }
     
     public func configure(renderEncoder: MTLRenderCommandEncoder) -> MTLRenderCommandEncoder? {
-       //pipeline state
+        
         guard let pipelineState = pipelineState,
             let mesh = mesh else {
                 return nil
         }
-        //pre-processing
+        
         timer += 0.05
         var currentTime = sin(timer)
         var al = abs(currentTime)
         
-        //render encoder init
         renderEncoder.setVertexBytes(&currentTime,
                                      length: MemoryLayout<Float>.stride,
                                      index: 1)

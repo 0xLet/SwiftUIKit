@@ -1,9 +1,8 @@
 //
 //  Vertex.swift
-//  MetalTutoral
+//  SwiftUIKit
 //
-//  Created by developer on 10/28/19.
-//  Copyright © 2019 developer. All rights reserved.
+//  Created by Zach Eriksen on 10/28/19.
 //
 
 import MetalKit

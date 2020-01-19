@@ -1,37 +1,47 @@
 //
 //  Primitive.swift
-//  MetalTutoral
+//  SwiftUIKit
 //
-//  Created by developer on 10/22/19.
-//  Copyright © 2019 developer. All rights reserved.
+//  Created by Zach Eriksen on 10/22/19.
 //
 
 import MetalKit
 
 @available(iOS 9.0, *)
 public class Primitive {
-    static func importObj(device: MTLDevice, size: Float) -> MTKMesh {
+    static func importObj(device: MTLDevice, url: URL, size: Float) -> MTKMesh {
         let allocator = MTKMeshBufferAllocator(device: device)
-        var url = URL(string: "/Users/developer/Documents/cube.obj")
-        let vertexDescriptor        = MDLVertexDescriptor()
-        let vertexLayout            = MDLVertexBufferLayout()
-        vertexLayout.stride         = MemoryLayout<Vertex>.stride
-        vertexDescriptor.layouts    = [vertexLayout]
-        vertexDescriptor.attributes = [MDLVertexAttribute(name: MDLVertexAttributePosition, format: MDLVertexFormat.float2, offset: 0, bufferIndex: 0),
-                                       MDLVertexAttribute(name: MDLVertexAttributeNormal, format: MDLVertexFormat.float2, offset: MemoryLayout<vector_float2>.stride, bufferIndex: 0)]
-//        vertexDescriptor.attributes = [MDLVertexAttribute(name: MDLVertexAttributePosition, format: MDLVertexFormat.float3, offset: 0, bufferIndex: 0),
-//        MDLVertexAttribute(name: MDLVertexAttributeColor, format: MDLVertexFormat.float4, offset: MemoryLayout<vector_float3>.stride, bufferIndex: 0),
-//        MDLVertexAttribute(name: MDLVertexAttributeTextureCoordinate, format: MDLVertexFormat.float2, offset: MemoryLayout<vector_float3>.stride+MemoryLayout<vector_float4>.stride, bufferIndex: 0),
-//        MDLVertexAttribute(name: MDLVertexAttributeNormal, format: MDLVertexFormat.float3, offset: MemoryLayout<vector_float3>.stride + MemoryLayout<vector_float4>.stride +
-//         MemoryLayout<vector_float2>.stride, bufferIndex: 0)]
+        
+        let vertexDescriptor = MDLVertexDescriptor()
+        let vertexLayout = MDLVertexBufferLayout()
+        
+        vertexLayout.stride = MemoryLayout<Vertex>.stride
+        vertexDescriptor.layouts = [vertexLayout]
+        vertexDescriptor.attributes = [
+            MDLVertexAttribute(name: MDLVertexAttributePosition,
+                               format: MDLVertexFormat.float2,
+                               offset: 0,
+                               bufferIndex: 0),
+            MDLVertexAttribute(name: MDLVertexAttributeNormal,
+                               format: MDLVertexFormat.float2,
+                               offset: MemoryLayout<vector_float2>.stride,
+                               bufferIndex: 0)
+        ]
+        
         var error: NSError?
-        let asset = MDLAsset(url: url!,vertexDescriptor: vertexDescriptor, bufferAllocator: allocator, preserveTopology: true, error: &error)
-        if error != nil{
+        let asset = MDLAsset(url: url,
+                             vertexDescriptor: vertexDescriptor,
+                             bufferAllocator: allocator,
+                             preserveTopology: true,
+                             error: &error)
+        
+        if let error = error {
             print(error)
         }
-
+        
         let model = asset.object(at: 0) as! MDLMesh
-        var mesh : MTKMesh
+        var mesh: MTKMesh
+        
         do {
             mesh  = try MTKMesh(mesh: model, device: device)
         } catch let error {
@@ -65,12 +75,12 @@ public class Primitive {
         let indexBuffer = allocator.newBuffer(MemoryLayout<UInt16>.stride * indices.count, type: .index)
         let indexMap = indexBuffer.map()
         indexMap.bytes.assumingMemoryBound(to: UInt16.self).assign(from: indices, count: indices.count)
-
+        
         let submesh = MDLSubmesh(indexBuffer: indexBuffer,
-                                    indexCount: indices.count,
-                                    indexType: .uInt16,
-                                    geometryType: .points,
-                                    material: nil)
+                                 indexCount: indices.count,
+                                 indexType: .uInt16,
+                                 geometryType: .points,
+                                 material: nil)
         
         
         let vertexDescriptor = MDLVertexDescriptor()
@@ -81,10 +91,10 @@ public class Primitive {
         vertexDescriptor.layouts[0] = MDLVertexBufferLayout(stride: MemoryLayout<vector_float2>.stride)
         
         let mesh = MDLMesh(vertexBuffer: vertexBuffer,
-                              vertexCount: vertices.count,
-                              descriptor: vertexDescriptor,
-                              submeshes: [submesh])
-
+                           vertexCount: vertices.count,
+                           descriptor: vertexDescriptor,
+                           submeshes: [submesh])
+        
         
         return mesh
     }

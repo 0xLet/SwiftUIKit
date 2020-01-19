@@ -1,9 +1,8 @@
 //
 //  Spacer.swift
-//  SwiftUIKit-Example
+//  SwiftUIKit
 //
 //  Created by Zach Eriksen on 10/29/19.
-//  Copyright © 2019 oneleif. All rights reserved.
 //
 
 import UIKit

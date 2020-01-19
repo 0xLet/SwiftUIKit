@@ -1,9 +1,8 @@
 //
 //  Renderer.swift
-//  MetalTutoral
+//  SwiftUIKit
 //
-//  Created by developer on 10/22/19.
-//  Copyright © 2019 developer. All rights reserved.
+//  Created by Zach Eriksen on 10/22/19.
 //
 
 import MetalKit
