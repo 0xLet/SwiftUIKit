@@ -65,6 +65,9 @@ public extension Renderer {
             return
         }
         
+        //drawing code goes here
+        configuredEncoder.endEncoding()
+        
         // compute code goes here
         if let drawable = view.currentDrawable,
             let computeEncoder = commandBuffer.makeComputeCommandEncoder(),
@@ -78,9 +81,6 @@ public extension Renderer {
             configuredComputeEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
             configuredComputeEncoder.endEncoding()
         }
-        
-        //drawing code goes here
-        configuredEncoder.endEncoding()
        
         guard let drawable = view.currentDrawable else {
             return
