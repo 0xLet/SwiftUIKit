@@ -13,8 +13,12 @@ public class LoadingImage: UIView {
         super.init(frame: .zero)
         embed {
             LoadingView()
-                .configure { $0.color = loadingTint }
-                .start()
+                .configure {
+                    if let tint = loadingTint {
+                        $0.color = tint
+                    }
+            }
+            .start()
         }
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
