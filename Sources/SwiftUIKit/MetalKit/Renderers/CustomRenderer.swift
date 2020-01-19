@@ -28,6 +28,11 @@ public class CustomRenderer: NSObject {
     
     public override init() {
         super.init()
+        
+        vertex { vertexShaderName }
+        .fragment { fragmentShaderName }
+        .mesh { _ in getMesh() }
+        
     }
     
     public func mesh(_ closure: (MTLDevice) -> MDLMesh) -> Self {
