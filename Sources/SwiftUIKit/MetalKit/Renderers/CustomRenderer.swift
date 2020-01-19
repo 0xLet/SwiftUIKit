@@ -22,7 +22,7 @@ public class CustomRenderer: NSObject {
     public var clearColor: MTLClearColor?
     public var renderMethod: ((MTLRenderCommandEncoder) -> Void)?
     
-    public var vertexShaderName: String = "vertex_main_moving"
+    public var vertexShaderName: String = "vertex_main"
     public var fragmentShaderName: String = "fragment_main"
     var timer: Float = 0
     

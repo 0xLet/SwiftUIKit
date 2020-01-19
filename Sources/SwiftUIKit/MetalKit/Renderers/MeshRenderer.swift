@@ -17,13 +17,11 @@ public class MeshRenderer: NSObject {
     public var vertexShaderName: String = "vertex_main"
     public var fragmentShaderName: String = "fragment_main"
     
-    public override init() {
+    public init(_ mdlMesh: MDLMesh? = nil) {
         super.init()
         
-        let mdlMesh = getMesh()
-        
-        do{
-            mesh = try MTKMesh(mesh: mdlMesh, device: device)
+        do {
+            mesh = try MTKMesh(mesh: mdlMesh ?? getMesh(), device: device)
         } catch let error {
             print(error.localizedDescription)
         }
