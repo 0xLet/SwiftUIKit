@@ -26,7 +26,7 @@ public class CustomRenderer: NSObject {
     public var fragmentShaderName: String = "fragment_main"
     var timer: Float = 0
     
-    override init() {
+    public override init() {
         super.init()
     }
     

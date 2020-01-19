@@ -14,7 +14,7 @@ public class MetalDevice {
     var device: MTLDevice
     var commandQueue: MTLCommandQueue
     
-    init() {
+    public init() {
         guard let device = MTLCreateSystemDefaultDevice(),
             let commandQueue = device.makeCommandQueue() else {
             fatalError("GPU not available")

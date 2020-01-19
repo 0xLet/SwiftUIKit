@@ -19,7 +19,7 @@ public class ColorChangeRenderer: NSObject {
     public var vertexShaderName: String = "vertex_main"
     public var fragmentShaderName: String = "fragment_main_change"
     
-    override init() {
+    public override init() {
         super.init()
         
         let mdlMesh = getMesh()

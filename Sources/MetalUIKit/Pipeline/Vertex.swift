@@ -9,9 +9,9 @@
 import MetalKit
 
 public struct Vertex {
-    var vertex: float2
+    public var vertex: float2
     
-    init(x: Float, y: Float) {
+    public init(x: Float, y: Float) {
         self.vertex = float2(x, y)
     }
 }

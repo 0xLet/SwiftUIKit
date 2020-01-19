@@ -17,7 +17,7 @@ public class MeshRenderer: NSObject {
     public var vertexShaderName: String = "vertex_main"
     public var fragmentShaderName: String = "fragment_main_test"
     
-    override init() {
+    public override init() {
         super.init()
         
         let mdlMesh = getMesh()

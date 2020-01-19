@@ -11,7 +11,7 @@ import MetalKit
 public class MetalView: MTKView {
     private var renderer: Renderer
     
-    init(renderer: Renderer) {
+    public init(renderer: Renderer) {
         self.renderer = renderer
         
         super.init(frame: .zero, device: renderer.device)

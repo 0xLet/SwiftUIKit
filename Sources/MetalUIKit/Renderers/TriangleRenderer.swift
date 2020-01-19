@@ -18,7 +18,7 @@ public class TriangleRenderer: NSObject {
     public var fragmentShaderName: String = "fragment_main"
     var timer: Float = 0
     
-    override init() {
+    public override init() {
         super.init()
         
         let mdlMesh = getMesh()
