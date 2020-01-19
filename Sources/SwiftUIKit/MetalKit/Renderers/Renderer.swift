@@ -30,13 +30,16 @@ public protocol Renderer {
     var mesh: MTKMesh? { get set }
     var vertexBuffer: MTLBuffer? { get set }
     var pipelineState: MTLRenderPipelineState? { get set }
+    var computePipelineState: MTLComputePipelineState? { get set }
     
     var vertexShaderName: String { get }
     var fragmentShaderName: String { get }
+    var computeShaderName: String? { get }
     
     func getMesh() -> MDLMesh
     func load(metalView: MTKView)
     func configure(renderEncoder: MTLRenderCommandEncoder) -> MTLRenderCommandEncoder?
+    func configure(computeEncoder: MTLComputeCommandEncoder) -> MTLComputeCommandEncoder?
 }
 
 @available(iOS 9.0, *)
@@ -60,6 +63,20 @@ public extension Renderer {
             let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor),
             let configuredEncoder = configure(renderEncoder: renderEncoder) else {
             return
+        }
+        
+        // compute code goes here
+        if let drawable = view.currentDrawable,
+            let computeEncoder = commandBuffer.makeComputeCommandEncoder(),
+            let configuredComputeEncoder = configure(computeEncoder: computeEncoder),
+            let cps = computePipelineState {
+            
+            configuredComputeEncoder.setComputePipelineState(cps)
+            configuredComputeEncoder.setTexture(drawable.texture, index: 0)
+            let threadGroupCount = MTLSizeMake(8, 8, 1)
+            let threadGroups = MTLSizeMake(drawable.texture.width / threadGroupCount.width, drawable.texture.height / threadGroupCount.height, 1)
+            configuredComputeEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
+            configuredComputeEncoder.endEncoding()
         }
         
         //drawing code goes here

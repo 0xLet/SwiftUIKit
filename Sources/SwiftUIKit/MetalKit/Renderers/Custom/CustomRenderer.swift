@@ -19,11 +19,13 @@ public class CustomRenderer: NSObject {
     public var pipelineState: MTLRenderPipelineState?
     public var vertexFunction: MTLFunction?
     public var fragmentFunction: MTLFunction?
+    public var computePipelineState: MTLComputePipelineState?
     public var clearColor: MTLClearColor?
     public var renderMethod: ((MTLRenderCommandEncoder) -> Void)?
     
     public var vertexShaderName: String = "vertex_main"
     public var fragmentShaderName: String = "fragment_main"
+    public var computeShaderName: String?
     var timer: Float = 0
     
     public override init() {
@@ -68,6 +70,19 @@ public class CustomRenderer: NSObject {
     }
     
     @discardableResult
+    public func compute(shaderName: () -> String) -> Self {
+        
+        let defaultLibrary = try? device.makeLibrary(source: defaultShaders, options: nil)
+        let library = device.makeDefaultLibrary() ?? defaultLibrary
+        
+        if let kernel = library?.makeFunction(name: shaderName()) {
+            computePipelineState = try? device.makeComputePipelineState(function: kernel)
+        }
+        
+        return self
+    }
+    
+    @discardableResult
     public func clear(color: () -> MTLClearColor) -> Self {
         clearColor = color()
         
@@ -84,6 +99,7 @@ public class CustomRenderer: NSObject {
 
 @available(iOS 9.0, *)
 extension CustomRenderer: Renderer {
+    
     public func load(metalView: MTKView) {
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunction
@@ -137,6 +153,10 @@ extension CustomRenderer: Renderer {
         }
         
         return renderEncoder
+    }
+    
+    public func configure(computeEncoder: MTLComputeCommandEncoder) -> MTLComputeCommandEncoder? {
+        return computeEncoder
     }
 }
 

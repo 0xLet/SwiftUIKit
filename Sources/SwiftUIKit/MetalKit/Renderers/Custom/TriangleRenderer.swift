@@ -17,6 +17,13 @@ public class TriangleRenderer: NSObject {
     public var fragmentShaderName: String = "fragment_main"
     var timer: Float = 0
     
+    // TODO: nil for now
+    public var computePipelineState: MTLComputePipelineState?
+    public var computeShaderName: String?
+    public func configure(computeEncoder: MTLComputeCommandEncoder) -> MTLComputeCommandEncoder? {
+        return nil
+    }
+    
     public override init() {
         super.init()
         

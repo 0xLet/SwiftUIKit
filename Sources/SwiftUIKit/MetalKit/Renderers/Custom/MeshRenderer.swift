@@ -17,6 +17,13 @@ public class MeshRenderer: NSObject {
     public var fragmentShaderName: String = "fragment_main"
     var timer: Float = 0
     
+    // TODO: nil for now
+    public var computePipelineState: MTLComputePipelineState?
+    public var computeShaderName: String?
+    public func configure(computeEncoder: MTLComputeCommandEncoder) -> MTLComputeCommandEncoder? {
+        return nil
+    }
+    
     public init(_ mdlMesh: MDLMesh? = nil) {
         super.init()
         
