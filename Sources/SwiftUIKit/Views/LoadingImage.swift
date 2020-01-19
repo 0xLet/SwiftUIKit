@@ -9,7 +9,7 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class LoadingImage: UIView {
-    public init(_ url: URL, loadingTint: UIColor? = nil) {
+    public init(_ url: URL, loadingTint: UIColor? = nil, onCompletedLoading: ((UIImage?) -> Void)? = nil) {
         super.init(frame: .zero)
         embed {
             LoadingView()
@@ -28,6 +28,7 @@ public class LoadingImage: UIView {
                     print("Issue loading Image with url: \(url.absoluteString)")
                     print("Error: \(error?.localizedDescription ?? "-1")")
                     self?.update(color: .red)
+                    onCompletedLoading?(nil)
                     return
             }
             guard let image = UIImage(data: data) else {
@@ -35,9 +36,11 @@ public class LoadingImage: UIView {
                 print("Issue loading Image with url: \(url.absoluteString)")
                 print("Error: Could not create UIImage from data")
                 self?.update(color: .red)
+                onCompletedLoading?(nil)
                 return
             }
             self?.update(image: image)
+            onCompletedLoading?(image)
         }
         
         task.resume()
