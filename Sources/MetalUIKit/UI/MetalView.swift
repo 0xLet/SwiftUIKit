@@ -8,7 +8,7 @@
 import MetalKit
 
 @available(iOS 9.0, *)
-class MetalView: MTKView {
+public class MetalView: MTKView {
     private var renderer: Renderer
     
     init(renderer: Renderer) {

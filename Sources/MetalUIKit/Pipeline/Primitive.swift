@@ -9,7 +9,7 @@
 import MetalKit
 
 @available(iOS 9.0, *)
-class Primitive {
+public class Primitive {
     static func importObj(device: MTLDevice, size: Float) -> MTKMesh {
         let allocator = MTKMeshBufferAllocator(device: device)
         var url = URL(string: "/Users/developer/Documents/cube.obj")

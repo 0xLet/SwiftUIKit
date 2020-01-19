@@ -8,7 +8,7 @@
 
 import MetalKit
 
-struct Vertex {
+public struct Vertex {
     var vertex: float2
     
     init(x: Float, y: Float) {

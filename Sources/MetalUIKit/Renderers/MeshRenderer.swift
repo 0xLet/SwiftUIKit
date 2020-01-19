@@ -7,14 +7,15 @@
 ////
 
 import MetalKit
+
 @available(iOS 9.0, *)
-class MeshRenderer: NSObject, Renderer {
-    var mesh: MTKMesh?
-    var vertexBuffer: MTLBuffer?
-    var pipelineState: MTLRenderPipelineState?
+public class MeshRenderer: NSObject {
+    public var mesh: MTKMesh?
+    public var vertexBuffer: MTLBuffer?
+    public var pipelineState: MTLRenderPipelineState?
     
-    internal var vertexShaderName: String = "vertex_main"
-    internal var fragmentShaderName: String = "fragment_main_test"
+    public var vertexShaderName: String = "vertex_main"
+    public var fragmentShaderName: String = "fragment_main_test"
     
     override init() {
         super.init()
@@ -30,12 +31,15 @@ class MeshRenderer: NSObject, Renderer {
         vertexBuffer = mesh?.vertexBuffers[0].buffer
         
     }
-    
-    func getMesh() -> MDLMesh {
+}
+
+@available(iOS 9.0, *)
+extension MeshRenderer: Renderer {
+    public func getMesh() -> MDLMesh {
         return Primitive.makeCube(device: device, size: 1)
     }
 
-    func load(metalView: MTKView) {
+    public func load(metalView: MTKView) {
         let library = device.makeDefaultLibrary()
         let vertexFunction = library?.makeFunction(name: vertexShaderName)
         let fragmentFunction = library?.makeFunction(name: fragmentShaderName)
@@ -58,7 +62,7 @@ class MeshRenderer: NSObject, Renderer {
         metalView.delegate = self
     }
     
-    func configure(renderEncoder: MTLRenderCommandEncoder) -> MTLRenderCommandEncoder? {
+    public func configure(renderEncoder: MTLRenderCommandEncoder) -> MTLRenderCommandEncoder? {
            guard let pipelineState = pipelineState,
                let mesh = mesh else {
                return nil
@@ -81,12 +85,12 @@ class MeshRenderer: NSObject, Renderer {
 
 @available(iOS 9.0, *)
 extension MeshRenderer: MTKViewDelegate {
-    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+    public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         
     }
     
     
-    func draw(in view: MTKView) {
+    public func draw(in view: MTKView) {
         draw(metalView: view)
     }
 }

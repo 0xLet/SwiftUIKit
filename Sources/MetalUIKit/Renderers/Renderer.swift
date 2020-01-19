@@ -8,7 +8,7 @@
 
 import MetalKit
 
-class MetalDevice {
+public class MetalDevice {
     static var shared: MetalDevice = MetalDevice()
     
     var device: MTLDevice
@@ -25,7 +25,7 @@ class MetalDevice {
 }
 
 @available(iOS 9.0, *)
-protocol Renderer {
+public protocol Renderer {
     var device: MTLDevice { get }
     var commandQueue: MTLCommandQueue { get }
     var mesh: MTKMesh? { get set }
@@ -41,7 +41,7 @@ protocol Renderer {
 }
 
 @available(iOS 9.0, *)
-extension Renderer {
+public extension Renderer {
     var device: MTLDevice {
         return MetalDevice.shared.device
     }
@@ -53,7 +53,7 @@ extension Renderer {
 
 // MARK: MTKViewDelegate
 @available(iOS 9.0, *)
-extension Renderer {
+public extension Renderer {
     //Called once per frame, regenerate the command buffer
     func draw(metalView view: MTKView) {
         guard let descriptor = view.currentRenderPassDescriptor,

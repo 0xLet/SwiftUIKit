@@ -8,29 +8,29 @@
 import MetalKit
 
 @available(iOS 9.0, *)
-class CustomRenderer: NSObject, Renderer {
+public class CustomRenderer: NSObject {
     // Dummy
-    func getMesh() -> MDLMesh {
+    public func getMesh() -> MDLMesh {
         return Primitive.makeCube(device: device, size: 1)
     }
     
-    var mesh: MTKMesh?
-    var vertexBuffer: MTLBuffer?
-    var pipelineState: MTLRenderPipelineState?
-    var vertexFunction: MTLFunction?
-    var fragmentFunction: MTLFunction?
-    var clearColor: MTLClearColor?
-    var renderMethod: ((MTLRenderCommandEncoder) -> Void)?
+    public var mesh: MTKMesh?
+    public var vertexBuffer: MTLBuffer?
+    public var pipelineState: MTLRenderPipelineState?
+    public var vertexFunction: MTLFunction?
+    public var fragmentFunction: MTLFunction?
+    public var clearColor: MTLClearColor?
+    public var renderMethod: ((MTLRenderCommandEncoder) -> Void)?
     
-    internal var vertexShaderName: String = "vertex_main_moving"
-    internal var fragmentShaderName: String = "fragment_main"
+    public var vertexShaderName: String = "vertex_main_moving"
+    public var fragmentShaderName: String = "fragment_main"
     var timer: Float = 0
     
     override init() {
         super.init()
     }
     
-    func mesh(_ closure: (MTLDevice) -> MDLMesh) -> Self {
+    public func mesh(_ closure: (MTLDevice) -> MDLMesh) -> Self {
         do{
             mesh = try MTKMesh(mesh: closure(device), device: device)
         } catch let error {
@@ -41,33 +41,36 @@ class CustomRenderer: NSObject, Renderer {
         return self
     }
     
-    func vertex(shaderName: () -> String) -> Self {
+    public func vertex(shaderName: () -> String) -> Self {
         let library = device.makeDefaultLibrary()
         vertexFunction = library?.makeFunction(name: shaderName())
         
         return self
     }
     
-    func fragment(shaderName: () -> String) -> Self {
+    public func fragment(shaderName: () -> String) -> Self {
         let library = device.makeDefaultLibrary()
         fragmentFunction = library?.makeFunction(name: shaderName())
         
         return self
     }
     
-    func clear(color: () -> MTLClearColor) -> Self {
+    public func clear(color: () -> MTLClearColor) -> Self {
         clearColor = color()
         
         return self
     }
     
-    func render(encoder: @escaping (MTLRenderCommandEncoder) -> Void) -> Self {
+    public func render(encoder: @escaping (MTLRenderCommandEncoder) -> Void) -> Self {
         renderMethod = encoder
         
         return self
     }
-    
-    func load(metalView: MTKView) {
+}
+
+@available(iOS 9.0, *)
+extension CustomRenderer: Renderer {
+    public func load(metalView: MTKView) {
         let pipelineDescriptor = MTLRenderPipelineDescriptor()
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
@@ -89,7 +92,7 @@ class CustomRenderer: NSObject, Renderer {
         metalView.delegate = self
     }
     
-    func configure(renderEncoder: MTLRenderCommandEncoder) -> MTLRenderCommandEncoder? {
+    public func configure(renderEncoder: MTLRenderCommandEncoder) -> MTLRenderCommandEncoder? {
        //pipeline state
         guard let pipelineState = pipelineState,
             let mesh = mesh else {
@@ -126,12 +129,12 @@ class CustomRenderer: NSObject, Renderer {
 
 @available(iOS 9.0, *)
 extension CustomRenderer: MTKViewDelegate {
-    func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
+    public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
 
     }
 
 
-    func draw(in view: MTKView) {
+    public func draw(in view: MTKView) {
         draw(metalView: view)
     }
 }
