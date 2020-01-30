@@ -3,7 +3,6 @@
 //  SwiftUIKit
 //
 //  Created by Zach Eriksen on 10/29/19.
-//  Copyright © 2019 oneleif. All rights reserved.
 //
 
 import UIKit
@@ -235,6 +234,27 @@ public extension UIView {
         
         return self
     }
+    
+    @discardableResult
+    func background(color: UIColor) -> Self {
+        backgroundColor = color
+        
+        return self
+    }
+    
+    @discardableResult
+    func clipsToBounds(_ shouldClip: Bool = true) -> Self {
+        self.clipsToBounds = shouldClip
+        
+        return self
+    }
+    
+    @discardableResult
+    func corner(radius: Float) -> Self {
+        layer.cornerRadius = CGFloat(radius)
+        
+        return self
+    }
 }
 
 @available(iOS 9.0, *)
@@ -304,8 +324,10 @@ public extension UIView {
 }
 
 public extension UIView {
+    var allSubviews: [UIView] {
+        return getSubviews(forView: self)
+    }
     
-    /// Debug the view by coloring all subviews random colors and count the number of views
     @discardableResult
     func debug() -> Self {
         var randomColor: UIColor {
@@ -314,15 +336,8 @@ public extension UIView {
                            blue: CGFloat.random(in: 0 ... 255) / 255,
                            alpha: 1)
         }
-        func getSubViews(forView view: UIView) -> [UIView] {
-            var views: [UIView] = []
-            for view in view.subviews {
-                views.append(view)
-                views.append(contentsOf: getSubViews(forView: view))
-            }
-            return views
-        }
-        let subviews = getSubViews(forView: self)
+        
+        let subviews = allSubviews
         
         print("DEBUG LOG:")
         print("Root Debug View: \(self)")
@@ -333,6 +348,15 @@ public extension UIView {
         }
         
         return self
+    }
+    
+    private func getSubviews(forView view: UIView) -> [UIView] {
+        var views: [UIView] = []
+        for view in view.subviews {
+            views.append(view)
+            views.append(contentsOf: getSubviews(forView: view))
+        }
+        return views
     }
 }
 

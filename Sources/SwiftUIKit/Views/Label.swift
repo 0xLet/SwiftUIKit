@@ -1,9 +1,8 @@
 //
 //  Label.swift
-//  SwiftUIKit-Example
+//  SwiftUIKit
 //
 //  Created by Zach Eriksen on 10/29/19.
-//  Copyright © 2019 oneleif. All rights reserved.
 //
 
 import UIKit
@@ -74,6 +73,20 @@ public class Label: UILabel {
     public func apply(attributes: StringAttributes, range: ClosedRange<Int>) -> Self {
         attributedText = AttributedString(attributedString: attributedText ?? AttributedString(string: text ?? ""))
             .set(attributes: attributes, range: range)
+        
+        return self
+    }
+    
+    @discardableResult
+    public func text(alignment: NSTextAlignment) -> Self {
+        textAlignment = alignment
+        
+        return self
+    }
+    
+    @discardableResult
+    public func text(color: UIColor) -> Self {
+        textColor = color
         
         return self
     }
