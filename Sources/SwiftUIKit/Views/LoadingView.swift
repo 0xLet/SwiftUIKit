@@ -11,11 +11,7 @@ import UIKit
 public class LoadingView: UIActivityIndicatorView {
     public init(forStyle style: UIActivityIndicatorView.Style? = nil) {
         guard let style = style else {
-            if #available(iOS 13.0, *) {
-                super.init(style: .medium)
-            } else {
-                super.init(style: .white)
-            }
+            super.init(style: .white)
             return
         }
         

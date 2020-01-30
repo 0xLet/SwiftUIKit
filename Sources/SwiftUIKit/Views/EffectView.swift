@@ -36,21 +36,3 @@ public class BlurView: UIVisualEffectView {
         fatalError("init(coder:) has not been implemented")
     }
 }
-
-@available(iOS 13.0, *)
-public class VibrancyView: UIVisualEffectView {
-    public init(blurStyle blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
-                vibrancyStyle vibrancy: UIVibrancyEffectStyle = .fill,
-                closure: () -> UIView) {
-        super.init(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: blur),
-                                            style: vibrancy))
-        
-        contentView.embed {
-            closure()
-        }
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-}
