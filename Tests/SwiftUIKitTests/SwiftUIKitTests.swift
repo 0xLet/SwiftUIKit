@@ -4,6 +4,7 @@ import XCTest
 @available(iOS 9.0, *)
 final class SwiftUIKitTests: XCTestCase {
     func testLabelADA() {
+        
         let label = Label("SomeString")
             .accessibility(identifier: "SomeID")
             .padding()
@@ -90,6 +91,8 @@ final class SwiftUIKitTests: XCTestCase {
     
     static var allTests = [
         ("testLabelADA", testLabelADA),
-        ("testButtonADA", testButtonADA)
+        ("testButtonADA", testButtonADA),
+        ("testAttributedString", testAttributedString),
+        ("testApplyLabel", testApplyLabel)
     ]
 }
