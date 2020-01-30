@@ -14,10 +14,10 @@ class ViewController: UIViewController {
         
         view.embed {
             View(backgroundColor: .clear)
-                .vstack {
-                    return [
+                VStack {
+                    [
                         VStack {
-                            return [
+                            [
                                 Label("Hello World"),
                                 Label("Testing VStack"),
                                 Button("Hello Tap Me!", titleColor: .systemBlue, backgroundColor: .systemYellow) {
