@@ -21,10 +21,10 @@ public class VStack: UIView {
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of views
     public init(withSpacing spacing: Float = 0,
-         padding: Float = 0,
-         alignment: UIStackView.Alignment = .fill,
-         distribution: UIStackView.Distribution = .fill,
-         _ closure: () -> [UIView]) {
+                padding: Float = 0,
+                alignment: UIStackView.Alignment = .fill,
+                distribution: UIStackView.Distribution = .fill,
+                _ closure: () -> [UIView]) {
         views = closure()
         super.init(frame: .zero)
         
@@ -43,20 +43,20 @@ public class VStack: UIView {
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of optional views
     public init(withSpacing spacing: Float = 0,
-            padding: Float = 0,
-            alignment: UIStackView.Alignment = .fill,
-            distribution: UIStackView.Distribution = .fill,
-            _ closure: () -> [UIView?]) {
-           views = closure()
-               .compactMap { $0 }
-           super.init(frame: .zero)
-           
+                padding: Float = 0,
+                alignment: UIStackView.Alignment = .fill,
+                distribution: UIStackView.Distribution = .fill,
+                _ closure: () -> [UIView?]) {
+        views = closure()
+            .compactMap { $0 }
+        super.init(frame: .zero)
+        
         vstack(withSpacing: spacing,
-                  padding: padding,
-                  alignment: alignment,
-                  distribution: distribution)
-                  { views }
-       }
+               padding: padding,
+               alignment: alignment,
+               distribution: distribution)
+        { views }
+    }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
