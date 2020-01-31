@@ -1,4 +1,5 @@
 # SwiftUIKit
+<img src="assets/SwiftUIKit_logo_v1.png" width="256">
 
 UIKit version of SwiftUI
 
