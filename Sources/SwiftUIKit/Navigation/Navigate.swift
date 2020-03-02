@@ -48,6 +48,7 @@ public class Navigate {
     
     // MARK: Configure NavigationController
     
+    /// Configure the Navigate Singleton with the Root Navigation Controller
     @discardableResult
     public func configure(controller: UINavigationController?) -> Self {
         self.navigationController = controller
@@ -55,6 +56,9 @@ public class Navigate {
         return self
     }
     
+    /// Set the visibleViewController's title
+    /// - Parameters:
+    ///     - title: The title of the currentViewController
     @discardableResult
     public func set(title: String) -> Self {
         navigationController?.visibleViewController?.title = title
@@ -62,6 +66,10 @@ public class Navigate {
         return self
     }
     
+    /// Set the left barButton
+    /// - Parameters:
+    ///     - barButton: The UIBarButtonItem to be set
+    ///     - animated: Should animate setting the left UIBarButtonItem
     @discardableResult
     public func setLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         navigationController?.visibleViewController?.navigationItem.setLeftBarButton(barButton, animated: animated)
@@ -69,6 +77,10 @@ public class Navigate {
         return self
     }
     
+    /// Set the right barButton
+    /// - Parameters:
+    ///     - barButton: The UIBarButtonItem to be set
+    ///     - animated: Should animate setting the right UIBarButtonItem
     @discardableResult
     public func setRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         navigationController?.visibleViewController?.navigationItem.setRightBarButton(barButton, animated: animated)
@@ -76,6 +88,10 @@ public class Navigate {
         return self
     }
     
+    /// Set the left barButtons
+    /// - Parameters:
+    ///     - barButton: The [UIBarButtonItem] to be set
+    ///     - animated: Should animate setting the left [UIBarButtonItem]
     @discardableResult
     public func setLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         navigationController?.visibleViewController?.navigationItem.setLeftBarButtonItems(barButtons, animated: animated)
@@ -83,6 +99,10 @@ public class Navigate {
         return self
     }
     
+    /// Set the right barButtons
+    /// - Parameters:
+    ///     - barButton: The [UIBarButtonItem] to be set
+    ///     - animated: Should animate setting the right [UIBarButtonItem]
     @discardableResult
     public func setRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         navigationController?.visibleViewController?.navigationItem.setRightBarButtonItems(barButtons, animated: animated)
@@ -92,6 +112,10 @@ public class Navigate {
     
     // MARK: Navigation
     
+    /// Go to a viewController by using the configured NavigationController
+    /// - Parameters:
+    ///     - viewController: UIViewController to navigate to
+    ///     - style: Style of navigation
     public func go(_ viewController: UIViewController,
                    style: NavigationStyle,
                    completion: (() -> Void)? = nil) {
@@ -111,10 +135,16 @@ public class Navigate {
         }
     }
     
+    /// Go to a viewController by using another viewController
+    /// - Parameters:
+    ///     - from: The UIViewController that is handling the navigation
+    ///     - viewController: UIViewController to navigate to
+    ///     - style: Style of navigation
     public func go(from: UIViewController,
                    to: UIViewController,
                    style: NavigationStyle,
                    completion: (() -> Void)? = nil) {
+        
         
         switch style {
         case .push:
@@ -124,6 +154,9 @@ public class Navigate {
         }
     }
     
+    /// Navigate back and dismiss the visibleViewController
+    /// - Parameters:
+    ///     - toRoot: Should navigate back to the rootViewController
     public func back(toRoot: Bool = false) {
         guard let controller = navigationController else {
             print("Navigate \(#function) Error!")
@@ -141,6 +174,7 @@ public class Navigate {
         controller.popViewController(animated: true)
     }
     
+    /// Dismiss the visibleViewController
     public func dismiss() {
         guard let controller = navigationController else {
             print("Navigate \(#function) Error!")
@@ -156,13 +190,20 @@ public class Navigate {
     
     // MARK: Alert
     
+    /// Show an Alert
+    /// - Parameters:
+    ///     - title: Title of the UIAlertController
+    ///     - message: Message of the UIAlertController
+    ///     - withactions: Array of action objects to be added to the Alert
+    ///     - secondsToPersist: Amount of seconds the Alert should show before dismissing itself
+    ///     - closure: A closure that is passed the UIAlertController before presenting it
     public func alert(title: String,
                       message: String,
                       withActions actions: [UIAlertAction] = [],
                       secondsToPersist: Double?,
                       _ closure: ((UIAlertController) -> Void)? = nil) {
         
-        let alert = UIAlertController(title: title, message:message, preferredStyle: .alert)
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         actions.forEach { alert.addAction($0) }
         
@@ -181,6 +222,12 @@ public class Navigate {
     
     // MARK: ActionSheet
     
+    /// Show an ActionSheet
+    /// - Parameters:
+    ///     - title: Title of the UIAlertController
+    ///     - message: Message of the UIAlertController
+    ///     - withactions: Array of action objects to be added to the ActionSheet
+    ///     - closure: A closure that is passed the UIAlertController before presenting it
     public func actionSheet(title: String,
                             message: String,
                             withActions actions: [UIAlertAction] = [],
@@ -196,6 +243,17 @@ public class Navigate {
     }
     
     // MARK: Toasts & Messages
+    
+    /// Show a Toast Message
+    /// - Parameters:
+    ///     - style: The ToastStyle (default: .custom)
+    ///     - pinToTop: Should the Toast pin to the top or bottom (default: true)
+    ///     - secondsToPersist: Amount of seconds the Toast should show before dismissing itself
+    ///     - animationInDuration: The amount of seconds the Toast should fade in (default: 0.5)
+    ///     - animationOutDuration: The amount of seconds the Toast should fade out (default: 0.5)
+    ///     - padding: The amount of spacing around the Toast
+    ///     - tapHandler: What happens when the user taps on the Toast (default: { $0.removeFromSuperview() })
+    ///     - closure: A trailing closure that accepts a view
     @available(iOS 11.0, *)
     public func toast(style: ToastStyle = .custom,
                       pinToTop: Bool = true,
@@ -281,6 +339,7 @@ public class Navigate {
         }
     }
     
+    /// Destory the toast
     public func destroyToast() {
         toast?.removeFromSuperview()
         toast = nil

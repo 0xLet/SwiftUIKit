@@ -1,4 +1,5 @@
 # SwiftUIKit
+<img src="assets/SwiftUIKit_logo_v1.png" width="256">
 
 UIKit version of SwiftUI
 
@@ -12,32 +13,81 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.embed {
-            View(backgroundColor: .clear)
-                VStack {
-                    [
-                        VStack {
-                            [
-                                Label("Hello World"),
-                                Label("Testing VStack"),
-                                Button("Hello Tap Me!", titleColor: .systemBlue, backgroundColor: .systemYellow) {
-                                    print("Hello You Tapped me!")
-                                }.layer {
-                                    $0.borderWidth = 3
-                                    $0.borderColor = UIColor.systemBlue.cgColor
-                                    $0.cornerRadius = 6
-                                }
-                            ]
-                        }
-                        .frame(height: 200),
-                        Spacer(height: 4),
-                        HStack { [Label("Body"), Spacer(), Label("Details")] },
-                        Spacer()
-                    ]
-            }
-            .padding()
-        }
+        Navigate.shared.configure(controller: navigationController)
+            .set(title: "Hello SwiftUIKit")
+            .setRight(barButton: BarButton {
+                Button({
+                    print("Tapped the barbutton")
+                }) {
+                    Label("Button 0")
+                }
+            })
         
+        
+        view.embed {
+            SafeAreaView {
+                Table(defaultCellHeight: 60) {
+                    [
+                        Button("Say Hello") {
+                            print("Hello World!")
+                        },
+                        
+                        HStack(withSpacing: 8) {
+                            [
+                                Label("Name"),
+                                
+                                Divider(.vertical),
+                                
+                                Spacer(),
+                                
+                                Field(value: "SwiftUIKit",
+                                      placeholder: "Some Name",
+                                      keyboardType: .default)
+                                    .inputHandler { print("New Name: \($0)") }
+                            ]
+                        },
+                        
+                        Label.callout("This is some callout text!"),
+                        
+                        ZStack {
+                            [
+                                Image(.blue)
+                                    .frame(height: 60, width: 60)
+                                    .offset(x: 100)
+                            ]
+                        },
+                        
+                        NavButton(destination: UIViewController {
+                            View(backgroundColor: .white) {
+                                LoadingImage(URL(string: "https://cdn11.bigcommerce.com/s-oe2q4reh/images/stencil/2048x2048/products/832/1401/Beige_Pekingese_Puppy__21677.1568609759.jpg")!)
+                                    .contentMode(.scaleAspectFit)
+                            }
+                        }, style: .push) {
+                            Label("Go see a puppy")
+                        },
+                        
+                        Button("Show an Alert") {
+                            Navigate.shared.alert(title: "Hello this is an Alert!",
+                                                  message: "Just a test...",
+                                                  secondsToPersist: 3)
+                        },
+                        
+                        Button("Show an Alert w/ cancel") {
+                            Navigate.shared.alert(title: "Hello World",
+                                                  message: "This is an alert",
+                                                  withActions: [.cancel],
+                                                  secondsToPersist: 3)
+                        },
+                        
+                        Button("Show a Toast Message") {
+                            Navigate.shared.toast(style: .error, pinToTop: true, secondsToPersist: 4) {
+                                Label("This is a test error message!")
+                            }
+                        }
+                    ]
+                }
+            }
+        }
     }
 }
 ```
@@ -50,7 +100,7 @@ class ViewController: UIViewController {
 
 # oneleif Project
 
-![](https://github.com/oneleif/olWebsite/blob/master/Public/images/homeLogo.png?raw=true)
+![](https://github.com/oneleif/olWebsite/blob/master/Public/images/oneleif.png?raw=true)
 
 ### Project Info
 
