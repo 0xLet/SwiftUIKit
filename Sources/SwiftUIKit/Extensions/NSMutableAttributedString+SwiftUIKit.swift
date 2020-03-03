@@ -33,7 +33,6 @@ public extension StringAttributes {
     ///     - value: The value for the attribute being modifed
     @discardableResult
     mutating func add(key: AttributedStringKey, value: Any) -> StringAttributes {
-        
         self[key] = value
         
         return self
@@ -48,7 +47,6 @@ public extension NSMutableAttributedString {
     ///     - range: Closed Int Range. Example: 0 ... 3
     @discardableResult
     func set(attributes: StringAttributes, range: ClosedRange<Int>) -> Self {
-        
         self.setAttributes(attributes, range: NSRange(location: range.lowerBound, length: range.upperBound))
         
         return self

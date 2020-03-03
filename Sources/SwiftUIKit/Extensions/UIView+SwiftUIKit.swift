@@ -130,7 +130,6 @@ public extension UIView {
     ///     - width: Value for the widthAnchor
     @discardableResult
     func frame(height: Float? = nil, width: Float? = nil) -> Self {
-        
         if let height = height {
             heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
         }
@@ -148,7 +147,6 @@ public extension UIView {
     ///     - y: Value to add to the center.y
     @discardableResult
     func offset(x: Float? = nil, y: Float? = nil) -> Self {
-        
         if let x = x {
             center.x += CGFloat(x)
         }
@@ -165,7 +163,6 @@ public extension UIView {
     ///     - y: Value to set the center.y
     @discardableResult
     func center(x: Float? = nil, y: Float? = nil) -> Self {
-        
         if let x = x {
             center.x = CGFloat(x)
         }

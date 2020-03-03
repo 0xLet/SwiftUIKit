@@ -273,7 +273,7 @@ public class Navigate {
         switch style {
         case .custom:
             toast = closure()
-                .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
+                .gesture { UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         default:
             toast = View(backgroundColor: .clear) {
                 closure()
@@ -287,7 +287,7 @@ public class Navigate {
             }
             .padding(padding)
                 
-            .gesture{ UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
+            .gesture { UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         }
         
         toast?.translatesAutoresizingMaskIntoConstraints = false
