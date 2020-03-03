@@ -89,10 +89,72 @@ final class SwiftUIKitTests: XCTestCase {
         XCTAssert(!(applyLabel.accessibilityLabel?.isEmpty ?? true))
     }
     
+    func testEmbedView() {
+        let view = View()
+        
+        let viewToEmbed = View()
+        
+        view.embed {
+            viewToEmbed
+        }
+        
+        XCTAssert(view.allSubviews.count == 1)
+    }
+    
+    func testVStackView() {
+        
+        let viewToEmbed = View()
+        let stack = VStack {
+            [
+            viewToEmbed
+            ]
+        }
+        
+        XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
+        XCTAssert(stack.allSubviews.count == 2)
+    }
+    
+    func testHStackView() {
+        
+        let viewToEmbed = View()
+        let stack = HStack {
+            [
+            viewToEmbed
+            ]
+        }
+        
+        XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
+        XCTAssert(stack.allSubviews.count == 2)
+    }
+    
+    func testZStackView() {
+        
+        let viewToEmbed = View()
+        let stack = ZStack {
+            [
+            viewToEmbed
+            ]
+        }
+        
+        XCTAssert(stack.allSubviews.count == 1)
+    }
+    
+    func testPaddingView() {
+        
+        let view = View().padding()
+        
+        XCTAssert(view.allSubviews.count == 1)
+    }
+    
     static var allTests = [
         ("testLabelADA", testLabelADA),
         ("testButtonADA", testButtonADA),
         ("testAttributedString", testAttributedString),
-        ("testApplyLabel", testApplyLabel)
+        ("testApplyLabel", testApplyLabel),
+        ("testEmbedView", testEmbedView),
+        ("testVStackView", testVStackView),
+        ("testHStackView", testHStackView),
+        ("testZStackView", testZStackView),
+        ("testPaddingView", testPaddingView)
     ]
 }
