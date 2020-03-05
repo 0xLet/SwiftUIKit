@@ -34,6 +34,27 @@ final class BasicADATests: XCTestCase {
         assert(button.accessibilityTraits == .button)
     }
     
+    func testComplexViewADA() {
+        let view = View {
+            View {
+                HStack {
+                    [
+                    Label("Hello World"),
+                    Label("Ipsum")
+                    ]
+                }
+            }
+        }
+        .accessibility(identifier: "mainView")
+        
+        let accessibilityLabels = ["Hello World", "Ipsum"]
+        
+        assert(view.allSubviews.compactMap { $0.accessibilityLabel } == accessibilityLabels)
+        assert(view.accessibilityIdentifier == "mainView")
+        assert(view.accessibilityTraits == .none)
+        assert(view.shouldGroupAccessibilityChildren == false)
+    }
+    
     static var allTests = [
         ("testLabelADA", testLabelADA),
         ("testButtonADA", testButtonADA)
