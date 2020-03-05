@@ -57,6 +57,7 @@ final class BasicADATests: XCTestCase {
     
     static var allTests = [
         ("testLabelADA", testLabelADA),
-        ("testButtonADA", testButtonADA)
+        ("testButtonADA", testButtonADA),
+        ("testComplexViewADA", testComplexViewADA)
     ]
 }
