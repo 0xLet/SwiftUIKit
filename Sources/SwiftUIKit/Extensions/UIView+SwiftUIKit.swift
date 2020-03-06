@@ -249,9 +249,237 @@ public extension UIView {
         return self
     }
     
+    // MARK: - Layer's modifiers
+    
+    /// Change layer's content's gravity.
+    /// - Parameter gravity: Will be used as layer's gravity.
+    @discardableResult
+    func gravity(_ gravity: CALayerContentsGravity) -> Self {
+        layer.contentsGravity = gravity
+        
+        return self
+    }
+    
+    /// Change layer's corner radius.
+    /// - Parameter radius: value, defines corner radius.
     @discardableResult
     func corner(radius: Float) -> Self {
         layer.cornerRadius = CGFloat(radius)
+        
+        return self
+    }
+    
+    /// Change layer's border color.
+    /// - Parameter color: use `UIColor.colorName.cgColor` to pass UIColor value.
+    @discardableResult
+    func border(color: CGColor) -> Self {
+        layer.borderColor = color
+        
+        return self
+    }
+    
+    /// Change layer's border width.
+    /// - Parameter width: Will be used as width value.
+    @discardableResult
+    func border(width: CGFloat) -> Self {
+        layer.borderWidth = width
+        return self
+    }
+    
+    /// Change layer's opacity
+    /// - Parameter value: Will be used as opacity value.
+    @discardableResult
+    func opacity(_ value: Double) -> Self {
+        layer.opacity = Float(value)
+        
+        return self
+    }
+    
+    
+    /// Change layer's isHidden value
+    /// - Parameter state: By default it's set to `true`
+    @discardableResult
+    func isLayerHidden(_ state: Bool = true) -> Self {
+        layer.isHidden = state
+        
+        return self
+    }
+    
+    /// Set masks to bounds value.
+    /// - Parameter state: By default it's set to `true`
+    @discardableResult
+    func masksToBounds(_ state: Bool = true) -> Self {
+        layer.masksToBounds = state
+        
+        return self
+    }
+    
+    /// Set layer's mask.
+    /// - Parameter layer: Allows to set existing type or create new one inside closure.
+    @discardableResult
+    func mask(_ layer: @autoclosure () -> CALayer?) -> Self {
+        self.layer.mask = layer()
+        
+        return self
+    }
+    
+    
+    /// Set `double sided` parameter.
+    /// - Parameter state: By default it's set to true.
+    @discardableResult
+    func doubleSided(_ state: Bool = true) -> Self {
+        layer.isDoubleSided = state
+        
+        return self
+    }
+    
+    /// Set masked corners value.
+    /// - Parameter corners: You can pass exisiting value or create it inside closure
+    @available(iOS 11.0, *)
+    @discardableResult
+    func maskedCorners(_ corners: @autoclosure () -> CACornerMask) -> Self {
+        layer.maskedCorners = corners()
+        
+        return self
+    }
+    
+    
+    /// Change layer's background color
+    /// - Parameter color: You can use `UIColor.colorName.cgColor` to pass UIColor value
+    @discardableResult
+    func backgroundColor(_ color: CGColor) -> Self {
+        layer.backgroundColor = color
+        
+        return self
+    }
+    
+    /// Set layer's shadow opacity.
+    /// - Parameter opacity:
+    @discardableResult
+    func shadow(opacity: Double) -> Self {
+        layer.shadowOpacity = Float(opacity)
+
+        return self
+    }
+    
+    /// Change layer's shadow color.
+    /// - Parameter color: Pass `UIColor.colorName.cgColor` to pass UIColor value
+    @discardableResult
+    func shadow(color: CGColor) -> Self {
+        layer.shadowColor = color
+        
+        return self
+    }
+    
+    /// Set layer's shadow radius. Takes `Double` and converts it to `CGFloat` for programmer's convenience
+    /// - Parameter radius:
+    @discardableResult
+    func shadow(radius: Double) -> Self {
+        layer.shadowRadius = CGFloat(radius)
+        
+        return self
+    }
+    
+    /// Changes layer's shadowOffset to given in parameter
+    /// - Parameter offset: offset value, can be calculated using closure inside or just add ready one.
+    @discardableResult
+    func shadow(offset: @autoclosure () -> CGSize) -> Self {
+        layer.shadowOffset = offset()
+        
+        return self
+    }
+    
+    
+    /// Set shadow path by passing existing object or use curly braces to create own one.
+    /// - Parameter path:
+    @discardableResult
+    func shadow(path: @autoclosure () -> CGPath?) -> Self {
+        layer.shadowPath = path()
+        
+        return self
+    }
+    
+    
+    /// Set layer's `allowsEdgeAntialiasing`.
+    /// - Parameter state: By default it's set to `true`
+    @discardableResult
+    func allowsEdgeAntialiasing(_ state: Bool = true) -> Self {
+        layer.allowsEdgeAntialiasing = state
+        
+        return self
+    }
+    
+    
+    /// Set layer's `allowsGroupOpacity`.
+    /// - Parameter state: By default it's set to true
+    @discardableResult
+    func allowsGroupOpacity(_ state: Bool = true) -> Self {
+        layer.allowsGroupOpacity = state
+        
+        return self
+    }
+    
+    /// Set layer's style.
+    /// - Parameter style: You can pass exisiting value or create new one inside closure.
+    @discardableResult
+    func style(_ style: @autoclosure () -> [AnyHashable: Any]?) -> Self {
+        layer.style = style()
+        
+        return self
+    }
+    
+    /// Set layer's filters.
+    /// - Parameter filters: You can pass exisiting value or create new one inside closure.
+    @discardableResult
+    func filters(_ filters: @autoclosure () -> [Any]?) -> Self {
+        layer.filters = filters()
+        
+        return self
+    }
+    
+    /// Set layer's `isOpaque` Boolean.
+    /// - Parameter state: By default it's set to `true`.
+    @discardableResult
+    func isOpaque(_ state: Bool = true) -> Self {
+        layer.isOpaque = state
+        
+        return self
+    }
+    
+    /// Set layer's `drawsAsynchronously`
+    /// - Parameter state: By default it's set to `true`
+    @discardableResult
+    func drawsAsynchronously(_ state: Bool = true) -> Self {
+        layer.drawsAsynchronously = state
+        
+        return self
+    }
+    
+    
+    /// Add animation to a layer.
+    /// - Parameters:
+    ///   - key: Key which allows to identify given animation.
+    ///   - animation: You can pass existing value or create it inside closure.
+    @discardableResult
+    func addAnimation(forKey key: String?, animation: CAAnimation) -> Self {
+        layer.add(animation, forKey: key)
+        
+        return self
+    }
+    
+    /// Remove layer's animation specified by given key.
+    /// - Parameter key: Key that's assigned to animation.
+    @discardableResult
+    func removeAnimation(forKey key: String) -> Self {
+        layer.removeAnimation(forKey: key)
+        
+        return self
+    }
+    
+    /// Remove all existing layer's animations.
+    @discardableResult
+    func removeAllAnimations() -> Self {
+        layer.removeAllAnimations()
         
         return self
     }
