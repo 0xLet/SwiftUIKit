@@ -177,12 +177,12 @@ final class BasicSwiftUIKitTests: XCTestCase {
             }
         }
         
-        XCTAssert(switchView.allSubviews.count == 9)
-        XCTAssert(uiSwitchView.allSubviews.count == 9)
+        XCTAssert(switchView.allSubviews.count == 9, "switchView.allSubviews.count == \(switchView.allSubviews.count)")
+        XCTAssert(uiSwitchView.allSubviews.count == 9, "uiSwitchView.allSubviews.count == \(uiSwitchView.allSubviews.count)")
         
-        XCTAssert(view.allSubviews.count == 13)
-        XCTAssert(otherView.allSubviews.count == 13)
-        XCTAssert(viewWithoutSwitch.allSubviews.count == 3)
+        XCTAssert(view.allSubviews.count == 13, "view.allSubviews.count == \(view.allSubviews.count)")
+        XCTAssert(otherView.allSubviews.count == 13, "otherView.allSubviews.count == \(otherView.allSubviews.count)")
+        XCTAssert(viewWithoutSwitch.allSubviews.count == 3, "viewWithoutSwitch.allSubviews.count == \(viewWithoutSwitch.allSubviews.count)")
         
         switchView.clear()
         uiSwitchView.clear()
