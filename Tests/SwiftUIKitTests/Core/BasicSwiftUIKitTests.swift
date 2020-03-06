@@ -129,10 +129,10 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let view = View()
             .layer {
-            $0.borderColor = UIColor.blue.cgColor
-            $0.borderWidth = 3
-            $0.cornerRadius = 8
-            $0.masksToBounds = true
+                $0.borderColor = UIColor.blue.cgColor
+                $0.borderWidth = 3
+                $0.cornerRadius = 8
+                $0.masksToBounds = true
         }
         
         let otherView = View()
@@ -146,6 +146,59 @@ final class BasicSwiftUIKitTests: XCTestCase {
         XCTAssert(view.layer.cornerRadius == otherView.layer.cornerRadius)
     }
     
+    func testClearView() {
+        
+        let switchView = Switch()
+        let uiSwitchView = UISwitch()
+        
+        let view = View().embed {
+            View().vstack {
+                [
+                    Image(.blue),
+                    Switch()
+                ]
+            }
+        }
+        
+        let otherView = View().embed {
+            VStack {
+                [
+                    Image(.blue),
+                    Switch()
+                ]
+            }
+        }
+        
+        let viewWithoutSwitch = View().embed {
+            View().vstack {
+                [
+                    Image(.blue)
+                ]
+            }
+        }
+        
+        XCTAssert(switchView.allSubviews.count == 9)
+        XCTAssert(uiSwitchView.allSubviews.count == 9)
+        
+        XCTAssert(view.allSubviews.count == 13)
+        XCTAssert(otherView.allSubviews.count == 13)
+        XCTAssert(viewWithoutSwitch.allSubviews.count == 3)
+        
+        switchView.clear()
+        uiSwitchView.clear()
+        
+        view.clear()
+        otherView.clear()
+        viewWithoutSwitch.clear()
+        
+        XCTAssert(switchView.allSubviews.count == 0)
+        XCTAssert(uiSwitchView.allSubviews.count == 0)
+        
+        XCTAssert(view.allSubviews.count == 0)
+        XCTAssert(otherView.allSubviews.count == 0)
+        XCTAssert(viewWithoutSwitch.allSubviews.count == 0)
+    }
+    
     static var allTests = [
         ("testDefaultView", testDefaultView),
         ("testEmbedViews", testEmbedViews),
@@ -155,6 +208,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         ("testZStackView", testZStackView),
         ("testPaddingView", testPaddingView),
         ("testConfigureView", testConfigureView),
-        ("testLayerView", testLayerView)
+        ("testLayerView", testLayerView),
+        ("testClearView", testClearView)
     ]
 }
