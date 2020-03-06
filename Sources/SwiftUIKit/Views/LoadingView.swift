@@ -31,7 +31,6 @@ public class LoadingView: UIActivityIndicatorView {
 public extension LoadingView {
     @discardableResult
     func start() -> Self {
-        
         startAnimating()
         
         return self
@@ -39,7 +38,6 @@ public extension LoadingView {
     
     @discardableResult
     func stop() -> Self {
-        
         stopAnimating()
         
         return self

@@ -28,7 +28,6 @@ public extension WebView {
         loadHTMLString(baseURL: baseURL, htmlString)
     }
     
-    
     convenience init(url: URL) {
         self.init()
         
@@ -55,7 +54,6 @@ public extension WebView {
     
     @discardableResult
     func loadHTMLString(baseURL: URL? = nil, _ htmlString: () -> String) -> Self {
-        
         loadHTMLString(htmlString(), baseURL: baseURL)
         
         return self
@@ -63,7 +61,6 @@ public extension WebView {
     
     @discardableResult
     func load(url: URL) -> Self {
-        
         load(URLRequest(url: url))
         
         return self
@@ -71,7 +68,6 @@ public extension WebView {
     
     @discardableResult
     func load(request: URLRequest) -> Self {
-        
         load(request)
         
         return self
@@ -79,7 +75,6 @@ public extension WebView {
     
     @discardableResult
     func loadFile(URL: URL, allowingReadAccessTo readAccessURL: URL) -> Self {
-        
         loadFileURL(URL, allowingReadAccessTo: readAccessURL)
         
         return self
@@ -87,7 +82,6 @@ public extension WebView {
     
     @discardableResult
     func load(data: Data, mimeType MIMEType: String, characterEncodingName: String, baseURL: URL) -> Self {
-        
         load(data, mimeType: MIMEType, characterEncodingName: characterEncodingName, baseURL: baseURL)
         
         return self
@@ -95,8 +89,6 @@ public extension WebView {
     
     @discardableResult
     func set(uiDelegate delegate: WKUIDelegate) -> Self {
-        
-        
         uiDelegate = delegate
         
         return self
@@ -104,8 +96,6 @@ public extension WebView {
     
     @discardableResult
     func set(navigationDelegate delegate: WKNavigationDelegate) -> Self {
-        
-        
         navigationDelegate = delegate
         
         return self
