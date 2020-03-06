@@ -11,6 +11,16 @@ import XCTest
 
 @available(iOS 9.0, *)
 final class BasicSwiftUIKitTests: XCTestCase {
+    
+    func testDefaultView() {
+        
+        let view = View()
+        
+        XCTAssert(view.backgroundColor == .clear)
+        XCTAssert(view.allSubviews.count == 0)
+        XCTAssert(view.constraints.count == 0)
+    }
+    
     func testEmbedView() {
         
         let view = View()
@@ -21,7 +31,26 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
+        XCTAssert(view.backgroundColor == .clear)
         XCTAssert(view.allSubviews.count == 1)
+        XCTAssert(view.constraints.count == 4)
+    }
+    
+    func testEmbedViews() {
+        
+        let view = View()
+        
+        let viewToEmbed = View()
+        
+        view.embed {
+            viewToEmbed.embed {
+                View()
+            }
+        }
+        
+        XCTAssert(view.backgroundColor == .clear)
+        XCTAssert(view.allSubviews.count == 2)
+        XCTAssert(view.constraints.count == 4)
     }
     
     func testVStackView() {
@@ -118,6 +147,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
     }
     
     static var allTests = [
+        ("testDefaultView", testDefaultView),
+        ("testEmbedViews", testEmbedViews),
         ("testEmbedView", testEmbedView),
         ("testVStackView", testVStackView),
         ("testHStackView", testHStackView),
