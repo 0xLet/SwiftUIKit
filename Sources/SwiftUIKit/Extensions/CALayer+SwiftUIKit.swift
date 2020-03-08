@@ -101,16 +101,6 @@ public extension UIView {
     return self
   }
   
-  
-  /// Change layer's background color
-  /// - Parameter color: You can use `UIColor.colorName.cgColor` to pass UIColor value
-  @discardableResult
-  func layer(backgroundColor color: CGColor) -> Self {
-    layer.backgroundColor = color
-    
-    return self
-  }
-  
   /// Set layer's shadow opacity.
   /// - Parameter opacity:
   @discardableResult

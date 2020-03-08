@@ -102,13 +102,6 @@ class CALayer_SwiftUIKitTests: XCTestCase {
     XCTAssertEqual(label.layer.maskedCorners, testCornerMask)
   }
   
-  func testView_layerModifier_backgroundColor() {
-    setUpLabel(testing: "backgroundColor")
-      .layer(backgroundColor: testColor)
-    
-    XCTAssertEqual(label.layer.backgroundColor, testColor)
-  }
-  
   func testView_layerModifier_shadowOpacity() {
     setUpLabel(testing: "shadowOpacity")
       .layer(shadowOpacity: testDouble)
