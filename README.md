@@ -100,7 +100,7 @@ class ViewController: UIViewController {
 
 # oneleif Project
 
-![](https://github.com/oneleif/olWebsite/blob/master/Public/images/oneleif.png?raw=true)
+![](https://github.com/oneleif/olDocs/blob/master/assets/images/oneleif_logos/full_logo/oneleif_whiteback.png)
 
 ### Project Info
 
