@@ -9,6 +9,15 @@ import UIKit
 
 @available(iOS 9.0, *)
 public extension UIView {
+    
+    /// Embed a Stack
+    /// - Parameters:
+    ///     - withSpacing: The amount of spacing between each child view
+    ///     - padding: The amount of space between this view and its parent view
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - axis: Keys that specify a horizontal or vertical layout constraint between objects (source: NSLayoutConstraint.Axis)
+    ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
     func stack(withSpacing spacing: Float = 0,
                padding: Float = 0,
@@ -32,6 +41,13 @@ public extension UIView {
         return self
     }
     
+    /// Embed a VStack
+    /// - Parameters:
+    ///     - withSpacing: The amount of spacing between each child view
+    ///     - padding: The amount of space between this view and its parent view
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
     func vstack(withSpacing spacing: Float = 0,
                 padding: Float = 0,
@@ -46,6 +62,13 @@ public extension UIView {
                      closure)
     }
     
+    /// Embed a HStack
+    /// - Parameters:
+    ///     - withSpacing: The amount of spacing between each child view
+    ///     - padding: The amount of space between this view and its parent view
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
     func hstack(withSpacing spacing: Float = 0,
                 padding: Float = 0,
@@ -60,6 +83,10 @@ public extension UIView {
                      closure)
     }
     
+    /// Embed a View to all anchors (top, bottom, leading, trailing)
+    /// - Parameters:
+    ///     - withPadding: The amount of space between the embedded view and this view
+    ///     - closure: A trailing closure that accepts a view
     @discardableResult
     func embed(withPadding padding: Float = 0,
                _ closure: () -> UIView) -> Self {
@@ -77,6 +104,7 @@ public extension UIView {
         return self
     }
     
+    /// Clear all subviews from this view
     @discardableResult
     func clear() -> Self {
         subviews.forEach { $0.removeFromSuperview() }
@@ -84,6 +112,9 @@ public extension UIView {
         return self
     }
     
+    /// Embed this view inside another with some padding
+    /// - Parameters:
+    ///     - padding: The amount of space between this view and its parent view
     @discardableResult
     func padding(_ padding: Float = 8) -> View {
         return View(backgroundColor: backgroundColor)
@@ -93,9 +124,12 @@ public extension UIView {
                            traits: accessibilityTraits)
     }
     
+    /// Set the height and width anchors to constant values (if nil it will not update the constraint)
+    /// - Parameters:
+    ///     - height: Value for the heightAnchor
+    ///     - width: Value for the widthAnchor
     @discardableResult
     func frame(height: Float? = nil, width: Float? = nil) -> Self {
-        
         if let height = height {
             heightAnchor.constraint(equalToConstant: CGFloat(height)).isActive = true
         }
@@ -107,9 +141,12 @@ public extension UIView {
         return self
     }
     
+    /// Offset the View's center by (x, y)
+    /// - Parameters:
+    ///     - x: Value to add to the center.x
+    ///     - y: Value to add to the center.y
     @discardableResult
     func offset(x: Float? = nil, y: Float? = nil) -> Self {
-        
         if let x = x {
             center.x += CGFloat(x)
         }
@@ -120,9 +157,12 @@ public extension UIView {
         return self
     }
     
+    /// Set the View's center to (x, y)
+    /// - Parameters:
+    ///     - x: Value to set the center.x
+    ///     - y: Value to set the center.y
     @discardableResult
     func center(x: Float? = nil, y: Float? = nil) -> Self {
-        
         if let x = x {
             center.x = CGFloat(x)
         }
@@ -133,13 +173,16 @@ public extension UIView {
         return self
     }
     
+    /// Hide the view
+    /// - Parameters:
+    ///     - if: A closure that determines if the view should be hidden
     @discardableResult
     func hide(if shouldHide: @autoclosure () -> Bool) -> Self {
         isHidden = shouldHide()
         
         return self
     }
-    
+
     @discardableResult
     func accessibility(label: String? = nil,
                        identifier: String? = nil,
@@ -152,6 +195,9 @@ public extension UIView {
         return self
     }
     
+    /// Add a GestureRecognizer to the view
+    /// - Parameters:
+    ///     - closure: A trailing closure that accepts a UIGestureRecognizer
     @discardableResult
     func gesture(_ closure: () -> UIGestureRecognizer) -> Self {
         let gesture = closure()
@@ -178,6 +224,8 @@ public extension UIView {
 
 @available(iOS 9.0, *)
 public extension UIView {
+    
+    /// Configure the Navigate Singleton with the Root Navigation Controller
     @discardableResult
     func navigateConfigure(controller: UINavigationController?) -> Self {
         Navigate.shared.configure(controller: controller)
@@ -185,6 +233,9 @@ public extension UIView {
         return self
     }
     
+    /// Set the visibleViewController's title
+    /// - Parameters:
+    ///     - title: The title of the currentViewController
     @discardableResult
     func navigateSet(title: String) -> Self {
         Navigate.shared.set(title: title)
@@ -192,6 +243,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the left barButton
+    /// - Parameters:
+    ///     - barButton: The UIBarButtonItem to be set
+    ///     - animated: Should animate setting the left UIBarButtonItem
     @discardableResult
     func navigateSetLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         Navigate.shared.setLeft(barButton: barButton)
@@ -199,6 +254,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the right barButton
+    /// - Parameters:
+    ///     - barButton: The UIBarButtonItem to be set
+    ///     - animated: Should animate setting the right UIBarButtonItem
     @discardableResult
     func navigateSetRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         Navigate.shared.setRight(barButton: barButton)
@@ -206,6 +265,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the left barButtons
+    /// - Parameters:
+    ///     - barButton: The [UIBarButtonItem] to be set
+    ///     - animated: Should animate setting the left [UIBarButtonItem]
     @discardableResult
     func navigateSetLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         Navigate.shared.setLeft(barButtons: barButtons)
@@ -213,6 +276,10 @@ public extension UIView {
         return self
     }
     
+    /// Set the right barButtons
+    /// - Parameters:
+    ///     - barButton: The [UIBarButtonItem] to be set
+    ///     - animated: Should animate setting the right [UIBarButtonItem]
     @discardableResult
     func navigateSetRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         Navigate.shared.setRight(barButtons: barButtons)
