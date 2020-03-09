@@ -39,6 +39,13 @@ class CALayer_SwiftUIKitTests: XCTestCase {
     XCTAssertEqual(label.layer.borderColor, testColor)
   }
   
+  func testView_layerModifier_backgroundColor() {
+    setUpLabel(testing: "backgroundColor")
+      .layer(backgroundColor: testColor)
+    
+    XCTAssertEqual(label.layer.backgroundColor, testColor)
+  }
+  
   func testView_layerModifier_borderWidth() {
     setUpLabel(testing: "borderWidth")
       .layer(borderWidth: testCGFloat)

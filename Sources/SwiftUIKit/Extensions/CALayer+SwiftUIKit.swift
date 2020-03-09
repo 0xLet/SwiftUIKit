@@ -9,6 +9,16 @@ import UIKit
 
 @available(iOS 9.0, *)
 public extension UIView {
+  
+  /// Change layer's background color
+  /// - Parameter color: You can use `UIColor.colorName.cgColor` to pass UIColor value
+  @discardableResult
+  func layer(backgroundColor color: CGColor) -> Self {
+    layer.backgroundColor = color
+    
+    return self
+  }
+  
   /// Change layer's content's gravity.
   /// - Parameter gravity: Will be used as layer's gravity.
   @discardableResult
