@@ -134,22 +134,8 @@ public extension UIView {
     }
     
     @discardableResult
-    func hide(if shouldHide: () -> Bool) -> Self {
+    func hide(if shouldHide: @autoclosure () -> Bool) -> Self {
         isHidden = shouldHide()
-        
-        return self
-    }
-    
-    @discardableResult
-    func hide(if shouldHide: Bool) -> Self {
-        isHidden = shouldHide
-        
-        return self
-    }
-    
-    @discardableResult
-    func layer(_ closure: (CALayer) -> Void) -> Self {
-        closure(layer)
         
         return self
     }
@@ -185,13 +171,6 @@ public extension UIView {
     @discardableResult
     func clipsToBounds(_ shouldClip: Bool = true) -> Self {
         self.clipsToBounds = shouldClip
-        
-        return self
-    }
-    
-    @discardableResult
-    func corner(radius: Float) -> Self {
-        layer.cornerRadius = CGFloat(radius)
         
         return self
     }

@@ -22,11 +22,10 @@ class ViewController: UIViewController {
                                 Label("Testing VStack"),
                                 Button("Hello Tap Me!", titleColor: .systemBlue, backgroundColor: .systemYellow) {
                                     print("Hello You Tapped me!")
-                                }.layer {
-                                    $0.borderWidth = 3
-                                    $0.borderColor = UIColor.systemBlue.cgColor
-                                    $0.cornerRadius = 6
-                                }
+                                    }
+                                    .layer(borderWidth: 3)
+                                    .layer(borderColor: UIColor.systemBlue.cgColor)
+                                    .layer(cornerRadius: 6)
                             ]
                         }
                         .frame(height: 200),

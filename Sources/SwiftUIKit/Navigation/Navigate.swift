@@ -224,7 +224,7 @@ public class Navigate {
                         $0.backgroundColor = style.color
                         $0.clipsToBounds = true
                 }
-                .layer { $0.cornerRadius = 8 }
+                .layer(cornerRadius: 8)
                 
             }
             .padding(padding)
