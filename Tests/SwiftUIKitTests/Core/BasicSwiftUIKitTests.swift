@@ -136,7 +136,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         }
         
         let otherView = View()
-            .corner(radius: 8)
+            .layer(cornerRadius: 8)
         
         XCTAssert(view.layer.borderColor == UIColor.blue.cgColor)
         XCTAssert(view.layer.borderWidth == 3)
