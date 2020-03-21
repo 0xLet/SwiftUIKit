@@ -141,6 +141,16 @@ public extension UIView {
         return self
     }
     
+    /// Activate LayoutConstraints
+    /// - Parameters:
+    ///     - constraints: A trailing closure that accepts an array of NSLayoutConstraint
+    @discardableResult
+    func activateLayoutConstraints(_ constraints: () -> [NSLayoutConstraint]) -> Self {
+        NSLayoutConstraint.activate(constraints())
+        
+        return self
+    }
+    
     /// Offset the View's center by (x, y)
     /// - Parameters:
     ///     - x: Value to add to the center.x
