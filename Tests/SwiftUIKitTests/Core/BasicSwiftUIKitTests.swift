@@ -199,6 +199,28 @@ final class BasicSwiftUIKitTests: XCTestCase {
         XCTAssert(viewWithoutSwitch.allSubviews.count == 0)
     }
     
+    func testLayoutConstraint() {
+        let innerView = View(backgroundColor: .blue)
+            .frame(height: 100, width: 100)
+        let stack = ZStack {
+            [
+                innerView
+            ]
+        }
+        
+        
+        stack
+            .activateLayoutConstraints {
+                [
+                    innerView.centerXAnchor.constraint(equalTo: stack.centerXAnchor),
+                    innerView.centerYAnchor.constraint(equalTo: stack.centerYAnchor)
+                ]
+        }
+        
+        XCTAssert(innerView.constraints.count == 2)
+        XCTAssert(stack.constraints.count == 2)
+    }
+    
     static var allTests = [
         ("testDefaultView", testDefaultView),
         ("testEmbedViews", testEmbedViews),
@@ -209,6 +231,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         ("testPaddingView", testPaddingView),
         ("testConfigureView", testConfigureView),
         ("testLayerView", testLayerView),
-        ("testClearView", testClearView)
+        ("testClearView", testClearView),
+        ("testLayoutConstraint", testLayoutConstraint)
     ]
 }
