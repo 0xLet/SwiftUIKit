@@ -1,5 +1,5 @@
 //
-//  UIView+SwiftUI.swift
+//  SwiftUIView.swift
 //  
 //
 //  Created by Zach Eriksen on 3/22/20.
@@ -8,15 +8,7 @@
 import SwiftUI
 
 @available(iOS 13.0, *)
-public extension UIView {
-    var view: SUIKView {
-        SUIKView {
-            self
-        }
-    }
-}
-
-public struct SUIKView: UIViewRepresentable {
+public struct SwiftUIView: UIViewRepresentable {
     public var wrappedView: UIView
     
     private var handleUpdateUIView: ((UIView, Context) -> Void)?
@@ -39,7 +31,8 @@ public struct SUIKView: UIViewRepresentable {
     }
 }
 
-public extension SUIKView {
+@available(iOS 13.0, *)
+public extension SwiftUIView {
     mutating func setMakeUIView(handler: @escaping (Context) -> UIView) -> Self {
         handleMakeUIView = handler
         
