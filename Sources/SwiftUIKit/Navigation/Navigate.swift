@@ -275,7 +275,7 @@ public class Navigate {
             toast = closure()
                 .gesture { UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         default:
-            toast = View(backgroundColor: .clear) {
+            toast = UIView(backgroundColor: .clear) {
                 closure()
                     .padding(8)
                     .configure {

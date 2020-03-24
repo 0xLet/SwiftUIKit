@@ -10,6 +10,16 @@ import UIKit
 @available(iOS 9.0, *)
 public extension UIView {
     
+    convenience init(withPadding padding: Float = 0,
+                backgroundColor: UIColor? = .clear,
+                _ closure: (() -> UIView)? = nil) {
+        self.init(frame: .zero)
+        
+        self.backgroundColor = backgroundColor
+        
+        _ = closure.map { embed(withPadding: padding, $0) }
+    }
+    
     /// Embed a Stack
     /// - Parameters:
     ///     - withSpacing: The amount of spacing between each child view
@@ -116,8 +126,8 @@ public extension UIView {
     /// - Parameters:
     ///     - padding: The amount of space between this view and its parent view
     @discardableResult
-    func padding(_ padding: Float = 8) -> View {
-        return View(backgroundColor: backgroundColor)
+    func padding(_ padding: Float = 8) -> UIView {
+        return UIView(backgroundColor: backgroundColor)
             .embed(withPadding: padding) { self }
             .accessibility(label: accessibilityLabel,
                            identifier: accessibilityIdentifier,
