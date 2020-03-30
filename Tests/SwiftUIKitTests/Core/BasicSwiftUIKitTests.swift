@@ -14,48 +14,48 @@ final class BasicSwiftUIKitTests: XCTestCase {
     
     func testDefaultView() {
         
-        let view = View()
+        let view = UIView()
         
-        XCTAssert(view.backgroundColor == .clear)
+        XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 0)
         XCTAssert(view.constraints.count == 0)
     }
     
     func testEmbedView() {
         
-        let view = View()
+        let view = UIView()
         
-        let viewToEmbed = View()
+        let viewToEmbed = UIView()
         
         view.embed {
             viewToEmbed
         }
         
-        XCTAssert(view.backgroundColor == .clear)
+        XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
         XCTAssert(view.constraints.count == 4)
     }
     
     func testEmbedViews() {
         
-        let view = View()
+        let view = UIView()
         
-        let viewToEmbed = View()
+        let viewToEmbed = UIView()
         
         view.embed {
             viewToEmbed.embed {
-                View()
+                UIView()
             }
         }
         
-        XCTAssert(view.backgroundColor == .clear)
+        XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 2)
         XCTAssert(view.constraints.count == 4)
     }
     
     func testVStackView() {
         
-        let viewToEmbed = View()
+        let viewToEmbed = UIView()
         
         let stack = VStack {
             [
@@ -69,7 +69,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
     
     func testHStackView() {
         
-        let viewToEmbed = View()
+        let viewToEmbed = UIView()
         
         let stack = HStack {
             [
@@ -83,7 +83,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
     
     func testZStackView() {
         
-        let viewToEmbed = View()
+        let viewToEmbed = UIView()
         
         let stack = ZStack {
             [
@@ -96,14 +96,14 @@ final class BasicSwiftUIKitTests: XCTestCase {
     
     func testPaddingView() {
         
-        let view = View().padding()
+        let view = UIView().padding()
         
         XCTAssert(view.allSubviews.count == 1)
     }
     
     func testConfigureView() {
         
-        let view = View(backgroundColor: .red)
+        let view = UIView(backgroundColor: .red)
             .configure {
                 $0.backgroundColor = .blue
                 $0.isHidden = true
@@ -111,7 +111,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
                 $0.clipsToBounds = true
         }
         
-        let otherView = View(backgroundColor: .blue)
+        let otherView = UIView(backgroundColor: .blue)
             .hide(if: true)
             .clipsToBounds(true)
         
@@ -127,7 +127,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
     
     func testLayerView() {
         
-        let view = View()
+        let view = UIView()
             .layer {
                 $0.borderColor = UIColor.blue.cgColor
                 $0.borderWidth = 3
@@ -135,7 +135,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
                 $0.masksToBounds = true
         }
         
-        let otherView = View()
+        let otherView = UIView()
             .layer(cornerRadius: 8)
         
         XCTAssert(view.layer.borderColor == UIColor.blue.cgColor)
@@ -151,8 +151,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let switchView = Switch()
         let uiSwitchView = UISwitch()
         
-        let view = View().embed {
-            View().vstack {
+        let view = UIView().embed {
+            UIView().vstack {
                 [
                     Image(.blue),
                     Switch()
@@ -160,7 +160,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
             }
         }
         
-        let otherView = View().embed {
+        let otherView = UIView().embed {
             VStack {
                 [
                     Image(.blue),
@@ -169,8 +169,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
             }
         }
         
-        let viewWithoutSwitch = View().embed {
-            View().vstack {
+        let viewWithoutSwitch = UIView().embed {
+            UIView().vstack {
                 [
                     Image(.blue)
                 ]
@@ -199,6 +199,28 @@ final class BasicSwiftUIKitTests: XCTestCase {
         XCTAssert(viewWithoutSwitch.allSubviews.count == 0)
     }
     
+    func testLayoutConstraint() {
+        let innerView = UIView(backgroundColor: .blue)
+            .frame(height: 100, width: 100)
+        let stack = ZStack {
+            [
+                innerView
+            ]
+        }
+        
+        
+        stack
+            .activateLayoutConstraints {
+                [
+                    innerView.centerXAnchor.constraint(equalTo: stack.centerXAnchor),
+                    innerView.centerYAnchor.constraint(equalTo: stack.centerYAnchor)
+                ]
+        }
+        
+        XCTAssert(innerView.constraints.count == 2)
+        XCTAssert(stack.constraints.count == 2)
+    }
+    
     static var allTests = [
         ("testDefaultView", testDefaultView),
         ("testEmbedViews", testEmbedViews),
@@ -209,6 +231,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         ("testPaddingView", testPaddingView),
         ("testConfigureView", testConfigureView),
         ("testLayerView", testLayerView),
-        ("testClearView", testClearView)
+        ("testClearView", testClearView),
+        ("testLayoutConstraint", testLayoutConstraint)
     ]
 }

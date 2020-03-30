@@ -275,7 +275,7 @@ public class Navigate {
             toast = closure()
                 .gesture { UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         default:
-            toast = View(backgroundColor: .clear) {
+            toast = UIView(backgroundColor: .clear) {
                 closure()
                     .padding(8)
                     .configure {
@@ -296,6 +296,7 @@ public class Navigate {
         guard let controller = navigationController,
             let containerView = controller.visibleViewController?.view,
             let toast = toast else {
+                destroyToast()
                 print("Navigate \(#function) Error!")
                 print("Issue trying to dismiss presentingViewController")
                 print("Error: Could not unwrap navigationController")

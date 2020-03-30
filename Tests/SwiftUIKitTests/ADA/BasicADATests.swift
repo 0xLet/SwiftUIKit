@@ -35,8 +35,8 @@ final class BasicADATests: XCTestCase {
     }
     
     func testComplexViewADA() {
-        let view = View {
-            View {
+        let view = UIView {
+            UIView {
                 HStack {
                     [
                     Label("Hello World"),
