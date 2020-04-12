@@ -20,7 +20,7 @@ public protocol CellUpdatable: UITableViewCell {
 }
 
 public protocol CellConfigurable: UITableViewCell {
-    func configure(forData data: CellDisplayable) -> UITableViewCell
+    func configure(forData data: CellDisplayable)
 }
 
 public typealias StaticTableViewCell = DataConfigurable & CellConfigurable
@@ -96,7 +96,7 @@ extension TableView: UITableViewDataSource {
         }
         
         if let configure = cell as? CellConfigurable {
-            return configure.configure(forData: cellData)
+            configure.configure(forData: cellData)
         }
         
         return cell
