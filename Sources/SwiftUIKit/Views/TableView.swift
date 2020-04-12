@@ -84,3 +84,31 @@ extension TableView: UITableViewDataSource {
         return cell
     }
 }
+
+public extension TableView {
+    @discardableResult
+    func dataSource(closure: () -> UITableViewDataSource) -> Self {
+        dataSource = closure()
+        
+        return self
+    }
+    
+    @discardableResult
+    func delegate(closure: () -> UITableViewDelegate) -> Self {
+        delegate = closure()
+        
+        return self
+    }
+    
+    @discardableResult
+    func registerCells(closure: () -> [String: UITableViewCell.Type]) -> Self {
+        closure().forEach { (arg) in
+            let (key, value) = arg
+            register(value, forCellReuseIdentifier: key)
+        }
+        
+        return self
+    }
+}
+
+
