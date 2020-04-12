@@ -119,15 +119,7 @@ extension TableView: UITableViewDataSource {
         nil
     }
     
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        nil
-    }
-    
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        nil
-    }
-    
-    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         nil
     }
 }
