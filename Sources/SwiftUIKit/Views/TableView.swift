@@ -26,8 +26,13 @@ public protocol CellConfigurable: UITableViewCell {
 public typealias StaticTableViewCell = DataConfigurable & CellConfigurable
 public typealias DynamicTableViewCell = StaticTableViewCell & CellUpdatable
 
+public typealias TableHeaderFooterViewHandler = (Int) -> UITableViewHeaderFooterView?
+
 public class TableView: UITableView {
     public var data: [[CellDisplayable]]
+    
+    fileprivate var headerViewForSection: TableHeaderFooterViewHandler?
+    fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
     
     public init(initalData: [[CellDisplayable]] = [[CellDisplayable]](),
                 style: UITableView.Style = .plain) {
@@ -101,6 +106,30 @@ extension TableView: UITableViewDataSource {
         
         return cell
     }
+    
+    public override func headerView(forSection section: Int) -> UITableViewHeaderFooterView? {
+         headerViewForSection?(section)
+    }
+    
+    public override func footerView(forSection section: Int) -> UITableViewHeaderFooterView? {
+        footerViewForSection?(section)
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        nil
+    }
+    
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        nil
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        nil
+    }
+    
+    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        nil
+    }
 }
 
 public extension TableView {
@@ -124,6 +153,20 @@ public extension TableView {
             let (key, value) = arg
             register(value, forCellReuseIdentifier: key)
         }
+        
+        return self
+    }
+    
+    @discardableResult
+    func headerView(handler: @escaping TableHeaderFooterViewHandler) -> Self  {
+        headerViewForSection = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func footerView(handler: @escaping TableHeaderFooterViewHandler) -> Self  {
+        footerViewForSection = handler
         
         return self
     }
