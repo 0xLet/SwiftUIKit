@@ -38,22 +38,25 @@ public class TableView: UITableView {
 
 public extension TableView {
     @discardableResult
-    func update(closure: ([[CellDisplayable]]) -> [[CellDisplayable]]) -> Self {
+    func update(shouldReloadData: Bool = false,
+                closure: ([[CellDisplayable]]) -> [[CellDisplayable]]) -> Self {
         data = closure(data)
         
-        return self
-    }
-    
-    @discardableResult
-    func append(closure: () -> [[CellDisplayable]]) -> Self {
-        data += closure()
+        if shouldReloadData {
+            reloadData()
+        }
         
         return self
     }
     
     @discardableResult
-    func reload() -> Self {
-        reloadData()
+    func append(shouldReloadData: Bool = false,
+                closure: () -> [[CellDisplayable]]) -> Self {
+        data += closure()
+        
+        if shouldReloadData {
+            reloadData()
+        }
         
         return self
     }
@@ -87,22 +90,22 @@ extension TableView: UITableViewDataSource {
 
 public extension TableView {
     @discardableResult
-    func dataSource(closure: () -> UITableViewDataSource) -> Self {
-        dataSource = closure()
+    func set(dataSource: UITableViewDataSource) -> Self {
+        self.dataSource = dataSource
         
         return self
     }
     
     @discardableResult
-    func delegate(closure: () -> UITableViewDelegate) -> Self {
-        delegate = closure()
+    func set(delegate: UITableViewDelegate) -> Self {
+        self.delegate = delegate
         
         return self
     }
     
     @discardableResult
-    func registerCells(closure: () -> [String: UITableViewCell.Type]) -> Self {
-        closure().forEach { (arg) in
+    func register(cells: [String: UITableViewCell.Type]) -> Self {
+        cells.forEach { (arg) in
             let (key, value) = arg
             register(value, forCellReuseIdentifier: key)
         }
