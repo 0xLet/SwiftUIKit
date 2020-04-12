@@ -54,7 +54,7 @@ public class TableView: UITableView {
 public extension TableView {
     @discardableResult
     func update(shouldReloadData: Bool = false,
-                closure: ([[CellDisplayable]]) -> [[CellDisplayable]]) -> Self {
+                _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]) -> Self {
         data = closure(data)
         
         if shouldReloadData {
@@ -66,7 +66,7 @@ public extension TableView {
     
     @discardableResult
     func append(shouldReloadData: Bool = false,
-                closure: () -> [[CellDisplayable]]) -> Self {
+                _ closure: () -> [[CellDisplayable]]) -> Self {
         data += closure()
         
         if shouldReloadData {
@@ -153,28 +153,28 @@ public extension TableView {
     }
     
     @discardableResult
-    func headerView(handler: @escaping TableHeaderFooterViewHandler) -> Self  {
+    func headerView(_ handler: @escaping TableHeaderFooterViewHandler) -> Self  {
         headerViewForSection = handler
         
         return self
     }
     
     @discardableResult
-    func footerView(handler: @escaping TableHeaderFooterViewHandler) -> Self  {
+    func footerView(_ handler: @escaping TableHeaderFooterViewHandler) -> Self  {
         footerViewForSection = handler
         
         return self
     }
     
     @discardableResult
-    func headerTitle(handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
+    func headerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
         headerTitleForSection = handler
         
         return self
     }
     
     @discardableResult
-    func footerTitle(handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
+    func footerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
         footerTitleForSection = handler
         
         return self
