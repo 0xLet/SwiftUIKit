@@ -15,9 +15,16 @@ public protocol DataConfigurable: UITableViewCell {
     static var ID: String { get }
 }
 
-public protocol CellConfigurable {
+public protocol CellUpdatable: UITableViewCell {
+    func update(forData data: CellDisplayable)
+}
+
+public protocol CellConfigurable: UITableViewCell {
     func configure(forData data: CellDisplayable) -> UITableViewCell
 }
+
+public typealias StaticTableViewCell = DataConfigurable & CellConfigurable
+public typealias DynamicTableViewCell = StaticTableViewCell & CellUpdatable
 
 public class TableView: UITableView {
     public var data: [[CellDisplayable]]
@@ -79,6 +86,14 @@ extension TableView: UITableViewDataSource {
         let cellData = data[indexPath.section][indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellData.cellID, for: indexPath)
+        
+        if let configure = cell as? CellUpdatable {
+            configure.update(forData: cellData)
+        }
+        
+        guard cell.contentView.allSubviews.count == 0 else {
+            return cell
+        }
         
         if let configure = cell as? CellConfigurable {
             return configure.configure(forData: cellData)
