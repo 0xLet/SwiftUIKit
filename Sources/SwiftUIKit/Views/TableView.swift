@@ -26,13 +26,16 @@ public protocol CellConfigurable: UITableViewCell {
 public typealias StaticTableViewCell = DataConfigurable & CellConfigurable
 public typealias DynamicTableViewCell = StaticTableViewCell & CellUpdatable
 
-public typealias TableHeaderFooterViewHandler = (Int) -> UITableViewHeaderFooterView?
+public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
+public typealias TableHeaderFooterTitleHandler = (Int) -> String?
 
 public class TableView: UITableView {
     public var data: [[CellDisplayable]]
     
     fileprivate var headerViewForSection: TableHeaderFooterViewHandler?
     fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
+    fileprivate var headerTitleForSection: TableHeaderFooterTitleHandler?
+    fileprivate var footerTitleForSection: TableHeaderFooterTitleHandler?
     
     public init(initalData: [[CellDisplayable]] = [[CellDisplayable]](),
                 style: UITableView.Style = .plain) {
@@ -107,20 +110,20 @@ extension TableView: UITableViewDataSource {
         return cell
     }
     
-    public override func headerView(forSection section: Int) -> UITableViewHeaderFooterView? {
-         headerViewForSection?(section)
-    }
-    
-    public override func footerView(forSection section: Int) -> UITableViewHeaderFooterView? {
-        footerViewForSection?(section)
-    }
-    
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        nil
+        headerViewForSection?(section)
+    }
+    
+    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        headerTitleForSection?(section)
     }
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        nil
+        footerViewForSection?(section)
+    }
+    
+    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
+        footerTitleForSection?(section)
     }
 }
 
@@ -159,6 +162,20 @@ public extension TableView {
     @discardableResult
     func footerView(handler: @escaping TableHeaderFooterViewHandler) -> Self  {
         footerViewForSection = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func headerTitle(handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
+        headerTitleForSection = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func footerTitle(handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
+        footerTitleForSection = handler
         
         return self
     }
