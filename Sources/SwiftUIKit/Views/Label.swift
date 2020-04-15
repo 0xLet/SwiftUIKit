@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class Label: UILabel {
     
     public init(_ text: String) {
@@ -91,6 +92,7 @@ public class Label: UILabel {
     }
 }
 
+@available(iOS 9.0, *)
 public extension Label {
     class func title1(_ text: String) -> Label {
         return Label(text)

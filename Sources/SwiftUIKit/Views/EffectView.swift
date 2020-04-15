@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class EffectView: UIVisualEffectView {
     public init(for effect: UIVisualEffect? = nil, closure: () -> UIView) {
         super.init(effect: effect)

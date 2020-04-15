@@ -82,20 +82,12 @@ extension TableView: UITableViewDelegate {
 }
 
 extension TableView: UITableViewDataSource {
-    public func sections() -> Int {
-        data.count
-    }
-    
-    public func rows(forSection section: Int) -> Int {
-        data[section].count
-    }
-    
     public func numberOfSections(in tableView: UITableView) -> Int {
-        sections()
+        return data.count
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rows(forSection: section)
+        return data[section].count
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

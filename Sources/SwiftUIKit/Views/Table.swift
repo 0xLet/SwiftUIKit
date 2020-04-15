@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class Table: UITableView {
     private var data: [UIView]
     private var defaultCellHeight: Float?
@@ -36,6 +37,7 @@ public class Table: UITableView {
     }
 }
 
+@available(iOS 9.0, *)
 public extension Table {
     @discardableResult
     func didSelectHandler(_ action: @escaping (UIView) -> Void) -> Self {
@@ -52,6 +54,7 @@ public extension Table {
     }
 }
 
+@available(iOS 9.0, *)
 extension Table: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -92,6 +95,7 @@ extension Table: UITableViewDataSource {
     }
 }
 
+@available(iOS 9.0, *)
 extension Table: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectHandler?(data[indexPath.row])

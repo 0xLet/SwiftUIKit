@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class LoadingView: UIActivityIndicatorView {
     public init(forStyle style: UIActivityIndicatorView.Style? = nil) {
         guard let style = style else {
@@ -26,6 +27,7 @@ public class LoadingView: UIActivityIndicatorView {
     }
 }
 
+@available(iOS 9.0, *)
 public extension LoadingView {
     @discardableResult
     func start() -> Self {

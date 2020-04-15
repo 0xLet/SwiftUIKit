@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class Image: UIImageView {
     public init(_ image: UIImage) {
         super.init(image: image)

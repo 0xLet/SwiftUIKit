@@ -7,6 +7,7 @@
 
 import MetalKit
 
+@available(iOS 9.0, *)
 public class MeshRenderer: NSObject {
     public var mesh: MTKMesh?
     public var vertexBuffer: MTLBuffer?
@@ -37,6 +38,7 @@ public class MeshRenderer: NSObject {
     }
 }
 
+@available(iOS 9.0, *)
 extension MeshRenderer: Renderer {
     public func getMesh() -> MDLMesh {
         return Primitive.makeCube(device: device, size: 1)
@@ -101,6 +103,7 @@ extension MeshRenderer: Renderer {
        }
 }
 
+@available(iOS 9.0, *)
 extension MeshRenderer: MTKViewDelegate {
     public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         

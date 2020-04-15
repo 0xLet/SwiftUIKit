@@ -8,6 +8,7 @@
 import UIKit
 
 /// Horizontal StackView
+@available(iOS 9.0, *)
 public class HStack: UIView {
     /// The views that the HStack contains
     public var views: [UIView] = []

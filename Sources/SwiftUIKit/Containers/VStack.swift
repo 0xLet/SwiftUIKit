@@ -8,6 +8,7 @@
 import UIKit
 
 /// Vertical StackView
+@available(iOS 9.0, *)
 public class VStack: UIView {
     /// The views that the VStack contains
     public var views: [UIView] = []

@@ -7,6 +7,7 @@
 
 import MetalKit
 
+@available(iOS 9.0, *)
 public class CustomRenderer: NSObject {
     // Dummy
     public func getMesh() -> MDLMesh {
@@ -96,6 +97,7 @@ public class CustomRenderer: NSObject {
     }
 }
 
+@available(iOS 9.0, *)
 extension CustomRenderer: Renderer {
     
     public func load(metalView: MTKView) {
@@ -158,6 +160,7 @@ extension CustomRenderer: Renderer {
     }
 }
 
+@available(iOS 9.0, *)
 extension CustomRenderer: MTKViewDelegate {
     public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
 

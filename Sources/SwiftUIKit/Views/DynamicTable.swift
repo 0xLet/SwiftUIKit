@@ -7,6 +7,7 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public class DynamicTable<T>: UITableView, UITableViewDelegate, UITableViewDataSource {
     fileprivate var data: [T] {
         didSet {
@@ -117,6 +118,7 @@ public class DynamicTable<T>: UITableView, UITableViewDelegate, UITableViewDataS
     }
 }
 
+@available(iOS 9.0, *)
 public extension DynamicTable {
     @discardableResult
     func didSelectHandler(_ action: @escaping (UITableViewCell) -> Void) -> Self {
