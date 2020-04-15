@@ -7,28 +7,36 @@
 
 import UIKit
 
+@available(iOS 9.0, *)
 public protocol CellDisplayable {
     var cellID: String { get }
 }
 
+@available(iOS 9.0, *)
 public protocol DataConfigurable: UITableViewCell {
     static var ID: String { get }
 }
 
+@available(iOS 9.0, *)
 public protocol CellUpdatable: UITableViewCell {
     func update(forData data: CellDisplayable)
 }
 
+@available(iOS 9.0, *)
 public protocol CellConfigurable: UITableViewCell {
     func configure(forData data: CellDisplayable)
 }
 
+@available(iOS 9.0, *)
 public typealias StaticTableViewCell = DataConfigurable & CellConfigurable
+
+@available(iOS 9.0, *)
 public typealias DynamicTableViewCell = StaticTableViewCell & CellUpdatable
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
 
+@available(iOS 9.0, *)
 public class TableView: UITableView {
     public var data: [[CellDisplayable]]
     
@@ -51,6 +59,7 @@ public class TableView: UITableView {
     }
 }
 
+@available(iOS 9.0, *)
 public extension TableView {
     @discardableResult
     func update(shouldReloadData: Bool = false,
@@ -77,17 +86,27 @@ public extension TableView {
     }
 }
 
+@available(iOS 9.0, *)
 extension TableView: UITableViewDelegate {
     
 }
 
+@available(iOS 9.0, *)
 extension TableView: UITableViewDataSource {
+    func sections() -> Int {
+        data.count
+    }
+    
+    func rows(forSection section: Int) -> Int {
+        data[section].count
+    }
+    
     public func numberOfSections(in tableView: UITableView) -> Int {
-        return data.count
+        sections()
     }
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data[section].count
+        rows(forSection: section)
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -127,6 +146,7 @@ extension TableView: UITableViewDataSource {
     }
 }
 
+@available(iOS 9.0, *)
 public extension TableView {
     @discardableResult
     func set(dataSource: UITableViewDataSource) -> Self {
