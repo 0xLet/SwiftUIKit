@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public extension UIView {
     
     convenience init(withPadding padding: Float = 0,
@@ -242,7 +241,6 @@ public extension UIView {
     }
 }
 
-@available(iOS 9.0, *)
 public extension UIView {
     
     /// Configure the Navigate Singleton with the Root Navigation Controller

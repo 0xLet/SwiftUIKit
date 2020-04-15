@@ -7,7 +7,6 @@
 
 import WebKit
 
-@available(iOS 9.0, *)
 public class WebView: WKWebView {
     public init() {
         let configuration = WKWebViewConfiguration()
@@ -20,7 +19,6 @@ public class WebView: WKWebView {
     }
 }
 
-@available(iOS 9.0, *)
 public extension WebView {
     convenience init(baseURL: URL? = nil, _ htmlString: () -> String) {
         self.init()

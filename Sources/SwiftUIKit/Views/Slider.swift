@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public class Slider: UISlider {
     private var valueChangedHandler: ((Float) -> Void)?
     

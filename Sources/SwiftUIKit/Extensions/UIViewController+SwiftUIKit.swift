@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public class ViewController: UIViewController {
     private var closure: () -> UIView
     
@@ -28,7 +27,6 @@ public class ViewController: UIViewController {
     }
 }
 
-@available(iOS 9.0, *)
 public extension UIViewController {
     convenience init(_ closure: (() -> UIView)) {
         self.init()

@@ -23,7 +23,6 @@ public class MetalDevice {
     }
 }
 
-@available(iOS 9.0, *)
 public protocol Renderer {
     var device: MTLDevice { get }
     var commandQueue: MTLCommandQueue { get }
@@ -42,7 +41,6 @@ public protocol Renderer {
     func configure(computeEncoder: MTLComputeCommandEncoder) -> MTLComputeCommandEncoder?
 }
 
-@available(iOS 9.0, *)
 public extension Renderer {
     var device: MTLDevice {
         return MetalDevice.shared.device
@@ -54,7 +52,6 @@ public extension Renderer {
 }
 
 // MARK: MTKViewDelegate
-@available(iOS 9.0, *)
 public extension Renderer {
     //Called once per frame, regenerate the command buffer
     func draw(metalView view: MTKView) {

@@ -7,7 +7,6 @@
 
 import MetalKit
 
-@available(iOS 9.0, *)
 public class TriangleRenderer: NSObject {
     public var mesh: MTKMesh?
     public var vertexBuffer: MTLBuffer?
@@ -40,7 +39,6 @@ public class TriangleRenderer: NSObject {
     }
 }
 
-@available(iOS 9.0, *)
 extension TriangleRenderer: Renderer {
     public func getMesh() -> MDLMesh {
         return Primitive.makeTriangle(device: device, size: 1)
@@ -106,7 +104,6 @@ extension TriangleRenderer: Renderer {
     }
 }
 
-@available(iOS 9.0, *)
 extension TriangleRenderer: MTKViewDelegate {
     public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         

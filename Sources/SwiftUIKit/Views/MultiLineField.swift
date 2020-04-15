@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public class MultiLineField: UITextView {
     public typealias WillValueChangeHandler = (_ sender: UITextView, _ newValue: String, _ input: String) -> Bool
     public typealias DidValueChangeHandler = (String) -> Void
@@ -45,7 +44,6 @@ public class MultiLineField: UITextView {
     }
 }
 
-@available(iOS 9.0, *)
 extension MultiLineField: UITextViewDelegate {
     public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         let newValue = NSString(string: textView.text ?? "").replacingCharacters(in: range, with: text)

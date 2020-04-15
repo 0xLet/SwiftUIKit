@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public class ScrollView: UIScrollView {
     public init(_ closure: (() -> UIView)? = nil) {
         super.init(frame: .zero)

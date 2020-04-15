@@ -7,7 +7,6 @@
 
 import MetalKit
 
-@available(iOS 9.0, *)
 public class Primitive {
     static func importObj(device: MTLDevice, url: URL, size: Float) -> MTKMesh {
         let allocator = MTKMeshBufferAllocator(device: device)
