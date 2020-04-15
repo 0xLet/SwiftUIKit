@@ -42,9 +42,6 @@ public class Map: MKMapView {
         }
       }
     }
-    
-
-    
   }
   
   required init?(coder: NSCoder) {
@@ -52,7 +49,45 @@ public class Map: MKMapView {
   }
 }
 
+// MARK: - Accessing Map Properties
+extension Map {
+  @discardableResult
+  public func type(_ type: MKMapType) -> Self {
+    mapType = type
+    
+    return self
+  }
+  
+  @discardableResult
+  public func zoomEnabled(_ value: Bool) -> Self {
+    isZoomEnabled = value
+    
+    return self
+  }
+  
+  @discardableResult
+  public func scrollEnabled(_ value: Bool) -> Self {
+    isScrollEnabled = value
+    
+    return self
+  }
+  
+  @discardableResult
+  public func pitchEnabled(_ value: Bool) -> Self {
+    isPitchEnabled = value
+    
+    return self
+  }
+  
+  @discardableResult
+  public func rotateEnabled(_ value: Bool) -> Self {
+    isRotateEnabled = value
+    
+    return self
+  }
+}
 
+// MARK: - Manipulating the Visible Portion of the Map
 extension Map {
   @discardableResult
   public func zoom(_ multiplier: Double) -> Self {
@@ -61,6 +96,20 @@ extension Map {
                                 longitudeDelta: region.span.longitudeDelta / multiplier / 10)
     let _region = MKCoordinateRegion(center: _center, span: _span)
     setRegion(_region, animated: false)
+    return self
+  }
+  
+  @discardableResult
+  public func visibleRect(_ rect: MKMapRect,
+                          animate: Bool = true,
+                          edgePadding: UIEdgeInsets? = nil
+                          ) -> Self {
+    if let padding = edgePadding {
+      setVisibleMapRect(rect, edgePadding: padding, animated: animate)
+    } else {
+      setVisibleMapRect(rect, animated: animate)
+    }
+    
     return self
   }
 }
