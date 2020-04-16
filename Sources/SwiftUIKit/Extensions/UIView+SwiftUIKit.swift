@@ -11,8 +11,8 @@ import UIKit
 public extension UIView {
     
     convenience init(withPadding padding: Float = 0,
-                backgroundColor: UIColor? = .clear,
-                _ closure: (() -> UIView)? = nil) {
+                     backgroundColor: UIColor? = .clear,
+                     _ closure: (() -> UIView)? = nil) {
         self.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
@@ -151,6 +151,38 @@ public extension UIView {
         return self
     }
     
+    @available(iOS 10.0, *)
+    func update(height: Float? = nil, width: Float? = nil) -> Self {
+        if let height = height {
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == heightAnchor
+                }?.constant = CGFloat(height)
+        }
+        
+        if let width = width {
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == widthAnchor
+                }?.constant = CGFloat(width)
+        }
+        
+        return self
+    }
+    
+    @available(iOS 10.0, *)
+    func remove(height: Bool, width: Bool) -> Self {
+        if height,
+            let heightConstraint = constraints.first(where: { $0.firstAnchor == heightAnchor }) {
+            removeConstraint(heightConstraint)
+        }
+        
+        if width,
+            let widthConstraint = constraints.first(where: { $0.firstAnchor == widthAnchor }) {
+            removeConstraint(widthConstraint)
+        }
+        
+        return self
+    }
+    
     /// Activate LayoutConstraints
     /// - Parameters:
     ///     - constraints: A trailing closure that accepts an array of NSLayoutConstraint
@@ -202,7 +234,7 @@ public extension UIView {
         
         return self
     }
-
+    
     @discardableResult
     func accessibility(label: String? = nil,
                        identifier: String? = nil,
