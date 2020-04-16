@@ -151,6 +151,10 @@ public extension UIView {
         return self
     }
     
+    /// Update the height and width anchors to constant values (if nil it will not update the constraint)
+    /// - Parameters:
+    ///     - height: Value for the heightAnchor
+    ///     - width: Value for the widthAnchor
     @available(iOS 10.0, *)
     func update(height: Float? = nil, width: Float? = nil) -> Self {
         if let height = height {
@@ -168,15 +172,20 @@ public extension UIView {
         return self
     }
     
+    /// Remove the height anchor constraint
     @available(iOS 10.0, *)
-    func remove(height: Bool, width: Bool) -> Self {
-        if height,
-            let heightConstraint = constraints.first(where: { $0.firstAnchor == heightAnchor }) {
+    func removeHeightConstraint() -> Self {
+        if let heightConstraint = constraints.first(where: { $0.firstAnchor == heightAnchor }) {
             removeConstraint(heightConstraint)
         }
         
-        if width,
-            let widthConstraint = constraints.first(where: { $0.firstAnchor == widthAnchor }) {
+        return self
+    }
+    
+    /// Remove the width anchor constraint
+    @available(iOS 10.0, *)
+    func removeWidthConstraint() -> Self {
+        if let widthConstraint = constraints.first(where: { $0.firstAnchor == widthAnchor }) {
             removeConstraint(widthConstraint)
         }
         
