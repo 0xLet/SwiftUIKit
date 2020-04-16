@@ -16,7 +16,7 @@ public class MetalDevice {
     public init() {
         guard let device = MTLCreateSystemDefaultDevice(),
             let commandQueue = device.makeCommandQueue() else {
-            fatalError("GPU not available")
+                fatalError("GPU not available")
         }
         self.device = device
         self.commandQueue = commandQueue
@@ -62,7 +62,7 @@ public extension Renderer {
             let commandBuffer = self.commandQueue.makeCommandBuffer(),
             let renderEncoder = commandBuffer.makeRenderCommandEncoder(descriptor: descriptor),
             let configuredEncoder = configure(renderEncoder: renderEncoder) else {
-            return
+                return
         }
         
         //drawing code goes here
@@ -81,7 +81,7 @@ public extension Renderer {
             configuredComputeEncoder.dispatchThreadgroups(threadGroups, threadsPerThreadgroup: threadGroupCount)
             configuredComputeEncoder.endEncoding()
         }
-       
+        
         guard let drawable = view.currentDrawable else {
             return
         }

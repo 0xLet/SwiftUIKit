@@ -64,7 +64,6 @@ public class DynamicTable<T>: UITableView, UITableViewDelegate, UITableViewDataS
         reloadData()
     }
     
-    
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard batchCount < data.count else {
             print("Loading Elements: \(data.count)")
