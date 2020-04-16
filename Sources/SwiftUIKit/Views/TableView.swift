@@ -28,10 +28,7 @@ public protocol CellConfigurable: UITableViewCell {
 }
 
 @available(iOS 9.0, *)
-public typealias StaticTableViewCell = DataConfigurable & CellConfigurable
-
-@available(iOS 9.0, *)
-public typealias DynamicTableViewCell = StaticTableViewCell & CellUpdatable
+public typealias TableViewCell = DataConfigurable & CellConfigurable & CellUpdatable
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?

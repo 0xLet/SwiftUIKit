@@ -139,7 +139,7 @@ extension TableTestHelper.InfoData: CellDisplayable {
 }
 
 @available(iOS 9.0, *)
-extension TableTestHelper.InfoCell: DynamicTableViewCell {
+extension TableTestHelper.InfoCell: TableViewCell {
     static var ID: String {
         "InfoCell"
     }
