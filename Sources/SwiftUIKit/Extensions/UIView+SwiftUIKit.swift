@@ -11,8 +11,8 @@ import UIKit
 public extension UIView {
     
     convenience init(withPadding padding: Float = 0,
-                backgroundColor: UIColor? = .clear,
-                _ closure: (() -> UIView)? = nil) {
+                     backgroundColor: UIColor? = .clear,
+                     _ closure: (() -> UIView)? = nil) {
         self.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
@@ -151,6 +151,50 @@ public extension UIView {
         return self
     }
     
+    /// Update the height and width anchors to constant values (if nil it will not update the constraint)
+    /// - Parameters:
+    ///     - height: Value for the heightAnchor
+    ///     - width: Value for the widthAnchor
+    @available(iOS 10.0, *)
+    @discardableResult
+    func update(height: Float? = nil, width: Float? = nil) -> Self {
+        if let height = height {
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == heightAnchor
+                }?.constant = CGFloat(height)
+        }
+        
+        if let width = width {
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == widthAnchor
+                }?.constant = CGFloat(width)
+        }
+        
+        return self
+    }
+    
+    /// Remove the height anchor constraint
+    @available(iOS 10.0, *)
+    @discardableResult
+    func removeHeightConstraint() -> Self {
+        if let heightConstraint = constraints.first(where: { $0.firstAnchor == heightAnchor }) {
+            removeConstraint(heightConstraint)
+        }
+        
+        return self
+    }
+    
+    /// Remove the width anchor constraint
+    @available(iOS 10.0, *)
+    @discardableResult
+    func removeWidthConstraint() -> Self {
+        if let widthConstraint = constraints.first(where: { $0.firstAnchor == widthAnchor }) {
+            removeConstraint(widthConstraint)
+        }
+        
+        return self
+    }
+    
     /// Activate LayoutConstraints
     /// - Parameters:
     ///     - constraints: A trailing closure that accepts an array of NSLayoutConstraint
@@ -202,7 +246,7 @@ public extension UIView {
         
         return self
     }
-
+    
     @discardableResult
     func accessibility(label: String? = nil,
                        identifier: String? = nil,
