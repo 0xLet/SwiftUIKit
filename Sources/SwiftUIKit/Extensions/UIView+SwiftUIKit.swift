@@ -27,6 +27,16 @@ public extension UIView {
         _ = closure.map { embed(withPadding: padding, $0) }
     }
     
+    convenience init(withPadding padding: [Padding],
+                     backgroundColor: UIColor? = .clear,
+                     _ closure: (() -> UIView)? = nil) {
+        self.init(frame: .zero)
+        
+        self.backgroundColor = backgroundColor
+        
+        _ = closure.map { embed(withPadding: padding, $0) }
+    }
+    
     /// Embed a Stack
     /// - Parameters:
     ///     - withSpacing: The amount of spacing between each child view
@@ -38,6 +48,37 @@ public extension UIView {
     @discardableResult
     func stack(withSpacing spacing: Float = 0,
                padding: Float = 0,
+               alignment: UIStackView.Alignment = .fill,
+               distribution: UIStackView.Distribution = .fill,
+               axis: NSLayoutConstraint.Axis,
+               _ closure: () -> [UIView?]) -> Self {
+        let viewsInVStack = closure()
+            .compactMap { $0 }
+        
+        let stackView = UIStackView(arrangedSubviews: viewsInVStack)
+        stackView.spacing = CGFloat(spacing)
+        stackView.alignment = alignment
+        stackView.distribution = distribution
+        stackView.axis = axis
+        
+        embed(withPadding: padding) {
+            stackView
+        }
+        
+        return self
+    }
+    
+    /// Embed a Stack
+    /// - Parameters:
+    ///     - withSpacing: The amount of spacing between each child view
+    ///     - padding: The amount of space between this view and its parent view
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - axis: Keys that specify a horizontal or vertical layout constraint between objects (source: NSLayoutConstraint.Axis)
+    ///     - closure: A trailing closure that accepts an array of views
+    @discardableResult
+    func stack(withSpacing spacing: Float = 0,
+               padding: [Padding],
                alignment: UIStackView.Alignment = .fill,
                distribution: UIStackView.Distribution = .fill,
                axis: NSLayoutConstraint.Axis,
@@ -79,6 +120,27 @@ public extension UIView {
                      closure)
     }
     
+    /// Embed a VStack
+    /// - Parameters:
+    ///     - withSpacing: The amount of spacing between each child view
+    ///     - padding: The amount of space between this view and its parent view
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - closure: A trailing closure that accepts an array of views
+    @discardableResult
+    func vstack(withSpacing spacing: Float = 0,
+                padding: [Padding],
+                alignment: UIStackView.Alignment = .fill,
+                distribution: UIStackView.Distribution = .fill,
+                _ closure: () -> [UIView?]) -> Self {
+        return stack(withSpacing: spacing,
+                     padding: padding,
+                     alignment: alignment,
+                     distribution: distribution,
+                     axis: .vertical,
+                     closure)
+    }
+    
     /// Embed a HStack
     /// - Parameters:
     ///     - withSpacing: The amount of spacing between each child view
@@ -89,6 +151,27 @@ public extension UIView {
     @discardableResult
     func hstack(withSpacing spacing: Float = 0,
                 padding: Float = 0,
+                alignment: UIStackView.Alignment = .fill,
+                distribution: UIStackView.Distribution = .fill,
+                _ closure: () -> [UIView?]) -> Self {
+        return stack(withSpacing: spacing,
+                     padding: padding,
+                     alignment: alignment,
+                     distribution: distribution,
+                     axis: .horizontal,
+                     closure)
+    }
+    
+    /// Embed a HStack
+    /// - Parameters:
+    ///     - withSpacing: The amount of spacing between each child view
+    ///     - padding: The amount of space between this view and its parent view
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - closure: A trailing closure that accepts an array of views
+    @discardableResult
+    func hstack(withSpacing spacing: Float = 0,
+                padding: [Padding],
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
                 _ closure: () -> [UIView?]) -> Self {
