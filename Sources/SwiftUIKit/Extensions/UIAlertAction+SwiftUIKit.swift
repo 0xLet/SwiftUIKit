@@ -13,7 +13,6 @@ public extension UIAlertAction {
         return UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
     }
     
-    
     /// Quick Dismiss UIAlertAction
     class var dismiss: UIAlertAction {
         return UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
