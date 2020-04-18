@@ -7,6 +7,13 @@
 
 import UIKit
 
+public enum Padding {
+    case leading(Float)
+    case trailing(Float)
+    case top(Float)
+    case bottom(Float)
+}
+
 @available(iOS 9.0, *)
 public extension UIView {
     
@@ -110,6 +117,35 @@ public extension UIView {
             viewToEmbed.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat(padding)),
             viewToEmbed.trailingAnchor.constraint(equalTo: trailingAnchor, constant: CGFloat(-padding))
         ])
+        
+        return self
+    }
+    
+    /// Embed a View to certain anchors (top, bottom, leading, trailing)
+    /// - Parameters:
+    ///     - withPadding: The amount of space between the embedded view and this view
+    ///     - closure: A trailing closure that accepts a view
+    @discardableResult
+    func embed(withPadding padding: [Padding],
+               _ closure: () -> UIView) -> Self {
+        let viewToEmbed = closure()
+        viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(viewToEmbed)
+        
+        NSLayoutConstraint.activate(
+            padding.map {
+                switch $0 {
+                case .leading(let constant):
+                    return viewToEmbed.leadingAnchor.constraint(equalTo: leadingAnchor, constant: CGFloat(constant))
+                case .trailing(let constant):
+                    return viewToEmbed.trailingAnchor.constraint(equalTo: trailingAnchor, constant: CGFloat(-constant))
+                case .top(let constant):
+                    return viewToEmbed.topAnchor.constraint(equalTo: topAnchor, constant: CGFloat(constant))
+                case .bottom(let constant):
+                    return viewToEmbed.bottomAnchor.constraint(equalTo: bottomAnchor, constant: CGFloat(-constant))
+                }
+            }
+        )
         
         return self
     }
