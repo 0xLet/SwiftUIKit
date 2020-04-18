@@ -112,7 +112,6 @@ extension TriangleRenderer: MTKViewDelegate {
         
     }
     
-    
     public func draw(in view: MTKView) {
         draw(metalView: view)
     }

@@ -32,8 +32,8 @@ public class CustomRenderer: NSObject {
         super.init()
         
         vertex { vertexShaderName }
-        .fragment { fragmentShaderName }
-        .mesh { _ in getMesh() }
+            .fragment { fragmentShaderName }
+            .mesh { _ in getMesh() }
         
     }
     
@@ -163,10 +163,10 @@ extension CustomRenderer: Renderer {
 @available(iOS 9.0, *)
 extension CustomRenderer: MTKViewDelegate {
     public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
-
+        
     }
-
-
+    
+    
     public func draw(in view: MTKView) {
         draw(metalView: view)
     }

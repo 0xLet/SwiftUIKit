@@ -43,7 +43,7 @@ extension MeshRenderer: Renderer {
     public func getMesh() -> MDLMesh {
         return Primitive.makeCube(device: device, size: 1)
     }
-
+    
     public func load(metalView: MTKView) {
         let defaultLibrary = try? device.makeLibrary(source: defaultShaders, options: nil)
         let library = device.makeDefaultLibrary() ?? defaultLibrary
@@ -55,7 +55,7 @@ extension MeshRenderer: Renderer {
         pipelineDescriptor.vertexFunction = vertexFunction
         pipelineDescriptor.fragmentFunction = fragmentFunction
         if let mesh = mesh {
-        pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mesh.vertexDescriptor)
+            pipelineDescriptor.vertexDescriptor = MTKMetalVertexDescriptorFromModelIO(mesh.vertexDescriptor)
         }
         pipelineDescriptor.colorAttachments[0].pixelFormat = metalView.colorPixelFormat
         do {
@@ -71,36 +71,36 @@ extension MeshRenderer: Renderer {
     
     public func configure(renderEncoder: MTLRenderCommandEncoder) -> MTLRenderCommandEncoder? {
         
-           guard let pipelineState = pipelineState,
-               let mesh = mesh else {
-               return nil
-           }
+        guard let pipelineState = pipelineState,
+            let mesh = mesh else {
+                return nil
+        }
         
-           timer += 0.05
-           var currentTime = sin(timer)
-           var al = abs(currentTime)
-           
-           renderEncoder.setVertexBytes(&currentTime,
-                                        length: MemoryLayout<Float>.stride,
-                                        index: 1)
-           renderEncoder.setFragmentBytes(&al,
-                                          length: MemoryLayout<Float>.stride,
-                                          index: 0)
-           
-           renderEncoder.setRenderPipelineState(pipelineState)
-           renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
-           
-           for submesh in mesh.submeshes {
-               renderEncoder.drawIndexedPrimitives(type: .triangle,
-                                                   indexCount: submesh.indexCount,
-                                                   indexType: submesh.indexType,
-                                                   indexBuffer: submesh.indexBuffer.buffer,
-                                                   indexBufferOffset: submesh.indexBuffer.offset)
-               
-           }
-
-           return renderEncoder
-       }
+        timer += 0.05
+        var currentTime = sin(timer)
+        var al = abs(currentTime)
+        
+        renderEncoder.setVertexBytes(&currentTime,
+                                     length: MemoryLayout<Float>.stride,
+                                     index: 1)
+        renderEncoder.setFragmentBytes(&al,
+                                       length: MemoryLayout<Float>.stride,
+                                       index: 0)
+        
+        renderEncoder.setRenderPipelineState(pipelineState)
+        renderEncoder.setVertexBuffer(vertexBuffer, offset: 0, index: 0)
+        
+        for submesh in mesh.submeshes {
+            renderEncoder.drawIndexedPrimitives(type: .triangle,
+                                                indexCount: submesh.indexCount,
+                                                indexType: submesh.indexType,
+                                                indexBuffer: submesh.indexBuffer.buffer,
+                                                indexBufferOffset: submesh.indexBuffer.offset)
+            
+        }
+        
+        return renderEncoder
+    }
 }
 
 @available(iOS 9.0, *)
@@ -108,7 +108,6 @@ extension MeshRenderer: MTKViewDelegate {
     public func mtkView(_ view: MTKView, drawableSizeWillChange size: CGSize) {
         
     }
-    
     
     public func draw(in view: MTKView) {
         draw(metalView: view)
