@@ -15,7 +15,7 @@ class TableViewTests: XCTestCase {
     func testTableViewNoCells() {
         let table = TableView()
         
-        table.register(cells: [:])
+        table.register(cells: [])
         
         table
             .append {
@@ -37,7 +37,7 @@ class TableViewTests: XCTestCase {
         let table = TableView()
         
         table.register(cells: [
-            TableTestHelper.InfoCell.ID: TableTestHelper.InfoCell.self,
+            TableTestHelper.InfoCell.self,
         ])
         
         table
@@ -60,7 +60,7 @@ class TableViewTests: XCTestCase {
         let table = TableView()
         
         table.register(cells: [
-            TableTestHelper.InfoCell.ID: TableTestHelper.InfoCell.self,
+            TableTestHelper.InfoCell.self,
         ])
         
         table.append {
@@ -90,7 +90,7 @@ class TableViewTests: XCTestCase {
         let table = TableView()
         
         table.register(cells: [
-            TableTestHelper.InfoCell.ID: TableTestHelper.InfoCell.self,
+            TableTestHelper.InfoCell.self,
         ])
         
         table.append {
