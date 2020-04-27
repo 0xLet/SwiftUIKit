@@ -36,6 +36,80 @@ final class BasicSwiftUIKitTests: XCTestCase {
         XCTAssert(view.constraints.count == 4)
     }
     
+    func testEmbedView_WithOnePadding() {
+        
+        let view = UIView()
+        
+        let viewToEmbed = UIView()
+        
+        view.embed(withPadding: [
+            .leading(16)
+        ]) {
+            viewToEmbed
+        }
+        
+        XCTAssertNil(view.backgroundColor)
+        XCTAssert(view.allSubviews.count == 1)
+        XCTAssert(view.constraints.count == 1)
+    }
+    
+    func testEmbedView_WithTwoPadding() {
+        
+        let view = UIView()
+        
+        let viewToEmbed = UIView()
+        
+        view.embed(withPadding: [
+            .leading(16),
+            .bottom(16)
+        ]) {
+            viewToEmbed
+        }
+        
+        XCTAssertNil(view.backgroundColor)
+        XCTAssert(view.allSubviews.count == 1)
+        XCTAssert(view.constraints.count == 2)
+    }
+    
+    func testEmbedView_WithThreePadding() {
+        
+        let view = UIView()
+        
+        let viewToEmbed = UIView()
+        
+        view.embed(withPadding: [
+            .leading(16),
+            .bottom(16),
+            .trailing(16)
+        ]) {
+            viewToEmbed
+        }
+        
+        XCTAssertNil(view.backgroundColor)
+        XCTAssert(view.allSubviews.count == 1)
+        XCTAssert(view.constraints.count == 3)
+    }
+    
+    func testEmbedView_WithAllPadding() {
+        
+        let view = UIView()
+        
+        let viewToEmbed = UIView()
+        
+        view.embed(withPadding: [
+            .leading(16),
+            .bottom(16),
+            .trailing(16),
+            .top(16)
+        ]) {
+            viewToEmbed
+        }
+        
+        XCTAssertNil(view.backgroundColor)
+        XCTAssert(view.allSubviews.count == 1)
+        XCTAssert(view.constraints.count == 4)
+    }
+    
     func testEmbedViews() {
         
         let view = UIView()
