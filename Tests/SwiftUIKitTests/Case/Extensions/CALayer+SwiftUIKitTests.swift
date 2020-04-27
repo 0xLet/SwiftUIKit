@@ -12,9 +12,8 @@ import XCTest
 class CALayer_SwiftUIKitTests: XCTestCase {
   private var label: Label!
   
-  private let testColor = UIColor.red.cgColor
-  private let testCGFloat: CGFloat = 0.5
-  private let testDouble = 0.5
+    private let testColor: UIColor? = UIColor.red
+  private let testFloat: Float = 0.5
   private let testCGRect = CGRect(x: 10.0, y: 20.0, width: 200.0, height: 200.0)
   private let testKey = "test"
   
@@ -36,28 +35,28 @@ class CALayer_SwiftUIKitTests: XCTestCase {
     setUpLabel(testing: "borderColor")
       .layer(borderColor: testColor)
     
-    XCTAssertEqual(label.layer.borderColor, testColor)
+    XCTAssertEqual(label.layer.borderColor, testColor?.cgColor)
   }
   
   func testView_layerModifier_backgroundColor() {
     setUpLabel(testing: "backgroundColor")
       .layer(backgroundColor: testColor)
     
-    XCTAssertEqual(label.layer.backgroundColor, testColor)
+    XCTAssertEqual(label.layer.backgroundColor, testColor?.cgColor)
   }
   
   func testView_layerModifier_borderWidth() {
     setUpLabel(testing: "borderWidth")
-      .layer(borderWidth: testCGFloat)
+      .layer(borderWidth: testFloat)
     
-    XCTAssertEqual(label.layer.borderWidth, testCGFloat)
+    XCTAssertEqual(label.layer.borderWidth, CGFloat(testFloat))
   }
   
   func testView_layerModifier_opacity() {
     setUpLabel(testing: "opacity")
-      .layer(opacity: testDouble)
+      .layer(opacity: testFloat)
     
-    XCTAssertEqual(label.layer.opacity, Float(testDouble))
+    XCTAssertEqual(label.layer.opacity, Float(testFloat))
   }
   
   func testView_layerModifier_contentsGravity() {
@@ -111,16 +110,16 @@ class CALayer_SwiftUIKitTests: XCTestCase {
   
   func testView_layerModifier_shadowOpacity() {
     setUpLabel(testing: "shadowOpacity")
-      .layer(shadowOpacity: testDouble)
+      .layer(shadowOpacity: testFloat)
     
-    XCTAssertEqual(label.layer.shadowOpacity, Float(testDouble))
+    XCTAssertEqual(label.layer.shadowOpacity, testFloat)
   }
   
   func testView_layerModifier_shadowRadius() {
     setUpLabel(testing: "shadowRadius")
-      .layer(shadowRadius: testDouble)
+      .layer(shadowRadius: testFloat)
     
-    XCTAssertEqual(label.layer.shadowRadius, CGFloat(testDouble))
+    XCTAssertEqual(label.layer.shadowRadius, CGFloat(testFloat))
   }
   
   func testView_layerModifier_shadowOffset() {
@@ -182,7 +181,6 @@ class CALayer_SwiftUIKitTests: XCTestCase {
     testAnimation.duration = 0.5
     testAnimation.fromValue = 0.0
     testAnimation.toValue = 1.0
-    
     
     setUpLabel(testing: "opacity")
       .layer(addAnimation: testAnimation, forKey: testKey)
