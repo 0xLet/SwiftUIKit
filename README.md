@@ -58,7 +58,7 @@ class ViewController: UIViewController {
                         },
                         
                         NavButton(destination: UIViewController {
-                            View(backgroundColor: .white) {
+                            UIView(backgroundColor: .white) {
                                 LoadingImage(URL(string: "https://cdn11.bigcommerce.com/s-oe2q4reh/images/stencil/2048x2048/products/832/1401/Beige_Pekingese_Puppy__21677.1568609759.jpg")!)
                                     .contentMode(.scaleAspectFit)
                             }
@@ -100,7 +100,7 @@ class ViewController: UIViewController {
 
 # oneleif Project
 
-![](https://github.com/oneleif/olWebsite/blob/master/Public/images/oneleif.png?raw=true)
+![](https://github.com/oneleif/olDocs/blob/master/assets/images/oneleif_logos/full_logo/oneleif_whiteback.png)
 
 ### Project Info
 
