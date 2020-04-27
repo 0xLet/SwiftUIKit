@@ -59,28 +59,28 @@ extension Map {
   }
   
   @discardableResult
-  public func zoomEnabled(_ value: Bool) -> Self {
+  public func zoomEnabled(_ value: Bool = true) -> Self {
     isZoomEnabled = value
     
     return self
   }
   
   @discardableResult
-  public func scrollEnabled(_ value: Bool) -> Self {
+  public func scrollEnabled(_ value: Bool = true) -> Self {
     isScrollEnabled = value
     
     return self
   }
   
   @discardableResult
-  public func pitchEnabled(_ value: Bool) -> Self {
+  public func pitchEnabled(_ value: Bool = true) -> Self {
     isPitchEnabled = value
     
     return self
   }
   
   @discardableResult
-  public func rotateEnabled(_ value: Bool) -> Self {
+  public func rotateEnabled(_ value: Bool = true) -> Self {
     isRotateEnabled = value
     
     return self
@@ -110,6 +110,14 @@ extension Map {
       setVisibleMapRect(rect, animated: animate)
     }
     
+    return self
+  }
+  
+  @discardableResult
+  public func region(_ region: MKCoordinateRegion, animate: Bool = true) -> Self {
+    var _region = region
+    _region.span = self.region.span
+    setRegion(_region, animated: animate)
     return self
   }
 }
