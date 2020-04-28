@@ -14,7 +14,9 @@ public class Map: MKMapView {
   
   fileprivate lazy var onFinishLoadingHandler: ((MKMapView) -> ())? = nil
   
-  fileprivate lazy var onRegionChangeHandler: ((MKMapView) -> ())? = nil
+  fileprivate lazy var afterRegionChangeHandler: ((MKMapView) -> ())? = nil
+  
+  fileprivate lazy var beforeRegionChangeHandler: ((MKMapView) -> ())? = nil
   
   public init(lat latitude: Double,
               lon longitude: Double,
@@ -255,6 +257,22 @@ extension Map {
     
     return self
   }
+  
+  @discardableResult
+  public func select(_ annotation: MKAnnotation, animated: Bool = true) -> Self {
+    selectAnnotation(annotation, animated: animated)
+    
+    return self
+  }
+  
+  @discardableResult
+  public func deselect(_ annotation: MKAnnotation, animated: Bool = true) -> Self {
+    deselectAnnotation(annotation, animated: animated)
+    
+    return self
+  }
+  
+  
 }
 
 // MARK: - Delegate wrappers
@@ -269,9 +287,17 @@ extension Map {
   }
   
   @discardableResult
-  public func onRegionChange(_ handler: @escaping (MKMapView) -> ()) -> Self {
+  public func afterRegionChange(_ handler: @escaping (MKMapView) -> ()) -> Self {
     guard delegate === self else { return self }
-    onRegionChangeHandler = handler
+    afterRegionChangeHandler = handler
+    
+    return self
+  }
+  
+  @discardableResult
+  public func beforeRegionChange(_ handler: @escaping (MKMapView) -> ()) -> Self {
+    guard delegate === self else { return self }
+    beforeRegionChangeHandler = handler
     
     return self
   }
@@ -284,6 +310,10 @@ extension Map: MKMapViewDelegate {
   }
   
   public func mapView(_ mapView: MKMapView, regionDidChangeAnimated animated: Bool) {
-    onRegionChangeHandler?(mapView)
+    afterRegionChangeHandler?(mapView)
+  }
+  
+  public func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
+    beforeRegionChangeHandler?(mapView)
   }
 }
