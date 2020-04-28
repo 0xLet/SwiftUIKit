@@ -143,7 +143,7 @@ extension Map {
   }
   
   @discardableResult
-  public func region(_ region: MKCoordinateRegion, animate: Bool = true) -> Self {
+  public func move(to region: MKCoordinateRegion, animate: Bool = true) -> Self {
     var _region = region
     _region.span = self.region.span
     super.setRegion(_region, animated: animate)
@@ -174,6 +174,8 @@ extension Map {
 }
 
 // MARK: - Constraining the Map View
+
+@available(iOS 13.0, *)
 extension Map {
   @discardableResult
   public func cameraBoundary(_ boundary: MKMapView.CameraBoundary?, animated: Bool = true) -> Self {
@@ -200,19 +202,15 @@ extension Map {
   }
   
   @discardableResult
-  public func pointOfInterestFilter(_ filter: MKPointOfInterestFilter?) -> Self {
-    pointOfInterestFilter = filter
-    
-    return self
-  }
-  
-  @discardableResult
   public func showBuildings(_ bool: Bool? = nil) -> Self {
     showsBuildings = bool ?? !showsBuildings
     
     return self
   }
-  
+}
+
+@available(iOS 13.0, *)
+extension Map {
   @discardableResult
   public func showCompass(_ bool: Bool? = nil) -> Self {
     showsCompass = bool ?? !showsCompass
@@ -230,6 +228,13 @@ extension Map {
   @discardableResult
   public func showTraffic(_ bool: Bool? = nil) -> Self {
     showsTraffic = bool ?? !showsTraffic
+    
+    return self
+  }
+  
+  @discardableResult
+  public func pointOfInterestFilter(_ filter: MKPointOfInterestFilter?) -> Self {
+    pointOfInterestFilter = filter
     
     return self
   }
