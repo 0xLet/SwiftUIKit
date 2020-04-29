@@ -99,6 +99,8 @@ class ViewController: UIViewController {
 ## GitHub Supporters
 
 [<img class="avatar" alt="ambid17" src="https://avatars1.githubusercontent.com/u/12086352?s=400&u=c918d89eab6dfbf5abc278a517280a7c51760d7b&v=4" width="72" height="72">](https://github.com/ambid17)
+[<img class="avatar" alt="suzyfendrick" src="https://avatars1.githubusercontent.com/u/25371717?s=460&u=34217047bbfd4912909cd5a85959544b6e49cc9f&v=4" width="72" height="72">](https://github.com/suzyfendrick)
+
 
 ****
 
