@@ -18,6 +18,10 @@ public class Map: MKMapView {
   
   fileprivate lazy var beforeRegionChangeHandler: ((MKMapView) -> ())? = nil
   
+  fileprivate lazy var annotationViewConfigurationHandler: ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))? = nil
+  
+  fileprivate lazy var annotationViewIdentifier: String? = nil
+  
   public init(lat latitude: Double,
               lon longitude: Double,
               annotations: (() -> [(latitude: CLLocationDegrees,
@@ -301,6 +305,14 @@ extension Map {
     
     return self
   }
+  
+  @discardableResult
+  public func configure(identifier: String, _ annotationView: @escaping ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))) -> Self {
+    guard delegate === self else { return self }
+    annotationViewConfigurationHandler = annotationView
+    
+    return self
+  }
 }
 
 // MARK: - Delegation
@@ -315,5 +327,15 @@ extension Map: MKMapViewDelegate {
   
   public func mapView(_ mapView: MKMapView, regionWillChangeAnimated animated: Bool) {
     beforeRegionChangeHandler?(mapView)
+  }
+  
+  public func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+    if let identifier = annotationViewIdentifier {
+      let annotationView = dequeueReusableAnnotationView(withIdentifier: identifier)
+      
+      return annotationViewConfigurationHandler?(annotationView, annotation)
+    }
+    
+    return annotationViewConfigurationHandler?(nil, annotation)
   }
 }
