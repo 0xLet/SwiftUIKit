@@ -160,10 +160,9 @@ public extension TableView {
     }
     
     @discardableResult
-    func register(cells: [String: UITableViewCell.Type]) -> Self {
-        cells.forEach { (arg) in
-            let (key, value) = arg
-            register(value, forCellReuseIdentifier: key)
+    func register(cells: [TableViewCell.Type]) -> Self {
+        cells.forEach {
+            register($0, forCellReuseIdentifier: $0.ID)
         }
         
         return self
