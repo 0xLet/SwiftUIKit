@@ -20,6 +20,14 @@ public class Map: MKMapView {
   
   fileprivate lazy var annotationViewConfigurationHandler: ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))? = nil
   
+  fileprivate lazy var onAccessoryTapHandler: ((MKMapView, MKAnnotationView, UIControl) -> ())? = nil
+  
+  fileprivate lazy var onAnnotationViewStateChangeHandler: ((MKMapView, MKAnnotationView, MKAnnotationView.DragState, MKAnnotationView.DragState) -> ())? = nil
+  
+  fileprivate lazy var onAnnotationSelectHandler: ((MKMapView, MKAnnotationView) -> ())? = nil
+  
+  fileprivate lazy var onAnnotationDeselectHandler: ((MKMapView, MKAnnotationView) -> ())? = nil
+  
   fileprivate lazy var annotationViewIdentifier: String? = nil
   
   public init(lat latitude: Double,
@@ -313,6 +321,34 @@ extension Map {
     
     return self
   }
+  
+  @discardableResult
+  public func onAccessoryTap(_ handler: @escaping (MKMapView, MKAnnotationView, UIControl) -> ()) -> Self {
+    onAccessoryTapHandler = handler
+    
+    return self
+  }
+  
+  @discardableResult
+  public func onAnnotationViewStateChange(_ handler: @escaping ((MKMapView, MKAnnotationView, MKAnnotationView.DragState, MKAnnotationView.DragState) -> ())) -> Self {
+    onAnnotationViewStateChangeHandler = handler
+    
+    return self
+  }
+  
+  @discardableResult
+  public func onAnnotationSelect(_ handler: @escaping ((MKMapView, MKAnnotationView) -> ())) -> Self {
+    onAnnotationSelectHandler = handler
+    
+    return self
+  }
+  
+  @discardableResult
+  public func onAnnotationDeselect(_ handler: @escaping ((MKMapView, MKAnnotationView) -> ())) -> Self {
+    onAnnotationDeselectHandler = handler
+    
+    return self
+  }
 }
 
 // MARK: - Delegation
@@ -337,5 +373,21 @@ extension Map: MKMapViewDelegate {
     }
     
     return annotationViewConfigurationHandler?(nil, annotation)
+  }
+  
+  public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+    onAccessoryTapHandler?(mapView, view, control)
+  }
+  
+  public func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, didChange newState: MKAnnotationView.DragState, fromOldState oldState: MKAnnotationView.DragState) {
+    onAnnotationViewStateChangeHandler?(mapView, view, newState, oldState)
+  }
+  
+  public func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+    onAnnotationSelectHandler?(mapView, view)
+  }
+  
+  public func mapView(_ mapView: MKMapView, didDeselect view: MKAnnotationView) {
+    onAnnotationDeselectHandler?(mapView, view)
   }
 }
