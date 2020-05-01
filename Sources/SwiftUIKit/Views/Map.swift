@@ -43,7 +43,10 @@ public class Map: MKMapView {
     
     super.init(frame: .zero)
     
-    let region = MKCoordinateRegion(center: coordinates, span: MKCoordinateSpan())
+    let span = MKCoordinateSpan(latitudeDelta: region.span.latitudeDelta / 2,
+                                longitudeDelta: region.span.longitudeDelta / 2)
+    
+    let region = MKCoordinateRegion(center: coordinates, span: span)
     setRegion(region, animated: true)
     
     if let annotations = annotations {
@@ -138,7 +141,7 @@ extension Map {
                                 longitudeDelta: region.span.longitudeDelta / multiplier / 10)
     let _region = MKCoordinateRegion(center: _center, span: _span)
     
-    super.setRegion(_region, animated: false)
+    setRegion(_region, animated: false)
     return self
   }
   
@@ -148,26 +151,37 @@ extension Map {
                           edgePadding: UIEdgeInsets? = nil
                           ) -> Self {
     if let padding = edgePadding {
-      super.setVisibleMapRect(rect, edgePadding: padding, animated: animate)
+      setVisibleMapRect(rect, edgePadding: padding, animated: animate)
     } else {
-      super.setVisibleMapRect(rect, animated: animate)
+      setVisibleMapRect(rect, animated: animate)
     }
     
     return self
   }
   
+  /// Changes coordinates and span.
   @discardableResult
   public func move(to region: MKCoordinateRegion, animate: Bool = true) -> Self {
-    var _region = region
-    _region.span = self.region.span
-    super.setRegion(_region, animated: animate)
+    initialCoordinates = region.center
+    setRegion(region, animated: animate)
+    
+    return self
+  }
+  
+  
+  /// Changes only coordinates.
+  @discardableResult
+  public func move(to coordinates: CLLocationCoordinate2D, animate: Bool = true) -> Self {
+    let _region = MKCoordinateRegion(center: coordinates, span: region.span)
+    initialCoordinates = coordinates
+    setRegion(_region, animated: animate)
     
     return self
   }
   
   @discardableResult
   public func center(_ center: CLLocationCoordinate2D, animated: Bool = true) -> Self {
-    super.setCenter(center, animated: animated)
+    setCenter(center, animated: animated)
     
     return self
   }
@@ -193,7 +207,7 @@ extension Map {
 extension Map {
   @discardableResult
   public func cameraBoundary(_ boundary: MKMapView.CameraBoundary?, animated: Bool = true) -> Self {
-    super.setCameraBoundary(boundary, animated: animated)
+    setCameraBoundary(boundary, animated: animated)
     
     return self
   }
@@ -210,7 +224,7 @@ extension Map {
 extension Map {
   @discardableResult
   public func camera(_ camera: MKMapCamera, animated: Bool = true) -> Self {
-    super.setCamera(camera, animated: animated)
+    setCamera(camera, animated: animated)
     
     return self
   }
