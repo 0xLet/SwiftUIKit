@@ -269,7 +269,10 @@ extension Map {
     
     return self
   }
-  
+}
+
+// MARK: - Managing Annotation Selections
+extension Map {
   @discardableResult
   public func select(_ annotation: MKAnnotation, animated: Bool = true) -> Self {
     selectAnnotation(annotation, animated: animated)
@@ -283,8 +286,50 @@ extension Map {
     
     return self
   }
+}
+
+// MARK: - Annotating the Map
+extension Map {
+  @discardableResult
+  public func remove(_ annotations: MKAnnotation...) -> Self {
+    removeAnnotations(annotations)
+    
+    return self
+  }
+}
+
+// MARK: - Creating Annotation Views
+@available(iOS 11.0, *)
+extension Map {
+  @discardableResult
+  public func register(_ classes: [String: AnyClass?]) -> Self {
+    for (identifier, annotationClass) in classes {
+      register(annotationClass, forAnnotationViewWithReuseIdentifier: identifier)
+    }
+    
+    return self
+  }
+}
+
+// MARK: - Adjusting Map Regions and Rectangles
+extension Map {
+  @discardableResult
+  public func fitTo(_ region: MKCoordinateRegion) -> Self {
+    self.region = regionThatFits(region)
+    
+    return self
+  }
   
-  
+  @discardableResult
+  public func fitTo(_ rect: MKMapRect, edgePadding: UIEdgeInsets? = nil) -> Self {
+    if let edgePadding = edgePadding {
+      mapRectThatFits(rect, edgePadding: edgePadding)
+    } else {
+      mapRectThatFits(rect)
+    }
+    
+    return self
+  }
 }
 
 // MARK: - Delegate wrappers
@@ -315,8 +360,9 @@ extension Map {
   }
   
   @discardableResult
-  public func configure(identifier: String, _ annotationView: @escaping ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))) -> Self {
+  public func configure(identifier: String?, _ annotationView: @escaping ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))) -> Self {
     guard delegate === self else { return self }
+    annotationViewIdentifier = identifier
     annotationViewConfigurationHandler = annotationView
     
     return self
