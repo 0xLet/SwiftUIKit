@@ -8,6 +8,13 @@
 import Foundation
 import MapKit
 
+public struct MapPoint {
+  let latitude: Double
+  let longitude: Double
+  let title: String
+  let subtitle: String
+}
+
 public class Map: MKMapView {
   
   fileprivate var initialCoordinates: CLLocationCoordinate2D
@@ -32,10 +39,7 @@ public class Map: MKMapView {
   
   public init(lat latitude: Double,
               lon longitude: Double,
-              annotations: (() -> [(latitude: CLLocationDegrees,
-                                    longitude: CLLocationDegrees,
-                                    title: String?,
-                                    subtitle: String?)])? = nil) {
+              annotations: (() -> [MapPoint])? = nil) {
     
     let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     
@@ -53,13 +57,13 @@ public class Map: MKMapView {
       DispatchQueue.global().async { [weak self] in
         guard let self = self else { return }
         
-        for (latitude, longitude, title, subtitle) in annotations() {
-          let coordinate = CLLocationCoordinate2D(latitude: latitude,
-                                                  longitude: longitude)
+        for mapPoint in annotations() {
+          let coordinate = CLLocationCoordinate2D(latitude: mapPoint.latitude,
+                                                  longitude: mapPoint.longitude)
           let point = MKPointAnnotation()
           point.coordinate = coordinate
-          point.title = title
-          point.subtitle = subtitle
+          point.title = mapPoint.title
+          point.subtitle = mapPoint.subtitle
           
           DispatchQueue.main.async {
             self.addAnnotation(point)
@@ -72,10 +76,7 @@ public class Map: MKMapView {
   }
   
   convenience init(region: MKCoordinateRegion,
-                   annotations: (() -> [(latitude: CLLocationDegrees,
-                   longitude: CLLocationDegrees,
-                   title: String?,
-                   subtitle: String?)])? = nil) {
+                   annotations: (() -> [MapPoint])? = nil) {
     self.init(lat: region.center.latitude,
               lon: region.center.longitude,
               annotations: annotations)
