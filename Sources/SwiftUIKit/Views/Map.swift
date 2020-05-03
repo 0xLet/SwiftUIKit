@@ -230,8 +230,8 @@ extension Map {
   }
   
   @discardableResult
-  public func showBuildings(_ bool: Bool? = nil) -> Self {
-    showsBuildings = bool ?? !showsBuildings
+  public func showBuildings(_ bool: Bool) -> Self {
+    showsBuildings = bool
     
     return self
   }
@@ -240,28 +240,28 @@ extension Map {
 @available(iOS 13.0, *)
 extension Map {
   @discardableResult
-  public func showCompass(_ bool: Bool? = nil) -> Self {
-    showsCompass = bool ?? !showsCompass
+  public func showCompass(_ bool: Bool) -> Self {
+    showsCompass = bool
     
     return self
   }
   
   @discardableResult
-  public func showScale(_ bool: Bool? = nil) -> Self {
-    showsScale = bool ?? !showsScale
+  public func showScale(_ bool: Bool) -> Self {
+    showsScale = bool
     
     return self
   }
   
   @discardableResult
-  public func showTraffic(_ bool: Bool? = nil) -> Self {
-    showsTraffic = bool ?? !showsTraffic
+  public func showTraffic(_ bool: Bool) -> Self {
+    showsTraffic = bool
     
     return self
   }
   
   @discardableResult
-  public func pointOfInterestFilter(_ filter: MKPointOfInterestFilter?) -> Self {
+  public func pointOfInterestFilter(filter: MKPointOfInterestFilter?) -> Self {
     pointOfInterestFilter = filter
     
     return self
@@ -271,8 +271,8 @@ extension Map {
 // MARK: - Displaying the User's Location
 extension Map {
   @discardableResult
-  public func showUserLocation(_ bool: Bool? = nil) -> Self {
-    showsUserLocation = bool ?? !showsUserLocation
+  public func showUserLocation(_ bool: Bool) -> Self {
+    showsUserLocation = bool
     
     return self
   }
