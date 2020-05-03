@@ -306,7 +306,14 @@ extension Map {
 // MARK: - Annotating the Map
 extension Map {
   @discardableResult
-  public func remove(annotations: MKAnnotation...) -> Self {
+  public func remove(annotation: MKAnnotation) -> Self {
+    removeAnnotation(annotation)
+    
+    return self
+  }
+  
+  @discardableResult
+  public func remove(annotations: [MKAnnotation]) -> Self {
     removeAnnotations(annotations)
     
     return self
