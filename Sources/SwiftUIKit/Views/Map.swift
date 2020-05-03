@@ -123,7 +123,7 @@ extension Map {
     return self
   }
   
-  /// Note: If delegate isn't its own class, modifiers with prefix `on...` will do nothing.
+  /// Note: If delegate isn't its own class, modifiers based on delegate's methods will do nothing.
   @discardableResult
   public func delegate(_ delegate: MKMapViewDelegate?) -> Self {
     self.delegate = delegate ?? self
@@ -146,7 +146,7 @@ extension Map {
   }
   
   @discardableResult
-  public func visibleRect(_ rect: MKMapRect,
+  public func visible(rect: MKMapRect,
                           animate: Bool = true,
                           edgePadding: UIEdgeInsets? = nil
                           ) -> Self {
@@ -187,14 +187,14 @@ extension Map {
   }
   
   @discardableResult
-  public func showAnnotations(_ annotations: [MKAnnotation], animated: Bool = true) -> Self {
+  public func show(annotations: [MKAnnotation], animated: Bool = true) -> Self {
     super.showAnnotations(annotations, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func showAnnotations(_ annotations: MKAnnotation..., animated: Bool = true) -> Self {
+  public func show(annotations: MKAnnotation..., animated: Bool = true) -> Self {
     super.showAnnotations(annotations, animated: animated)
     
     return self
@@ -206,14 +206,14 @@ extension Map {
 @available(iOS 13.0, *)
 extension Map {
   @discardableResult
-  public func cameraBoundary(_ boundary: MKMapView.CameraBoundary?, animated: Bool = true) -> Self {
+  public func camera(boundary: MKMapView.CameraBoundary?, animated: Bool = true) -> Self {
     setCameraBoundary(boundary, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func setCameraZoomRange(_ cameraZoomRange: MKMapView.CameraZoomRange?, animated: Bool) -> Self {
+  public func set(cameraZoomRange: MKMapView.CameraZoomRange?, animated: Bool) -> Self {
     super.setCameraZoomRange(cameraZoomRange, animated: animated)
     
     return self
@@ -278,8 +278,8 @@ extension Map {
   }
   
   @discardableResult
-  public func userTrackingMode(_ mode: MKUserTrackingMode, animated: Bool = true) -> Self {
-    setUserTrackingMode(mode, animated: animated)
+  public func user(trackingMode: MKUserTrackingMode, animated: Bool = true) -> Self {
+    setUserTrackingMode(trackingMode, animated: animated)
     
     return self
   }
@@ -288,14 +288,14 @@ extension Map {
 // MARK: - Managing Annotation Selections
 extension Map {
   @discardableResult
-  public func select(_ annotation: MKAnnotation, animated: Bool = true) -> Self {
+  public func select(annotation: MKAnnotation, animated: Bool = true) -> Self {
     selectAnnotation(annotation, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func deselect(_ annotation: MKAnnotation, animated: Bool = true) -> Self {
+  public func deselect(annotation: MKAnnotation, animated: Bool = true) -> Self {
     deselectAnnotation(annotation, animated: animated)
     
     return self
@@ -305,7 +305,7 @@ extension Map {
 // MARK: - Annotating the Map
 extension Map {
   @discardableResult
-  public func remove(_ annotations: MKAnnotation...) -> Self {
+  public func remove(annotations: MKAnnotation...) -> Self {
     removeAnnotations(annotations)
     
     return self
@@ -316,7 +316,7 @@ extension Map {
 @available(iOS 11.0, *)
 extension Map {
   @discardableResult
-  public func register(_ classes: [String: AnyClass?]) -> Self {
+  public func register(classes: [String: AnyClass?]) -> Self {
     for (identifier, annotationClass) in classes {
       register(annotationClass, forAnnotationViewWithReuseIdentifier: identifier)
     }
@@ -328,14 +328,14 @@ extension Map {
 // MARK: - Adjusting Map Regions and Rectangles
 extension Map {
   @discardableResult
-  public func fitTo(_ region: MKCoordinateRegion) -> Self {
+  public func fitTo(region: MKCoordinateRegion) -> Self {
     self.region = regionThatFits(region)
     
     return self
   }
   
   @discardableResult
-  public func fitTo(_ rect: MKMapRect, edgePadding: UIEdgeInsets? = nil) -> Self {
+  public func fitTo(rect: MKMapRect, edgePadding: UIEdgeInsets? = nil) -> Self {
     if let edgePadding = edgePadding {
       mapRectThatFits(rect, edgePadding: edgePadding)
     } else {
