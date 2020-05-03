@@ -311,6 +311,47 @@ extension Map {
     
     return self
   }
+  
+  @discardableResult
+  public func add(annotation: MKAnnotation) -> Self {
+    addAnnotation(annotation)
+    
+    return self
+  }
+  
+  @discardableResult
+  public func add(point: MapPoint) -> Self {
+    DispatchQueue.global().async {
+      let annotation = MKPointAnnotation()
+      
+      annotation.coordinate = CLLocationCoordinate2D(latitude: point.latitude,
+                                                     longitude: point.longitude)
+      annotation.title = point.title
+      annotation.subtitle = point.subtitle
+      
+      DispatchQueue.main.async {
+        self.addAnnotation(annotation)
+      }
+    }
+    
+    return self
+  }
+  
+  @discardableResult
+  public func add(annotations: [MKAnnotation]) -> Self {
+    addAnnotations(annotations)
+    
+    return self
+  }
+  
+  @discardableResult
+  public func add(points: [MapPoint]) -> Self {
+    for point in points {
+      add(point: point)
+    }
+    
+    return self
+  }
 }
 
 // MARK: - Creating Annotation Views
