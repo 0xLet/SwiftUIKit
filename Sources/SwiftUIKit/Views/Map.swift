@@ -39,8 +39,7 @@ public class Map: MKMapView {
   
   public init(lat latitude: Double,
               lon longitude: Double,
-              annotations: (() -> [MapPoint])? = nil) {
-    
+              points: (() -> [MapPoint])? = nil) {
     let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     
     initialCoordinates = coordinates
@@ -53,33 +52,18 @@ public class Map: MKMapView {
     let region = MKCoordinateRegion(center: coordinates, span: span)
     setRegion(region, animated: true)
     
-    if let annotations = annotations {
-      DispatchQueue.global().async { [weak self] in
-        guard let self = self else { return }
-        
-        for mapPoint in annotations() {
-          let coordinate = CLLocationCoordinate2D(latitude: mapPoint.latitude,
-                                                  longitude: mapPoint.longitude)
-          let point = MKPointAnnotation()
-          point.coordinate = coordinate
-          point.title = mapPoint.title
-          point.subtitle = mapPoint.subtitle
-          
-          DispatchQueue.main.async {
-            self.addAnnotation(point)
-          }
-        }
-      }
+    if let points = points {
+      add(points: points())
     }
     
     self.delegate = self
   }
   
   convenience init(region: MKCoordinateRegion,
-                   annotations: (() -> [MapPoint])? = nil) {
+                   points: (() -> [MapPoint])? = nil) {
     self.init(lat: region.center.latitude,
               lon: region.center.longitude,
-              annotations: annotations)
+              points: points)
   }
   
   required init?(coder: NSCoder) {
