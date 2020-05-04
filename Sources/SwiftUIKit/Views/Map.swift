@@ -13,6 +13,13 @@ public struct MapPoint {
   public let longitude: Double
   public let title: String
   public let subtitle: String
+  
+  public init(latitude: Double, longitude: Double, title: String, subtitle: String) {
+    self.latitude = latitude
+    self.longitude = longitude
+    self.title = title
+    self.subtitle = subtitle
+  }
 }
 
 public class Map: MKMapView {
