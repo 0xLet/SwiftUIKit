@@ -59,50 +59,53 @@ public class Map: MKMapView {
     self.delegate = self
   }
   
+  required init?(coder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+}
+
+// MARK: - Initializers
+public extension Map {
   convenience init(region: MKCoordinateRegion,
                    points: (() -> [MapPoint])? = nil) {
     self.init(lat: region.center.latitude,
               lon: region.center.longitude,
               points: points)
   }
-  
-  required init?(coder: NSCoder) {
-    fatalError("init(coder:) has not been implemented")
-  }
 }
 
 // MARK: - Accessing Map Properties
-extension Map {
+public extension Map {
   @discardableResult
-  public func type(_ type: MKMapType) -> Self {
+  func type(_ type: MKMapType) -> Self {
     mapType = type
     
     return self
   }
   
   @discardableResult
-  public func zoomEnabled(_ value: Bool = true) -> Self {
+  func zoomEnabled(_ value: Bool = true) -> Self {
     isZoomEnabled = value
     
     return self
   }
   
   @discardableResult
-  public func scrollEnabled(_ value: Bool = true) -> Self {
+  func scrollEnabled(_ value: Bool = true) -> Self {
     isScrollEnabled = value
     
     return self
   }
   
   @discardableResult
-  public func pitchEnabled(_ value: Bool = true) -> Self {
+  func pitchEnabled(_ value: Bool = true) -> Self {
     isPitchEnabled = value
     
     return self
   }
   
   @discardableResult
-  public func rotateEnabled(_ value: Bool = true) -> Self {
+  func rotateEnabled(_ value: Bool = true) -> Self {
     isRotateEnabled = value
     
     return self
@@ -110,7 +113,7 @@ extension Map {
   
   /// Note: If delegate isn't its own class, modifiers based on delegate's methods will do nothing.
   @discardableResult
-  public func delegate(_ delegate: MKMapViewDelegate?) -> Self {
+  func delegate(_ delegate: MKMapViewDelegate?) -> Self {
     self.delegate = delegate ?? self
     
     return self
@@ -118,9 +121,9 @@ extension Map {
 }
 
 // MARK: - Manipulating the Visible Portion of the Map
-extension Map {
+public extension Map {
   @discardableResult
-  public func zoom(_ multiplier: Double) -> Self {
+  func zoom(_ multiplier: Double) -> Self {
     let _center = initialCoordinates
     let _span = MKCoordinateSpan(latitudeDelta: region.span.latitudeDelta / multiplier / 10,
                                 longitudeDelta: region.span.longitudeDelta / multiplier / 10)
@@ -131,7 +134,7 @@ extension Map {
   }
   
   @discardableResult
-  public func visible(rect: MKMapRect,
+  func visible(rect: MKMapRect,
                           animate: Bool = true,
                           edgePadding: UIEdgeInsets? = nil
                           ) -> Self {
@@ -146,7 +149,7 @@ extension Map {
   
   /// Changes coordinates and span.
   @discardableResult
-  public func move(to region: MKCoordinateRegion, animate: Bool = true) -> Self {
+  func move(to region: MKCoordinateRegion, animate: Bool = true) -> Self {
     initialCoordinates = region.center
     setRegion(region, animated: animate)
     
@@ -156,7 +159,7 @@ extension Map {
   
   /// Changes only coordinates.
   @discardableResult
-  public func move(to coordinates: CLLocationCoordinate2D, animate: Bool = true) -> Self {
+  func move(to coordinates: CLLocationCoordinate2D, animate: Bool = true) -> Self {
     let _region = MKCoordinateRegion(center: coordinates, span: region.span)
     initialCoordinates = coordinates
     setRegion(_region, animated: animate)
@@ -165,21 +168,21 @@ extension Map {
   }
   
   @discardableResult
-  public func center(_ center: CLLocationCoordinate2D, animated: Bool = true) -> Self {
+  func center(_ center: CLLocationCoordinate2D, animated: Bool = true) -> Self {
     setCenter(center, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func show(annotations: [MKAnnotation], animated: Bool = true) -> Self {
+  func show(annotations: [MKAnnotation], animated: Bool = true) -> Self {
     super.showAnnotations(annotations, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func show(annotations: MKAnnotation..., animated: Bool = true) -> Self {
+  func show(annotations: MKAnnotation..., animated: Bool = true) -> Self {
     super.showAnnotations(annotations, animated: animated)
     
     return self
@@ -189,16 +192,16 @@ extension Map {
 // MARK: - Constraining the Map View
 
 @available(iOS 13.0, *)
-extension Map {
+public extension Map {
   @discardableResult
-  public func camera(boundary: MKMapView.CameraBoundary?, animated: Bool = true) -> Self {
+  func camera(boundary: MKMapView.CameraBoundary?, animated: Bool = true) -> Self {
     setCameraBoundary(boundary, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func set(cameraZoomRange: MKMapView.CameraZoomRange?, animated: Bool) -> Self {
+  func set(cameraZoomRange: MKMapView.CameraZoomRange?, animated: Bool) -> Self {
     super.setCameraZoomRange(cameraZoomRange, animated: animated)
     
     return self
@@ -206,16 +209,16 @@ extension Map {
 }
 
 // MARK: - Configuring the Map's Appearance
-extension Map {
+public extension Map {
   @discardableResult
-  public func camera(_ camera: MKMapCamera, animated: Bool = true) -> Self {
+  func camera(_ camera: MKMapCamera, animated: Bool = true) -> Self {
     setCamera(camera, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func showBuildings(_ bool: Bool) -> Self {
+  func showBuildings(_ bool: Bool) -> Self {
     showsBuildings = bool
     
     return self
@@ -223,30 +226,30 @@ extension Map {
 }
 
 @available(iOS 13.0, *)
-extension Map {
+public extension Map {
   @discardableResult
-  public func showCompass(_ bool: Bool) -> Self {
+  func showCompass(_ bool: Bool) -> Self {
     showsCompass = bool
     
     return self
   }
   
   @discardableResult
-  public func showScale(_ bool: Bool) -> Self {
+  func showScale(_ bool: Bool) -> Self {
     showsScale = bool
     
     return self
   }
   
   @discardableResult
-  public func showTraffic(_ bool: Bool) -> Self {
+  func showTraffic(_ bool: Bool) -> Self {
     showsTraffic = bool
     
     return self
   }
   
   @discardableResult
-  public func pointOfInterestFilter(filter: MKPointOfInterestFilter?) -> Self {
+  func pointOfInterestFilter(filter: MKPointOfInterestFilter?) -> Self {
     pointOfInterestFilter = filter
     
     return self
@@ -254,16 +257,16 @@ extension Map {
 }
 
 // MARK: - Displaying the User's Location
-extension Map {
+public extension Map {
   @discardableResult
-  public func showUserLocation(_ bool: Bool) -> Self {
+  func showUserLocation(_ bool: Bool) -> Self {
     showsUserLocation = bool
     
     return self
   }
   
   @discardableResult
-  public func user(trackingMode: MKUserTrackingMode, animated: Bool = true) -> Self {
+  func user(trackingMode: MKUserTrackingMode, animated: Bool = true) -> Self {
     setUserTrackingMode(trackingMode, animated: animated)
     
     return self
@@ -271,16 +274,16 @@ extension Map {
 }
 
 // MARK: - Managing Annotation Selections
-extension Map {
+public extension Map {
   @discardableResult
-  public func select(annotation: MKAnnotation, animated: Bool = true) -> Self {
+  func select(annotation: MKAnnotation, animated: Bool = true) -> Self {
     selectAnnotation(annotation, animated: animated)
     
     return self
   }
   
   @discardableResult
-  public func deselect(annotation: MKAnnotation, animated: Bool = true) -> Self {
+  func deselect(annotation: MKAnnotation, animated: Bool = true) -> Self {
     deselectAnnotation(annotation, animated: animated)
     
     return self
@@ -288,30 +291,30 @@ extension Map {
 }
 
 // MARK: - Annotating the Map
-extension Map {
+public extension Map {
   @discardableResult
-  public func remove(annotation: MKAnnotation) -> Self {
+  func remove(annotation: MKAnnotation) -> Self {
     removeAnnotation(annotation)
     
     return self
   }
   
   @discardableResult
-  public func remove(annotations: [MKAnnotation]) -> Self {
+  func remove(annotations: [MKAnnotation]) -> Self {
     removeAnnotations(annotations)
     
     return self
   }
   
   @discardableResult
-  public func add(annotation: MKAnnotation) -> Self {
+  func add(annotation: MKAnnotation) -> Self {
     addAnnotation(annotation)
     
     return self
   }
   
   @discardableResult
-  public func add(point: MapPoint) -> Self {
+  func add(point: MapPoint) -> Self {
     DispatchQueue.global().async {
       let annotation = MKPointAnnotation()
       
@@ -329,14 +332,14 @@ extension Map {
   }
   
   @discardableResult
-  public func add(annotations: [MKAnnotation]) -> Self {
+  func add(annotations: [MKAnnotation]) -> Self {
     addAnnotations(annotations)
     
     return self
   }
   
   @discardableResult
-  public func add(points: [MapPoint]) -> Self {
+  func add(points: [MapPoint]) -> Self {
     for point in points {
       add(point: point)
     }
@@ -347,9 +350,9 @@ extension Map {
 
 // MARK: - Creating Annotation Views
 @available(iOS 11.0, *)
-extension Map {
+public extension Map {
   @discardableResult
-  public func register(classes: [String: AnyClass?]) -> Self {
+  func register(classes: [String: AnyClass?]) -> Self {
     for (identifier, annotationClass) in classes {
       register(annotationClass, forAnnotationViewWithReuseIdentifier: identifier)
     }
@@ -359,16 +362,16 @@ extension Map {
 }
 
 // MARK: - Adjusting Map Regions and Rectangles
-extension Map {
+public extension Map {
   @discardableResult
-  public func fitTo(region: MKCoordinateRegion) -> Self {
+  func fitTo(region: MKCoordinateRegion) -> Self {
     self.region = regionThatFits(region)
     
     return self
   }
   
   @discardableResult
-  public func fitTo(rect: MKMapRect, edgePadding: UIEdgeInsets? = nil) -> Self {
+  func fitTo(rect: MKMapRect, edgePadding: UIEdgeInsets? = nil) -> Self {
     if let edgePadding = edgePadding {
       mapRectThatFits(rect, edgePadding: edgePadding)
     } else {
@@ -381,9 +384,9 @@ extension Map {
 
 // MARK: - Delegate wrappers
 // If delegate isn't its own class, methods below will not execute.
-extension Map {
+public extension Map {
   @discardableResult
-  public func onFinishLoading(_ handler: @escaping (MKMapView) -> ()) -> Self {
+  func onFinishLoading(_ handler: @escaping (MKMapView) -> ()) -> Self {
     guard delegate === self else { return self }
     onFinishLoadingHandler = handler
     
@@ -391,7 +394,7 @@ extension Map {
   }
   
   @discardableResult
-  public func afterRegionChange(_ handler: @escaping (MKMapView) -> ()) -> Self {
+  func afterRegionChange(_ handler: @escaping (MKMapView) -> ()) -> Self {
     guard delegate === self else { return self }
     afterRegionChangeHandler = handler
     
@@ -399,7 +402,7 @@ extension Map {
   }
   
   @discardableResult
-  public func beforeRegionChange(_ handler: @escaping (MKMapView) -> ()) -> Self {
+  func beforeRegionChange(_ handler: @escaping (MKMapView) -> ()) -> Self {
     guard delegate === self else { return self }
     beforeRegionChangeHandler = handler
     
@@ -407,7 +410,7 @@ extension Map {
   }
   
   @discardableResult
-  public func configure(identifier: String?, _ annotationView: @escaping ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))) -> Self {
+  func configure(identifier: String?, _ annotationView: @escaping ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))) -> Self {
     guard delegate === self else { return self }
     annotationViewIdentifier = identifier
     annotationViewConfigurationHandler = annotationView
@@ -416,28 +419,28 @@ extension Map {
   }
   
   @discardableResult
-  public func onAccessoryTap(_ handler: @escaping (MKMapView, MKAnnotationView, UIControl) -> ()) -> Self {
+  func onAccessoryTap(_ handler: @escaping (MKMapView, MKAnnotationView, UIControl) -> ()) -> Self {
     onAccessoryTapHandler = handler
     
     return self
   }
   
   @discardableResult
-  public func onAnnotationViewStateChange(_ handler: @escaping ((MKMapView, MKAnnotationView, MKAnnotationView.DragState, MKAnnotationView.DragState) -> ())) -> Self {
+  func onAnnotationViewStateChange(_ handler: @escaping ((MKMapView, MKAnnotationView, MKAnnotationView.DragState, MKAnnotationView.DragState) -> ())) -> Self {
     onAnnotationViewStateChangeHandler = handler
     
     return self
   }
   
   @discardableResult
-  public func onAnnotationSelect(_ handler: @escaping ((MKMapView, MKAnnotationView) -> ())) -> Self {
+  func onAnnotationSelect(_ handler: @escaping ((MKMapView, MKAnnotationView) -> ())) -> Self {
     onAnnotationSelectHandler = handler
     
     return self
   }
   
   @discardableResult
-  public func onAnnotationDeselect(_ handler: @escaping ((MKMapView, MKAnnotationView) -> ())) -> Self {
+  func onAnnotationDeselect(_ handler: @escaping ((MKMapView, MKAnnotationView) -> ())) -> Self {
     onAnnotationDeselectHandler = handler
     
     return self
