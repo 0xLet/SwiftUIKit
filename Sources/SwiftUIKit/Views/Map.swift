@@ -9,10 +9,10 @@ import Foundation
 import MapKit
 
 public struct MapPoint {
-  let latitude: Double
-  let longitude: Double
-  let title: String
-  let subtitle: String
+  public let latitude: Double
+  public let longitude: Double
+  public let title: String
+  public let subtitle: String
 }
 
 public class Map: MKMapView {
