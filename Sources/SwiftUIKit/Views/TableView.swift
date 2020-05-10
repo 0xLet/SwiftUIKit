@@ -309,114 +309,133 @@ public extension TableView {
         return self
     }
     
+    @discardableResult
     func canEditRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
         canEditRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func canMoveRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
         canMoveRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func canFocusRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
         canFocusRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func shouldHighlightRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
         shouldHighlightRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func shouldIndentWhileEditingRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
         shouldIndentWhileEditingRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func shouldShowMenuForRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
         shouldShowMenuForRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func editingStyleForRowAtIndexPath(_ handler: @escaping (IndexPath) -> UITableViewCell.EditingStyle) -> Self {
         editingStyleForRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func titleForDeleteConfirmationButtonForRowAtIndexPath(_ handler: @escaping (IndexPath) -> String) -> Self {
         titleForDeleteConfirmationButtonForRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func editActionsForRowAtIndexPath(_ handler: @escaping (IndexPath) -> [UITableViewRowAction]) -> Self {
         editActionsForRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func commitEditingStyleForRowAtIndexPath(_ handler: @escaping (UITableViewCell.EditingStyle, IndexPath) -> Void) -> Self {
         commitEditingStyleForRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func didSelectRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
         didSelectRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func didDeselectRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
         didDeselectRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func willBeginEditingRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
         willBeginEditingRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func didEndEditingRowAtIndexPath(_ handler: @escaping (IndexPath?) -> Void) -> Self {
         didEndEditingRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func didHighlightRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
         didHighlightRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func didUnhighlightRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
         didUnhighlightRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func moveRowAtSourceIndexPathToDestinationIndexPath(_ handler: @escaping (IndexPath, IndexPath) -> Void) -> Self {
         moveRowAtSourceIndexPathToDestinationIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func leadingSwipeActionsConfigurationForRowAtIndexPath(_ handler: @escaping (IndexPath) -> UISwipeActionsConfiguration) -> Self {
         leadingSwipeActionsConfigurationForRowAtIndexPath = handler
         
         return self
     }
     
+    @discardableResult
     func trailingSwipeActionsConfigurationForRowAtIndexPath(_ handler: @escaping (IndexPath) -> UISwipeActionsConfiguration) -> Self {
         trailingSwipeActionsConfigurationForRowAtIndexPath = handler
         
