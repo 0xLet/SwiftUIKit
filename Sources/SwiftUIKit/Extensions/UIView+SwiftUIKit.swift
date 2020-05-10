@@ -292,6 +292,56 @@ public extension UIView {
         return self
     }
     
+    /// Update a padding anchor's constant value
+    @available(iOS 10.0, *)
+    @discardableResult
+    func update(padding: Padding) -> Self {
+        switch padding {
+        case .top(let value):
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == topAnchor
+                }?.constant = CGFloat(value)
+        case .bottom(let value):
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == bottomAnchor
+                }?.constant = CGFloat(value)
+        case .leading(let value):
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == leadingAnchor
+                }?.constant = CGFloat(value)
+        case .trailing(let value):
+            constraints.first { (constraint) -> Bool in
+                constraint.firstAnchor == trailingAnchor
+                }?.constant = CGFloat(value)
+        }
+        
+        return self
+    }
+    
+    /// Update an array of padding anchors' constant values
+    @available(iOS 10.0, *)
+    @discardableResult
+    func update(padding: [Padding]) -> Self {
+        padding.forEach { update(padding: $0) }
+        
+        return self
+    }
+    
+    /// Update all padding anchors' constant value
+    @available(iOS 10.0, *)
+    @discardableResult
+    func update(padding: Float) -> Self {
+        update(padding: [
+            .top(padding),
+            .bottom(padding),
+            .leading(padding),
+            .trailing(padding)
+        ])
+        
+        return self
+    }
+    
+    
     /// Remove the height anchor constraint
     @available(iOS 10.0, *)
     @discardableResult
