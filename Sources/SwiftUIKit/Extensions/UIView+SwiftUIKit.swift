@@ -299,20 +299,20 @@ public extension UIView {
         switch padding {
         case .top(let value):
             constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == topAnchor
+                constraint.firstAnchor == topAnchor || constraint.secondAnchor == topAnchor
                 }?.constant = CGFloat(value)
         case .bottom(let value):
             constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == bottomAnchor
-                }?.constant = CGFloat(value)
+                constraint.firstAnchor == bottomAnchor || constraint.secondAnchor == bottomAnchor
+                }?.constant = CGFloat(-value)
         case .leading(let value):
             constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == leadingAnchor
+                constraint.firstAnchor == leadingAnchor || constraint.secondAnchor == leadingAnchor
                 }?.constant = CGFloat(value)
         case .trailing(let value):
             constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == trailingAnchor
-                }?.constant = CGFloat(value)
+                constraint.firstAnchor == trailingAnchor || constraint.secondAnchor == trailingAnchor
+                }?.constant = CGFloat(-value)
         }
         
         return self

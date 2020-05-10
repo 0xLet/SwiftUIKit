@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 @testable import SwiftUIKit
 
-@available(iOS 9.0, *)
+@available(iOS 10.0, *)
 final class BasicSwiftUIKitTests: XCTestCase {
     
     func testDefaultView() {
@@ -31,9 +31,37 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
+        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
+        }
+        
+        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
+        }
+        
+        let trailingConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.trailingAnchor || constraint.secondAnchor == view.trailingAnchor
+        }
+        
+        let topConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.topAnchor || constraint.secondAnchor == view.topAnchor
+        }
+        
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
         XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(leadingConstraint?.constant, 0)
+        XCTAssertEqual(bottomConstraint?.constant, 0)
+        XCTAssertEqual(trailingConstraint?.constant, 0)
+        XCTAssertEqual(topConstraint?.constant, 0)
+        
+        view.update(padding: 16)
+        
+        XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(leadingConstraint?.constant, 16)
+        XCTAssertEqual(bottomConstraint?.constant, -16)
+        XCTAssertEqual(trailingConstraint?.constant, -16)
+        XCTAssertEqual(topConstraint?.constant, 16)
     }
     
     func testEmbedView_WithOnePadding() {
@@ -48,9 +76,20 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
+        let constraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
+        }
+        
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
         XCTAssert(view.constraints.count == 1)
+        XCTAssertEqual(constraint?.constant, 16)
+        
+        view.update(padding: .leading(8))
+        view.update(padding: .trailing(16))
+        
+        XCTAssertEqual(constraint?.constant, 8)
+        XCTAssertEqual(view.constraints.count, 1)
     }
     
     func testEmbedView_WithTwoPadding() {
@@ -66,9 +105,27 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
+        
+        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
+        }
+        
+        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
+        }
+        
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
         XCTAssert(view.constraints.count == 2)
+        XCTAssertEqual(leadingConstraint?.constant, 16)
+        XCTAssertEqual(bottomConstraint?.constant, -16)
+        
+        view.update(padding: .leading(8))
+        view.update(padding: .bottom(32))
+        
+        XCTAssert(view.constraints.count == 2)
+        XCTAssertEqual(leadingConstraint?.constant, 8)
+        XCTAssertEqual(bottomConstraint?.constant, -32)
     }
     
     func testEmbedView_WithThreePadding() {
@@ -85,9 +142,31 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
+        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
+        }
+        
+        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
+        }
+        
+        let trailingConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.trailingAnchor || constraint.secondAnchor == view.trailingAnchor
+        }
+        
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
         XCTAssert(view.constraints.count == 3)
+        XCTAssertEqual(leadingConstraint?.constant, 16)
+        XCTAssertEqual(bottomConstraint?.constant, -16)
+        XCTAssertEqual(trailingConstraint?.constant, -16)
+        
+        view.update(padding: [.leading(32), .trailing(32), .bottom(32)])
+        
+        XCTAssert(view.constraints.count == 3)
+        XCTAssertEqual(leadingConstraint?.constant, 32)
+        XCTAssertEqual(bottomConstraint?.constant, -32)
+        XCTAssertEqual(trailingConstraint?.constant, -32)
     }
     
     func testEmbedView_WithAllPadding() {
@@ -105,9 +184,37 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
+        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
+        }
+        
+        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
+        }
+        
+        let trailingConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.trailingAnchor || constraint.secondAnchor == view.trailingAnchor
+        }
+        
+        let topConstraint = view.constraints.first { (constraint) -> Bool in
+            constraint.firstAnchor == view.topAnchor || constraint.secondAnchor == view.topAnchor
+        }
+        
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
         XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(leadingConstraint?.constant, 16)
+        XCTAssertEqual(bottomConstraint?.constant, -16)
+        XCTAssertEqual(trailingConstraint?.constant, -16)
+        XCTAssertEqual(topConstraint?.constant, 16)
+        
+        view.update(padding: 32)
+        
+        XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(leadingConstraint?.constant, 32)
+        XCTAssertEqual(bottomConstraint?.constant, -32)
+        XCTAssertEqual(trailingConstraint?.constant, -32)
+        XCTAssertEqual(topConstraint?.constant, 32)
     }
     
     func testEmbedViews() {
