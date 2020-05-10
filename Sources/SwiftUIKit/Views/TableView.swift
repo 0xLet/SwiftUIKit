@@ -141,6 +141,90 @@ extension TableView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         footerTitleForSection?(section)
     }
+    
+    public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
+    
+    public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
+    
+    public func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
+    
+    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
+    
+    public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
+    
+    public func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
+        false
+    }
+    
+    public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+        nil
+    }
+    
+    public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        0
+    }
+    
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .none
+    }
+    
+    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        nil
+    }
+    
+    // MARK: Actions
+    
+    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
+        
+    }
+    
+    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        
+    }
+    
+    @available(iOS 11.0, *)
+    public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        .none
+    }
+    
+    @available(iOS 11.0, *)
+    public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        .none
+    }
 }
 
 @available(iOS 9.0, *)
