@@ -18,9 +18,9 @@ public class Slider: UISlider {
         
         super.init(frame: .zero)
         
-        self.value = value
         self.minimumValue = from
         self.maximumValue = to
+        self.value = value
         
         self.valueChangedHandler = valueChangedHandler
         addTarget(self, action: #selector(handleValueChanged), for: .valueChanged)
