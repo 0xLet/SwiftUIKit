@@ -7,33 +7,33 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public protocol CellDisplayable {
     var cellID: String { get }
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public protocol DataConfigurable: UITableViewCell {
     static var ID: String { get }
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public protocol CellUpdatable: UITableViewCell {
     func update(forData data: CellDisplayable)
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public protocol CellConfigurable: UITableViewCell {
     func configure(forData data: CellDisplayable)
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public typealias TableViewCell = DataConfigurable & CellConfigurable & CellUpdatable
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public class TableView: UITableView {
     public var data: [[CellDisplayable]]
     
@@ -41,6 +41,25 @@ public class TableView: UITableView {
     fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
     fileprivate var headerTitleForSection: TableHeaderFooterTitleHandler?
     fileprivate var footerTitleForSection: TableHeaderFooterTitleHandler?
+    fileprivate var canEditRowAtIndexPath: ((IndexPath) -> Bool)?
+    fileprivate var canMoveRowAtIndexPath: ((IndexPath) -> Bool)?
+    fileprivate var canFocusRowAtIndexPath: ((IndexPath) -> Bool)?
+    fileprivate var shouldHighlightRowAtIndexPath: ((IndexPath) -> Bool)?
+    fileprivate var shouldIndentWhileEditingRowAtIndexPath: ((IndexPath) -> Bool)?
+    fileprivate var shouldShowMenuForRowAtIndexPath: ((IndexPath) -> Bool)?
+    fileprivate var editingStyleForRowAtIndexPath: ((IndexPath) -> UITableViewCell.EditingStyle)?
+    fileprivate var titleForDeleteConfirmationButtonForRowAtIndexPath: ((IndexPath) -> String)?
+    fileprivate var editActionsForRowAtIndexPath: ((IndexPath) -> [UITableViewRowAction])?
+    fileprivate var commitEditingStyleForRowAtIndexPath: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?
+    fileprivate var didSelectRowAtIndexPath: ((IndexPath) -> Void)?
+    fileprivate var didDeselectRowAtIndexPath: ((IndexPath) -> Void)?
+    fileprivate var willBeginEditingRowAtIndexPath: ((IndexPath) -> Void)?
+    fileprivate var didEndEditingRowAtIndexPath: ((IndexPath?) -> Void)?
+    fileprivate var didHighlightRowAtIndexPath: ((IndexPath) -> Void)?
+    fileprivate var didUnhighlightRowAtIndexPath: ((IndexPath) -> Void)?
+    fileprivate var moveRowAtSourceIndexPathToDestinationIndexPath: ((IndexPath, IndexPath) -> Void)?
+    fileprivate var leadingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
+    fileprivate var trailingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
     
     public init(initalData: [[CellDisplayable]] = [[CellDisplayable]](),
                 style: UITableView.Style = .plain) {
@@ -56,7 +75,7 @@ public class TableView: UITableView {
     }
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public extension TableView {
     @discardableResult
     func update(shouldReloadData: Bool = false,
@@ -83,12 +102,12 @@ public extension TableView {
     }
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 extension TableView: UITableViewDelegate {
     
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 extension TableView: UITableViewDataSource {
     func sections() -> Int {
         data.count
@@ -104,6 +123,10 @@ extension TableView: UITableViewDataSource {
     
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         rows(forSection: section)
+    }
+    
+    public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
+        0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -126,6 +149,8 @@ extension TableView: UITableViewDataSource {
         return cell
     }
     
+    // MARK: HeaderForSection
+    
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         headerViewForSection?(section)
     }
@@ -133,6 +158,8 @@ extension TableView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         headerTitleForSection?(section)
     }
+    
+    // MARK: FooterForSection
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         footerViewForSection?(section)
@@ -142,92 +169,94 @@ extension TableView: UITableViewDataSource {
         footerTitleForSection?(section)
     }
     
+    // MARK: CanRowAt
+    
     public func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        false
+        canEditRowAtIndexPath?(indexPath) ?? false
     }
     
     public func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        false
+        canMoveRowAtIndexPath?(indexPath) ?? false
     }
     
     public func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        false
+        canFocusRowAtIndexPath?(indexPath) ?? false
     }
     
+    // MARK: ShouldRowAt
+    
     public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        false
+        shouldHighlightRowAtIndexPath?(indexPath) ?? false
     }
     
     public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        false
+        shouldIndentWhileEditingRowAtIndexPath?(indexPath) ?? false
     }
     
     public func tableView(_ tableView: UITableView, shouldShowMenuForRowAt indexPath: IndexPath) -> Bool {
-        false
+        shouldShowMenuForRowAtIndexPath?(indexPath) ?? false
+    }
+    
+    // MARK: Editing
+    
+    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        editingStyleForRowAtIndexPath?(indexPath) ?? .none
     }
     
     public func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        nil
-    }
-    
-    public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        0
-    }
-    
-    public func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        .none
+        titleForDeleteConfirmationButtonForRowAtIndexPath?(indexPath)
     }
     
     public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        nil
+        editActionsForRowAtIndexPath?(indexPath)
     }
     
     // MARK: Actions
     
     public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
+        commitEditingStyleForRowAtIndexPath?(editingStyle, indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        didSelectRowAtIndexPath?(indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        
+        didDeselectRowAtIndexPath?(indexPath)
     }
     
     public func tableView(_ tableView: UITableView, willBeginEditingRowAt indexPath: IndexPath) {
-        
+        willBeginEditingRowAtIndexPath?(indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didEndEditingRowAt indexPath: IndexPath?) {
-        
+        didEndEditingRowAtIndexPath?(indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
-        
+        didHighlightRowAtIndexPath?(indexPath)
     }
     
     public func tableView(_ tableView: UITableView, didUnhighlightRowAt indexPath: IndexPath) {
-        
+        didUnhighlightRowAtIndexPath?(indexPath)
     }
     
     public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        
+        moveRowAtSourceIndexPathToDestinationIndexPath?(sourceIndexPath, destinationIndexPath)
     }
     
     @available(iOS 11.0, *)
     public func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        .none
+        leadingSwipeActionsConfigurationForRowAtIndexPath?(indexPath) ?? .none
     }
     
     @available(iOS 11.0, *)
     public func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        .none
+        trailingSwipeActionsConfigurationForRowAtIndexPath?(indexPath) ?? .none
     }
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 public extension TableView {
     @discardableResult
     func set(dataSource: UITableViewDataSource) -> Self {
@@ -279,6 +308,118 @@ public extension TableView {
         
         return self
     }
+    
+    func canEditRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
+        canEditRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func canMoveRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
+        canMoveRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func canFocusRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
+        canFocusRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func shouldHighlightRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
+        shouldHighlightRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func shouldIndentWhileEditingRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
+        shouldIndentWhileEditingRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func shouldShowMenuForRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
+        shouldShowMenuForRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func editingStyleForRowAtIndexPath(_ handler: @escaping (IndexPath) -> UITableViewCell.EditingStyle) -> Self {
+        editingStyleForRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func titleForDeleteConfirmationButtonForRowAtIndexPath(_ handler: @escaping (IndexPath) -> String) -> Self {
+        titleForDeleteConfirmationButtonForRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func editActionsForRowAtIndexPath(_ handler: @escaping (IndexPath) -> [UITableViewRowAction]) -> Self {
+        editActionsForRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func commitEditingStyleForRowAtIndexPath(_ handler: @escaping (UITableViewCell.EditingStyle, IndexPath) -> Void) -> Self {
+        commitEditingStyleForRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func didSelectRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
+        didSelectRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func didDeselectRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
+        didDeselectRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func willBeginEditingRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
+        willBeginEditingRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func didEndEditingRowAtIndexPath(_ handler: @escaping (IndexPath?) -> Void) -> Self {
+        didEndEditingRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func didHighlightRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
+        didHighlightRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func didUnhighlightRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
+        didUnhighlightRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func moveRowAtSourceIndexPathToDestinationIndexPath(_ handler: @escaping (IndexPath, IndexPath) -> Void) -> Self {
+        moveRowAtSourceIndexPathToDestinationIndexPath = handler
+        
+        return self
+    }
+    
+    func leadingSwipeActionsConfigurationForRowAtIndexPath(_ handler: @escaping (IndexPath) -> UISwipeActionsConfiguration) -> Self {
+        leadingSwipeActionsConfigurationForRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    func trailingSwipeActionsConfigurationForRowAtIndexPath(_ handler: @escaping (IndexPath) -> UISwipeActionsConfiguration) -> Self {
+        trailingSwipeActionsConfigurationForRowAtIndexPath = handler
+        
+        return self
+    }
 }
-
-
