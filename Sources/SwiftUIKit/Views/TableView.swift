@@ -44,6 +44,7 @@ public class TableView: UITableView {
     fileprivate var canEditRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var canMoveRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var canFocusRowAtIndexPath: ((IndexPath) -> Bool)?
+    fileprivate var indentationLevelForRowAtIndexPath: ((IndexPath) -> Int)?
     fileprivate var shouldHighlightRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var shouldIndentWhileEditingRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var shouldShowMenuForRowAtIndexPath: ((IndexPath) -> Bool)?
@@ -126,7 +127,7 @@ extension TableView: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-        0
+       indentationLevelForRowAtIndexPath?(indexPath) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -305,6 +306,13 @@ public extension TableView {
     @discardableResult
     func footerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
         footerTitleForSection = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func indentationLevelForRowAtIndexPath(_ handler: @escaping (IndexPath) -> Int) -> Self  {
+        indentationLevelForRowAtIndexPath = handler
         
         return self
     }
