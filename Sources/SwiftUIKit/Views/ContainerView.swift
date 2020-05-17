@@ -10,7 +10,7 @@ import UIKit
 @available(iOS 9.0, *)
 public class ContainerView: UIView {
     private weak var parentViewController: UIViewController?
-    weak var viewController: UIViewController?
+    var viewController: UIViewController?
     
     public init(parent: UIViewController, child: () -> UIViewController) {
         parentViewController = parent
