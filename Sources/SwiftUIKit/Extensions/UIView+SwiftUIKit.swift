@@ -474,7 +474,7 @@ public extension UIView {
     ///     - animated: Should animate setting the left UIBarButtonItem
     @discardableResult
     func navigateSetLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
-        Navigate.shared.setLeft(barButton: barButton)
+        Navigate.shared.setLeft(barButton: barButton, animated: animated)
         
         return self
     }
@@ -485,7 +485,7 @@ public extension UIView {
     ///     - animated: Should animate setting the right UIBarButtonItem
     @discardableResult
     func navigateSetRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
-        Navigate.shared.setRight(barButton: barButton)
+        Navigate.shared.setRight(barButton: barButton, animated: animated)
         
         return self
     }
@@ -496,7 +496,7 @@ public extension UIView {
     ///     - animated: Should animate setting the left [UIBarButtonItem]
     @discardableResult
     func navigateSetLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
-        Navigate.shared.setLeft(barButtons: barButtons)
+        Navigate.shared.setLeft(barButtons: barButtons, animated: animated)
         
         return self
     }
@@ -507,7 +507,7 @@ public extension UIView {
     ///     - animated: Should animate setting the right [UIBarButtonItem]
     @discardableResult
     func navigateSetRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
-        Navigate.shared.setRight(barButtons: barButtons)
+        Navigate.shared.setRight(barButtons: barButtons, animated: animated)
         
         return self
     }
