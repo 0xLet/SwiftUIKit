@@ -298,21 +298,13 @@ public extension UIView {
     func update(padding: Padding) -> Self {
         switch padding {
         case .top(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == topAnchor || constraint.secondAnchor == topAnchor
-                }?.constant = CGFloat(value)
+            topConstraints.first?.constant = CGFloat(value)
         case .bottom(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == bottomAnchor || constraint.secondAnchor == bottomAnchor
-                }?.constant = CGFloat(-value)
+            bottomConstraints.first?.constant = CGFloat(-value)
         case .leading(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == leadingAnchor || constraint.secondAnchor == leadingAnchor
-                }?.constant = CGFloat(value)
+            leadingConstraints.first?.constant = CGFloat(value)
         case .trailing(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == trailingAnchor || constraint.secondAnchor == trailingAnchor
-                }?.constant = CGFloat(-value)
+            trailingConstraints.first?.constant = CGFloat(-value)
         }
         
         return self
