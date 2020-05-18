@@ -13,7 +13,7 @@ public protocol CellDisplayable {
 }
 
 @available(iOS 11.0, *)
-public protocol DataConfigurable: UITableViewCell {
+public protocol DataIdentifiable: UITableViewCell {
     static var ID: String { get }
 }
 
@@ -28,7 +28,7 @@ public protocol CellConfigurable: UITableViewCell {
 }
 
 @available(iOS 11.0, *)
-public typealias TableViewCell = DataConfigurable & CellConfigurable & CellUpdatable
+public typealias TableViewCell = DataIdentifiable & CellConfigurable & CellUpdatable
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
