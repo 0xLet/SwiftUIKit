@@ -7,20 +7,14 @@
 
 import UIKit
 
-public struct Section {
-  public var title: String
-  public var numberOfItems: Int
-  
-  public init(title: String, numberOfItems: Int) {
-    self.title = title
-    self.numberOfItems = numberOfItems
-  }
-}
-
 public class CollectionView: UICollectionView {
-  fileprivate var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
-    
-  fileprivate var sections = [Section]()
+  fileprivate lazy var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
+      
+  fileprivate lazy var _numberOfSections = 0
+  
+  fileprivate lazy var numberOfItemsInSectionHandler: ((UICollectionView, Int) -> Int)? = nil
+  
+  fileprivate lazy var titles: [String]? = nil
   
   public init() {
     super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
@@ -58,17 +52,6 @@ public extension CollectionView {
   @discardableResult
   func set(dataSourceTo dataSource: UICollectionViewDataSource) -> Self {
     self.dataSource = dataSource
-    
-    return self
-  }
-}
-
-// MARK: - Data Source management
-public extension CollectionView {
-  @discardableResult
-  func set(sectionsTo sections: [Section]) -> Self {
-    self.sections = sections
-    reloadData()
     
     return self
   }
@@ -171,6 +154,13 @@ public extension CollectionView {
     
     return self
   }
+  
+  @discardableResult
+  func scrollToItem(at indexPath: IndexPath, at position: UICollectionView.ScrollPosition, animated: Bool = true) -> Self {
+    super.scrollToItem(at: indexPath, at: position, animated: animated)
+    
+    return self
+  }
 }
 
 // MARK: - Section Management
@@ -208,19 +198,63 @@ public extension CollectionView {
   }
 }
 
+// MARK: - Data Source modifiers
+public extension CollectionView {
+  @discardableResult
+  func set(numberOfSectionsTo value: Int) -> Self {
+    _numberOfSections = value
+    
+    return self
+  }
+  
+  
+  /// - Parameter handler: Contains actually declared collection view and given section, expects to return number of items for given section.
+  @discardableResult
+  func setNumberOfItemsInSection(handler: @escaping ((UICollectionView, Int) -> Int)) -> Self {
+    numberOfItemsInSectionHandler = handler
+    
+    return self
+  }
+  
+  @discardableResult
+  func configureCell(handler: @escaping ((UICollectionView, IndexPath) -> UICollectionViewCell)) -> Self {
+    cellForItemAtHandler = handler
+    
+    return self
+  }
+  
+  /// Set index titles for CollectionView
+  /// - Parameter array: Used to provide titles for Collection View, order used is the same as the order of parameter.
+  @discardableResult
+  func setSectionTitles(to array: [String]) -> Self {
+    titles = array
+    
+    return self
+  }
+}
+
 // MARK: - Auxiliary Data Source
 extension CollectionView: UICollectionViewDataSource {
   public func numberOfSections(in collectionView: UICollectionView) -> Int {
-    sections.count
+    return _numberOfSections
   }
   
   public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    sections[section].numberOfItems
+    guard let handler = numberOfItemsInSectionHandler else { return 0 }
+    return handler(collectionView, section)
   }
   
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cellForItemAtHandler = cellForItemAtHandler else { return UICollectionViewCell() }
     return cellForItemAtHandler(collectionView, indexPath)
+  }
+  
+  public func indexTitles(for collectionView: UICollectionView) -> [String]? {
+    return titles
+  }
+  
+  public func collectionView(_ collectionView: UICollectionView, indexPathForIndexTitle title: String, at index: Int) -> IndexPath {
+    IndexPath(index: index)
   }
 }
 
