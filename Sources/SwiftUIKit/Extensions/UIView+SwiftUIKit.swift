@@ -298,21 +298,13 @@ public extension UIView {
     func update(padding: Padding) -> Self {
         switch padding {
         case .top(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == topAnchor || constraint.secondAnchor == topAnchor
-                }?.constant = CGFloat(value)
+            topConstraints.first?.constant = CGFloat(value)
         case .bottom(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == bottomAnchor || constraint.secondAnchor == bottomAnchor
-                }?.constant = CGFloat(-value)
+            bottomConstraints.first?.constant = CGFloat(-value)
         case .leading(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == leadingAnchor || constraint.secondAnchor == leadingAnchor
-                }?.constant = CGFloat(value)
+            leadingConstraints.first?.constant = CGFloat(value)
         case .trailing(let value):
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == trailingAnchor || constraint.secondAnchor == trailingAnchor
-                }?.constant = CGFloat(-value)
+            trailingConstraints.first?.constant = CGFloat(-value)
         }
         
         return self
@@ -482,7 +474,7 @@ public extension UIView {
     ///     - animated: Should animate setting the left UIBarButtonItem
     @discardableResult
     func navigateSetLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
-        Navigate.shared.setLeft(barButton: barButton)
+        Navigate.shared.setLeft(barButton: barButton, animated: animated)
         
         return self
     }
@@ -493,7 +485,7 @@ public extension UIView {
     ///     - animated: Should animate setting the right UIBarButtonItem
     @discardableResult
     func navigateSetRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
-        Navigate.shared.setRight(barButton: barButton)
+        Navigate.shared.setRight(barButton: barButton, animated: animated)
         
         return self
     }
@@ -504,7 +496,7 @@ public extension UIView {
     ///     - animated: Should animate setting the left [UIBarButtonItem]
     @discardableResult
     func navigateSetLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
-        Navigate.shared.setLeft(barButtons: barButtons)
+        Navigate.shared.setLeft(barButtons: barButtons, animated: animated)
         
         return self
     }
@@ -515,7 +507,7 @@ public extension UIView {
     ///     - animated: Should animate setting the right [UIBarButtonItem]
     @discardableResult
     func navigateSetRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
-        Navigate.shared.setRight(barButtons: barButtons)
+        Navigate.shared.setRight(barButtons: barButtons, animated: animated)
         
         return self
     }
