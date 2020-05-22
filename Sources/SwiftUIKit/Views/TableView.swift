@@ -32,6 +32,8 @@ public typealias TableViewCell = DataConfigurable & CellConfigurable & CellUpdat
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
+public typealias TableDidSelectIndexPathHandler = (IndexPath) -> Void
+public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool?
 
 @available(iOS 9.0, *)
 public class TableView: UITableView {
@@ -41,6 +43,8 @@ public class TableView: UITableView {
     fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
     fileprivate var headerTitleForSection: TableHeaderFooterTitleHandler?
     fileprivate var footerTitleForSection: TableHeaderFooterTitleHandler?
+    fileprivate var didSelectRowAtIndexPath: TableDidSelectIndexPathHandler?
+    fileprivate var shouldHighlightRowAtIndexPath: TableHighlightIndexPathHandler?
     
     public init(initalData: [[CellDisplayable]] = [[CellDisplayable]](),
                 style: UITableView.Style = .plain) {
@@ -141,6 +145,14 @@ extension TableView: UITableViewDataSource {
     public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
         footerTitleForSection?(section)
     }
+    
+    public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        didSelectRowAtIndexPath?(indexPath)
+    }
+       
+   public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+       shouldHighlightRowAtIndexPath?(indexPath) ?? true
+   }
 }
 
 @available(iOS 9.0, *)
@@ -192,6 +204,20 @@ public extension TableView {
     @discardableResult
     func footerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
         footerTitleForSection = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func didSelectRow(_ handler: @escaping TableDidSelectIndexPathHandler) -> Self  {
+        didSelectRowAtIndexPath = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func shouldHighlightRow(_ handler: @escaping TableHighlightIndexPathHandler) -> Self  {
+        shouldHighlightRowAtIndexPath = handler
         
         return self
     }
