@@ -13,22 +13,22 @@ public protocol CellDisplayable {
 }
 
 @available(iOS 11.0, *)
-public protocol DataIdentifiable: UITableViewCell {
+public protocol DataIdentifiable: UIView {
     static var ID: String { get }
 }
 
 @available(iOS 11.0, *)
-public protocol CellUpdatable: UITableViewCell {
+public protocol CellUpdatable: UIView {
     func update(forData data: CellDisplayable)
 }
 
 @available(iOS 11.0, *)
-public protocol CellConfigurable: UITableViewCell {
+public protocol CellConfigurable: UIView {
     func configure(forData data: CellDisplayable)
 }
 
 @available(iOS 11.0, *)
-public typealias TableViewCell = DataIdentifiable & CellConfigurable & CellUpdatable
+public typealias TableViewCell = UITableViewCell & DataIdentifiable & CellConfigurable & CellUpdatable
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
