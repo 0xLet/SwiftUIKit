@@ -33,7 +33,7 @@ public typealias TableViewCell = DataConfigurable & CellConfigurable & CellUpdat
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
 public typealias TableDidSelectIndexPathHandler = (IndexPath) -> Void
-public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool?
+public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool
 
 @available(iOS 9.0, *)
 public class TableView: UITableView {
@@ -150,9 +150,9 @@ extension TableView: UITableViewDataSource {
         didSelectRowAtIndexPath?(indexPath)
     }
        
-   public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-       shouldHighlightRowAtIndexPath?(indexPath) ?? true
-   }
+    public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        shouldHighlightRowAtIndexPath?(indexPath) ?? true
+    }
 }
 
 @available(iOS 9.0, *)
