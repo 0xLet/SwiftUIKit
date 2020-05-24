@@ -104,28 +104,34 @@ class ViewController: UIViewController {
 
 ****
 
-# oneleif Project
+## oneleif project
+This means that the project is sponsored by the oneleif community, and the collaborators are team members from oneleif.
 
-![](https://github.com/oneleif/olDocs/blob/master/assets/images/oneleif_logos/full_logo/oneleif_whiteback.png)
+<a href="http://oneleif.com" rel="oneleif website">![](https://github.com/oneleif/olDocs/blob/master/assets/images/oneleif_logos/full_logo/oneleif_whiteback.png)</a>
 
-### Project Info
 
-This project is a oneleif active project.
 
 [![](https://img.shields.io/badge/oneleif-Twitter-blue.svg)](https://twitter.com/oneleifdev)
 
 [![](https://img.shields.io/badge/oneleif-YouTube-red.svg)](https://www.youtube.com/channel/UC3HN0jID38K0Vb_WChvgQmA)
 
+## What is oneleif?
+oneleif is a nonprofit community that supports tech minded individuals. We do this by offering a fun loving community that works on Open Sourced projects together. 
+We love to give back through free resources and guidance.
+
 ## How to join oneleif
 Click on the link below to join the Discord server.
 
-You will start with limited permissions, in a text channel that only moderators will see.
-
-To get full access: read the rules, make an introduction in #introductions, and add an appropriate username.
-
-When you're done with the above, shoot a message to the #start channel to let us know, and we will give you full access.
-
 [![](https://img.shields.io/badge/oneleif-Discord-7284be.svg)](https://discord.gg/tv9UdJK)
+
+-OR-
+
+[Check out our website](http://oneleif.com)
+
 
 ### Questions?
 Feel free to email us at: oneleifdev@gmail.com 
+
+-OR-
+
+Ask questions in the discord
