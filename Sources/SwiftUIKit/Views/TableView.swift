@@ -32,6 +32,8 @@ public typealias TableViewCell = DataIdentifiable & CellConfigurable & CellUpdat
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
+public typealias TableDidSelectIndexPathHandler = (IndexPath) -> Void
+public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool
 
 @available(iOS 11.0, *)
 public class TableView: UITableView {
@@ -41,18 +43,18 @@ public class TableView: UITableView {
     fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
     fileprivate var headerTitleForSection: TableHeaderFooterTitleHandler?
     fileprivate var footerTitleForSection: TableHeaderFooterTitleHandler?
+    fileprivate var didSelectRowAtIndexPath: TableDidSelectIndexPathHandler?
+    fileprivate var shouldHighlightRowAtIndexPath: TableHighlightIndexPathHandler?
     fileprivate var canEditRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var canMoveRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var canFocusRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var indentationLevelForRowAtIndexPath: ((IndexPath) -> Int)?
-    fileprivate var shouldHighlightRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var shouldIndentWhileEditingRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var shouldShowMenuForRowAtIndexPath: ((IndexPath) -> Bool)?
     fileprivate var editingStyleForRowAtIndexPath: ((IndexPath) -> UITableViewCell.EditingStyle)?
     fileprivate var titleForDeleteConfirmationButtonForRowAtIndexPath: ((IndexPath) -> String)?
     fileprivate var editActionsForRowAtIndexPath: ((IndexPath) -> [UITableViewRowAction])?
     fileprivate var commitEditingStyleForRowAtIndexPath: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?
-    fileprivate var didSelectRowAtIndexPath: ((IndexPath) -> Void)?
     fileprivate var didDeselectRowAtIndexPath: ((IndexPath) -> Void)?
     fileprivate var willBeginEditingRowAtIndexPath: ((IndexPath) -> Void)?
     fileprivate var didEndEditingRowAtIndexPath: ((IndexPath?) -> Void)?
@@ -187,7 +189,7 @@ extension TableView: UITableViewDataSource {
     // MARK: ShouldRowAt
     
     public func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        shouldHighlightRowAtIndexPath?(indexPath) ?? false
+        shouldHighlightRowAtIndexPath?(indexPath) ?? true
     }
     
     public func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
@@ -339,7 +341,7 @@ public extension TableView {
     }
     
     @discardableResult
-    func shouldHighlightRowAtIndexPath(_ handler: @escaping (IndexPath) -> Bool) -> Self {
+    func shouldHighlightRow(_ handler: @escaping TableHighlightIndexPathHandler) -> Self {
         shouldHighlightRowAtIndexPath = handler
         
         return self
@@ -388,7 +390,7 @@ public extension TableView {
     }
     
     @discardableResult
-    func didSelectRowAtIndexPath(_ handler: @escaping (IndexPath) -> Void) -> Self {
+    func didSelectRow(_ handler: @escaping TableDidSelectIndexPathHandler) -> Self {
         didSelectRowAtIndexPath = handler
         
         return self
