@@ -7,8 +7,8 @@
 
 import UIKit
 
-@available(iOS 11, *)
-public typealias CollectionViewCell = UICollectionViewCell & DataIdentifiable & CellDisplayable & CellUpdatable
+@available(iOS 11.0, *)
+public typealias CollectionViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UICollectionViewCell
 
 @available(iOS 11, *)
 public class CollectionView: UICollectionView {
@@ -314,10 +314,19 @@ extension CollectionView: UICollectionViewDataSource {
     
     public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellData = data[indexPath.section][indexPath.row]
+        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellData.cellID, for: indexPath)
         
         if let configure = cell as? CellUpdatable {
-            configure.update()
+            configure.update(forData: cellData)
+        }
+        
+        guard cell.contentView.allSubviews.count == 0 else {
+            return cell
+        }
+        
+        if let configure = cell as? CellConfigurable {
+            configure.configure(forData: cellData)
         }
         
         return cell
