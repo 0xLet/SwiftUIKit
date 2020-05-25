@@ -31,21 +31,10 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
-        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
-        }
-        
-        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
-        }
-        
-        let trailingConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.trailingAnchor || constraint.secondAnchor == view.trailingAnchor
-        }
-        
-        let topConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.topAnchor || constraint.secondAnchor == view.topAnchor
-        }
+        let leadingConstraint = view.leadingConstraints.first
+        let bottomConstraint = view.bottomConstraints.first
+        let trailingConstraint = view.trailingConstraints.first
+        let topConstraint = view.topConstraints.first
         
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
@@ -76,9 +65,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
-        let constraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
-        }
+        let constraint = view.leadingConstraints.first
         
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
@@ -105,14 +92,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
-        
-        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
-        }
-        
-        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
-        }
+        let leadingConstraint = view.leadingConstraints.first
+        let bottomConstraint = view.bottomConstraints.first
         
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
@@ -142,17 +123,9 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
-        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
-        }
-        
-        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
-        }
-        
-        let trailingConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.trailingAnchor || constraint.secondAnchor == view.trailingAnchor
-        }
+        let leadingConstraint = view.leadingConstraints.first
+        let bottomConstraint = view.bottomConstraints.first
+        let trailingConstraint = view.trailingConstraints.first
         
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
@@ -184,21 +157,10 @@ final class BasicSwiftUIKitTests: XCTestCase {
             viewToEmbed
         }
         
-        let leadingConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.leadingAnchor || constraint.secondAnchor == view.leadingAnchor
-        }
-        
-        let bottomConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.bottomAnchor || constraint.secondAnchor == view.bottomAnchor
-        }
-        
-        let trailingConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.trailingAnchor || constraint.secondAnchor == view.trailingAnchor
-        }
-        
-        let topConstraint = view.constraints.first { (constraint) -> Bool in
-            constraint.firstAnchor == view.topAnchor || constraint.secondAnchor == view.topAnchor
-        }
+        let leadingConstraint = view.leadingConstraints.first
+        let bottomConstraint = view.bottomConstraints.first
+        let trailingConstraint = view.trailingConstraints.first
+        let topConstraint = view.topConstraints.first
         
         XCTAssertNil(view.backgroundColor)
         XCTAssert(view.allSubviews.count == 1)
@@ -358,11 +320,14 @@ final class BasicSwiftUIKitTests: XCTestCase {
             }
         }
         
+        // Will fail unless...
+        // === (iOS >= 13) ===
         XCTAssert(switchView.allSubviews.count == 8, "switchView.allSubviews.count == \(switchView.allSubviews.count)")
         XCTAssert(uiSwitchView.allSubviews.count == 8, "uiSwitchView.allSubviews.count == \(uiSwitchView.allSubviews.count)")
-        
         XCTAssert(view.allSubviews.count == 12, "view.allSubviews.count == \(view.allSubviews.count)")
         XCTAssert(otherView.allSubviews.count == 12, "otherView.allSubviews.count == \(otherView.allSubviews.count)")
+        // === (End) ===
+        
         XCTAssert(viewWithoutSwitch.allSubviews.count == 3, "viewWithoutSwitch.allSubviews.count == \(viewWithoutSwitch.allSubviews.count)")
         
         switchView.clear()
