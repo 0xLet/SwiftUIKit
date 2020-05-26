@@ -52,6 +52,16 @@ public class CollectionView: UICollectionView {
     
     fileprivate var canFocusItemAtHandler: ((IndexPath) -> Bool)? = nil
     
+    fileprivate var sectionsInsets: [UIEdgeInsets]? = nil
+    
+    fileprivate var minimumLineSpacingForSections: [CGFloat]? = nil
+    
+    fileprivate var minimumInteritemSpacingForSections: [CGFloat]? = nil
+    
+    fileprivate var headerSizesForSections: [CGSize]? = nil
+    
+    fileprivate var footerSizeForSections: [CGSize]? = nil
+    
     public init(initialData: [[CellDisplayable]] = [[CellDisplayable]]()) {
         data = initialData
         
@@ -530,11 +540,125 @@ extension CollectionView: UICollectionViewDelegate {
     }
 }
 
+// MARK: - Layout modifiers
+@available(iOS 11, *)
+public extension CollectionView {
+    @discardableResult
+    func sectionInsets(shouldUpdate: Bool = true, insets: [UIEdgeInsets]) -> Self {
+        sectionsInsets = insets
+        
+        if shouldUpdate {
+            layoutIfNeeded()
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func minimumLineSpacing(shouldUpdate: Bool = true, forSections spacings: [CGFloat]) -> Self {
+        minimumLineSpacingForSections = spacings
+        
+        if shouldUpdate {
+            layoutIfNeeded()
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func minimumInteritemSpacing(shouldUpdate: Bool = true, forSections spacings: [CGFloat]) -> Self {
+        minimumInteritemSpacingForSections = spacings
+        
+        if shouldUpdate {
+            layoutIfNeeded()
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func headerSize(shouldUpdate: Bool = true, forSections sizes: [CGSize]) -> Self {
+        headerSizesForSections = sizes
+        
+        
+        if shouldUpdate {
+            layoutIfNeeded()
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func footerSize(shouldUpdate: Bool = true, forScetions sizes: [CGSize]) -> Self {
+        footerSizeForSections = sizes
+        
+        if shouldUpdate {
+            layoutIfNeeded()
+        }
+        
+        return self
+    }
+}
+
 // MARK: - Collection Flow Layout Delegate
 @available(iOS 11, *)
 extension CollectionView: UICollectionViewDelegateFlowLayout {
+    func returnValidValue<T>(for array: [T]?, section: Int) -> T? {
+            if let array = array,
+            array.count != 0 {
+            
+            if array.count != numberOfSections {
+                let element = array[0]
+                return element
+            } else {
+                let element = array[section]
+                return element
+            }
+        }
+        
+        return nil
+    }
+    
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         data[indexPath.section][indexPath.row].bounds.size
     }
     
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if let inset = returnValidValue(for: sectionsInsets, section: section) {
+            return inset
+        }
+        
+        return UIEdgeInsets()
+    }
+    
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if let spacing = returnValidValue(for: minimumLineSpacingForSections, section: section) {
+            return spacing
+        }
+        
+        return 10
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        
+        
+        return 5
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if let size = returnValidValue(for: headerSizesForSections, section: section) {
+            return size
+        }
+        
+        return .zero
+    }
+    
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        if let size = returnValidValue(for: footerSizeForSections, section: section) {
+            return size
+        }
+        
+        return .zero
+    }
 }
