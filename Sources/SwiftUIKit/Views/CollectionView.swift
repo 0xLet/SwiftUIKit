@@ -589,7 +589,7 @@ public extension CollectionView {
     }
     
     @discardableResult
-    func footerSize(shouldUpdate: Bool = true, forScetions sizes: [CGSize]) -> Self {
+    func footerSize(shouldUpdate: Bool = true, forSections sizes: [CGSize]) -> Self {
         footerSizeForSections = sizes
         
         if shouldUpdate {
