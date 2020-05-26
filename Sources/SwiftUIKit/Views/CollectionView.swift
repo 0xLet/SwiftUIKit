@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 11.0, *)
-public typealias CollectionViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UICollectionViewCell
+public typealias CollectionViewCell = CellDisplayable & DataIdentifiable & CellConfigurable & CellUpdatable & UICollectionViewCell
 
 @available(iOS 11, *)
 public class CollectionView: UICollectionView {
