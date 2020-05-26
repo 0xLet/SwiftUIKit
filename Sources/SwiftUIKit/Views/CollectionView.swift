@@ -54,7 +54,11 @@ public class CollectionView: UICollectionView {
     
     public init(initialData: [[CellDisplayable]] = [[CellDisplayable]]()) {
         data = initialData
-        super.init(frame: .zero, collectionViewLayout: UICollectionViewFlowLayout())
+        
+        let layout = UICollectionViewFlowLayout()
+        layout.estimatedItemSize = .zero
+        
+        super.init(frame: .zero, collectionViewLayout: layout)
         
         delegate = self
         dataSource = self
@@ -524,4 +528,13 @@ extension CollectionView: UICollectionViewDelegate {
     public func collectionView(_ collectionView: UICollectionView, canFocusItemAt indexPath: IndexPath) -> Bool {
         canFocusItemAtHandler?(indexPath) ?? true
     }
+}
+
+// MARK: - Collection Flow Layout Delegate
+@available(iOS 11, *)
+extension CollectionView: UICollectionViewDelegateFlowLayout {
+    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        data[indexPath.section][indexPath.row].bounds.size
+    }
+    
 }

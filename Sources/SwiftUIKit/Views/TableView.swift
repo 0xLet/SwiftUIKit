@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 11.0, *)
-public protocol CellDisplayable {
+public protocol CellDisplayable: UIView {
     var cellID: String { get }
 }
 
