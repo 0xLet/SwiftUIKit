@@ -587,6 +587,11 @@ public extension CollectionView {
 // MARK: - Collection Flow Layout Delegate
 @available(iOS 11, *)
 extension CollectionView: UICollectionViewDelegateFlowLayout {
+    /// Returns value based on size of given array's count and `numberOfSections` integer.
+    /// - Parameters:
+    ///   - array: Array of objects containing value that can be returned
+    ///   - section: section which will be used to get value from array
+    /// - Returns: First value of array if array's count isn't equal `numberOfSections`, value from given index if array's count is equal to `numberOfSections` and nil if array is nil.
     func returnValidValue<T>(for array: [T]?, section: Int) -> T? {
             if let array = array,
             array.count != 0 {
