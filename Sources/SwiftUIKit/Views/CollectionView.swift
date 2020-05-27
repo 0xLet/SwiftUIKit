@@ -8,59 +8,37 @@
 import UIKit
 
 @available(iOS 11.0, *)
-public typealias CollectionViewCell = CellDisplayable & DataIdentifiable & CellConfigurable & CellUpdatable & UICollectionViewCell
+public typealias CollectionViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UICollectionViewCell
 
 @available(iOS 11, *)
 public class CollectionView: UICollectionView {
     public var data: [[CellDisplayable]]
     
-    fileprivate var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
-    
-    fileprivate var numberOfItemsInSectionHandler: ((UICollectionView, Int) -> Int)? = nil
-    
     fileprivate var titles: [String]? = nil
-    
-    fileprivate var shouldSelectItemAtHandler: ((IndexPath) -> Bool)? = nil
-    
-    fileprivate var didSelectItemAtHandler: ((IndexPath) -> ())? = nil
-    
-    fileprivate var shouldDeselectItemAtHandler: ((IndexPath) -> Bool)? = nil
-    
-    fileprivate var didDeselectItemAtHandler: ((IndexPath) -> ())? = nil
-    
-    fileprivate var shouldBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> Bool)? = nil
-    
-    fileprivate var didBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> ())? = nil
-    
-    fileprivate var didEndMultipleSelectionInteractionHandler: ((UICollectionView) -> ())? = nil
-    
-    fileprivate var shouldHighlightItemAtHandler: ((IndexPath) -> Bool)? = nil
-    
-    fileprivate var didHighlightItemAtHandler: ((IndexPath) -> ())? = nil
-    
-    fileprivate var didUnhighlightItemAtHandler: ((IndexPath) -> ())? = nil
-    
-    fileprivate var willDisplayCellHandler: ((CollectionViewCell, IndexPath) -> ())? = nil
-    
-    fileprivate var didEndDisplayingCell: ((CollectionViewCell, IndexPath) -> ())? = nil
-    
-    fileprivate var transitionLayoutForHandler: ((_ old: UICollectionViewLayout, _ new: UICollectionViewLayout) -> UICollectionViewTransitionLayout)? = nil
-    
-    fileprivate var targetContentOffsetForHandler: ((_ proposed: CGPoint) -> CGPoint)? = nil
-    
-    fileprivate var targetIndexPathForMoveHandler: ((_ from: IndexPath, _ to: IndexPath) -> IndexPath)? = nil
-    
-    fileprivate var canFocusItemAtHandler: ((IndexPath) -> Bool)? = nil
-    
     fileprivate var sectionsInsets: [UIEdgeInsets]? = nil
-    
-    fileprivate var minimumLineSpacingForSections: [CGFloat]? = nil
-    
-    fileprivate var minimumInteritemSpacingForSections: [CGFloat]? = nil
-    
-    fileprivate var headerSizesForSections: [CGSize]? = nil
-    
     fileprivate var footerSizeForSections: [CGSize]? = nil
+    fileprivate var headerSizesForSections: [CGSize]? = nil
+    fileprivate var minimumLineSpacingForSections: [CGFloat]? = nil
+    fileprivate var didSelectItemAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var canFocusItemAtHandler: ((IndexPath) -> Bool)? = nil
+    fileprivate var didDeselectItemAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var minimumInteritemSpacingForSections: [CGFloat]? = nil
+    fileprivate var didHighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var shouldSelectItemAtHandler: ((IndexPath) -> Bool)? = nil
+    fileprivate var didUnhighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var shouldDeselectItemAtHandler: ((IndexPath) -> Bool)? = nil
+    fileprivate var shouldHighlightItemAtHandler: ((IndexPath) -> Bool)? = nil
+    fileprivate var didEndDisplayingCell: ((CollectionViewCell, IndexPath) -> ())? = nil
+    fileprivate var willDisplayCellHandler: ((CollectionViewCell, IndexPath) -> ())? = nil
+    fileprivate var numberOfItemsInSectionHandler: ((UICollectionView, Int) -> Int)? = nil
+    fileprivate var targetContentOffsetForHandler: ((_ proposed: CGPoint) -> CGPoint)? = nil
+    fileprivate var didBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var didEndMultipleSelectionInteractionHandler: ((UICollectionView) -> ())? = nil
+    fileprivate var shouldBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> Bool)? = nil
+    fileprivate var layoutSizeForItemHandler: ((UICollectionViewLayout, IndexPath) -> CGSize)? = nil
+    fileprivate var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
+    fileprivate var targetIndexPathForMoveHandler: ((_ from: IndexPath, _ to: IndexPath) -> IndexPath)? = nil
+    fileprivate var transitionLayoutForHandler: ((_ old: UICollectionViewLayout, _ new: UICollectionViewLayout) -> UICollectionViewTransitionLayout)? = nil
     
     public init(initialData: [[CellDisplayable]] = [[CellDisplayable]]()) {
         data = initialData
@@ -544,6 +522,13 @@ extension CollectionView: UICollectionViewDelegate {
 @available(iOS 11, *)
 public extension CollectionView {
     @discardableResult
+    func layoutSizeForItem(_ handler: @escaping ((UICollectionViewLayout,  IndexPath) -> CGSize)) -> Self {
+        layoutSizeForItemHandler = handler
+        
+        return self
+    }
+    
+    @discardableResult
     func sectionInsets(shouldUpdate: Bool = true, insets: [UIEdgeInsets]) -> Self {
         sectionsInsets = insets
         
@@ -580,7 +565,6 @@ public extension CollectionView {
     func headerSize(shouldUpdate: Bool = true, forSections sizes: [CGSize]) -> Self {
         headerSizesForSections = sizes
         
-        
         if shouldUpdate {
             layoutIfNeeded()
         }
@@ -603,6 +587,11 @@ public extension CollectionView {
 // MARK: - Collection Flow Layout Delegate
 @available(iOS 11, *)
 extension CollectionView: UICollectionViewDelegateFlowLayout {
+    /// Returns value based on size of given array's count and `numberOfSections` integer.
+    /// - Parameters:
+    ///   - array: Array of objects containing value that can be returned
+    ///   - section: section which will be used to get value from array
+    /// - Returns: First value of array if array's count isn't equal `numberOfSections`, value from given index if array's count is equal to `numberOfSections` and nil if array is nil.
     func returnValidValue<T>(for array: [T]?, section: Int) -> T? {
             if let array = array,
             array.count != 0 {
@@ -620,7 +609,7 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        data[indexPath.section][indexPath.row].bounds.size
+        layoutSizeForItemHandler?(collectionViewLayout, indexPath) ?? CGSize(width: 60, height: 60)
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {

@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 11.0, *)
-public protocol CellDisplayable: UIView {
+public protocol CellDisplayable {
     var cellID: String { get }
 }
 
@@ -28,7 +28,7 @@ public protocol CellConfigurable {
 }
 
 @available(iOS 11.0, *)
-public typealias TableViewCell = CellDisplayable & DataIdentifiable & CellConfigurable & CellUpdatable & UITableViewCell
+public typealias TableViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UITableViewCell
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableHeaderFooterTitleHandler = (Int) -> String?
