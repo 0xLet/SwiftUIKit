@@ -19,26 +19,30 @@ public class CollectionView: UICollectionView {
     fileprivate var footerSizeForSections: [CGSize]? = nil
     fileprivate var headerSizesForSections: [CGSize]? = nil
     fileprivate var minimumLineSpacingForSections: [CGFloat]? = nil
-    fileprivate var didSelectItemAtHandler: ((IndexPath) -> ())? = nil
-    fileprivate var canFocusItemAtHandler: ((IndexPath) -> Bool)? = nil
-    fileprivate var didDeselectItemAtHandler: ((IndexPath) -> ())? = nil
     fileprivate var minimumInteritemSpacingForSections: [CGFloat]? = nil
-    fileprivate var didHighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    
     fileprivate var shouldSelectItemAtHandler: ((IndexPath) -> Bool)? = nil
-    fileprivate var didUnhighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var didSelectItemAtHandler: ((IndexPath) -> ())? = nil
     fileprivate var shouldDeselectItemAtHandler: ((IndexPath) -> Bool)? = nil
+    fileprivate var didDeselectItemAtHandler: ((IndexPath) -> ())? = nil
     fileprivate var shouldHighlightItemAtHandler: ((IndexPath) -> Bool)? = nil
-    fileprivate var didEndDisplayingCell: ((CollectionViewCell, IndexPath) -> ())? = nil
+    fileprivate var didHighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var didUnhighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    fileprivate var canFocusItemAtHandler: ((IndexPath) -> Bool)? = nil
+    
     fileprivate var willDisplayCellHandler: ((CollectionViewCell, IndexPath) -> ())? = nil
+    fileprivate var didEndDisplayingCell: ((CollectionViewCell, IndexPath) -> ())? = nil
+    
     fileprivate var numberOfItemsInSectionHandler: ((UICollectionView, Int) -> Int)? = nil
+    fileprivate var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
+    fileprivate var targetIndexPathForMoveHandler: ((_ from: IndexPath, _ to: IndexPath) -> IndexPath)? = nil
     fileprivate var targetContentOffsetForHandler: ((_ proposed: CGPoint) -> CGPoint)? = nil
+    fileprivate var layoutSizeForItemHandler: ((UICollectionViewLayout, IndexPath) -> CGSize)? = nil
+    fileprivate var transitionLayoutForHandler: ((_ old: UICollectionViewLayout, _ new: UICollectionViewLayout) -> UICollectionViewTransitionLayout)? = nil
+
     fileprivate var didBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> ())? = nil
     fileprivate var didEndMultipleSelectionInteractionHandler: ((UICollectionView) -> ())? = nil
     fileprivate var shouldBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> Bool)? = nil
-    fileprivate var layoutSizeForItemHandler: ((UICollectionViewLayout, IndexPath) -> CGSize)? = nil
-    fileprivate var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
-    fileprivate var targetIndexPathForMoveHandler: ((_ from: IndexPath, _ to: IndexPath) -> IndexPath)? = nil
-    fileprivate var transitionLayoutForHandler: ((_ old: UICollectionViewLayout, _ new: UICollectionViewLayout) -> UICollectionViewTransitionLayout)? = nil
     
     public init(initialData: [[CellDisplayable]] = [[CellDisplayable]]()) {
         data = initialData
@@ -596,7 +600,8 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
             if let array = array,
             array.count != 0 {
             
-            if array.count != numberOfSections {
+            if array.count != numberOfSections ||
+                section > numberOfSections {
                 let element = array[0]
                 return element
             } else {
@@ -630,7 +635,9 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        
+        if let spacing = returnValidValue(for: minimumInteritemSpacingForSections, section: section) {
+            return spacing
+        }
         
         return 5
     }
