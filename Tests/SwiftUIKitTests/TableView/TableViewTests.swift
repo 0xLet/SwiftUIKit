@@ -124,7 +124,7 @@ fileprivate class TableTestHelper {
         let bio: String
     }
 
-    class InfoCell: UITableViewCell {
+    class InfoCell: TableViewCell {
         let label: Label = Label("")
         let detailLabel: Label = Label("")
         let bioLabel: Label = Label("")
@@ -139,7 +139,7 @@ extension TableTestHelper.InfoData: CellDisplayable {
 }
 
 @available(iOS 11.0, *)
-extension TableTestHelper.InfoCell: TableViewCell {
+extension TableTestHelper.InfoCell {
     static var ID: String {
         "InfoCell"
     }
