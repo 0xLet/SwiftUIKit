@@ -9,7 +9,7 @@ import XCTest
 import UIKit
 @testable import SwiftUIKit
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 class TableViewTests: XCTestCase {
     
     func testTableViewNoCells() {
@@ -116,7 +116,7 @@ class TableViewTests: XCTestCase {
     }
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 fileprivate class TableTestHelper {
     struct InfoData {
         let title: String
@@ -124,22 +124,22 @@ fileprivate class TableTestHelper {
         let bio: String
     }
 
-    class InfoCell: UITableViewCell {
+    class InfoCell: TableViewCell {
         let label: Label = Label("")
         let detailLabel: Label = Label("")
         let bioLabel: Label = Label("")
     }
 }
 
-@available(iOS 9.0, *)
+@available(iOS 11.0, *)
 extension TableTestHelper.InfoData: CellDisplayable {
     var cellID: String {
         TableTestHelper.InfoCell.ID
     }
 }
 
-@available(iOS 9.0, *)
-extension TableTestHelper.InfoCell: TableViewCell {
+@available(iOS 11.0, *)
+extension TableTestHelper.InfoCell {
     static var ID: String {
         "InfoCell"
     }
