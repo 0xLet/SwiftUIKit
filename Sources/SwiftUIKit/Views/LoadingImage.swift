@@ -10,12 +10,12 @@ import UIKit
 @available(iOS 9.0, *)
 public class LoadingImage: UIView {
     private var loadingTint: UIColor?
-    private var errorHandler: ((LoadingImage, Error) -> Void)?
+    private var errorHandler: ((LoadingImage, Error?) -> Void)?
     private var completionHandler: ((UIImage?) -> Void)?
     
     public init(_ url: URL? = nil,
                 loadingTint: UIColor? = nil,
-                onErrorLoading: ((LoadingImage, Error) -> Void)? = nil,
+                onErrorLoading: ((LoadingImage, Error?) -> Void)? = nil,
                 onCompletedLoading: ((UIImage?) -> Void)? = nil) {
         
         super.init(frame: .zero)
@@ -78,14 +78,13 @@ public class LoadingImage: UIView {
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             guard let data = data else {
-                guard let error = error else {
-                    print("Image \(#function) Error!")
-                    print("Issue loading Image with url: \(url.absoluteString)")
-                    self?.update(color: .red)
-                    return
-                }
+                print("Image \(#function) Error!")
+                print("Issue loading Image with url: \(url.absoluteString)")
+                
                 if let self = self {
                     self.errorHandler?(self, error)
+                } else {
+                    self?.update(color: .red)
                 }
                 self?.completionHandler?(nil)
                 return
@@ -94,7 +93,12 @@ public class LoadingImage: UIView {
                 print("Image \(#function) Error!")
                 print("Issue loading Image with url: \(url.absoluteString)")
                 print("Error: Could not create UIImage from data")
-                self?.update(color: .red)
+
+                if let self = self {
+                    self.errorHandler?(self, error)
+                } else {
+                    self?.update(color: .red)
+                }
                 self?.completionHandler?(nil)
                 return
             }
