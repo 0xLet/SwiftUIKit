@@ -108,12 +108,7 @@ public extension TableView {
 }
 
 @available(iOS 11.0, *)
-extension TableView: UITableViewDelegate {
-    
-}
-
-@available(iOS 11.0, *)
-extension TableView: UITableViewDataSource {
+extension TableView: UITableViewDataSource, UITableViewDelegate {
     func sections() -> Int {
         data.count
     }
