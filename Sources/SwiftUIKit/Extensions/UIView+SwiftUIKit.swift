@@ -233,6 +233,34 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
+    func setVertical(huggingPriority: UILayoutPriority) -> Self {
+        setContentHuggingPriority(huggingPriority, for: .vertical)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setHorizontal(huggingPriority: UILayoutPriority) -> Self {
+        setContentHuggingPriority(huggingPriority, for: .horizontal)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setVertical(compressionResistance: UILayoutPriority) -> Self {
+        setContentCompressionResistancePriority(compressionResistance, for: .vertical)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setHorizontal(compressionResistance: UILayoutPriority) -> Self {
+        setContentCompressionResistancePriority(compressionResistance, for: .horizontal)
+        
+        return self
+    }
+    
     /// Clear all subviews from this view
     @discardableResult
     func clear() -> Self {
