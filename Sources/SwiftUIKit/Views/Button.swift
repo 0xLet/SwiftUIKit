@@ -20,7 +20,7 @@ public class Button: UIButton {
         super.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
-        self.setTitleColor(titleColor ?? UIButton(type: .system).currentTitleColor, for: .normal)
+        self.setTitleColor(titleColor ?? .systemBlue, for: .normal)
         self.setTitle(title, for: .normal)
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
         

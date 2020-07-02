@@ -246,8 +246,8 @@ public extension UIView {
     ///     - padding: The amount of space between this view and its parent view
     @discardableResult
     func padding(_ padding: Float = 8) -> UIView {
-        return UIView(backgroundColor: backgroundColor)
-            .embed(withPadding: padding) { self }
+        return UIView(withPadding: padding,
+                      backgroundColor: backgroundColor) { self }
             .accessibility(label: accessibilityLabel,
                            identifier: accessibilityIdentifier,
                            traits: accessibilityTraits)
