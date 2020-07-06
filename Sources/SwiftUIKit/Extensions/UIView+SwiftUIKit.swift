@@ -543,7 +543,7 @@ public extension UIView {
 
 public extension UIView {
     var allSubviews: [UIView] {
-        return getSubviews(forView: self)
+        getSubviews(forView: self)
     }
     
     @discardableResult
