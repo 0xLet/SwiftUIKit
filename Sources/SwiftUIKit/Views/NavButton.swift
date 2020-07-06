@@ -13,11 +13,11 @@ public class NavButton: Button {
     private var style: Navigate.NavigationStyle
     
     public init(_ title: String,
+                tapHandler: (() -> Void)? = nil,
                 destination: @escaping () -> UIViewController,
                 style: Navigate.NavigationStyle,
                 titleColor: UIColor? = nil,
-                backgroundColor: UIColor? = nil,
-                _ tapHandler: (() -> Void)? = nil) {
+                backgroundColor: UIColor? = nil) {
         
         self.destination = destination
         self.style = style
@@ -32,7 +32,7 @@ public class NavButton: Button {
         }
     }
     
-    public init(_ tapHandler: (() -> Void)? = nil,
+    public init(tapHandler: (() -> Void)? = nil,
                 destination: @escaping () -> UIViewController,
                 style: Navigate.NavigationStyle,
                 _ closure: () -> UIView) {
