@@ -41,7 +41,7 @@ class ViewController: UIViewController {
                                 Field(value: "SwiftUIKit",
                                       placeholder: "Some Name",
                                       keyboardType: .default)
-                                .inputHandler { print("New Name: \($0)") }
+                                    .inputHandler { print("New Name: \($0)") }
                             ]
                         },
                         
@@ -50,8 +50,8 @@ class ViewController: UIViewController {
                         ZStack {
                             [
                                 Image(.blue)
-                                .frame(height: 60, width: 60)
-                                .offset(x: 100)
+                                    .frame(height: 60, width: 60)
+                                    .offset(x: 100)
                             ]
                         },
                         
