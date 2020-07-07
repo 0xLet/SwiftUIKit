@@ -2,7 +2,7 @@
 //  LoadingImage.swift
 //
 //
-//  Created by CRi on 11/29/19.
+//  Created by Zach Eriksen on 11/29/19.
 //
 
 import UIKit
