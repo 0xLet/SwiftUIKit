@@ -458,16 +458,6 @@ public extension UIView {
     
     /// Hide the view
     /// - Parameters:
-    ///     - if: A bool that determines if the view should be hidden
-    @discardableResult
-    func hide(if shouldHide: Bool) -> Self {
-        isHidden = shouldHide
-        
-        return self
-    }
-    
-    /// Hide the view
-    /// - Parameters:
     ///     - if: A closure that determines if the view should be hidden
     @discardableResult
     func hide(if shouldHide: @autoclosure () -> Bool) -> Self {
