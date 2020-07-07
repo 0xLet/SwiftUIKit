@@ -84,7 +84,7 @@ public class LoadingImage: UIView {
                 if let self = self {
                     self.errorHandler?(self, error)
                 } else {
-                    self?.update(color: .red)
+                    self?.update(color: .systemRed)
                 }
                 self?.completionHandler?(nil)
                 return
@@ -97,7 +97,7 @@ public class LoadingImage: UIView {
                 if let self = self {
                     self.errorHandler?(self, error)
                 } else {
-                    self?.update(color: .red)
+                    self?.update(color: .systemRed)
                 }
                 self?.completionHandler?(nil)
                 return
