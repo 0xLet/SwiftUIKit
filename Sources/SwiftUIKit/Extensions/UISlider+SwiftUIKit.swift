@@ -9,7 +9,7 @@ import UIKit
 
 public extension UISlider {
     @discardableResult
-    func set(thumbImage: UIImage,
+    func set(thumbImage: UIImage?,
              forState state: UIControl.State = .normal) -> Self {
         setThumbImage(thumbImage, for: state)
         
