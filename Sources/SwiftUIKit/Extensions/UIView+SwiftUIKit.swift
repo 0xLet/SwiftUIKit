@@ -308,13 +308,13 @@ public extension UIView {
         if let height = height {
             constraints.first { (constraint) -> Bool in
                 constraint.firstAnchor == heightAnchor
-                }?.constant = CGFloat(height)
+            }?.constant = CGFloat(height)
         }
         
         if let width = width {
             constraints.first { (constraint) -> Bool in
                 constraint.firstAnchor == widthAnchor
-                }?.constant = CGFloat(width)
+            }?.constant = CGFloat(width)
         }
         
         return self
