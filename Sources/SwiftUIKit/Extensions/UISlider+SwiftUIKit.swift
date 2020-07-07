@@ -17,7 +17,7 @@ public extension UISlider {
     }
     
     @discardableResult
-    func tint(thumbColor: UIColor) -> Self {
+    func tint(thumbColor: UIColor?) -> Self {
         thumbTintColor = thumbColor
         
         return self
