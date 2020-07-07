@@ -204,6 +204,23 @@ public extension UIView {
         return self
     }
     
+    /// Center a View
+    /// - Parameters:
+    ///     - closure: A trailing closure that accepts a view
+    @discardableResult
+    func center(_ closure: () -> UIView) -> Self {
+        let viewToEmbed = closure()
+        viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(viewToEmbed)
+        
+        NSLayoutConstraint.activate([
+            viewToEmbed.centerXAnchor.constraint(equalTo: centerXAnchor),
+            viewToEmbed.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        
+        return self
+    }
+    
     /// Embed a View to certain anchors (top, bottom, leading, trailing)
     /// - Parameters:
     ///     - withPadding: The amount of space between the embedded view and this view
