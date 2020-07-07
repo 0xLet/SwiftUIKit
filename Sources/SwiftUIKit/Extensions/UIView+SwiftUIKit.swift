@@ -449,6 +449,57 @@ public extension UIView {
         return self
     }
     
+    /// Hide the view
+    @discardableResult
+    func hidden(withAnimatedDuration duration: Double? = nil) -> Self {
+        guard let duration = duration else {
+            isHidden = true
+            
+            return self
+        }
+        
+        alpha = 1
+        
+        UIView.animate(withDuration: duration,
+                       animations: {
+                        self.alpha = 0
+                       },
+                       completion: { (isCompleted) in
+                        if isCompleted {
+                            self.isHidden = true
+                            self.alpha = 1
+                        }
+                       })
+        
+        return self
+    }
+    
+    /// Show the view
+    @discardableResult
+    func appear(withAnimatedDuration duration: Double? = nil) -> Self {
+        guard let duration = duration else {
+            isHidden = false
+            
+            return self
+        }
+        
+        alpha = 0
+        isHidden = false
+        
+        UIView.animate(withDuration: duration,
+                       animations: {
+                        self.alpha = 1
+                       },
+                       completion: { (isCompleted) in
+                        if isCompleted {
+                            self.isHidden = false
+                            self.alpha = 1
+                        }
+                       })
+        
+        return self
+    }
+    
     @discardableResult
     func accessibility(label: String? = nil,
                        identifier: String? = nil,
