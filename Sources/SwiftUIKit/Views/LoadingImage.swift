@@ -9,16 +9,19 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class LoadingImage: UIView {
-    private var completionHandler: ((UIImage?) -> Void)?
     private var loadingTint: UIColor?
+    private var errorHandler: ((LoadingImage, Error?) -> Void)?
+    private var completionHandler: ((UIImage?) -> Void)?
     
     public init(_ url: URL? = nil,
                 loadingTint: UIColor? = nil,
+                onErrorLoading: ((LoadingImage, Error?) -> Void)? = nil,
                 onCompletedLoading: ((UIImage?) -> Void)? = nil) {
         
         super.init(frame: .zero)
         
         self.loadingTint = loadingTint
+        errorHandler = onErrorLoading
         completionHandler = onCompletedLoading
         
         embed {
@@ -74,20 +77,28 @@ public class LoadingImage: UIView {
         
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
-            guard let data = data,
-                error == nil else {
-                    print("Image \(#function) Error!")
-                    print("Issue loading Image with url: \(url.absoluteString)")
-                    print("Error: \(error?.localizedDescription ?? "-1")")
+            guard let data = data else {
+                print("Image \(#function) Error!")
+                print("Issue loading Image with url: \(url.absoluteString)")
+                
+                if let self = self {
+                    self.errorHandler?(self, error)
+                } else {
                     self?.update(color: .red)
-                    self?.completionHandler?(nil)
-                    return
+                }
+                self?.completionHandler?(nil)
+                return
             }
             guard let image = UIImage(data: data) else {
                 print("Image \(#function) Error!")
                 print("Issue loading Image with url: \(url.absoluteString)")
                 print("Error: Could not create UIImage from data")
-                self?.update(color: .red)
+
+                if let self = self {
+                    self.errorHandler?(self, error)
+                } else {
+                    self?.update(color: .red)
+                }
                 self?.completionHandler?(nil)
                 return
             }

@@ -233,6 +233,34 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
+    func setVertical(huggingPriority: UILayoutPriority) -> Self {
+        setContentHuggingPriority(huggingPriority, for: .vertical)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setHorizontal(huggingPriority: UILayoutPriority) -> Self {
+        setContentHuggingPriority(huggingPriority, for: .horizontal)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setVertical(compressionResistance: UILayoutPriority) -> Self {
+        setContentCompressionResistancePriority(compressionResistance, for: .vertical)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setHorizontal(compressionResistance: UILayoutPriority) -> Self {
+        setContentCompressionResistancePriority(compressionResistance, for: .horizontal)
+        
+        return self
+    }
+    
     /// Clear all subviews from this view
     @discardableResult
     func clear() -> Self {
@@ -246,8 +274,8 @@ public extension UIView {
     ///     - padding: The amount of space between this view and its parent view
     @discardableResult
     func padding(_ padding: Float = 8) -> UIView {
-        return UIView(backgroundColor: backgroundColor)
-            .embed(withPadding: padding) { self }
+        return UIView(withPadding: padding,
+                      backgroundColor: backgroundColor) { self }
             .accessibility(label: accessibilityLabel,
                            identifier: accessibilityIdentifier,
                            traits: accessibilityTraits)
@@ -515,7 +543,7 @@ public extension UIView {
 
 public extension UIView {
     var allSubviews: [UIView] {
-        return getSubviews(forView: self)
+        getSubviews(forView: self)
     }
     
     @discardableResult

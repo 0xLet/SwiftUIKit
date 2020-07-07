@@ -9,15 +9,15 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class NavButton: Button {
-    private var destination: UIViewController
+    private var destination: () -> UIViewController
     private var style: Navigate.NavigationStyle
     
     public init(_ title: String,
-                destination: UIViewController,
+                tapHandler: (() -> Void)? = nil,
+                destination: @escaping () -> UIViewController,
                 style: Navigate.NavigationStyle,
                 titleColor: UIColor? = nil,
-                backgroundColor: UIColor? = nil,
-                _ tapHandler: (() -> Void)? = nil) {
+                backgroundColor: UIColor? = nil) {
         
         self.destination = destination
         self.style = style
@@ -27,13 +27,13 @@ public class NavButton: Button {
                    backgroundColor: backgroundColor,
                    forEvent: .touchUpInside) {
                     tapHandler?()
-                    Navigate.shared.go(destination,
+                    Navigate.shared.go(destination(),
                                        style: style)
         }
     }
     
-    public init(_ tapHandler: (() -> Void)? = nil,
-                destination: UIViewController,
+    public init(tapHandler: (() -> Void)? = nil,
+                destination: @escaping () -> UIViewController,
                 style: Navigate.NavigationStyle,
                 _ closure: () -> UIView) {
         
@@ -42,7 +42,7 @@ public class NavButton: Button {
         
         super.init({
             tapHandler?()
-            Navigate.shared.go(destination,
+            Navigate.shared.go(destination(),
                                style: style)
         },
                    forEvent: .touchUpInside,
