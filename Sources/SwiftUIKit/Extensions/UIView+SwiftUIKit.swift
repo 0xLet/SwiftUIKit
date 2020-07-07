@@ -426,6 +426,19 @@ public extension UIView {
         return self
     }
     
+    /// Constrains the View's centerAnchors
+    @discardableResult
+    func center(xOffset: Float? = nil, yOffset: Float? = nil, in view: UIView) -> Self {
+        if let x = xOffset {
+            centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(x)).isActive = true
+        }
+        if let y = yOffset {
+            centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(y)).isActive = true
+        }
+        
+        return self
+    }
+    
     /// Hide the view
     /// - Parameters:
     ///     - if: A closure that determines if the view should be hidden
