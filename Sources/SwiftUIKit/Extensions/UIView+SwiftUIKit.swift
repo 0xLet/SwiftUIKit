@@ -476,7 +476,6 @@ public extension UIView {
     
     @discardableResult
     func animate(withDuration duration: TimeInterval,
-                 s: String,
                  animation: @escaping (UIView) -> Void,
                  completion: @escaping (UIView) -> Void) -> Self {
         
