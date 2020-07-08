@@ -476,21 +476,6 @@ public extension UIView {
     
     @discardableResult
     func animate(withDuration duration: TimeInterval,
-                 animation: @escaping (UIView) -> Void,
-                 completion: @escaping (UIView) -> Void) -> Self {
-        
-        UIView.animate(withDuration: duration,
-                       animations: { animation(self) }) { (isComplete) in
-                        if isComplete {
-                            completion(self)
-                        }
-        }
-        
-        return self
-    }
-    
-    @discardableResult
-    func animate(withDuration duration: TimeInterval,
                  delay: TimeInterval,
                  options: UIView.AnimationOptions,
                  animation: @escaping (UIView) -> Void,
