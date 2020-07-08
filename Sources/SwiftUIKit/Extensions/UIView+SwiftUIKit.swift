@@ -515,13 +515,7 @@ public extension UIView {
     
     /// Hide the view
     @discardableResult
-    func hidden(withAnimatedDuration duration: Double? = nil) -> Self {
-        guard let duration = duration else {
-            isHidden = true
-            
-            return self
-        }
-        
+    func hidden(withAnimatedDuration duration: Double = 0) -> Self {
         alpha = 1
         
         animate(withDuration: duration,
@@ -538,13 +532,7 @@ public extension UIView {
     
     /// Show the view
     @discardableResult
-    func appear(withAnimatedDuration duration: Double? = nil) -> Self {
-        guard let duration = duration else {
-            isHidden = false
-            
-            return self
-        }
-        
+    func appear(withAnimatedDuration duration: Double = 0) -> Self {
         alpha = 0
         isHidden = false
         
