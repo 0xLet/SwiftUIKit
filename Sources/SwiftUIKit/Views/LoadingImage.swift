@@ -2,7 +2,7 @@
 //  LoadingImage.swift
 //
 //
-//  Created by CRi on 11/29/19.
+//  Created by Zach Eriksen on 11/29/19.
 //
 
 import UIKit
@@ -84,7 +84,7 @@ public class LoadingImage: UIView {
                 if let self = self {
                     self.errorHandler?(self, error)
                 } else {
-                    self?.update(color: .red)
+                    self?.update(color: .systemRed)
                 }
                 self?.completionHandler?(nil)
                 return
@@ -97,7 +97,7 @@ public class LoadingImage: UIView {
                 if let self = self {
                     self.errorHandler?(self, error)
                 } else {
-                    self?.update(color: .red)
+                    self?.update(color: .systemRed)
                 }
                 self?.completionHandler?(nil)
                 return
