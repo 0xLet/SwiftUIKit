@@ -462,12 +462,12 @@ public extension UIView {
     @discardableResult
     func animate(withDuration duration: TimeInterval,
                  animation: @escaping (UIView) -> Void,
-                 completion: @escaping (UIView) -> Void) -> Self {
+                 completion: ((UIView) -> Void)? = nil) -> Self {
         
         UIView.animate(withDuration: duration,
                        animations: { animation(self) }) { (isComplete) in
                         if isComplete {
-                            completion(self)
+                            completion?(self)
                         }
         }
         
@@ -479,14 +479,14 @@ public extension UIView {
                  delay: TimeInterval,
                  options: UIView.AnimationOptions,
                  animation: @escaping (UIView) -> Void,
-                 completion: @escaping (UIView) -> Void) -> Self {
+                 completion: ((UIView) -> Void)? = nil) -> Self {
         
         UIView.animate(withDuration: duration,
                        delay: delay,
                        options: options,
                        animations: { animation(self) }) { (isComplete) in
                         if isComplete {
-                            completion(self)
+                            completion?(self)
                         }
         }
         
