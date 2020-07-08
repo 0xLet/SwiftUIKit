@@ -446,6 +446,9 @@ public extension UIView {
     /// Constrains the View's centerAnchors
     @discardableResult
     func center(xOffset: Float? = nil, yOffset: Float? = nil, in view: UIView) -> Self {
+        translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(self)
+        
         if let x = xOffset {
             centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(x)).isActive = true
         }
