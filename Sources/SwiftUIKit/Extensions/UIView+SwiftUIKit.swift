@@ -325,13 +325,13 @@ public extension UIView {
         if let height = height {
             constraints.first { (constraint) -> Bool in
                 constraint.firstAnchor == heightAnchor
-            }?.constant = CGFloat(height)
+                }?.constant = CGFloat(height)
         }
         
         if let width = width {
             constraints.first { (constraint) -> Bool in
                 constraint.firstAnchor == widthAnchor
-            }?.constant = CGFloat(width)
+                }?.constant = CGFloat(width)
         }
         
         return self
@@ -459,6 +459,56 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
+    func animate(withDuration duration: TimeInterval,
+                 animation: @escaping (UIView) -> Void,
+                 completion: @escaping (UIView) -> Void) -> Self {
+        
+        UIView.animate(withDuration: duration,
+                       animations: { animation(self) }) { (isComplete) in
+                        if isComplete {
+                            completion(self)
+                        }
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func animate(withDuration duration: TimeInterval,
+                 s: String,
+                 animation: @escaping (UIView) -> Void,
+                 completion: @escaping (UIView) -> Void) -> Self {
+        
+        UIView.animate(withDuration: duration,
+                       animations: { animation(self) }) { (isComplete) in
+                        if isComplete {
+                            completion(self)
+                        }
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func animate(withDuration duration: TimeInterval,
+                 delay: TimeInterval,
+                 options: UIView.AnimationOptions,
+                 animation: @escaping (UIView) -> Void,
+                 completion: @escaping (UIView) -> Void) -> Self {
+        
+        UIView.animate(withDuration: duration,
+                       delay: delay,
+                       options: options,
+                       animations: { animation(self) }) { (isComplete) in
+                        if isComplete {
+                            completion(self)
+                        }
+        }
+        
+        return self
+    }
+    
     /// Hide the view
     /// - Parameters:
     ///     - if: A bool that determines if the view should be hidden
@@ -490,16 +540,14 @@ public extension UIView {
         
         alpha = 1
         
-        UIView.animate(withDuration: duration,
-                       animations: {
-                        self.alpha = 0
-                       },
-                       completion: { (isCompleted) in
-                        if isCompleted {
-                            self.isHidden = true
-                            self.alpha = 1
-                        }
-                       })
+        animate(withDuration: duration,
+                animation: { view in
+                    view.alpha = 0
+        }) { view in
+            view.isHidden = true
+            view.alpha = 1
+            
+        }
         
         return self
     }
@@ -516,16 +564,14 @@ public extension UIView {
         alpha = 0
         isHidden = false
         
-        UIView.animate(withDuration: duration,
-                       animations: {
-                        self.alpha = 1
-                       },
-                       completion: { (isCompleted) in
-                        if isCompleted {
-                            self.isHidden = false
-                            self.alpha = 1
-                        }
-                       })
+        animate(withDuration: duration,
+                animation: { view in
+                    view.alpha = 1
+        }) { view in
+            view.isHidden = false
+            view.alpha = 1
+            
+        }
         
         return self
     }
