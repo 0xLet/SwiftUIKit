@@ -26,23 +26,23 @@ public class Map: MKMapView {
   
   fileprivate var initialCoordinates: CLLocationCoordinate2D
   
-  fileprivate lazy var onFinishLoadingHandler: ((MKMapView) -> ())? = nil
+  fileprivate var onFinishLoadingHandler: ((MKMapView) -> ())? = nil
   
-  fileprivate lazy var afterRegionChangeHandler: ((MKMapView) -> ())? = nil
+  fileprivate var afterRegionChangeHandler: ((MKMapView) -> ())? = nil
   
-  fileprivate lazy var beforeRegionChangeHandler: ((MKMapView) -> ())? = nil
+  fileprivate var beforeRegionChangeHandler: ((MKMapView) -> ())? = nil
   
-  fileprivate lazy var annotationViewConfigurationHandler: ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))? = nil
+  fileprivate var annotationViewConfigurationHandler: ((MKAnnotationView?, MKAnnotation) -> (MKAnnotationView?))? = nil
   
-  fileprivate lazy var onAccessoryTapHandler: ((MKMapView, MKAnnotationView, UIControl) -> ())? = nil
+  fileprivate var onAccessoryTapHandler: ((MKMapView, MKAnnotationView, UIControl) -> ())? = nil
   
-  fileprivate lazy var onAnnotationViewStateChangeHandler: ((MKMapView, MKAnnotationView, MKAnnotationView.DragState, MKAnnotationView.DragState) -> ())? = nil
+  fileprivate var onAnnotationViewStateChangeHandler: ((MKMapView, MKAnnotationView, MKAnnotationView.DragState, MKAnnotationView.DragState) -> ())? = nil
   
-  fileprivate lazy var onAnnotationSelectHandler: ((MKMapView, MKAnnotationView) -> ())? = nil
+  fileprivate var onAnnotationSelectHandler: ((MKMapView, MKAnnotationView) -> ())? = nil
   
-  fileprivate lazy var onAnnotationDeselectHandler: ((MKMapView, MKAnnotationView) -> ())? = nil
+  fileprivate var onAnnotationDeselectHandler: ((MKMapView, MKAnnotationView) -> ())? = nil
   
-  fileprivate lazy var annotationViewIdentifier: String? = nil
+  fileprivate var annotationViewIdentifier: String? = nil
   
   public init(lat latitude: Double,
               lon longitude: Double,

@@ -204,6 +204,23 @@ public extension UIView {
         return self
     }
     
+    /// Center a View
+    /// - Parameters:
+    ///     - closure: A trailing closure that accepts a view
+    @discardableResult
+    func center(_ closure: () -> UIView) -> Self {
+        let viewToEmbed = closure()
+        viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(viewToEmbed)
+        
+        NSLayoutConstraint.activate([
+            viewToEmbed.centerXAnchor.constraint(equalTo: centerXAnchor),
+            viewToEmbed.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+        
+        return self
+    }
+    
     /// Embed a View to certain anchors (top, bottom, leading, trailing)
     /// - Parameters:
     ///     - withPadding: The amount of space between the embedded view and this view
@@ -233,6 +250,34 @@ public extension UIView {
         return self
     }
     
+    @discardableResult
+    func setVertical(huggingPriority: UILayoutPriority) -> Self {
+        setContentHuggingPriority(huggingPriority, for: .vertical)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setHorizontal(huggingPriority: UILayoutPriority) -> Self {
+        setContentHuggingPriority(huggingPriority, for: .horizontal)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setVertical(compressionResistance: UILayoutPriority) -> Self {
+        setContentCompressionResistancePriority(compressionResistance, for: .vertical)
+        
+        return self
+    }
+    
+    @discardableResult
+    func setHorizontal(compressionResistance: UILayoutPriority) -> Self {
+        setContentCompressionResistancePriority(compressionResistance, for: .horizontal)
+        
+        return self
+    }
+    
     /// Clear all subviews from this view
     @discardableResult
     func clear() -> Self {
@@ -246,8 +291,8 @@ public extension UIView {
     ///     - padding: The amount of space between this view and its parent view
     @discardableResult
     func padding(_ padding: Float = 8) -> UIView {
-        return UIView(backgroundColor: backgroundColor)
-            .embed(withPadding: padding) { self }
+        return UIView(withPadding: padding,
+                      backgroundColor: backgroundColor) { self }
             .accessibility(label: accessibilityLabel,
                            identifier: accessibilityIdentifier,
                            traits: accessibilityTraits)
@@ -398,12 +443,114 @@ public extension UIView {
         return self
     }
     
+    /// Constrains the View's centerAnchors
+    @discardableResult
+    func center(xOffset: Float? = nil, yOffset: Float? = nil, in view: UIView) -> Self {
+        translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(self)
+        
+        if let x = xOffset {
+            centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: CGFloat(x)).isActive = true
+        }
+        if let y = yOffset {
+            centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: CGFloat(y)).isActive = true
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func animate(withDuration duration: TimeInterval,
+                 animation: @escaping (UIView) -> Void,
+                 completion: ((UIView) -> Void)? = nil) -> Self {
+        
+        UIView.animate(withDuration: duration,
+                       animations: { animation(self) }) { (isComplete) in
+                        if isComplete {
+                            completion?(self)
+                        }
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func animate(withDuration duration: TimeInterval,
+                 delay: TimeInterval,
+                 options: UIView.AnimationOptions,
+                 animation: @escaping (UIView) -> Void,
+                 completion: ((UIView) -> Void)? = nil) -> Self {
+        
+        UIView.animate(withDuration: duration,
+                       delay: delay,
+                       options: options,
+                       animations: { animation(self) }) { (isComplete) in
+                        if isComplete {
+                            completion?(self)
+                        }
+        }
+        
+        return self
+    }
+    
+    /// Hide the view
+    /// - Parameters:
+    ///     - if: A bool that determines if the view should be hidden
+    @discardableResult
+    func hide(if shouldHide: Bool) -> Self {
+        isHidden = shouldHide
+        
+        return self
+    }
+    
     /// Hide the view
     /// - Parameters:
     ///     - if: A closure that determines if the view should be hidden
     @discardableResult
-    func hide(if shouldHide: @autoclosure () -> Bool) -> Self {
+    func hide(if shouldHide: () -> Bool) -> Self {
         isHidden = shouldHide()
+        
+        return self
+    }
+    
+    /// Hide the view
+    @discardableResult
+    func hidden(withAnimatedDuration duration: Double = 0) -> Self {
+        alpha = 1
+        
+        animate(withDuration: duration,
+                animation: { view in
+                    view.alpha = 0
+        }) { view in
+            view.isHidden = true
+            view.alpha = 1
+            
+        }
+        
+        return self
+    }
+    
+    /// Show the view
+    @discardableResult
+    func appear(withAnimatedDuration duration: Double = 0) -> Self {
+        alpha = 0
+        isHidden = false
+        
+        animate(withDuration: duration,
+                animation: { view in
+                    view.alpha = 1
+        }) { view in
+            view.isHidden = false
+            view.alpha = 1
+            
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func transform(_ closure: (CGAffineTransform) -> CGAffineTransform) -> Self {
+        transform = closure(transform)
         
         return self
     }
@@ -515,7 +662,7 @@ public extension UIView {
 
 public extension UIView {
     var allSubviews: [UIView] {
-        return getSubviews(forView: self)
+        getSubviews(forView: self)
     }
     
     @discardableResult

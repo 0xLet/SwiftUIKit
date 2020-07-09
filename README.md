@@ -16,17 +16,15 @@ class ViewController: UIViewController {
         Navigate.shared.configure(controller: navigationController)
             .set(title: "Hello SwiftUIKit")
             .setRight(barButton: BarButton {
-                Button({
+                Button("Button 0") {
                     print("Tapped the barbutton")
-                }) {
-                    Label("Button 0")
                 }
             })
         
         
         view.embed {
             SafeAreaView {
-                Table(defaultCellHeight: 60) {
+                List(defaultCellHeight: 60) {
                     [
                         Button("Say Hello") {
                             print("Hello World!")
@@ -57,10 +55,12 @@ class ViewController: UIViewController {
                             ]
                         },
                         
-                        NavButton(destination: UIViewController {
-                            UIView(backgroundColor: .white) {
-                                LoadingImage(URL(string: "https://cdn11.bigcommerce.com/s-oe2q4reh/images/stencil/2048x2048/products/832/1401/Beige_Pekingese_Puppy__21677.1568609759.jpg")!)
-                                    .contentMode(.scaleAspectFit)
+                        NavButton(destination: {
+                            UIViewController {
+                                UIView(backgroundColor: .white) {
+                                    LoadingImage(URL(string: "https://cdn11.bigcommerce.com/s-oe2q4reh/images/stencil/2048x2048/products/832/1401/Beige_Pekingese_Puppy__21677.1568609759.jpg")!)
+                                        .contentMode(.scaleAspectFit)
+                                }
                             }
                         }, style: .push) {
                             Label("Go see a puppy")

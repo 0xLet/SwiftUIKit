@@ -63,6 +63,8 @@ public class TableView: UITableView {
     fileprivate var moveRowAtSourceIndexPathToDestinationIndexPath: ((IndexPath, IndexPath) -> Void)?
     fileprivate var leadingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
     fileprivate var trailingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
+    fileprivate var heightForHeaderInSection: ((Int) -> CGFloat)?
+    fileprivate var heightForFooterInSection: ((Int) -> CGFloat)?
     
     public init(initalData: [[CellDisplayable]] = [[CellDisplayable]](),
                 style: UITableView.Style = .plain) {
@@ -106,12 +108,7 @@ public extension TableView {
 }
 
 @available(iOS 11.0, *)
-extension TableView: UITableViewDelegate {
-    
-}
-
-@available(iOS 11.0, *)
-extension TableView: UITableViewDataSource {
+extension TableView: UITableViewDataSource, UITableViewDelegate {
     func sections() -> Int {
         data.count
     }
@@ -150,6 +147,14 @@ extension TableView: UITableViewDataSource {
         }
         
         return cell
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        heightForHeaderInSection?(section) ?? 0
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        heightForFooterInSection?(section) ?? 0
     }
     
     // MARK: HeaderForSection
@@ -308,6 +313,20 @@ public extension TableView {
     @discardableResult
     func footerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
         footerTitleForSection = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func headerHeight(_ handler: @escaping (Int) -> CGFloat) -> Self  {
+        heightForHeaderInSection = handler
+        
+        return self
+    }
+    
+    @discardableResult
+    func footerHeight(_ handler: @escaping (Int) -> CGFloat) -> Self  {
+        heightForFooterInSection = handler
         
         return self
     }
