@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public class NavButton: Button {
+public class NavButton: ButtonView {
     private var destination: () -> UIViewController
     private var style: Navigate.NavigationStyle
     

@@ -1,5 +1,5 @@
 //
-//  HStack.swift
+//  HStackView.swift
 //  SwiftUIKit
 //
 //  Created by Zach Eriksen on 10/29/19.
@@ -9,11 +9,11 @@ import UIKit
 
 /// Horizontal StackView
 @available(iOS 9.0, *)
-public class HStack: UIView {
-    /// The views that the HStack contains
+public class HStackView: UIView {
+    /// The views that the HStackView contains
     public var views: [UIView] = []
     
-    /// Create a HStack
+    /// Create a HStackView
     /// - Parameters:
     ///     - withSpacing: The amount of spacing between each child view
     ///     - padding: The amount of space between this view and its parent view
@@ -35,7 +35,7 @@ public class HStack: UIView {
                closure)
     }
     
-    /// Create a HStack that accepts an array of UIView?
+    /// Create a HStackView that accepts an array of UIView?
     /// - Parameters:
     ///     - withSpacing: The amount of spacing between each child view
     ///     - padding: The amount of space between this view and its parent view

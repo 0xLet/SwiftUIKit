@@ -1,5 +1,5 @@
 //
-//  Label.swift
+//  LabelView.swift
 //  SwiftUIKit
 //
 //  Created by Zach Eriksen on 10/29/19.
@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public class Label: UILabel {
+public class LabelView: UILabel {
     
     public init(_ text: String) {
         super.init(frame: .zero)
@@ -93,49 +93,49 @@ public class Label: UILabel {
 }
 
 @available(iOS 9.0, *)
-public extension Label {
-    class func title1(_ text: String) -> Label {
-        return Label(text)
+public extension LabelView {
+    class func title1(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.title1)
     }
     
-    class func title2(_ text: String) -> Label {
-        return Label(text)
+    class func title2(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.title2)
     }
     
-    class func title3(_ text: String) -> Label {
-        return Label(text)
+    class func title3(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.title3)
     }
     
-    class func headline(_ text: String) -> Label {
-        return Label(text)
+    class func headline(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.headline)
     }
     
-    class func subheadline(_ text: String) -> Label {
-        return Label(text)
+    class func subheadline(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.subheadline)
     }
     
-    class func body(_ text: String) -> Label {
-        return Label(text)
+    class func body(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.body)
     }
     
-    class func callout(_ text: String) -> Label {
-        return Label(text)
+    class func callout(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.callout)
     }
     
-    class func caption1(_ text: String) -> Label {
-        return Label(text)
+    class func caption1(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.caption1)
     }
     
-    class func caption2(_ text: String) -> Label {
-        return Label(text)
+    class func caption2(_ text: String) -> LabelView {
+        return LabelView(text)
             .font(.caption2)
     }
 }

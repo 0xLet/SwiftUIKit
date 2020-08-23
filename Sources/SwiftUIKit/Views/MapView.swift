@@ -1,5 +1,5 @@
 //
-//  Map.swift
+//  MapView.swift
 //  SwiftUIKit
 //
 //  Created by Oskar on 12/04/2020.
@@ -22,7 +22,7 @@ public struct MapPoint {
   }
 }
 
-public class Map: MKMapView {
+public class MapView: MKMapView {
   
   fileprivate var initialCoordinates: CLLocationCoordinate2D
   
@@ -72,7 +72,7 @@ public class Map: MKMapView {
 }
 
 // MARK: - Initializers
-public extension Map {
+public extension MapView {
   convenience init(region: MKCoordinateRegion,
                    points: (() -> [MapPoint])? = nil) {
     self.init(lat: region.center.latitude,
@@ -81,8 +81,8 @@ public extension Map {
   }
 }
 
-// MARK: - Accessing Map Properties
-public extension Map {
+// MARK: - Accessing MapView Properties
+public extension MapView {
   @discardableResult
   func type(_ type: MKMapType) -> Self {
     mapType = type
@@ -127,8 +127,8 @@ public extension Map {
   }
 }
 
-// MARK: - Manipulating the Visible Portion of the Map
-public extension Map {
+// MARK: - Manipulating the Visible Portion of the MapView
+public extension MapView {
   @discardableResult
   func zoom(_ multiplier: Double) -> Self {
     let _center = initialCoordinates
@@ -196,10 +196,10 @@ public extension Map {
   }
 }
 
-// MARK: - Constraining the Map View
+// MARK: - Constraining the MapView View
 
 @available(iOS 13.0, *)
-public extension Map {
+public extension MapView {
   @discardableResult
   func camera(boundary: MKMapView.CameraBoundary?, animated: Bool = true) -> Self {
     setCameraBoundary(boundary, animated: animated)
@@ -215,8 +215,8 @@ public extension Map {
   }
 }
 
-// MARK: - Configuring the Map's Appearance
-public extension Map {
+// MARK: - Configuring the MapView's Appearance
+public extension MapView {
   @discardableResult
   func camera(_ camera: MKMapCamera, animated: Bool = true) -> Self {
     setCamera(camera, animated: animated)
@@ -233,7 +233,7 @@ public extension Map {
 }
 
 @available(iOS 13.0, *)
-public extension Map {
+public extension MapView {
   @discardableResult
   func showCompass(_ bool: Bool) -> Self {
     showsCompass = bool
@@ -264,7 +264,7 @@ public extension Map {
 }
 
 // MARK: - Displaying the User's Location
-public extension Map {
+public extension MapView {
   @discardableResult
   func showUserLocation(_ bool: Bool) -> Self {
     showsUserLocation = bool
@@ -281,7 +281,7 @@ public extension Map {
 }
 
 // MARK: - Managing Annotation Selections
-public extension Map {
+public extension MapView {
   @discardableResult
   func select(annotation: MKAnnotation, animated: Bool = true) -> Self {
     selectAnnotation(annotation, animated: animated)
@@ -297,8 +297,8 @@ public extension Map {
   }
 }
 
-// MARK: - Annotating the Map
-public extension Map {
+// MARK: - Annotating the MapView
+public extension MapView {
   @discardableResult
   func remove(annotation: MKAnnotation) -> Self {
     removeAnnotation(annotation)
@@ -357,7 +357,7 @@ public extension Map {
 
 // MARK: - Creating Annotation Views
 @available(iOS 11.0, *)
-public extension Map {
+public extension MapView {
   @discardableResult
   func register(classes: [String: AnyClass?]) -> Self {
     for (identifier, annotationClass) in classes {
@@ -368,8 +368,8 @@ public extension Map {
   }
 }
 
-// MARK: - Adjusting Map Regions and Rectangles
-public extension Map {
+// MARK: - Adjusting MapView Regions and Rectangles
+public extension MapView {
   @discardableResult
   func fitTo(region: MKCoordinateRegion) -> Self {
     self.region = regionThatFits(region)
@@ -391,7 +391,7 @@ public extension Map {
 
 // MARK: - Delegate wrappers
 // If delegate isn't its own class, methods below will not execute.
-public extension Map {
+public extension MapView {
   @discardableResult
   func onFinishLoading(_ handler: @escaping (MKMapView) -> ()) -> Self {
     guard delegate === self else { return self }
@@ -455,7 +455,7 @@ public extension Map {
 }
 
 // MARK: - Delegation
-extension Map: MKMapViewDelegate {
+extension MapView: MKMapViewDelegate {
   public func mapViewDidFinishLoadingMap(_ mapView: MKMapView) {
     onFinishLoadingHandler?(mapView)
   }

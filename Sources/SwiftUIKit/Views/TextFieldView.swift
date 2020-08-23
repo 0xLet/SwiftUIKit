@@ -1,5 +1,5 @@
 //
-//  Field.swift
+//  TextFieldView.swift
 //  
 //
 //  Created by Zach Eriksen on 11/4/19.
@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public class Field: UITextField {
+public class TextFieldView: UITextField {
     public typealias WillValueChangeHandler = (_ sender: UITextField, _ newValue: String, _ input: String) -> Bool
     public typealias DidValueChangeHandler = (String) -> Void
     
@@ -53,7 +53,7 @@ public class Field: UITextField {
 }
 
 @available(iOS 9.0, *)
-extension Field: UITextFieldDelegate {
+extension TextFieldView: UITextFieldDelegate {
     public func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let newValue = NSString(string: textField.text ?? "").replacingCharacters(in: range, with: string)
         

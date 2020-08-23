@@ -74,9 +74,9 @@ class ContainerViewTests: XCTestCase {
         XCTAssertEqual(containerView.allSubviews.count, 1)
         
         someVC.view.embed {
-            VStack {
+            VStackView {
                 [
-                Label("Something")
+                LabelView("Something")
                 ]
             }
         }

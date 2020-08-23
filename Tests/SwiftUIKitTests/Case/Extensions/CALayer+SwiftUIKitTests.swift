@@ -10,7 +10,7 @@ import XCTest
 
 @available(iOS 9.0, *)
 class CALayer_SwiftUIKitTests: XCTestCase {
-    private var label: Label!
+    private var label: LabelView!
     private let testColor: UIColor? = UIColor.red
     private let testFloat: Float = 0.5
     private let testCGRect = CGRect(x: 10.0, y: 20.0, width: 200.0, height: 200.0)
@@ -25,8 +25,8 @@ class CALayer_SwiftUIKitTests: XCTestCase {
         super.tearDown()
     }
     
-    func setUpLabel(testing name: String) -> Label {
-        label = Label("Testing: \(name)")
+    func setUpLabel(testing name: String) -> LabelView {
+        label = LabelView("Testing: \(name)")
         return label
     }
     

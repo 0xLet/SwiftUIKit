@@ -1,5 +1,5 @@
 //
-//  Table.swift
+//  ListView.swift
 //  
 //
 //  Created by Zach Eriksen on 11/2/19.
@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public class List: UITableView {
+public class ListView: UITableView {
     private var data: [UIView]
     private var defaultCellHeight: Float?
     private var estimatedCellHeight: Float?
@@ -38,7 +38,7 @@ public class List: UITableView {
 }
 
 @available(iOS 9.0, *)
-public extension List {
+public extension ListView {
     @discardableResult
     func didSelectHandler(_ action: @escaping (UIView) -> Void) -> Self {
         self.didSelectHandler = action
@@ -55,7 +55,7 @@ public extension List {
 }
 
 @available(iOS 9.0, *)
-extension List: UITableViewDataSource {
+extension ListView: UITableViewDataSource {
     public func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -96,7 +96,7 @@ extension List: UITableViewDataSource {
 }
 
 @available(iOS 9.0, *)
-extension List: UITableViewDelegate {
+extension ListView: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         didSelectHandler?(data[indexPath.row])
     }

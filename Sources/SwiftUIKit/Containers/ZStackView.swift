@@ -1,5 +1,5 @@
 //
-//  ZStack.swift
+//  ZStackView.swift
 //  
 //
 //  Created by Zach Eriksen on 11/27/19.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-/// ZStack:
+/// ZStackView:
 /// A view which stacks its children views in order
 @available(iOS 9.0, *)
-public class ZStack: UIView {
-    /// The views that the ZStack contains
+public class ZStackView: UIView {
+    /// The views that the ZStackView contains
     public var views: [UIView] = []
     
-    /// Create a ZStack
+    /// Create a ZStackView
     /// - Parameters:
     ///     - closure: A trailing closure that accepts an array of views
     public init(_ closure: () -> [UIView]) {
@@ -28,7 +28,7 @@ public class ZStack: UIView {
         }
     }
     
-    /// Create a ZStack
+    /// Create a ZStackView
     /// - Parameters:
     ///     - closure: A trailing closure that accepts an array of optional views
     public init(_ closure: () -> [UIView?]) {

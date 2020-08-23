@@ -1,5 +1,5 @@
 //
-//  VStack.swift
+//  VStackView.swift
 //  SwiftUIKit
 //
 //  Created by Zach Eriksen on 10/29/19.
@@ -9,11 +9,11 @@ import UIKit
 
 /// Vertical StackView
 @available(iOS 9.0, *)
-public class VStack: UIView {
-    /// The views that the VStack contains
+public class VStackView: UIView {
+    /// The views that the VStackView contains
     public var views: [UIView] = []
     
-    /// Create a VStack
+    /// Create a VStackView
     /// - Parameters:
     ///     - withSpacing: The amount of spacing between each child view
     ///     - padding: The amount of space between this view and its parent view
@@ -35,7 +35,7 @@ public class VStack: UIView {
                closure)
     }
     
-    /// Create a VStack that accepts an array of UIView?
+    /// Create a VStackView that accepts an array of UIView?
     /// - Parameters:
     ///     - withSpacing: The amount of spacing between each child view
     ///     - padding: The amount of space between this view and its parent view

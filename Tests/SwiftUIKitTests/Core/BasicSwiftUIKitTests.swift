@@ -200,7 +200,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let viewToEmbed = UIView()
         
-        let stack = VStack {
+        let stack = VStackView {
             [
                 viewToEmbed
             ]
@@ -214,7 +214,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let viewToEmbed = UIView()
         
-        let stack = HStack {
+        let stack = HStackView {
             [
                 viewToEmbed
             ]
@@ -228,7 +228,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let viewToEmbed = UIView()
         
-        let stack = ZStack {
+        let stack = ZStackView {
             [
                 viewToEmbed
             ]
@@ -297,16 +297,16 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let view = UIView().embed {
             UIView().vstack {
                 [
-                    Image(.blue),
+                    ImageView(.blue),
                     Switch()
                 ]
             }
         }
         
         let otherView = UIView().embed {
-            VStack {
+            VStackView {
                 [
-                    Image(.blue),
+                    ImageView(.blue),
                     Switch()
                 ]
             }
@@ -315,7 +315,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let viewWithoutSwitch = UIView().embed {
             UIView().vstack {
                 [
-                    Image(.blue)
+                    ImageView(.blue)
                 ]
             }
         }
@@ -348,7 +348,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
     func testLayoutConstraint() {
         let innerView = UIView(backgroundColor: .blue)
             .frame(height: 100, width: 100)
-        let stack = ZStack {
+        let stack = ZStackView {
             [
                 innerView
             ]

@@ -1,5 +1,5 @@
 //
-//  Spacer.swift
+//  SpacerView.swift
 //  SwiftUIKit
 //
 //  Created by Zach Eriksen on 10/29/19.
@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public class Spacer: UIView {
+public class SpacerView: UIView {
     private var height: Float?
     private var width: Float?
     

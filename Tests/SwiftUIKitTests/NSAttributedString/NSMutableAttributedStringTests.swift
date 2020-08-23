@@ -25,7 +25,7 @@ final class NSMutableAttributedStringTests: XCTestCase {
         
         caption.set(attributes: usernameAttributes, range: 0 ... 4)
         
-        let label = Label(caption)
+        let label = LabelView(caption)
             .number(ofLines: 3)
         
         let old_usernameAttributes = [NSAttributedString.Key.font: UIFont.preferredFont(forTextStyle: .headline),
@@ -37,7 +37,7 @@ final class NSMutableAttributedStringTests: XCTestCase {
         
         old_caption.setAttributes(old_usernameAttributes, range: NSRange(location: 0, length: 4))
         
-        let old_label = Label(old_caption)
+        let old_label = LabelView(old_caption)
             .number(ofLines: 3)
         
         XCTAssert(label.attributedText == old_label.attributedText)
@@ -61,9 +61,9 @@ final class NSMutableAttributedStringTests: XCTestCase {
         
         caption.set(attributes: usernameAttributes, range: 0 ... 4)
         
-        let initLabel = Label(caption)
+        let initLabel = LabelView(caption)
             .number(ofLines: 3)
-        let applyLabel = Label("oneleif is a project based group focused on learning and mentorship. Our core tenet of becoming skilled professionals is to work on open source projects. Open source simply means the work you are doing is available to the public. This comes with the benefit that anyone can help you on your project, and allows those without experience to see how something is made.")
+        let applyLabel = LabelView("oneleif is a project based group focused on learning and mentorship. Our core tenet of becoming skilled professionals is to work on open source projects. Open source simply means the work you are doing is available to the public. This comes with the benefit that anyone can help you on your project, and allows those without experience to see how something is made.")
             .apply(attributes: captionAttributes)
             .apply(attributes: usernameAttributes, range: 0 ... 4)
         

@@ -125,9 +125,9 @@ fileprivate class TableTestHelper {
     }
 
     class InfoCell: TableViewCell {
-        let label: Label = Label("")
-        let detailLabel: Label = Label("")
-        let bioLabel: Label = Label("")
+        let label: LabelView = LabelView("")
+        let detailLabel: LabelView = LabelView("")
+        let bioLabel: LabelView = LabelView("")
     }
 }
 
@@ -162,12 +162,12 @@ extension TableTestHelper.InfoCell {
         contentView
             .clear()
             .embed {
-                VStack {
+                VStackView {
                     [
-                        HStack {
+                        HStackView {
                             [
                                 label,
-                                Spacer(),
+                                SpacerView(),
                                 detailLabel
                             ]
                         }

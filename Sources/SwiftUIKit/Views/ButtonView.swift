@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  ButtonView.swift
 //  
 //
 //  Created by Zach Eriksen on 10/30/19.
@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public class Button: UIButton {
+public class ButtonView: UIButton {
     private var action: () -> Void
     
     public init(_ title: String,
@@ -22,7 +22,7 @@ public class Button: UIButton {
         self.backgroundColor = backgroundColor
         self.setTitleColor(titleColor ?? .systemBlue, for: .normal)
         self.setTitle(title, for: .normal)
-        self.addTarget(self, action: #selector(handleButtonTap), for: event)
+        self.addTarget(self, action: #selector(handleButtonViewTap), for: event)
         
         accessibility(label: title, traits: .button)
     }
@@ -35,17 +35,17 @@ public class Button: UIButton {
         
         embed {
             closure()
-            .gesture { UITapGestureRecognizer(target: self, action: #selector(handleButtonTap)) }
+            .gesture { UITapGestureRecognizer(target: self, action: #selector(handleButtonViewTap)) }
         }
         
-        self.addTarget(self, action: #selector(handleButtonTap), for: event)
+        self.addTarget(self, action: #selector(handleButtonViewTap), for: event)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    @objc private func handleButtonTap() {
+    @objc private func handleButtonViewTap() {
         action()
     }
 }

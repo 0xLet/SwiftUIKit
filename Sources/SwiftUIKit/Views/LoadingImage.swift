@@ -121,7 +121,7 @@ public class LoadingImage: UIView {
             }
             self.clear()
                 .embed {
-                    Image(image)
+                    ImageView(image)
                         .contentMode(self.contentMode)
             }
         }
@@ -137,7 +137,7 @@ public class LoadingImage: UIView {
             }
             self.clear()
                 .embed {
-                    Image(color)
+                    ImageView(color)
                         .contentMode(self.contentMode)
             }
         }

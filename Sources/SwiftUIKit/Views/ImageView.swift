@@ -1,5 +1,5 @@
 //
-//  Image.swift
+//  ImageView.swift
 //  
 //
 //  Created by Zach Eriksen on 11/4/19.
@@ -8,7 +8,7 @@
 import UIKit
 
 @available(iOS 9.0, *)
-public class Image: UIImageView {
+public class ImageView: UIImageView {
     public init(_ image: UIImage) {
         super.init(image: image)
     }
@@ -16,16 +16,16 @@ public class Image: UIImageView {
     public init(_ color: UIColor) {
         super.init(frame: .zero)
         
-        self.image = Image.image(fromColor: color)
+        self.image = ImageView.image(fromColor: color)
     }
     
     public init(_ name: String) {
         super.init(frame: .zero)
         
         guard let image = UIImage(named: name) else {
-            print("Image \(#function) Error!")
-            print("Issue loading Image with name: \(name)")
-            print("Error: Could not locate Image")
+            print("ImageView \(#function) Error!")
+            print("Issue loading ImageView with name: \(name)")
+            print("Error: Could not locate ImageView")
             update(color: .red)
             return
         }
@@ -52,7 +52,7 @@ public class Image: UIImageView {
     
     private func update(color: UIColor) {
         DispatchQueue.main.async { [weak self] in
-            self?.image = Image.image(fromColor: color)
+            self?.image = ImageView.image(fromColor: color)
         }
     }
     

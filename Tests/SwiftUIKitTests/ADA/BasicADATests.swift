@@ -13,7 +13,7 @@ import XCTest
 final class BasicADATests: XCTestCase {
     func testLabelADA() {
         
-        let label = Label("SomeString")
+        let label = LabelView("SomeString")
             .accessibility(identifier: "SomeID")
             .padding()
             .padding()
@@ -26,7 +26,7 @@ final class BasicADATests: XCTestCase {
     }
     
     func testButtonADA() {
-        let button = Button("SomeString") { print("Hello") }
+        let button = ButtonView("SomeString") { print("Hello") }
             .accessibility(label: nil)
         
         assert(button.accessibilityLabel == "SomeString")
@@ -37,10 +37,10 @@ final class BasicADATests: XCTestCase {
     func testComplexViewADA() {
         let view = UIView {
             UIView {
-                HStack {
+                HStackView {
                     [
-                    Label("Hello World"),
-                    Label("Ipsum")
+                    LabelView("Hello World"),
+                    LabelView("Ipsum")
                     ]
                 }
             }
