@@ -6,12 +6,24 @@
 //
 
 import UIKit
+import Later
 
 /// Horizontal StackView
 @available(iOS 9.0, *)
 public class HStack: UIView {
+    deinit {
+        views.resign()
+    }
+    
+    private var spacing: Float
+    private var padding: Float
+    private var alignment: UIStackView.Alignment
+    private var distribution: UIStackView.Distribution
     /// The views that the HStack contains
-    public var views: [UIView] = []
+    public lazy var views = Contract<[UIView]>(initialValue: [])
+        .onChange { [weak self] (views) in
+            self?.draw(views: views ?? [])
+    }
     
     /// Create a HStack
     /// - Parameters:
@@ -25,14 +37,12 @@ public class HStack: UIView {
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
                 _ closure: () -> [UIView]) {
-        views = closure()
+        self.spacing = spacing
+        self.padding = padding
+        self.alignment = alignment
+        self.distribution = distribution
         super.init(frame: .zero)
-        
-        hstack(withSpacing: spacing,
-               padding: padding,
-               alignment: alignment,
-               distribution: distribution,
-               closure)
+        views.value = closure()
     }
     
     /// Create a HStack that accepts an array of UIView?
@@ -47,18 +57,26 @@ public class HStack: UIView {
                 alignment: UIStackView.Alignment = .fill,
                 distribution: UIStackView.Distribution = .fill,
                 _ closure: () -> [UIView?]) {
-        views = closure()
-            .compactMap { $0 }
+        self.spacing = spacing
+        self.padding = padding
+        self.alignment = alignment
+        self.distribution = distribution
         super.init(frame: .zero)
+        views.value = closure()
+            .compactMap { $0 }
         
-        hstack(withSpacing: spacing,
-               padding: padding,
-               alignment: alignment,
-               distribution: distribution)
-        { views }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func draw(views: [UIView]) {
+        clear()
+            .hstack(withSpacing: spacing,
+                    padding: padding,
+                    alignment: alignment,
+                    distribution: distribution)
+            { views }
     }
 }
