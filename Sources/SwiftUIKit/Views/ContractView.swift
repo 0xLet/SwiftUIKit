@@ -20,6 +20,8 @@ public class ContractView<View, Value>: UIView where View: UIView {
         embed {
             view
         }
+        
+        contract?.value = contract?.value
     }
     
     required init?(coder: NSCoder) {
