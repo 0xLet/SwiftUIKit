@@ -45,6 +45,7 @@ public class HStack: UIView {
         self.distribution = distribution
         super.init(frame: .zero)
         views.value = closure()
+        draw(views: views.value ?? [])
     }
     
     /// Create a HStack that accepts an array of UIView?
@@ -66,7 +67,7 @@ public class HStack: UIView {
         super.init(frame: .zero)
         views.value = closure()
             .compactMap { $0 }
-        
+        draw(views: views.value ?? [])
     }
     
     required init?(coder aDecoder: NSCoder) {
