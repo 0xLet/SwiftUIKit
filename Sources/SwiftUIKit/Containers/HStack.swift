@@ -22,7 +22,9 @@ public class HStack: UIView {
     /// The views that the HStack contains
     public lazy var views = Contract<[UIView]>(initialValue: [])
         .onChange { [weak self] (views) in
-            self?.draw(views: views ?? [])
+            Later.main {
+                self?.draw(views: views ?? [])
+            }
     }
     
     /// Create a HStack
