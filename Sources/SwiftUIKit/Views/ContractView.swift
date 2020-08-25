@@ -10,7 +10,7 @@ import Later
 
 @available(iOS 9.0, *)
 public class ContractView<View, SomeContract, ContractType>: UIView where View: UIView, SomeContract: Contract<ContractType> {
-    public weak var contract: SomeContract?
+    public var contract: SomeContract?
     
     public init(view: View, _ closure: (View) -> SomeContract) {
         super.init(frame: .zero)
