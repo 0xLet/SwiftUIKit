@@ -9,10 +9,10 @@ import UIKit
 import Later
 
 @available(iOS 9.0, *)
-public class ContractView<View, SomeContract, ContractType>: UIView where View: UIView, SomeContract: Contract<ContractType> {
-    public var contract: SomeContract?
+public class ContractView<View, Value>: UIView where View: UIView {
+    public var contract:  Contract<Value>?
     
-    public init(view: View, _ closure: (View) -> SomeContract) {
+    public init(view: View, _ closure: (View) -> Contract<Value>) {
         super.init(frame: .zero)
         
         self.contract = closure(view)
