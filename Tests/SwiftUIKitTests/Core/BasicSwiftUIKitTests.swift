@@ -296,7 +296,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         stack.views.value? += (0 ... 4).map { Label("\($0)") }
         
         stack.draw(views: stack.views.value ?? [])
-
+        
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
         XCTAssertEqual(stack.allSubviews.count, 7)
         XCTAssertEqual(stack.views.value?.count, 6)
@@ -398,13 +398,16 @@ final class BasicSwiftUIKitTests: XCTestCase {
             }
         }
         
-        // Will fail unless...
-        //,= (iOS >= 13),=
-        XCTAssertEqual(switchView.allSubviews.count, 8)
-        XCTAssertEqual(uiSwitchView.allSubviews.count, 8)
-        XCTAssertEqual(view.allSubviews.count, 12)
-        XCTAssertEqual(otherView.allSubviews.count, 12)
-        //,= (End),=
+        /** Will fail unless...
+         === (iOS >= 13) ===
+         */
+         XCTAssertEqual(switchView.allSubviews.count, 8)
+         XCTAssertEqual(uiSwitchView.allSubviews.count, 8)
+         XCTAssertEqual(view.allSubviews.count, 12)
+         XCTAssertEqual(otherView.allSubviews.count, 12)
+        /**
+         === (End) ===
+         */
         
         XCTAssertEqual(viewWithoutSwitch.allSubviews.count, 3)
         
