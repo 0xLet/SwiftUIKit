@@ -74,7 +74,7 @@ public class HStack: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func draw(views: [UIView]) {
+    internal func draw(views: [UIView]) {
         clear()
             .hstack(withSpacing: spacing,
                     padding: padding,

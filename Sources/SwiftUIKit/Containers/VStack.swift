@@ -74,7 +74,7 @@ public class VStack: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func draw(views: [UIView]) {
+    internal func draw(views: [UIView]) {
         clear()
             .vstack(withSpacing: spacing,
                     padding: padding,
