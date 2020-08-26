@@ -74,9 +74,4 @@ final class NSMutableAttributedStringTests: XCTestCase {
         XCTAssert(!(applyLabel.text?.isEmpty ?? true))
         XCTAssert(!(applyLabel.accessibilityLabel?.isEmpty ?? true))
     }
-    
-    static var allTests = [
-        ("testAttributedString", testAttributedString),
-        ("testApplyLabel", testApplyLabel)
-    ]
 }
