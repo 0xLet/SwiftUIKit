@@ -7,6 +7,7 @@
 
 import Foundation
 import XCTest
+import Later
 @testable import SwiftUIKit
 
 @available(iOS 10.0, *)
@@ -17,8 +18,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let view = UIView()
         
         XCTAssertNil(view.backgroundColor)
-        XCTAssert(view.allSubviews.count == 0)
-        XCTAssert(view.constraints.count == 0)
+        XCTAssertEqual(view.allSubviews.count, 0)
+        XCTAssertEqual(view.constraints.count, 0)
     }
     
     func testEmbedView() {
@@ -37,8 +38,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let topConstraint = view.topConstraints.first
         
         XCTAssertNil(view.backgroundColor)
-        XCTAssert(view.allSubviews.count == 1)
-        XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(view.allSubviews.count, 1)
+        XCTAssertEqual(view.constraints.count, 4)
         XCTAssertEqual(leadingConstraint?.constant, 0)
         XCTAssertEqual(bottomConstraint?.constant, 0)
         XCTAssertEqual(trailingConstraint?.constant, 0)
@@ -46,7 +47,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         view.update(padding: 16)
         
-        XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(view.constraints.count, 4)
         XCTAssertEqual(leadingConstraint?.constant, 16)
         XCTAssertEqual(bottomConstraint?.constant, -16)
         XCTAssertEqual(trailingConstraint?.constant, -16)
@@ -68,8 +69,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let constraint = view.leadingConstraints.first
         
         XCTAssertNil(view.backgroundColor)
-        XCTAssert(view.allSubviews.count == 1)
-        XCTAssert(view.constraints.count == 1)
+        XCTAssertEqual(view.allSubviews.count, 1)
+        XCTAssertEqual(view.constraints.count, 1)
         XCTAssertEqual(constraint?.constant, 16)
         
         view.update(padding: .leading(8))
@@ -96,15 +97,15 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let bottomConstraint = view.bottomConstraints.first
         
         XCTAssertNil(view.backgroundColor)
-        XCTAssert(view.allSubviews.count == 1)
-        XCTAssert(view.constraints.count == 2)
+        XCTAssertEqual(view.allSubviews.count, 1)
+        XCTAssertEqual(view.constraints.count, 2)
         XCTAssertEqual(leadingConstraint?.constant, 16)
         XCTAssertEqual(bottomConstraint?.constant, -16)
         
         view.update(padding: .leading(8))
         view.update(padding: .bottom(32))
         
-        XCTAssert(view.constraints.count == 2)
+        XCTAssertEqual(view.constraints.count, 2)
         XCTAssertEqual(leadingConstraint?.constant, 8)
         XCTAssertEqual(bottomConstraint?.constant, -32)
     }
@@ -128,15 +129,15 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let trailingConstraint = view.trailingConstraints.first
         
         XCTAssertNil(view.backgroundColor)
-        XCTAssert(view.allSubviews.count == 1)
-        XCTAssert(view.constraints.count == 3)
+        XCTAssertEqual(view.allSubviews.count, 1)
+        XCTAssertEqual(view.constraints.count, 3)
         XCTAssertEqual(leadingConstraint?.constant, 16)
         XCTAssertEqual(bottomConstraint?.constant, -16)
         XCTAssertEqual(trailingConstraint?.constant, -16)
         
         view.update(padding: [.leading(32), .trailing(32), .bottom(32)])
         
-        XCTAssert(view.constraints.count == 3)
+        XCTAssertEqual(view.constraints.count, 3)
         XCTAssertEqual(leadingConstraint?.constant, 32)
         XCTAssertEqual(bottomConstraint?.constant, -32)
         XCTAssertEqual(trailingConstraint?.constant, -32)
@@ -163,8 +164,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let topConstraint = view.topConstraints.first
         
         XCTAssertNil(view.backgroundColor)
-        XCTAssert(view.allSubviews.count == 1)
-        XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(view.allSubviews.count, 1)
+        XCTAssertEqual(view.constraints.count, 4)
         XCTAssertEqual(leadingConstraint?.constant, 16)
         XCTAssertEqual(bottomConstraint?.constant, -16)
         XCTAssertEqual(trailingConstraint?.constant, -16)
@@ -172,7 +173,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         view.update(padding: 32)
         
-        XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(view.constraints.count, 4)
         XCTAssertEqual(leadingConstraint?.constant, 32)
         XCTAssertEqual(bottomConstraint?.constant, -32)
         XCTAssertEqual(trailingConstraint?.constant, -32)
@@ -192,8 +193,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         }
         
         XCTAssertNil(view.backgroundColor)
-        XCTAssert(view.allSubviews.count == 2)
-        XCTAssert(view.constraints.count == 4)
+        XCTAssertEqual(view.allSubviews.count, 2)
+        XCTAssertEqual(view.constraints.count, 4)
     }
     
     func testVStackView() {
@@ -207,7 +208,46 @@ final class BasicSwiftUIKitTests: XCTestCase {
         }
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
-        XCTAssert(stack.allSubviews.count == 2)
+        XCTAssertEqual(stack.allSubviews.count, 2)
+        XCTAssertEqual(stack.views.value?.count, 1)
+    }
+    
+    func testVStackViewAppend_one() {
+        
+        let viewToEmbed = UIView()
+        
+        let stack = VStack {
+            [
+                viewToEmbed
+            ]
+        }
+        
+        stack.views.value?.append(UIView())
+        
+        stack.draw(views: stack.views.value ?? [])
+        
+        XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
+        XCTAssertEqual(stack.allSubviews.count, 3)
+        XCTAssertEqual(stack.views.value?.count, 2)
+    }
+    
+    func testVStackViewAppend_five() {
+        
+        let viewToEmbed = UIView()
+        
+        let stack = VStack {
+            [
+                viewToEmbed
+            ]
+        }
+        
+        stack.views.value? += (0 ... 4).map { Label("\($0)") }
+        
+        stack.draw(views: stack.views.value ?? [])
+        
+        XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
+        XCTAssertEqual(stack.allSubviews.count, 7)
+        XCTAssertEqual(stack.views.value?.count, 6)
     }
     
     func testHStackView() {
@@ -221,7 +261,45 @@ final class BasicSwiftUIKitTests: XCTestCase {
         }
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
-        XCTAssert(stack.allSubviews.count == 2)
+        XCTAssertEqual(stack.allSubviews.count, 2)
+        XCTAssertEqual(stack.views.value?.count, 1)
+    }
+    
+    func testHStackViewAppend_one() {
+        
+        let viewToEmbed = UIView()
+        
+        let stack = VStack {
+            [
+                viewToEmbed
+            ]
+        }
+        
+        stack.views.value?.append(UIView())
+        
+        stack.draw(views: stack.views.value ?? [])
+        
+        XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
+        XCTAssertEqual(stack.allSubviews.count, 3)
+        XCTAssertEqual(stack.views.value?.count, 2)
+    }
+    
+    func testHStackViewAppend_five() {
+        let viewToEmbed = UIView()
+        
+        let stack = VStack {
+            [
+                viewToEmbed
+            ]
+        }
+        
+        stack.views.value? += (0 ... 4).map { Label("\($0)") }
+        
+        stack.draw(views: stack.views.value ?? [])
+
+        XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
+        XCTAssertEqual(stack.allSubviews.count, 7)
+        XCTAssertEqual(stack.views.value?.count, 6)
     }
     
     func testZStackView() {
@@ -234,14 +312,14 @@ final class BasicSwiftUIKitTests: XCTestCase {
             ]
         }
         
-        XCTAssert(stack.allSubviews.count == 1)
+        XCTAssertEqual(stack.allSubviews.count, 1)
     }
     
     func testPaddingView() {
         
         let view = UIView().padding()
         
-        XCTAssert(view.allSubviews.count == 1)
+        XCTAssertEqual(view.allSubviews.count, 1)
     }
     
     func testConfigureView() {
@@ -258,14 +336,14 @@ final class BasicSwiftUIKitTests: XCTestCase {
             .hide(if: true)
             .clipsToBounds(true)
         
-        XCTAssert(view.backgroundColor == .blue)
-        XCTAssert(view.isHidden == true)
-        XCTAssert(view.tintColor == .green)
-        XCTAssert(view.clipsToBounds == true)
+        XCTAssertEqual(view.backgroundColor, .blue)
+        XCTAssertEqual(view.isHidden, true)
+        XCTAssertEqual(view.tintColor, .green)
+        XCTAssertEqual(view.clipsToBounds, true)
         
-        XCTAssert(view.backgroundColor == otherView.backgroundColor)
-        XCTAssert(view.isHidden == otherView.isHidden)
-        XCTAssert(view.clipsToBounds == otherView.clipsToBounds)
+        XCTAssertEqual(view.backgroundColor, otherView.backgroundColor)
+        XCTAssertEqual(view.isHidden, otherView.isHidden)
+        XCTAssertEqual(view.clipsToBounds, otherView.clipsToBounds)
     }
     
     func testLayerView() {
@@ -281,12 +359,12 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let otherView = UIView()
             .layer(cornerRadius: 8)
         
-        XCTAssert(view.layer.borderColor == UIColor.blue.cgColor)
-        XCTAssert(view.layer.borderWidth == 3)
-        XCTAssert(view.layer.cornerRadius == 8)
-        XCTAssert(view.layer.masksToBounds == true)
+        XCTAssertEqual(view.layer.borderColor, UIColor.blue.cgColor)
+        XCTAssertEqual(view.layer.borderWidth, 3)
+        XCTAssertEqual(view.layer.cornerRadius, 8)
+        XCTAssertEqual(view.layer.masksToBounds, true)
         
-        XCTAssert(view.layer.cornerRadius == otherView.layer.cornerRadius)
+        XCTAssertEqual(view.layer.cornerRadius, otherView.layer.cornerRadius)
     }
     
     func testClearView() {
@@ -321,14 +399,14 @@ final class BasicSwiftUIKitTests: XCTestCase {
         }
         
         // Will fail unless...
-        // === (iOS >= 13) ===
-        XCTAssert(switchView.allSubviews.count == 8, "switchView.allSubviews.count == \(switchView.allSubviews.count)")
-        XCTAssert(uiSwitchView.allSubviews.count == 8, "uiSwitchView.allSubviews.count == \(uiSwitchView.allSubviews.count)")
-        XCTAssert(view.allSubviews.count == 12, "view.allSubviews.count == \(view.allSubviews.count)")
-        XCTAssert(otherView.allSubviews.count == 12, "otherView.allSubviews.count == \(otherView.allSubviews.count)")
-        // === (End) ===
+        //,= (iOS >= 13),=
+        XCTAssertEqual(switchView.allSubviews.count, 8)
+        XCTAssertEqual(uiSwitchView.allSubviews.count, 8)
+        XCTAssertEqual(view.allSubviews.count, 12)
+        XCTAssertEqual(otherView.allSubviews.count, 12)
+        //,= (End),=
         
-        XCTAssert(viewWithoutSwitch.allSubviews.count == 3, "viewWithoutSwitch.allSubviews.count == \(viewWithoutSwitch.allSubviews.count)")
+        XCTAssertEqual(viewWithoutSwitch.allSubviews.count, 3)
         
         switchView.clear()
         uiSwitchView.clear()
@@ -337,12 +415,12 @@ final class BasicSwiftUIKitTests: XCTestCase {
         otherView.clear()
         viewWithoutSwitch.clear()
         
-        XCTAssert(switchView.allSubviews.count == 0)
-        XCTAssert(uiSwitchView.allSubviews.count == 0)
+        XCTAssertEqual(switchView.allSubviews.count, 0)
+        XCTAssertEqual(uiSwitchView.allSubviews.count, 0)
         
-        XCTAssert(view.allSubviews.count == 0)
-        XCTAssert(otherView.allSubviews.count == 0)
-        XCTAssert(viewWithoutSwitch.allSubviews.count == 0)
+        XCTAssertEqual(view.allSubviews.count, 0)
+        XCTAssertEqual(otherView.allSubviews.count, 0)
+        XCTAssertEqual(viewWithoutSwitch.allSubviews.count, 0)
     }
     
     func testLayoutConstraint() {
@@ -363,21 +441,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
                 ]
         }
         
-        XCTAssert(innerView.constraints.count == 2)
-        XCTAssert(stack.constraints.count == 2)
+        XCTAssertEqual(innerView.constraints.count, 2)
+        XCTAssertEqual(stack.constraints.count, 2)
     }
-    
-    static var allTests = [
-        ("testDefaultView", testDefaultView),
-        ("testEmbedViews", testEmbedViews),
-        ("testEmbedView", testEmbedView),
-        ("testVStackView", testVStackView),
-        ("testHStackView", testHStackView),
-        ("testZStackView", testZStackView),
-        ("testPaddingView", testPaddingView),
-        ("testConfigureView", testConfigureView),
-        ("testLayerView", testLayerView),
-        ("testClearView", testClearView),
-        ("testLayoutConstraint", testLayoutConstraint)
-    ]
 }
