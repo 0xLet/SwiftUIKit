@@ -15,7 +15,7 @@ public class Button: UIButton {
                 titleColor: UIColor? = nil,
                 backgroundColor: UIColor? = nil,
                 forEvent event: UIControl.Event = .touchUpInside,
-                _ action: (() -> Void)?) {
+                _ action: (() -> Void)? = nil) {
         self.action = action
         super.init(frame: .zero)
         
@@ -27,7 +27,7 @@ public class Button: UIButton {
         accessibility(label: title, traits: .button)
     }
     
-    public init(action: (() -> Void)?,
+    public init(action: (() -> Void)? = nil,
                 forEvent event: UIControl.Event = .touchUpInside,
                 _ closure: () -> UIView) {
         self.action = action
@@ -41,6 +41,7 @@ public class Button: UIButton {
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
     }
     
+    @discardableResult
     public func setAction(_ action: (() -> Void)?) -> Self {
         self.action = action
         
