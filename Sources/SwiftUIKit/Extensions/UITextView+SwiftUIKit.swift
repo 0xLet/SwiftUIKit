@@ -16,6 +16,13 @@ public extension UITextView {
     }
     
     @discardableResult
+    func text(_ value: String?) -> Self {
+        text = value
+        
+        return self
+    }
+    
+    @discardableResult
     func tint(color: UIColor?) -> Self {
         tintColor = color
         

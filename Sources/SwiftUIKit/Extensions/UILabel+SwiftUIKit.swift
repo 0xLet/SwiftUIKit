@@ -1,5 +1,5 @@
 //
-//  UITextField+SwiftUIKit.swift
+//  UILabel+SwiftUIKit.swift
 //  SwiftUIKit
 //
 //  Created by Zach Eriksen on 7/7/20.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-public extension UITextField {
+public extension UILabel {
     @discardableResult
     func text(color: UIColor?) -> Self {
         textColor = color
