@@ -20,18 +20,18 @@ final class BasicADATests: XCTestCase {
             .padding()
             .debug()
         
-        assert(label.accessibilityLabel == "SomeString")
-        assert(label.accessibilityIdentifier == "SomeID")
-        assert(label.accessibilityTraits == .staticText)
+        XCTAssertEqual(label.accessibilityLabel, "SomeString")
+        XCTAssertEqual(label.accessibilityIdentifier, "SomeID")
+        XCTAssertEqual(label.accessibilityTraits, .staticText)
     }
     
     func testButtonADA() {
         let button = Button("SomeString") { print("Hello") }
             .accessibility(label: nil)
         
-        assert(button.accessibilityLabel == "SomeString")
-        assert(button.accessibilityIdentifier == nil)
-        assert(button.accessibilityTraits == .button)
+        XCTAssertEqual(button.accessibilityLabel, "SomeString")
+        XCTAssertEqual(button.accessibilityIdentifier, nil)
+        XCTAssertEqual(button.accessibilityTraits, .button)
     }
     
     func testComplexViewADA() {
@@ -49,15 +49,9 @@ final class BasicADATests: XCTestCase {
         
         let accessibilityLabels = ["Hello World", "Ipsum"]
         
-        assert(view.allSubviews.compactMap { $0.accessibilityLabel } == accessibilityLabels)
-        assert(view.accessibilityIdentifier == "mainView")
-        assert(view.accessibilityTraits == .none)
-        assert(view.shouldGroupAccessibilityChildren == false)
+        XCTAssertEqual(view.allSubviews.compactMap { $0.accessibilityLabel }, accessibilityLabels)
+        XCTAssertEqual(view.accessibilityIdentifier, "mainView")
+        XCTAssertEqual(view.accessibilityTraits, .none)
+        XCTAssertEqual(view.shouldGroupAccessibilityChildren, false)
     }
-    
-    static var allTests = [
-        ("testLabelADA", testLabelADA),
-        ("testButtonADA", testButtonADA),
-        ("testComplexViewADA", testComplexViewADA)
-    ]
 }
