@@ -40,7 +40,7 @@ public class NavButton: Button {
         self.destination = destination
         self.style = style
         
-        super.init({
+        super.init(action: {
             tapHandler?()
             Navigate.shared.go(destination(),
                                style: style)

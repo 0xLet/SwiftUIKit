@@ -9,13 +9,13 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class Button: UIButton {
-    private var action: () -> Void
+    private var action: (() -> Void)?
     
     public init(_ title: String,
                 titleColor: UIColor? = nil,
                 backgroundColor: UIColor? = nil,
                 forEvent event: UIControl.Event = .touchUpInside,
-                _ action: @escaping () -> Void) {
+                _ action: (() -> Void)?) {
         self.action = action
         super.init(frame: .zero)
         
@@ -27,7 +27,7 @@ public class Button: UIButton {
         accessibility(label: title, traits: .button)
     }
     
-    public init(_ action: @escaping () -> Void,
+    public init(action: (() -> Void)?,
                 forEvent event: UIControl.Event = .touchUpInside,
                 _ closure: () -> UIView) {
         self.action = action
@@ -41,11 +41,17 @@ public class Button: UIButton {
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
     }
     
+    public func setAction(_ action: (() -> Void)?) -> Self {
+        self.action = action
+        
+        return self
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
     @objc private func handleButtonTap() {
-        action()
+        action?()
     }
 }
