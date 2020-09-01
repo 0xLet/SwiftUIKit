@@ -22,7 +22,6 @@ public class VScroll: UIView {
         
         embed {
             scrollView
-            
         }
         .configure { parentView in
             NSLayoutConstraint.activate([
