@@ -12,6 +12,20 @@ import Later
 public class ContractView<View, Value>: UIView where View: UIView {
     public var contract: Contract<Value>?
     
+    public init(_ closure: (UIView) -> Contract<Value>) {
+        super.init(frame: .zero)
+        
+        let view = UIView()
+        
+        self.contract = closure(view)
+        
+        embed {
+            view
+        }
+        
+        contract?.value = contract?.value
+    }
+    
     public init(view: View, _ closure: (View) -> Contract<Value>) {
         super.init(frame: .zero)
         
