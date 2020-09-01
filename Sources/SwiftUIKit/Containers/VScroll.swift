@@ -2,7 +2,7 @@
 //  VScroll.swift
 //  SwiftUIKit
 //
-//  Created by CRi on 9/1/20.
+//  Created by Zach Eriksen on 9/1/20.
 //
 
 import UIKit
