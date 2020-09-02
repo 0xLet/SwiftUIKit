@@ -6,26 +6,16 @@
 //
 
 import UIKit
-import Later
 
 /// Horizontal StackView
 @available(iOS 9.0, *)
 public class HStack: UIView {
-    deinit {
-        views.resign()
-    }
-    
     private var spacing: Float
     private var padding: Float
     private var alignment: UIStackView.Alignment
     private var distribution: UIStackView.Distribution
     /// The views that the HStack contains
-    public lazy var views = Contract<[UIView]>(initialValue: [])
-        .onChange { [weak self] (views) in
-            Later.main {
-                self?.draw(views: views ?? [])
-            }
-    }
+    private(set) var views = [UIView]()
     
     /// Create a HStack
     /// - Parameters:
@@ -44,8 +34,8 @@ public class HStack: UIView {
         self.alignment = alignment
         self.distribution = distribution
         super.init(frame: .zero)
-        views.value = closure()
-        draw(views: views.value ?? [])
+        views = closure()
+        draw(views: views)
     }
     
     /// Create a HStack that accepts an array of UIView?
@@ -65,9 +55,9 @@ public class HStack: UIView {
         self.alignment = alignment
         self.distribution = distribution
         super.init(frame: .zero)
-        views.value = closure()
+        views = closure()
             .compactMap { $0 }
-        draw(views: views.value ?? [])
+        draw(views: views)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,5 +71,12 @@ public class HStack: UIView {
                     alignment: alignment,
                     distribution: distribution)
             { views }
+    }
+    
+    public func update(views closure: (inout [UIView]) -> Void) -> Self {
+        closure(&views)
+        draw(views: views)
+        
+        return self
     }
 }

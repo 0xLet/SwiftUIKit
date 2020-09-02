@@ -11,21 +11,12 @@ import Later
 /// Vertical StackView
 @available(iOS 9.0, *)
 public class VStack: UIView {
-    deinit {
-        views.resign()
-    }
-    
     private var spacing: Float
     private var padding: Float
     private var alignment: UIStackView.Alignment
     private var distribution: UIStackView.Distribution
     /// The views that the VStack contains
-    public lazy var views = Contract<[UIView]>()
-        .onChange { [weak self] (views) in
-            Later.main {
-                self?.draw(views: views ?? [])
-            }
-    }
+    private(set) var views = [UIView]()
     
     /// Create a VStack
     /// - Parameters:
@@ -44,8 +35,8 @@ public class VStack: UIView {
         self.alignment = alignment
         self.distribution = distribution
         super.init(frame: .zero)
-        views.value = closure()
-        draw(views: views.value ?? [])
+        views = closure()
+        draw(views: views)
     }
     
     /// Create a VStack that accepts an array of UIView?
@@ -65,9 +56,9 @@ public class VStack: UIView {
         self.alignment = alignment
         self.distribution = distribution
         super.init(frame: .zero)
-        views.value = closure()
+        views = closure()
             .compactMap { $0 }
-        draw(views: views.value ?? [])
+        draw(views: views)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,5 +72,13 @@ public class VStack: UIView {
                     alignment: alignment,
                     distribution: distribution)
             { views }
+    }
+    
+    @discardableResult
+    public func update(views closure: (inout [UIView]) -> Void) -> Self {
+        closure(&views)
+        draw(views: views)
+        
+        return self
     }
 }

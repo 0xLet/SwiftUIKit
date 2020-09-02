@@ -209,7 +209,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
         XCTAssertEqual(stack.allSubviews.count, 2)
-        XCTAssertEqual(stack.views.value?.count, 1)
+        XCTAssertEqual(stack.views.count, 1)
     }
     
     func testVStackViewAppend_one() {
@@ -222,13 +222,13 @@ final class BasicSwiftUIKitTests: XCTestCase {
             ]
         }
         
-        stack.views.value?.append(UIView())
-        
-        stack.draw(views: stack.views.value ?? [])
+        stack.update { (views) in
+            views.append(UIView())
+        }
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
         XCTAssertEqual(stack.allSubviews.count, 3)
-        XCTAssertEqual(stack.views.value?.count, 2)
+        XCTAssertEqual(stack.views.count, 2)
     }
     
     func testVStackViewAppend_five() {
@@ -241,13 +241,13 @@ final class BasicSwiftUIKitTests: XCTestCase {
             ]
         }
         
-        stack.views.value? += (0 ... 4).map { Label("\($0)") }
-        
-        stack.draw(views: stack.views.value ?? [])
+        stack.update { (views) in
+            views += (0 ... 4).map { Label("\($0)") }
+        }
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
         XCTAssertEqual(stack.allSubviews.count, 7)
-        XCTAssertEqual(stack.views.value?.count, 6)
+        XCTAssertEqual(stack.views.count, 6)
     }
     
     func testHStackView() {
@@ -262,7 +262,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
         XCTAssertEqual(stack.allSubviews.count, 2)
-        XCTAssertEqual(stack.views.value?.count, 1)
+        XCTAssertEqual(stack.views.count, 1)
     }
     
     func testHStackViewAppend_one() {
@@ -275,13 +275,13 @@ final class BasicSwiftUIKitTests: XCTestCase {
             ]
         }
         
-        stack.views.value?.append(UIView())
-        
-        stack.draw(views: stack.views.value ?? [])
+        stack.update { (views) in
+            views.append(UIView())
+        }
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
         XCTAssertEqual(stack.allSubviews.count, 3)
-        XCTAssertEqual(stack.views.value?.count, 2)
+        XCTAssertEqual(stack.views.count, 2)
     }
     
     func testHStackViewAppend_five() {
@@ -293,13 +293,13 @@ final class BasicSwiftUIKitTests: XCTestCase {
             ]
         }
         
-        stack.views.value? += (0 ... 4).map { Label("\($0)") }
-        
-        stack.draw(views: stack.views.value ?? [])
+        stack.update { (views) in
+            views += (0 ... 4).map { Label("\($0)") }
+        }
         
         XCTAssert(stack.subviews.first.map { type(of: $0) } == UIStackView.self)
         XCTAssertEqual(stack.allSubviews.count, 7)
-        XCTAssertEqual(stack.views.value?.count, 6)
+        XCTAssertEqual(stack.views.count, 6)
     }
     
     func testZStackView() {
