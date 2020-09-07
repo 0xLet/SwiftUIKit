@@ -13,13 +13,13 @@ public class Image: UIImageView {
         super.init(image: image)
     }
     
-    public init(_ color: UIColor) {
+    public init(color: UIColor) {
         super.init(frame: .zero)
         
         self.image = Image.image(fromColor: color)
     }
     
-    public init(_ name: String) {
+    public init(named name: String) {
         super.init(frame: .zero)
         
         guard let image = UIImage(named: name) else {
