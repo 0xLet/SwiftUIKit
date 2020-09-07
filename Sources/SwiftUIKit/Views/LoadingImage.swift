@@ -131,7 +131,7 @@ public class LoadingImage: UIView {
             }
             self.clear()
                 .embed {
-                    Image(color)
+                    Image(color: color)
                         .contentMode(self.contentMode)
             }
         }
