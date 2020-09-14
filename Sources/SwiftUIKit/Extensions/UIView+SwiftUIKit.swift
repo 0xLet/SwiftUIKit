@@ -321,7 +321,7 @@ public extension UIView {
     ///     - width: Value for the widthAnchor
     @available(iOS 10.0, *)
     @discardableResult
-    func update(height: Float? = nil, width: Float? = nil) -> Self {
+    func update(height: Float? = nil, width: Float? = nil, animated: Bool = false) -> Self {
         if let height = height {
             constraints.first { (constraint) -> Bool in
                 constraint.firstAnchor == heightAnchor
@@ -334,13 +334,19 @@ public extension UIView {
                 }?.constant = CGFloat(width)
         }
         
+        if animated {
+            Self.animate(withDuration: 1) {
+                self.layoutIfNeeded()
+            }
+        }
+        
         return self
     }
     
     /// Update a padding anchor's constant value
     @available(iOS 10.0, *)
     @discardableResult
-    func update(padding: Padding) -> Self {
+    func update(padding: Padding, animated: Bool = false) -> Self {
         switch padding {
         case .top(let value):
             topConstraints.first?.constant = CGFloat(value)
@@ -352,14 +358,20 @@ public extension UIView {
             trailingConstraints.first?.constant = CGFloat(-value)
         }
         
+        if animated {
+            Self.animate(withDuration: 1) {
+                self.layoutIfNeeded()
+            }
+        }
+        
         return self
     }
     
     /// Update an array of padding anchors' constant values
     @available(iOS 10.0, *)
     @discardableResult
-    func update(padding: [Padding]) -> Self {
-        padding.forEach { update(padding: $0) }
+    func update(padding: [Padding], animated: Bool = false) -> Self {
+        padding.forEach { update(padding: $0, animated: animated) }
         
         return self
     }
@@ -367,13 +379,13 @@ public extension UIView {
     /// Update all padding anchors' constant value
     @available(iOS 10.0, *)
     @discardableResult
-    func update(padding: Float) -> Self {
+    func update(padding: Float, animated: Bool = false) -> Self {
         update(padding: [
             .top(padding),
             .bottom(padding),
             .leading(padding),
             .trailing(padding)
-        ])
+        ], animated: animated)
         
         return self
     }
