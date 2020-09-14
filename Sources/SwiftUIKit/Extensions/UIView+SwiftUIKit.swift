@@ -322,23 +322,26 @@ public extension UIView {
     @available(iOS 10.0, *)
     @discardableResult
     func update(height: Float? = nil, width: Float? = nil, animated: Bool = false) -> Self {
-        if let height = height {
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == heightAnchor
-                }?.constant = CGFloat(height)
-        }
-        
-        if let width = width {
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == widthAnchor
-                }?.constant = CGFloat(width)
-        }
-        
-        if animated {
-            Self.animate(withDuration: 1) {
-                self.layoutIfNeeded()
+        guard animated else {
+            if let height = height {
+                constraints.first { (constraint) -> Bool in
+                    constraint.firstAnchor == heightAnchor
+                    }?.constant = CGFloat(height)
             }
+            
+            if let width = width {
+                constraints.first { (constraint) -> Bool in
+                    constraint.firstAnchor == widthAnchor
+                    }?.constant = CGFloat(width)
+            }
+            return self
         }
+        
+        Self.animate(withDuration: 1) {
+            self.update(height: height, width: width)
+            self.layoutIfNeeded()
+        }
+        
         
         return self
     }
