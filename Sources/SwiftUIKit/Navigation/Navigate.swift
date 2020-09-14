@@ -45,6 +45,9 @@ public class Navigate {
     private var didTapToastHandler: ((UIView) -> Void)?
     
     public static var shared: Navigate = Navigate()
+    public init(controller: UINavigationController? = nil) {
+        configure(controller: controller)
+    }
     
     // MARK: Configure NavigationController
     
