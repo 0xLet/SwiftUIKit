@@ -46,4 +46,18 @@ public extension UIView {
             constraint.isConnected(toAnchor: bottomAnchor)
         }
     }
+    
+    /// The height constraints held by the view
+    var heightConstraints: [NSLayoutConstraint] {
+        constraints.filter { (constraint) -> Bool in
+            constraint.isConnected(toAnchor: heightAnchor)
+        }
+    }
+    
+    /// The width constraints held by the view
+    var widthConstraints: [NSLayoutConstraint] {
+        constraints.filter { (constraint) -> Bool in
+            constraint.isConnected(toAnchor: widthAnchor)
+        }
+    }
 }
