@@ -26,6 +26,7 @@ public extension UIView {
                             embeddedView
                     }
                 }
+                .whenSuccess {}
                 
         }
         
@@ -56,6 +57,7 @@ public extension UIView {
                             embeddedView
                     }
                 }
+                .whenSuccess {}
                 
         }
         
@@ -79,6 +81,7 @@ public extension UIView {
                             embeddedView
                     }
                 }
+                .whenSuccess {}
                 
         }
         
