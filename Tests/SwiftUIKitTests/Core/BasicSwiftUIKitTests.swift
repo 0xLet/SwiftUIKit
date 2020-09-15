@@ -375,7 +375,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let view = UIView().embed {
             UIView().vstack {
                 [
-                    Image(.blue),
+                    Image(color: .blue),
                     Switch()
                 ]
             }
@@ -384,7 +384,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let otherView = UIView().embed {
             VStack {
                 [
-                    Image(.blue),
+                    Image(color: .blue),
                     Switch()
                 ]
             }
@@ -393,7 +393,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         let viewWithoutSwitch = UIView().embed {
             UIView().vstack {
                 [
-                    Image(.blue)
+                    Image(color: .blue)
                 ]
             }
         }
