@@ -31,7 +31,6 @@ public protocol CellConfigurable {
 public typealias TableViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UITableViewCell
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
-public typealias TableHeaderFooterTitleHandler = (Int) -> String?
 public typealias TableDidSelectIndexPathHandler = (IndexPath) -> Void
 public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool
 
@@ -41,8 +40,6 @@ public class TableView: UITableView {
     
     fileprivate var headerViewForSection: TableHeaderFooterViewHandler?
     fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
-    fileprivate var headerTitleForSection: TableHeaderFooterTitleHandler?
-    fileprivate var footerTitleForSection: TableHeaderFooterTitleHandler?
     fileprivate var didSelectRowAtIndexPath: TableDidSelectIndexPathHandler?
     fileprivate var shouldHighlightRowAtIndexPath: TableHighlightIndexPathHandler?
     fileprivate var canEditRowAtIndexPath: ((IndexPath) -> Bool)?
@@ -163,18 +160,10 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
         headerViewForSection?(section)
     }
     
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        headerTitleForSection?(section)
-    }
-    
     // MARK: FooterForSection
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         footerViewForSection?(section)
-    }
-    
-    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        footerTitleForSection?(section)
     }
     
     // MARK: CanRowAt
@@ -299,20 +288,6 @@ public extension TableView {
     @discardableResult
     func footerView(_ handler: @escaping TableHeaderFooterViewHandler) -> Self  {
         footerViewForSection = handler
-        
-        return self
-    }
-    
-    @discardableResult
-    func headerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
-        headerTitleForSection = handler
-        
-        return self
-    }
-    
-    @discardableResult
-    func footerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
-        footerTitleForSection = handler
         
         return self
     }
