@@ -10,22 +10,22 @@ import Observation
 
 @available(iOS 9.0, *)
 public class ObservedView<View, Value>: UIView where View: UIView {
-    @Observed public var contract: Value?
+    @Observed public var observedValue: Value?
     
     public init(
         view: View,
         initialValue: Value?,
-        onChangeHandler: @escaping (View) -> Void
+        onChangeHandler: @escaping (_ newValue: Value?, _ view: View) -> Void
     ) {
         super.init(frame: .zero)
         
-        _contract.didChangeHandler = .complete(
-            .void {
-                onChangeHandler(view)
+        _observedValue.didChangeHandler = .complete(
+            .void { [weak self] in
+                onChangeHandler(self?.observedValue, view)
             }
         )
         
-        contract = initialValue
+        observedValue = initialValue
         
         embed {
             view

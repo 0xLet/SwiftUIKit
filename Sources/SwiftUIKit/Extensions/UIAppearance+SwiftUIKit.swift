@@ -11,7 +11,7 @@ import UIKit
 public extension UIAppearance where Self: UIView {
     func observed<Value>(
         initialValue: Value,
-        onChangeHandler: @escaping (Self) -> Void
+        onChangeHandler: @escaping (_ newValue: Value?, _ view: Self) -> Void
     ) -> ObservedView<Self, Value> {
         ObservedView(view: self,
                      initialValue: initialValue,
