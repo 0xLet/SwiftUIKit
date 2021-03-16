@@ -5,7 +5,9 @@
 //  Created by Zach Eriksen on 8/25/20.
 //
 
+import E
 import UIKit
+import Chain
 import Observation
 
 @available(iOS 9.0, *)
@@ -41,6 +43,11 @@ public class ObservedView<View, Value>: UIView where View: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @discardableResult
+    public func update(value: Value) -> Variable {
+        observedValue.update(value: value)
     }
     
     private func onChange() {
