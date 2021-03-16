@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import Later
 
 /// Vertical StackView
 @available(iOS 9.0, *)
