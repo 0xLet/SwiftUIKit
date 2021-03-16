@@ -10,22 +10,29 @@ import Observation
 
 @available(iOS 9.0, *)
 public class ObservedView<View, Value>: UIView where View: UIView {
-    @Observed public var observedValue: Value?
+    private var observedValue: ObservedValue<Value> = ObservedValue()
+    
+    private var observedView: View
+    private var onChangeHandler: (Value?, View) -> Void
     
     public init(
         view: View,
         initialValue: Value?,
         onChangeHandler: @escaping (_ newValue: Value?, _ view: View) -> Void
     ) {
+        self.observedView = view
+        self.onChangeHandler = onChangeHandler
         super.init(frame: .zero)
         
-        _observedValue.didChangeHandler = .complete(
+        observedValue.didChangeHandler = .complete(
             .void { [weak self] in
-                onChangeHandler(self?.observedValue, view)
+                self?.onChange()
             }
         )
         
-        observedValue = initialValue
+        if let initialValue = initialValue {
+            observedValue.update(value: initialValue)
+        }
         
         embed {
             view
@@ -34,5 +41,9 @@ public class ObservedView<View, Value>: UIView where View: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    private func onChange() {
+        onChangeHandler(observedValue.value, observedView)
     }
 }
