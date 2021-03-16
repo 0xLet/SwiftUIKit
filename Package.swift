@@ -14,7 +14,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
-        .package(url: "https://github.com/0xLeif/Later", from: "0.3.1")
+        .package(url: "https://github.com/0xLeif/Observation", from: "0.0.1")
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
@@ -22,7 +22,7 @@ let package = Package(
         .target(
             name: "SwiftUIKit",
             dependencies: [
-                "Later"
+                "Observation"
         ]),
         .testTarget(
             name: "SwiftUIKitTests",
