@@ -1,9 +1,9 @@
 # SwiftUIKit
 <img src="assets/SwiftUIKit_logo_v1.png" width="256">
 
-UIKit code that is fun to write.
+*UIKit code that is fun to write.*
 
-## [Documentation](documentation/Home.md) (WIP)
+## [Documentation (WIP)](documentation/Home.md)
 
 [**Basic Examples**](https://github.com/0xLeif/Basic_SwiftUIKit_Examples)
 
