@@ -9,7 +9,10 @@ import UIKit
 
 @available(iOS 9.0, *)
 public class EffectView: UIVisualEffectView {
-    public init(for effect: UIVisualEffect? = nil, closure: () -> UIView) {
+    public init(
+        for effect: UIVisualEffect? = nil,
+        closure: () -> UIView
+    ) {
         super.init(effect: effect)
         
         contentView.embed {
@@ -24,7 +27,10 @@ public class EffectView: UIVisualEffectView {
 
 @available(iOS 10.0, *)
 public class BlurView: UIVisualEffectView {
-    public init(style blur: UIBlurEffect.Style = UIBlurEffect.Style.regular, closure: () -> UIView) {
+    public init(
+        style blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
+        closure: () -> UIView
+    ) {
         super.init(effect: UIBlurEffect(style: blur))
         
         contentView.embed {
@@ -39,9 +45,11 @@ public class BlurView: UIVisualEffectView {
 
 @available(iOS 13.0, *)
 public class VibrancyView: UIVisualEffectView {
-    public init(blurStyle blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
-                vibrancyStyle vibrancy: UIVibrancyEffectStyle = .fill,
-                closure: () -> UIView) {
+    public init(
+        blurStyle blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
+        vibrancyStyle vibrancy: UIVibrancyEffectStyle = .fill,
+        closure: () -> UIView
+    ) {
         super.init(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: blur),
                                             style: vibrancy))
         

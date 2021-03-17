@@ -11,8 +11,10 @@ import UIKit
 public class Switch: UISwitch {
     private var toggleChangedHandler: ((Bool) -> Void)?
     
-    public init(isOn: Bool = false,
-                _ toggleChanged: ((Bool) -> Void)? = nil) {
+    public init(
+        isOn: Bool = false,
+        toggleChanged: ((Bool) -> Void)? = nil
+    ) {
         super.init(frame: .zero)
         
         self.isOn = isOn

@@ -45,6 +45,9 @@ public class Navigate {
     private var didTapToastHandler: ((UIView) -> Void)?
     
     public static var shared: Navigate = Navigate()
+    public init(controller: UINavigationController? = nil) {
+        configure(controller: controller)
+    }
     
     // MARK: Configure NavigationController
     
@@ -116,9 +119,11 @@ public class Navigate {
     /// - Parameters:
     ///     - viewController: UIViewController to navigate to
     ///     - style: Style of navigation
-    public func go(_ viewController: UIViewController,
-                   style: NavigationStyle,
-                   completion: (() -> Void)? = nil) {
+    public func go(
+        _ viewController: UIViewController,
+        style: NavigationStyle,
+        completion: (() -> Void)? = nil
+    ) {
         
         guard let controller = navigationController else {
             print("Navigate \(#function) Error!")
@@ -140,10 +145,12 @@ public class Navigate {
     ///     - from: The UIViewController that is handling the navigation
     ///     - viewController: UIViewController to navigate to
     ///     - style: Style of navigation
-    public func go(from: UIViewController,
-                   to: UIViewController,
-                   style: NavigationStyle,
-                   completion: (() -> Void)? = nil) {
+    public func go(
+        from: UIViewController,
+        to: UIViewController,
+        style: NavigationStyle,
+        completion: (() -> Void)? = nil
+    ) {
         
         
         switch style {
@@ -197,11 +204,13 @@ public class Navigate {
     ///     - withactions: Array of action objects to be added to the Alert
     ///     - secondsToPersist: Amount of seconds the Alert should show before dismissing itself
     ///     - closure: A closure that is passed the UIAlertController before presenting it
-    public func alert(title: String,
-                      message: String,
-                      withActions actions: [UIAlertAction] = [],
-                      secondsToPersist: Double?,
-                      _ closure: ((UIAlertController) -> Void)? = nil) {
+    public func alert(
+        title: String,
+        message: String,
+        withActions actions: [UIAlertAction] = [],
+        secondsToPersist: Double?,
+        _ closure: ((UIAlertController) -> Void)? = nil
+    ) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
@@ -228,10 +237,12 @@ public class Navigate {
     ///     - message: Message of the UIAlertController
     ///     - withactions: Array of action objects to be added to the ActionSheet
     ///     - closure: A closure that is passed the UIAlertController before presenting it
-    public func actionSheet(title: String,
-                            message: String,
-                            withActions actions: [UIAlertAction] = [],
-                            _ closure: ((UIAlertController) -> Void)? = nil) {
+    public func actionSheet(
+        title: String,
+        message: String,
+        withActions actions: [UIAlertAction] = [],
+        _ closure: ((UIAlertController) -> Void)? = nil
+    ) {
         
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
@@ -255,14 +266,16 @@ public class Navigate {
     ///     - tapHandler: What happens when the user taps on the Toast (default: { $0.removeFromSuperview() })
     ///     - closure: A trailing closure that accepts a view
     @available(iOS 11.0, *)
-    public func toast(style: ToastStyle = .custom,
-                      pinToTop: Bool = true,
-                      secondsToPersist: Double? = nil,
-                      animationInDuration: Double = 0.5,
-                      animationOutDuration: Double = 0.5,
-                      padding: Float = 8,
-                      tapHandler: @escaping (UIView) -> Void = { $0.removeFromSuperview() },
-                      _ closure: @escaping () -> UIView) {
+    public func toast(
+        style: ToastStyle = .custom,
+        pinToTop: Bool = true,
+        secondsToPersist: Double? = nil,
+        animationInDuration: Double = 0.5,
+        animationOutDuration: Double = 0.5,
+        padding: Float = 8,
+        tapHandler: @escaping (UIView) -> Void = { $0.removeFromSuperview() },
+        _ closure: @escaping () -> UIView
+    ) {
         
         // Don't allow more than one Toast to be present
         guard toast == nil else {
@@ -281,12 +294,12 @@ public class Navigate {
                     .configure {
                         $0.backgroundColor = style.color
                         $0.clipsToBounds = true
-                }
-                .layer(cornerRadius: 8)
+                    }
+                    .layer(cornerRadius: 8)
                 
             }
             .padding(padding)
-                
+            
             .gesture { UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         }
         
@@ -294,13 +307,13 @@ public class Navigate {
         toast?.alpha = 0
         
         guard let controller = navigationController,
-            let containerView = controller.visibleViewController?.view,
-            let toast = toast else {
-                destroyToast()
-                print("Navigate \(#function) Error!")
-                print("Issue trying to dismiss presentingViewController")
-                print("Error: Could not unwrap navigationController")
-                return
+              let containerView = controller.visibleViewController?.view,
+              let toast = toast else {
+            destroyToast()
+            print("Navigate \(#function) Error!")
+            print("Issue trying to dismiss presentingViewController")
+            print("Error: Could not unwrap navigationController")
+            return
         }
         
         controller.visibleViewController?.view.addSubview(toast)

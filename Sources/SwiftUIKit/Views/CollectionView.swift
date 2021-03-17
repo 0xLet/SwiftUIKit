@@ -39,7 +39,7 @@ public class CollectionView: UICollectionView {
     fileprivate var targetContentOffsetForHandler: ((_ proposed: CGPoint) -> CGPoint)? = nil
     fileprivate var layoutSizeForItemHandler: ((UICollectionViewLayout, IndexPath) -> CGSize)? = nil
     fileprivate var transitionLayoutForHandler: ((_ old: UICollectionViewLayout, _ new: UICollectionViewLayout) -> UICollectionViewTransitionLayout)? = nil
-
+    
     fileprivate var didBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> ())? = nil
     fileprivate var didEndMultipleSelectionInteractionHandler: ((UICollectionView) -> ())? = nil
     fileprivate var shouldBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> Bool)? = nil
@@ -95,8 +95,10 @@ public extension CollectionView {
     }
     
     @discardableResult
-    func update(shouldReloadData: Bool = false,
-                _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]) -> Self {
+    func update(
+        shouldReloadData: Bool = false,
+        _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]
+    ) -> Self {
         data = closure(data)
         
         if shouldReloadData {
@@ -107,8 +109,10 @@ public extension CollectionView {
     }
     
     @discardableResult
-    func append(shouldReloadData: Bool = false,
-                _ closure: () -> [[CellDisplayable]]) -> Self {
+    func append(
+        shouldReloadData: Bool = false,
+        _ closure: () -> [[CellDisplayable]]
+    ) -> Self {
         data += closure()
         
         if shouldReloadData {
@@ -198,7 +202,11 @@ public extension CollectionView {
     }
     
     @discardableResult
-    func scrollToItem(at indexPath: IndexPath, at position: UICollectionView.ScrollPosition, animated: Bool = true) -> Self {
+    func scrollToItem(
+        at indexPath: IndexPath,
+        at position: UICollectionView.ScrollPosition,
+        animated: Bool = true
+    ) -> Self {
         super.scrollToItem(at: indexPath, at: position, animated: animated)
         
         return self
@@ -213,7 +221,11 @@ public extension CollectionView {
     }
     
     @discardableResult
-    func selectItem(at indexPath: IndexPath, animated: Bool, scrollPosition: UICollectionView.ScrollPosition) -> Self {
+    func selectItem(
+        at indexPath: IndexPath,
+        animated: Bool,
+        scrollPosition: UICollectionView.ScrollPosition
+    ) -> Self {
         super.selectItem(at: indexPath, animated: animated, scrollPosition: scrollPosition)
         
         return self
@@ -258,7 +270,7 @@ public extension CollectionView {
 public extension CollectionView {
     @discardableResult
     func set(backgroundView
-        : UIView) -> Self {
+                : UIView) -> Self {
         self.backgroundView = backgroundView
         
         return self
@@ -332,7 +344,11 @@ extension CollectionView: UICollectionViewDataSource {
         return titles
     }
     
-    public func collectionView(_ collectionView: UICollectionView, indexPathForIndexTitle title: String, at index: Int) -> IndexPath {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        indexPathForIndexTitle title: String,
+        at index: Int
+    ) -> IndexPath {
         IndexPath(index: index)
     }
 }
@@ -496,7 +512,11 @@ extension CollectionView: UICollectionViewDelegate {
         didUnhighlightItemAtHandler?(indexPath)
     }
     
-    public func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        willDisplay cell: UICollectionViewCell,
+        forItemAt indexPath: IndexPath
+    ) {
         willDisplayCellHandler?(cell as! CollectionViewCell, indexPath)
     }
     
@@ -504,7 +524,11 @@ extension CollectionView: UICollectionViewDelegate {
         didEndDisplayingCell?(cell as! CollectionViewCell, indexPath)
     }
     
-    public func collectionView(_ collectionView: UICollectionView, transitionLayoutForOldLayout fromLayout: UICollectionViewLayout, newLayout toLayout: UICollectionViewLayout) -> UICollectionViewTransitionLayout {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        transitionLayoutForOldLayout fromLayout: UICollectionViewLayout,
+        newLayout toLayout: UICollectionViewLayout
+    ) -> UICollectionViewTransitionLayout {
         transitionLayoutForHandler?(fromLayout, toLayout) ??
             UICollectionViewTransitionLayout(currentLayout: fromLayout, nextLayout: toLayout)
     }
@@ -597,8 +621,8 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     ///   - section: section which will be used to get value from array
     /// - Returns: First value of array if array's count isn't equal `numberOfSections`, value from given index if array's count is equal to `numberOfSections` and nil if array is nil.
     func returnValidValue<T>(for array: [T]?, section: Int) -> T? {
-            if let array = array,
-            array.count != 0 {
+        if let array = array,
+           array.count != 0 {
             
             if array.count != numberOfSections ||
                 section > numberOfSections {
@@ -613,11 +637,19 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
         return nil
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
         layoutSizeForItemHandler?(collectionViewLayout, indexPath) ?? CGSize(width: 60, height: 60)
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        insetForSectionAt section: Int
+    ) -> UIEdgeInsets {
         if let inset = returnValidValue(for: sectionsInsets, section: section) {
             return inset
         }
@@ -626,7 +658,11 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
     }
     
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumLineSpacingForSectionAt section: Int
+    ) -> CGFloat {
         if let spacing = returnValidValue(for: minimumLineSpacingForSections, section: section) {
             return spacing
         }
@@ -634,7 +670,11 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
         return 10
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        minimumInteritemSpacingForSectionAt section: Int
+    ) -> CGFloat {
         if let spacing = returnValidValue(for: minimumInteritemSpacingForSections, section: section) {
             return spacing
         }
@@ -642,7 +682,11 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
         return 5
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForHeaderInSection section: Int
+    ) -> CGSize {
         if let size = returnValidValue(for: headerSizesForSections, section: section) {
             return size
         }
@@ -650,7 +694,11 @@ extension CollectionView: UICollectionViewDelegateFlowLayout {
         return .zero
     }
     
-    public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+    public func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        referenceSizeForFooterInSection section: Int
+    ) -> CGSize {
         if let size = returnValidValue(for: footerSizeForSections, section: section) {
             return size
         }

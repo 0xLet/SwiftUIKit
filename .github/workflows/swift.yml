@@ -8,15 +8,15 @@ jobs:
     runs-on: macOS-latest
     strategy:
           matrix:
-            destination: ['platform=iOS Simulator,OS=13.1,name=iPhone 8']
-            xcode: ['/Applications/Xcode_11.6.app/Contents/Developer']
+            destination: ['platform=iOS Simulator,OS=13.1,name=iPhone 11']
+            xcode: ['/Applications/Xcode_12.app/Contents/Developer']
     steps:
     - uses: actions/checkout@v1
     # Github Actions' machines do in fact have recent versions of Xcode,
     # but you may have to explicitly switch to them.  We explicitly want
-    # to use Xcode 11, so we use xcode-select to switch to it.
-    - name: Switch to Xcode 11
-      run: sudo xcode-select --switch /Applications/Xcode_11.6.app
+    # to use Xcode 12, so we use xcode-select to switch to it.
+    - name: Switch to Xcode 12
+      run: sudo xcode-select --switch /Applications/Xcode_12.app
     # Since we want to be running our tests from Xcode, we need to
     # generate an .xcodeproj file.  Luckly, Swift Package Manager has
     # build in functionality to do so.

@@ -17,9 +17,11 @@ public enum Padding {
 @available(iOS 9.0, *)
 public extension UIView {
     
-    convenience init(withPadding padding: Float = 0,
-                     backgroundColor: UIColor? = .clear,
-                     _ closure: (() -> UIView)? = nil) {
+    convenience init(
+        withPadding padding: Float = 0,
+        backgroundColor: UIColor? = .clear,
+        _ closure: (() -> UIView)? = nil
+    ) {
         self.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
@@ -27,9 +29,11 @@ public extension UIView {
         _ = closure.map { embed(withPadding: padding, $0) }
     }
     
-    convenience init(withPadding padding: [Padding],
-                     backgroundColor: UIColor? = .clear,
-                     _ closure: (() -> UIView)? = nil) {
+    convenience init(
+        withPadding padding: [Padding],
+        backgroundColor: UIColor? = .clear,
+        _ closure: (() -> UIView)? = nil
+    ) {
         self.init(frame: .zero)
         
         self.backgroundColor = backgroundColor
@@ -46,12 +50,14 @@ public extension UIView {
     ///     - axis: Keys that specify a horizontal or vertical layout constraint between objects (source: NSLayoutConstraint.Axis)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
-    func stack(withSpacing spacing: Float = 0,
-               padding: Float = 0,
-               alignment: UIStackView.Alignment = .fill,
-               distribution: UIStackView.Distribution = .fill,
-               axis: NSLayoutConstraint.Axis,
-               _ closure: () -> [UIView?]) -> Self {
+    func stack(
+        withSpacing spacing: Float = 0,
+        padding: Float = 0,
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        axis: NSLayoutConstraint.Axis,
+        _ closure: () -> [UIView?]
+    ) -> Self {
         let viewsInVStack = closure()
             .compactMap { $0 }
         
@@ -77,12 +83,14 @@ public extension UIView {
     ///     - axis: Keys that specify a horizontal or vertical layout constraint between objects (source: NSLayoutConstraint.Axis)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
-    func stack(withSpacing spacing: Float = 0,
-               padding: [Padding],
-               alignment: UIStackView.Alignment = .fill,
-               distribution: UIStackView.Distribution = .fill,
-               axis: NSLayoutConstraint.Axis,
-               _ closure: () -> [UIView?]) -> Self {
+    func stack(
+        withSpacing spacing: Float = 0,
+        padding: [Padding],
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        axis: NSLayoutConstraint.Axis,
+        _ closure: () -> [UIView?]
+    ) -> Self {
         let viewsInVStack = closure()
             .compactMap { $0 }
         
@@ -107,11 +115,13 @@ public extension UIView {
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
-    func vstack(withSpacing spacing: Float = 0,
-                padding: Float = 0,
-                alignment: UIStackView.Alignment = .fill,
-                distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView?]) -> Self {
+    func vstack(
+        withSpacing spacing: Float = 0,
+        padding: Float = 0,
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        _ closure: () -> [UIView?]
+    ) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
@@ -128,11 +138,13 @@ public extension UIView {
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
-    func vstack(withSpacing spacing: Float = 0,
-                padding: [Padding],
-                alignment: UIStackView.Alignment = .fill,
-                distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView?]) -> Self {
+    func vstack(
+        withSpacing spacing: Float = 0,
+        padding: [Padding],
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        _ closure: () -> [UIView?]
+    ) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
@@ -149,11 +161,13 @@ public extension UIView {
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
-    func hstack(withSpacing spacing: Float = 0,
-                padding: Float = 0,
-                alignment: UIStackView.Alignment = .fill,
-                distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView?]) -> Self {
+    func hstack(
+        withSpacing spacing: Float = 0,
+        padding: Float = 0,
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        _ closure: () -> [UIView?]
+    ) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
@@ -170,11 +184,13 @@ public extension UIView {
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
-    func hstack(withSpacing spacing: Float = 0,
-                padding: [Padding],
-                alignment: UIStackView.Alignment = .fill,
-                distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView?]) -> Self {
+    func hstack(
+        withSpacing spacing: Float = 0,
+        padding: [Padding],
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        _ closure: () -> [UIView?]
+    ) -> Self {
         return stack(withSpacing: spacing,
                      padding: padding,
                      alignment: alignment,
@@ -188,8 +204,10 @@ public extension UIView {
     ///     - withPadding: The amount of space between the embedded view and this view
     ///     - closure: A trailing closure that accepts a view
     @discardableResult
-    func embed(withPadding padding: Float = 0,
-               _ closure: () -> UIView) -> Self {
+    func embed(
+        withPadding padding: Float = 0,
+        _ closure: () -> UIView
+    ) -> Self {
         let viewToEmbed = closure()
         viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
         addSubview(viewToEmbed)
@@ -226,8 +244,10 @@ public extension UIView {
     ///     - withPadding: The amount of space between the embedded view and this view
     ///     - closure: A trailing closure that accepts a view
     @discardableResult
-    func embed(withPadding padding: [Padding],
-               _ closure: () -> UIView) -> Self {
+    func embed(
+        withPadding padding: [Padding],
+        _ closure: () -> UIView
+    ) -> Self {
         let viewToEmbed = closure()
         viewToEmbed.translatesAutoresizingMaskIntoConstraints = false
         addSubview(viewToEmbed)
@@ -321,18 +341,31 @@ public extension UIView {
     ///     - width: Value for the widthAnchor
     @available(iOS 10.0, *)
     @discardableResult
-    func update(height: Float? = nil, width: Float? = nil) -> Self {
-        if let height = height {
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == heightAnchor
+    func update(
+        height: Float? = nil,
+        width: Float? = nil,
+        animated: Bool = false
+    ) -> Self {
+        guard animated else {
+            if let height = height {
+                constraints.first { (constraint) -> Bool in
+                    constraint.firstAnchor == heightAnchor
                 }?.constant = CGFloat(height)
+            }
+            
+            if let width = width {
+                constraints.first { (constraint) -> Bool in
+                    constraint.firstAnchor == widthAnchor
+                }?.constant = CGFloat(width)
+            }
+            return self
         }
         
-        if let width = width {
-            constraints.first { (constraint) -> Bool in
-                constraint.firstAnchor == widthAnchor
-                }?.constant = CGFloat(width)
+        Self.animate(withDuration: 1) {
+            self.update(height: height, width: width)
+            self.layoutIfNeeded()
         }
+        
         
         return self
     }
@@ -340,7 +373,7 @@ public extension UIView {
     /// Update a padding anchor's constant value
     @available(iOS 10.0, *)
     @discardableResult
-    func update(padding: Padding) -> Self {
+    func update(padding: Padding, animated: Bool = false) -> Self {
         switch padding {
         case .top(let value):
             topConstraints.first?.constant = CGFloat(value)
@@ -352,14 +385,20 @@ public extension UIView {
             trailingConstraints.first?.constant = CGFloat(-value)
         }
         
+        if animated {
+            Self.animate(withDuration: 1) {
+                self.layoutIfNeeded()
+            }
+        }
+        
         return self
     }
     
     /// Update an array of padding anchors' constant values
     @available(iOS 10.0, *)
     @discardableResult
-    func update(padding: [Padding]) -> Self {
-        padding.forEach { update(padding: $0) }
+    func update(padding: [Padding], animated: Bool = false) -> Self {
+        padding.forEach { update(padding: $0, animated: animated) }
         
         return self
     }
@@ -367,13 +406,13 @@ public extension UIView {
     /// Update all padding anchors' constant value
     @available(iOS 10.0, *)
     @discardableResult
-    func update(padding: Float) -> Self {
+    func update(padding: Float, animated: Bool = false) -> Self {
         update(padding: [
             .top(padding),
             .bottom(padding),
             .leading(padding),
             .trailing(padding)
-        ])
+        ], animated: animated)
         
         return self
     }
@@ -445,7 +484,11 @@ public extension UIView {
     
     /// Constrains the View's centerAnchors
     @discardableResult
-    func center(xOffset: Float? = nil, yOffset: Float? = nil, in view: UIView) -> Self {
+    func center(
+        xOffset: Float? = nil,
+        yOffset: Float? = nil,
+        in view: UIView
+    ) -> Self {
         translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(self)
         
@@ -460,34 +503,38 @@ public extension UIView {
     }
     
     @discardableResult
-    func animate(withDuration duration: TimeInterval,
-                 animation: @escaping (UIView) -> Void,
-                 completion: ((UIView) -> Void)? = nil) -> Self {
+    func animate(
+        withDuration duration: TimeInterval,
+        animation: @escaping (UIView) -> Void,
+        completion: ((UIView) -> Void)? = nil
+    ) -> Self {
         
         UIView.animate(withDuration: duration,
                        animations: { animation(self) }) { (isComplete) in
-                        if isComplete {
-                            completion?(self)
-                        }
+            if isComplete {
+                completion?(self)
+            }
         }
         
         return self
     }
     
     @discardableResult
-    func animate(withDuration duration: TimeInterval,
-                 delay: TimeInterval,
-                 options: UIView.AnimationOptions,
-                 animation: @escaping (UIView) -> Void,
-                 completion: ((UIView) -> Void)? = nil) -> Self {
+    func animate(
+        withDuration duration: TimeInterval,
+        delay: TimeInterval,
+        options: UIView.AnimationOptions,
+        animation: @escaping (UIView) -> Void,
+        completion: ((UIView) -> Void)? = nil
+    ) -> Self {
         
         UIView.animate(withDuration: duration,
                        delay: delay,
                        options: options,
                        animations: { animation(self) }) { (isComplete) in
-                        if isComplete {
-                            completion?(self)
-                        }
+            if isComplete {
+                completion?(self)
+            }
         }
         
         return self
@@ -521,7 +568,7 @@ public extension UIView {
         animate(withDuration: duration,
                 animation: { view in
                     view.alpha = 0
-        }) { view in
+                }) { view in
             view.isHidden = true
             view.alpha = 1
             
@@ -539,7 +586,7 @@ public extension UIView {
         animate(withDuration: duration,
                 animation: { view in
                     view.alpha = 1
-        }) { view in
+                }) { view in
             view.isHidden = false
             view.alpha = 1
             
@@ -556,9 +603,11 @@ public extension UIView {
     }
     
     @discardableResult
-    func accessibility(label: String? = nil,
-                       identifier: String? = nil,
-                       traits: UIAccessibilityTraits? = nil) -> Self {
+    func accessibility(
+        label: String? = nil,
+        identifier: String? = nil,
+        traits: UIAccessibilityTraits? = nil
+    ) -> Self {
         
         label.map { accessibilityLabel = $0 }
         identifier.map { accessibilityIdentifier = $0 }

@@ -6,13 +6,15 @@
 //
 
 import UIKit
-import Later
 
 @available(iOS 9.0, *)
 public extension UIAppearance where Self: UIView {
-    func contract<Value>(_ closure: (Self) -> Contract<Value>) -> ContractView<Self, Value> {
-        ContractView(view: self) { view in
-            closure(view)
-        }
+    func observed<Value>(
+        initialValue: Value,
+        onChangeHandler: @escaping (_ newValue: Value?, _ view: Self) -> Void
+    ) -> ObservedView<Self, Value> {
+        ObservedView(view: self,
+                     initialValue: initialValue,
+                     onChangeHandler: onChangeHandler)
     }
 }

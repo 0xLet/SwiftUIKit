@@ -31,7 +31,6 @@ public protocol CellConfigurable {
 public typealias TableViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UITableViewCell
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
-public typealias TableHeaderFooterTitleHandler = (Int) -> String?
 public typealias TableDidSelectIndexPathHandler = (IndexPath) -> Void
 public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool
 
@@ -41,8 +40,6 @@ public class TableView: UITableView {
     
     fileprivate var headerViewForSection: TableHeaderFooterViewHandler?
     fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
-    fileprivate var headerTitleForSection: TableHeaderFooterTitleHandler?
-    fileprivate var footerTitleForSection: TableHeaderFooterTitleHandler?
     fileprivate var didSelectRowAtIndexPath: TableDidSelectIndexPathHandler?
     fileprivate var shouldHighlightRowAtIndexPath: TableHighlightIndexPathHandler?
     fileprivate var canEditRowAtIndexPath: ((IndexPath) -> Bool)?
@@ -66,8 +63,10 @@ public class TableView: UITableView {
     fileprivate var heightForHeaderInSection: ((Int) -> CGFloat)?
     fileprivate var heightForFooterInSection: ((Int) -> CGFloat)?
     
-    public init(initalData: [[CellDisplayable]] = [[CellDisplayable]](),
-                style: UITableView.Style = .plain) {
+    public init(
+        initalData: [[CellDisplayable]] = [[CellDisplayable]](),
+        style: UITableView.Style = .plain
+    ) {
         self.data = initalData
         super.init(frame: .zero, style: style)
         
@@ -83,8 +82,10 @@ public class TableView: UITableView {
 @available(iOS 11.0, *)
 public extension TableView {
     @discardableResult
-    func update(shouldReloadData: Bool = false,
-                _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]) -> Self {
+    func update(
+        shouldReloadData: Bool = false,
+        _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]
+    ) -> Self {
         data = closure(data)
         
         if shouldReloadData {
@@ -95,8 +96,10 @@ public extension TableView {
     }
     
     @discardableResult
-    func append(shouldReloadData: Bool = false,
-                _ closure: () -> [[CellDisplayable]]) -> Self {
+    func append(
+        shouldReloadData: Bool = false,
+        _ closure: () -> [[CellDisplayable]]
+    ) -> Self {
         data += closure()
         
         if shouldReloadData {
@@ -126,7 +129,7 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-       indentationLevelForRowAtIndexPath?(indexPath) ?? 0
+        indentationLevelForRowAtIndexPath?(indexPath) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -163,18 +166,10 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
         headerViewForSection?(section)
     }
     
-    public func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        headerTitleForSection?(section)
-    }
-    
     // MARK: FooterForSection
     
     public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         footerViewForSection?(section)
-    }
-    
-    public func tableView(_ tableView: UITableView, titleForFooterInSection section: Int) -> String? {
-        footerTitleForSection?(section)
     }
     
     // MARK: CanRowAt
@@ -221,7 +216,11 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Actions
     
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
         commitEditingStyleForRowAtIndexPath?(editingStyle, indexPath)
     }
     
@@ -249,7 +248,11 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
         didUnhighlightRowAtIndexPath?(indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    public func tableView(
+        _ tableView: UITableView,
+        moveRowAt sourceIndexPath: IndexPath,
+        to destinationIndexPath: IndexPath
+    ) {
         moveRowAtSourceIndexPathToDestinationIndexPath?(sourceIndexPath, destinationIndexPath)
     }
     
@@ -299,20 +302,6 @@ public extension TableView {
     @discardableResult
     func footerView(_ handler: @escaping TableHeaderFooterViewHandler) -> Self  {
         footerViewForSection = handler
-        
-        return self
-    }
-    
-    @discardableResult
-    func headerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
-        headerTitleForSection = handler
-        
-        return self
-    }
-    
-    @discardableResult
-    func footerTitle(_ handler: @escaping TableHeaderFooterTitleHandler) -> Self  {
-        footerTitleForSection = handler
         
         return self
     }

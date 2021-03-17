@@ -11,11 +11,13 @@ import UIKit
 public class Button: UIButton {
     private var action: (() -> Void)?
     
-    public init(_ title: String,
-                titleColor: UIColor? = nil,
-                backgroundColor: UIColor? = nil,
-                forEvent event: UIControl.Event = .touchUpInside,
-                _ action: (() -> Void)? = nil) {
+    public init(
+        title: String,
+        titleColor: UIColor? = nil,
+        backgroundColor: UIColor? = nil,
+        forEvent event: UIControl.Event = .touchUpInside,
+        action: (() -> Void)? = nil
+    ) {
         self.action = action
         super.init(frame: .zero)
         
@@ -27,15 +29,17 @@ public class Button: UIButton {
         accessibility(label: title, traits: .button)
     }
     
-    public init(action: (() -> Void)? = nil,
-                forEvent event: UIControl.Event = .touchUpInside,
-                _ closure: () -> UIView) {
+    public init(
+        forEvent event: UIControl.Event = .touchUpInside,
+        action: (() -> Void)? = nil,
+        labelView: () -> UIView
+    ) {
         self.action = action
         super.init(frame: .zero)
         
         embed {
-            closure()
-            .gesture { UITapGestureRecognizer(target: self, action: #selector(handleButtonTap)) }
+            labelView()
+                .gesture { UITapGestureRecognizer(target: self, action: #selector(handleButtonTap)) }
         }
         
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
