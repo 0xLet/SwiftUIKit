@@ -22,7 +22,7 @@ jobs:
     # build in functionality to do so.
     - name: Generate xcodeproj
       run: swift package generate-xcodeproj
-    # Finally, we invoke xcodebuild to run the tests on an iPhone 12
+    # Finally, we invoke xcodebuild to run the tests on an iPhone 11
     # simulator.
     - name: Run tests
       run: xcodebuild test -destination 'name=iPhone 11' -scheme 'SwiftUIKit-Package'
