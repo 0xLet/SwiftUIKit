@@ -12,7 +12,10 @@ public class ContainerView: UIView {
     private weak var parentViewController: UIViewController?
     var viewController: UIViewController?
     
-    public init(parent: UIViewController, child: () -> UIViewController) {
+    public init(
+        parent: UIViewController,
+        child: () -> UIViewController
+    ) {
         parentViewController = parent
         viewController = child()
         super.init(frame: .zero)
@@ -29,8 +32,8 @@ public class ContainerView: UIView {
 private extension ContainerView {
     func embedViewController() {
         guard let parent = parentViewController,
-            let child = viewController else {
-                return
+              let child = viewController else {
+            return
         }
         
         parent.addChild(child)

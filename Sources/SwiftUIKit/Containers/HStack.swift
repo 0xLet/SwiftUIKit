@@ -24,11 +24,13 @@ public class HStack: UIView {
     ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of views
-    public init(withSpacing spacing: Float = 0,
-                padding: Float = 0,
-                alignment: UIStackView.Alignment = .fill,
-                distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView]) {
+    public init(
+        withSpacing spacing: Float = 0,
+        padding: Float = 0,
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        _ closure: () -> [UIView]
+    ) {
         self.spacing = spacing
         self.padding = padding
         self.alignment = alignment
@@ -45,11 +47,13 @@ public class HStack: UIView {
     ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
     ///     - closure: A trailing closure that accepts an array of optional views
-    public init(withSpacing spacing: Float = 0,
-                padding: Float = 0,
-                alignment: UIStackView.Alignment = .fill,
-                distribution: UIStackView.Distribution = .fill,
-                _ closure: () -> [UIView?]) {
+    public init(
+        withSpacing spacing: Float = 0,
+        padding: Float = 0,
+        alignment: UIStackView.Alignment = .fill,
+        distribution: UIStackView.Distribution = .fill,
+        _ closure: () -> [UIView?]
+    ) {
         self.spacing = spacing
         self.padding = padding
         self.alignment = alignment
@@ -70,7 +74,7 @@ public class HStack: UIView {
                     padding: padding,
                     alignment: alignment,
                     distribution: distribution)
-            { views }
+                { views }
     }
     
     public func update(views closure: (inout [UIView]) -> Void) -> Self {

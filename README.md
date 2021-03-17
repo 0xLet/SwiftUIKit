@@ -3,6 +3,9 @@
 
 UIKit code that is fun to write.
 
+## [Documentation](documentation/Home.md) (WIP)
+
+
 ## Example Code
 ```Swift
 import UIKit
@@ -38,7 +41,7 @@ class ViewController: UIViewController {
                                 
                                 Spacer(),
                                 
-                                Field(value: "SwiftUIKit",
+                                TextField(value: "SwiftUIKit",
                                       placeholder: "Some Name",
                                       keyboardType: .default)
                                     .inputHandler { print("New Name: \($0)") }

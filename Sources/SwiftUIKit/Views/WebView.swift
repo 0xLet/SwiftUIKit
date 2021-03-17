@@ -22,10 +22,13 @@ public class WebView: WKWebView {
 
 @available(iOS 9.0, *)
 public extension WebView {
-    convenience init(baseURL: URL? = nil, _ htmlString: () -> String) {
+    convenience init(
+        baseURL: URL? = nil,
+        htmlString: () -> String
+    ) {
         self.init()
         
-        loadHTMLString(baseURL: baseURL, htmlString)
+        loadHTMLString(baseURL: baseURL, htmlString: htmlString)
     }
     
     convenience init(url: URL) {
@@ -46,14 +49,25 @@ public extension WebView {
         loadFile(URL: URL, allowingReadAccessTo: URL)
     }
     
-    convenience init(data: Data, mimeType MIMEType: String, characterEncodingName: String, baseURL: URL) {
+    convenience init(
+        data: Data,
+        mimeType MIMEType: String,
+        characterEncodingName: String,
+        baseURL: URL
+    ) {
         self.init()
         
-        load(data: data, mimeType: MIMEType, characterEncodingName: characterEncodingName, baseURL: baseURL)
+        load(data: data,
+             mimeType: MIMEType,
+             characterEncodingName: characterEncodingName,
+             baseURL: baseURL)
     }
     
     @discardableResult
-    func loadHTMLString(baseURL: URL? = nil, _ htmlString: () -> String) -> Self {
+    func loadHTMLString(
+        baseURL: URL? = nil,
+        htmlString: () -> String
+    ) -> Self {
         loadHTMLString(htmlString(), baseURL: baseURL)
         
         return self
@@ -81,8 +95,16 @@ public extension WebView {
     }
     
     @discardableResult
-    func load(data: Data, mimeType MIMEType: String, characterEncodingName: String, baseURL: URL) -> Self {
-        load(data, mimeType: MIMEType, characterEncodingName: characterEncodingName, baseURL: baseURL)
+    func load(
+        data: Data,
+        mimeType MIMEType: String,
+        characterEncodingName: String,
+        baseURL: URL
+    ) -> Self {
+        load(data,
+             mimeType: MIMEType,
+             characterEncodingName: characterEncodingName,
+             baseURL: baseURL)
         
         return self
     }

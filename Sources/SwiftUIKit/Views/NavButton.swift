@@ -12,41 +12,49 @@ public class NavButton: Button {
     private var destination: () -> UIViewController
     private var style: Navigate.NavigationStyle
     
-    public init(_ title: String,
-                tapHandler: (() -> Void)? = nil,
-                destination: @escaping () -> UIViewController,
-                style: Navigate.NavigationStyle,
-                titleColor: UIColor? = nil,
-                backgroundColor: UIColor? = nil) {
+    public init(
+        title: String,
+        tapHandler: (() -> Void)? = nil,
+        destination: @escaping () -> UIViewController,
+        style: Navigate.NavigationStyle,
+        titleColor: UIColor? = nil,
+        backgroundColor: UIColor? = nil
+    ) {
         
         self.destination = destination
         self.style = style
         
-        super.init(title,
-                   titleColor: titleColor,
-                   backgroundColor: backgroundColor,
-                   forEvent: .touchUpInside) {
-                    tapHandler?()
-                    Navigate.shared.go(destination(),
-                                       style: style)
-        }
+        super.init(
+            title: title,
+            titleColor: titleColor,
+            backgroundColor: backgroundColor,
+            forEvent: .touchUpInside,
+            action: {
+                tapHandler?()
+                Navigate.shared.go(destination(), style: style)
+            }
+        )
     }
     
-    public init(tapHandler: (() -> Void)? = nil,
-                destination: @escaping () -> UIViewController,
-                style: Navigate.NavigationStyle,
-                _ closure: () -> UIView) {
+    
+    public init(
+        tapHandler: (() -> Void)? = nil,
+        destination: @escaping () -> UIViewController,
+        style: Navigate.NavigationStyle,
+        labelView: () -> UIView
+    ) {
         
         self.destination = destination
         self.style = style
         
-        super.init(action: {
-            tapHandler?()
-            Navigate.shared.go(destination(),
-                               style: style)
-        },
-                   forEvent: .touchUpInside,
-                   closure)
+        super.init(
+            forEvent: .touchUpInside,
+            action: {
+                tapHandler?()
+                Navigate.shared.go(destination(), style: style)
+            },
+            labelView: labelView
+        )
     }
     
     required init?(coder: NSCoder) {

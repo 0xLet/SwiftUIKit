@@ -16,9 +16,11 @@ public class List: UITableView {
     private var didSelectHandler: ((UIView) -> Void)?
     private var configureCell: ((UITableViewCell) -> Void)?
     
-    public init(defaultCellHeight: Float? = nil,
-                estimatedCellHeight: Float? = nil,
-                _ closure: () -> [UIView]) {
+    public init(
+        defaultCellHeight: Float? = nil,
+        estimatedCellHeight: Float? = nil,
+        _ closure: () -> [UIView]
+    ) {
         
         self.defaultCellHeight = defaultCellHeight
         self.estimatedCellHeight = estimatedCellHeight
@@ -73,7 +75,7 @@ extension List: UITableViewDataSource {
         
         // Start LoadingViews
         if let view = cell.contentView.allSubviews.first(where: { $0 is LoadingView }),
-            let loadingView = view as? LoadingView {
+           let loadingView = view as? LoadingView {
             loadingView.start()
         }
         

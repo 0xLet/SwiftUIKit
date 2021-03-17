@@ -37,9 +37,11 @@ public extension UIViewController {
     }
     
     /// Go without the Navigation Controller using the current ViewController to present the new ViewController 
-    func go(to viewController: UIViewController,
-            style: Navigate.NavigationStyle,
-            completion: (() -> Void)? = nil) {
+    func go(
+        to viewController: UIViewController,
+        style: Navigate.NavigationStyle,
+        completion: (() -> Void)? = nil
+    ) {
         Navigate.shared.go(from: self,
                            to: viewController,
                            style: style,
@@ -47,9 +49,11 @@ public extension UIViewController {
     }
     
     /// Navigate with the Navigation Controller to the new ViewController
-    func navigate(_ viewController: UIViewController,
-                  style: Navigate.NavigationStyle,
-                  completion: (() -> Void)? = nil) {
+    func navigate(
+        _ viewController: UIViewController,
+        style: Navigate.NavigationStyle,
+        completion: (() -> Void)? = nil
+    ) {
         Navigate.shared.go(viewController,
                            style: style,
                            completion: completion)

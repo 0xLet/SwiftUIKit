@@ -11,10 +11,12 @@ import UIKit
 public class Slider: UISlider {
     private var valueChangedHandler: ((Float) -> Void)?
     
-    public init(value: Float,
-                from: Float,
-                to: Float,
-                _ valueChangedHandler: ((Float) -> Void)? = nil) {
+    public init(
+        value: Float,
+        from: Float,
+        to: Float,
+        valueChangedHandler: ((Float) -> Void)? = nil
+    ) {
         
         super.init(frame: .zero)
         
