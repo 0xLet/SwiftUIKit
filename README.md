@@ -5,8 +5,13 @@
 
 ## [Documentation (WIP)](documentation/Home.md)
 
+[**Getting Started**](https://medium.com/oneleif/an-intro-to-swiftuikit-6acd9d4c94ec)
+
 [**Basic Examples**](https://github.com/0xLeif/Basic_SwiftUIKit_Examples)
 
+## Introduction
+
+SwiftUIKit is mainly based off of two functions, embed and stack. Embedding a view inside another view is exactly what we did in the first two examples. Now we can add another to the view, but then we have to manage the constraints for the subviews! An easy way to handle this is to use UIStackViews, so in SwiftUIKit there are VStack, HStack, and ZStack. UIStackViews manage the constraints for you and do just as the name suggests, stack views you give it in the order you give them.
 
 ## Example Code
 ```Swift
