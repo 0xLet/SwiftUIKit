@@ -1,61 +1,61 @@
 # Types
 
-  - [HScroll](/HScroll)
-  - [HStack](/HStack):
-    Horizontal StackView
-  - [SafeAreaView](/SafeAreaView):
-    A View that respects the SafeArea
-  - [VScroll](/VScroll)
-  - [VStack](/VStack):
-    Vertical StackView
-  - [ZStack](/ZStack):
-    ZStack:
-    A view which stacks its children views in order
-  - [Padding](/Padding)
-  - [ViewController](/ViewController)
-  - [Navigate](/Navigate)
-  - [Navigate.NavigationStyle](/Navigate_NavigationStyle)
-  - [Navigate.ToastStyle](/Navigate_ToastStyle)
-  - [Button](/Button)
-  - [CollectionView](/CollectionView)
-  - [ContainerView](/ContainerView)
-  - [Divider](/Divider)
-  - [EffectView](/EffectView)
-  - [BlurView](/BlurView)
-  - [VibrancyView](/VibrancyView)
-  - [Image](/Image)
-  - [Label](/Label)
-  - [List](/List)
-  - [LoadingImage](/LoadingImage)
-  - [LoadingView](/LoadingView)
-  - [MapPoint](/MapPoint)
-  - [Map](/Map)
-  - [MultiLineField](/MultiLineField)
-  - [NavButton](/NavButton)
-  - [ObservedView](/ObservedView)
-  - [ScrollView](/ScrollView)
-  - [Slider](/Slider)
-  - [Spacer](/Spacer)
-  - [Switch](/Switch)
-  - [TableView](/TableView)
-  - [TextField](/TextField)
-  - [WebView](/WebView)
+  - [HScroll](HScroll.md)
+  - [HStack](HStack.md):
+	Horizontal StackView
+  - [SafeAreaView](SafeAreaView.md):
+	A View that respects the SafeArea
+  - [VScroll](VScroll.md)
+  - [VStack](VStack.md):
+	Vertical StackView
+  - [ZStack](ZStack.md):
+	ZStack:
+	A view which stacks its children views in order
+  - [Padding](Padding.md)
+  - [ViewController](ViewController.md)
+  - [Navigate](Navigate.md)
+  - [Navigate.NavigationStyle](Navigate_NavigationStyle.md)
+  - [Navigate.ToastStyle](Navigate_ToastStyle.md)
+  - [Button](Button.md)
+  - [CollectionView](CollectionView.md)
+  - [ContainerView](ContainerView.md)
+  - [Divider](Divider.md)
+  - [EffectView](EffectView.md)
+  - [BlurView](BlurView.md)
+  - [VibrancyView](VibrancyView.md)
+  - [Image](Image.md)
+  - [Label](Label.md)
+  - [List](List.md)
+  - [LoadingImage](LoadingImage.md)
+  - [LoadingView](LoadingView.md)
+  - [MapPoint](MapPoint.md)
+  - [Map](Map.md)
+  - [MultiLineField](MultiLineField.md)
+  - [NavButton](NavButton.md)
+  - [ObservedView](ObservedView.md)
+  - [ScrollView](ScrollView.md)
+  - [Slider](Slider.md)
+  - [Spacer](Spacer.md)
+  - [Switch](Switch.md)
+  - [TableView](TableView.md)
+  - [TextField](TextField.md)
+  - [WebView](WebView.md)
 
 # Protocols
 
-  - [CellDisplayable](/CellDisplayable)
-  - [DataIdentifiable](/DataIdentifiable)
-  - [CellUpdatable](/CellUpdatable)
-  - [CellConfigurable](/CellConfigurable)
+  - [CellDisplayable](CellDisplayable.md)
+  - [DataIdentifiable](DataIdentifiable.md)
+  - [CellUpdatable](CellUpdatable.md)
+  - [CellConfigurable](CellConfigurable.md)
 
 # Global Typealiases
 
-  - [AttributedString](/AttributedString)
-  - [AttributedStringKey](/AttributedStringKey)
-  - [StringAttributes](/StringAttributes)
-  - [BarButton](/BarButton)
-  - [CollectionViewCell](/CollectionViewCell)
-  - [TableViewCell](/TableViewCell)
-  - [TableHeaderFooterViewHandler](/TableHeaderFooterViewHandler)
-  - [TableDidSelectIndexPathHandler](/TableDidSelectIndexPathHandler)
-  - [TableHighlightIndexPathHandler](/TableHighlightIndexPathHandler)
+  - [AttributedString](AttributedString.md)
+  - [AttributedStringKey](AttributedStringKey.md)
+  - [StringAttributes](StringAttributes.md)
+  - [BarButton](BarButton.md)
+  - [CollectionViewCell](CollectionViewCell.md)
+  - [TableViewCell](TableViewCell.md)
+  - [TableHeaderFooterViewHandler](TableHeaderFooterViewHandler.md)
+  - [TableDidSelectIndexPathHandler](TableDidSelectIndexPathHandler.md)
+  - [TableHighlightIndexPathHandler](TableHighlightIndexPathHandler.md)
