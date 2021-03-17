@@ -10,8 +10,10 @@ import UIKit
 @available(iOS 9.0, *)
 public class VScroll: UIView {
     
-    public init(withPadding padding: Float = 0,
-                _ closure: () -> UIView) {
+    public init(
+        withPadding padding: Float = 0,
+        _ closure: () -> UIView
+    ) {
         super.init(frame: .zero)
         
         let scrollableView = closure()
