@@ -63,8 +63,10 @@ public class TableView: UITableView {
     fileprivate var heightForHeaderInSection: ((Int) -> CGFloat)?
     fileprivate var heightForFooterInSection: ((Int) -> CGFloat)?
     
-    public init(initalData: [[CellDisplayable]] = [[CellDisplayable]](),
-                style: UITableView.Style = .plain) {
+    public init(
+        initalData: [[CellDisplayable]] = [[CellDisplayable]](),
+        style: UITableView.Style = .plain
+    ) {
         self.data = initalData
         super.init(frame: .zero, style: style)
         
@@ -80,8 +82,10 @@ public class TableView: UITableView {
 @available(iOS 11.0, *)
 public extension TableView {
     @discardableResult
-    func update(shouldReloadData: Bool = false,
-                _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]) -> Self {
+    func update(
+        shouldReloadData: Bool = false,
+        _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]
+    ) -> Self {
         data = closure(data)
         
         if shouldReloadData {
@@ -92,8 +96,10 @@ public extension TableView {
     }
     
     @discardableResult
-    func append(shouldReloadData: Bool = false,
-                _ closure: () -> [[CellDisplayable]]) -> Self {
+    func append(
+        shouldReloadData: Bool = false,
+        _ closure: () -> [[CellDisplayable]]
+    ) -> Self {
         data += closure()
         
         if shouldReloadData {
@@ -123,7 +129,7 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, indentationLevelForRowAt indexPath: IndexPath) -> Int {
-       indentationLevelForRowAtIndexPath?(indexPath) ?? 0
+        indentationLevelForRowAtIndexPath?(indexPath) ?? 0
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -210,7 +216,11 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
     
     // MARK: Actions
     
-    public func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    public func tableView(
+        _ tableView: UITableView,
+        commit editingStyle: UITableViewCell.EditingStyle,
+        forRowAt indexPath: IndexPath
+    ) {
         commitEditingStyleForRowAtIndexPath?(editingStyle, indexPath)
     }
     
@@ -238,7 +248,11 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
         didUnhighlightRowAtIndexPath?(indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+    public func tableView(
+        _ tableView: UITableView,
+        moveRowAt sourceIndexPath: IndexPath,
+        to destinationIndexPath: IndexPath
+    ) {
         moveRowAtSourceIndexPathToDestinationIndexPath?(sourceIndexPath, destinationIndexPath)
     }
     

@@ -13,10 +13,12 @@ public class LoadingImage: UIView {
     private var errorHandler: ((LoadingImage?, Error?) -> Void)?
     private var completionHandler: ((UIImage?) -> Void)?
     
-    public init(_ url: URL? = nil,
-                loadingTint: UIColor? = nil,
-                onErrorLoading: ((LoadingImage?, Error?) -> Void)? = nil,
-                onCompletedLoading: ((UIImage?) -> Void)? = nil) {
+    public init(
+        url: URL? = nil,
+        loadingTint: UIColor? = nil,
+        onErrorLoading: ((LoadingImage?, Error?) -> Void)? = nil,
+        onCompletedLoading: ((UIImage?) -> Void)? = nil
+    ) {
         
         super.init(frame: .zero)
         
@@ -30,8 +32,8 @@ public class LoadingImage: UIView {
                     if let tint = loadingTint {
                         $0.color = tint
                     }
-            }
-            .start()
+                }
+                .start()
         }
         
         guard let url = url else {
@@ -67,8 +69,8 @@ public class LoadingImage: UIView {
                     if let tint = loadingTint {
                         $0.color = tint
                     }
-            }
-            .start()
+                }
+                .start()
         }
         
         guard let url = url else {
@@ -90,7 +92,7 @@ public class LoadingImage: UIView {
                 print("Image \(#function) Error!")
                 print("Issue loading Image with url: \(url.absoluteString)")
                 print("Error: Could not create UIImage from data")
-
+                
                 self?.update(color: .systemRed)
                 self?.errorHandler?(self, error)
                 self?.completionHandler?(nil)
@@ -117,7 +119,7 @@ public class LoadingImage: UIView {
                 .embed {
                     Image(image)
                         .contentMode(self.contentMode)
-            }
+                }
         }
     }
     
@@ -133,7 +135,7 @@ public class LoadingImage: UIView {
                 .embed {
                     Image(color: color)
                         .contentMode(self.contentMode)
-            }
+                }
         }
     }
 }

@@ -15,9 +15,7 @@ public class MultiLineField: UITextView {
     private var willInputUpdateHandler: WillValueChangeHandler?
     private var inputHandler: DidValueChangeHandler?
     
-    public init(value: String,
-                keyboardType type: UIKeyboardType) {
-        
+    public init(value: String, keyboardType type: UIKeyboardType) {
         super.init(frame: .zero, textContainer: nil)
         
         self.text = value
@@ -47,7 +45,11 @@ public class MultiLineField: UITextView {
 
 @available(iOS 9.0, *)
 extension MultiLineField: UITextViewDelegate {
-    public func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+    public func textView(
+        _ textView: UITextView,
+        shouldChangeTextIn range: NSRange,
+        replacementText text: String
+    ) -> Bool {
         let newValue = NSString(string: textView.text ?? "").replacingCharacters(in: range, with: text)
         
         return willInputUpdateHandler?(textView, newValue, text) ?? true

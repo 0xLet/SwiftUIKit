@@ -26,7 +26,7 @@ final class BasicADATests: XCTestCase {
     }
     
     func testButtonADA() {
-        let button = Button("SomeString") { print("Hello") }
+        let button = Button(title: "SomeString") { print("Hello") }
             .accessibility(label: nil)
         
         XCTAssertEqual(button.accessibilityLabel, "SomeString")
