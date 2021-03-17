@@ -8,7 +8,7 @@ jobs:
     runs-on: macOS-latest
     strategy:
           matrix:
-            destination: ['platform=iOS Simulator,OS=13.1,name=iPhone 12']
+            destination: ['platform=iOS Simulator,OS=13.1,name=iPhone 11']
             xcode: ['/Applications/Xcode_12.app/Contents/Developer']
     steps:
     - uses: actions/checkout@v1
@@ -25,4 +25,4 @@ jobs:
     # Finally, we invoke xcodebuild to run the tests on an iPhone 12
     # simulator.
     - name: Run tests
-      run: xcodebuild test -destination 'name=iPhone 12' -scheme 'SwiftUIKit-Package'
+      run: xcodebuild test -destination 'name=iPhone 11' -scheme 'SwiftUIKit-Package'
