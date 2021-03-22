@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  Button.swift
 //  
 //
 //  Created by Zach Eriksen on 10/30/19.
@@ -7,10 +7,20 @@
 
 import UIKit
 
+/**
+ A UIButton that handles its own action.
+ */
 @available(iOS 9.0, *)
 public class Button: UIButton {
     private var action: (() -> Void)?
     
+    /// Creates a UIButton
+    /// - parameters:
+    ///     - title: Text used for the button's title
+    ///     - titleColor: Color used for the title's font
+    ///     - backgroundColor: Color used for the button's background color
+    ///     - forEvent: UIControl event for when to fire action (Default: .touchUpInside)
+    ///     - action: Closure for the the button's action
     public init(
         title: String,
         titleColor: UIColor? = nil,
@@ -29,6 +39,11 @@ public class Button: UIButton {
         accessibility(label: title, traits: .button)
     }
     
+    /// Creates a UIButton with a label view
+    /// - parameters:
+    ///     - forEvent: UIControl event for when to fire action (Default: .touchUpInside)
+    ///     - action: Closure for the the button's action
+    ///     - labelView: The view to embed
     public init(
         forEvent event: UIControl.Event = .touchUpInside,
         action: (() -> Void)? = nil,
@@ -45,6 +60,7 @@ public class Button: UIButton {
         self.addTarget(self, action: #selector(handleButtonTap), for: event)
     }
     
+    /// Update the button's action
     @discardableResult
     public func setAction(_ action: (() -> Void)?) -> Self {
         self.action = action
