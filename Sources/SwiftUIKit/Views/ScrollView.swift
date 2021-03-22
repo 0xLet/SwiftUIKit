@@ -7,8 +7,13 @@
 
 import UIKit
 
+/**
+ A UIScrollView
+ */
 @available(iOS 9.0, *)
 public class ScrollView: UIScrollView {
+    /// Creates a UIScrollView
+    /// - parameter closure: Scrollable view (Default: nil)
     public init(_ closure: (() -> UIView)? = nil) {
         super.init(frame: .zero)
         

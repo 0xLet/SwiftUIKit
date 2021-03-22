@@ -16,7 +16,7 @@ public class HScroll: UIView {
     /// Creates a new view with a `ScrollView` embedded inside of a parent view.
     ///
     /// - Parameters:
-    ///     - padding: Top and Bottom padding of the scrollable view
+    ///     - padding: Top and Bottom padding of the scrollable view (Default: 0)
     ///     - closure: A closure that returns the scrollable view
     public init(
         withPadding padding: Float = 0,

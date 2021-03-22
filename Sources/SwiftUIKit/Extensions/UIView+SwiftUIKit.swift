@@ -20,9 +20,9 @@ public extension UIView {
     
     /// Create a UIView with an embedded view inside
     /// - Parameters:
-    ///     - withPadding: The padding surrounding the embedded view
-    ///     - backgroundColor: The color to set as the backgroundColor of the parent view
-    ///     - closure: A trailing closure that accepts a view which will be embedded
+    ///     - withPadding: The padding surrounding the embedded view (Default: 0)
+    ///     - backgroundColor: The color to set as the backgroundColor of the parent view (Default: .clear)
+    ///     - closure: A trailing closure that accepts a view which will be embedded (Default: nil)
     convenience init(
         withPadding padding: Float = 0,
         backgroundColor: UIColor? = .clear,
@@ -38,8 +38,8 @@ public extension UIView {
     /// Create a UIView with an embedded view inside
     /// - Parameters:
     ///     - withPadding: The `Padding` surrounding the embedded view
-    ///     - backgroundColor: The color to set as the backgroundColor of the parent view
-    ///     - closure: A trailing closure that accepts a view which will be embedded
+    ///     - backgroundColor: The color to set as the backgroundColor of the parent view (Default: .clear)
+    ///     - closure: A trailing closure that accepts a view which will be embedded (Default: nil)
     convenience init(
         withPadding padding: [Padding],
         backgroundColor: UIColor? = .clear,
@@ -54,10 +54,10 @@ public extension UIView {
     
     /// Embed a Stack
     /// - Parameters:
-    ///     - withSpacing: The amount of spacing between each child view
-    ///     - padding: The amount of space between this view and its parent view
-    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
-    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - withSpacing: The amount of spacing between each child view (Default: 0)
+    ///     - padding: The amount of space between this view and its parent view (Default: 0)
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
     ///     - axis: Keys that specify a horizontal or vertical layout constraint between objects (source: NSLayoutConstraint.Axis)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
@@ -87,10 +87,10 @@ public extension UIView {
     
     /// Embed a Stack
     /// - Parameters:
-    ///     - withSpacing: The amount of spacing between each child view
+    ///     - withSpacing: The amount of spacing between each child view (Default: 0)
     ///     - padding: The amount of space between this view and its parent view
-    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
-    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
     ///     - axis: Keys that specify a horizontal or vertical layout constraint between objects (source: NSLayoutConstraint.Axis)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
@@ -120,10 +120,10 @@ public extension UIView {
     
     /// Embed a VStack
     /// - Parameters:
-    ///     - withSpacing: The amount of spacing between each child view
-    ///     - padding: The amount of space between this view and its parent view
-    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
-    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - withSpacing: The amount of spacing between each child view (Default: 0)
+    ///     - padding: The amount of space between this view and its parent view (Default: 0)
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
     func vstack(
@@ -143,10 +143,10 @@ public extension UIView {
     
     /// Embed a VStack
     /// - Parameters:
-    ///     - withSpacing: The amount of spacing between each child view
+    ///     - withSpacing: The amount of spacing between each child view (Default: 0)
     ///     - padding: The amount of space between this view and its parent view
-    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
-    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
     func vstack(
@@ -166,10 +166,10 @@ public extension UIView {
     
     /// Embed a HStack
     /// - Parameters:
-    ///     - withSpacing: The amount of spacing between each child view
-    ///     - padding: The amount of space between this view and its parent view
-    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
-    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - withSpacing: The amount of spacing between each child view (Default: 0)
+    ///     - padding: The amount of space between this view and its parent view (Default: 0)
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
     func hstack(
@@ -189,10 +189,10 @@ public extension UIView {
     
     /// Embed a HStack
     /// - Parameters:
-    ///     - withSpacing: The amount of spacing between each child view
+    ///     - withSpacing: The amount of spacing between each child view (Default: 0)
     ///     - padding: The amount of space between this view and its parent view
-    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
-    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
     ///     - closure: A trailing closure that accepts an array of views
     @discardableResult
     func hstack(
@@ -212,7 +212,7 @@ public extension UIView {
     
     /// Embed a View to all anchors (top, bottom, leading, trailing)
     /// - Parameters:
-    ///     - withPadding: The amount of space between the embedded view and this view
+    ///     - withPadding: The amount of space between the embedded view and this view (Default: 0)
     ///     - closure: A trailing closure that accepts a view
     @discardableResult
     func embed(
@@ -323,7 +323,7 @@ public extension UIView {
     
     /// Embed this view inside another with some padding
     /// - Parameters:
-    ///     - padding: The amount of space between this view and its parent view
+    ///     - padding: The amount of space between this view and its parent view (Default: 8)
     @discardableResult
     func padding(_ padding: Float = 8) -> UIView {
         return UIView(withPadding: padding,
@@ -335,8 +335,8 @@ public extension UIView {
     
     /// Set the height and width anchors to constant values (if nil it will not update the constraint)
     /// - Parameters:
-    ///     - height: Value for the heightAnchor
-    ///     - width: Value for the widthAnchor
+    ///     - height: Value for the heightAnchor (Default: nil)
+    ///     - width: Value for the widthAnchor (Default: nil)
     @discardableResult
     func frame(height: Float? = nil, width: Float? = nil) -> Self {
         if let height = height {
@@ -352,8 +352,8 @@ public extension UIView {
     
     /// Update the height and width anchors to constant values (if nil it will not update the constraint)
     /// - Parameters:
-    ///     - height: Value for the heightAnchor
-    ///     - width: Value for the widthAnchor
+    ///     - height: Value for the heightAnchor (Default: nil)
+    ///     - width: Value for the widthAnchor (Default: nil)
     @available(iOS 10.0, *)
     @discardableResult
     func update(
@@ -467,8 +467,8 @@ public extension UIView {
     
     /// Offset the View's center by (x, y)
     /// - Parameters:
-    ///     - x: Value to add to the center.x
-    ///     - y: Value to add to the center.y
+    ///     - x: Value to add to the center.x (Default: nil)
+    ///     - y: Value to add to the center.y (Default: nil)
     @discardableResult
     func offset(x: Float? = nil, y: Float? = nil) -> Self {
         if let x = x {
@@ -483,8 +483,8 @@ public extension UIView {
     
     /// Set the View's center to (x, y)
     /// - Parameters:
-    ///     - x: Value to set the center.x
-    ///     - y: Value to set the center.y
+    ///     - x: Value to set the center.x (Default: nil)
+    ///     - y: Value to set the center.y (Default: nil)
     @discardableResult
     func center(x: Float? = nil, y: Float? = nil) -> Self {
         if let x = x {
@@ -521,7 +521,7 @@ public extension UIView {
     /// - parameters:
     ///     - withDuration: Duration of the animation
     ///     - animation: Closure which changes to the view are animated
-    ///     - completion: Closure which runs once the animation has been completed
+    ///     - completion: Closure which runs once the animation has been completed (Default: nil)
     @discardableResult
     func animate(
         withDuration duration: TimeInterval,
@@ -545,7 +545,7 @@ public extension UIView {
     ///     - delay: The duration which the animation should be delayed
     ///     - otions: The UIView.AnimationOptions for the animation
     ///     - animation: Closure which changes to the view are animated
-    ///     - completion: Closure which runs once the animation has been completed
+    ///     - completion: Closure which runs once the animation has been completed (Default: nil)
     @discardableResult
     func animate(
         withDuration duration: TimeInterval,
@@ -698,7 +698,7 @@ public extension UIView {
     /// Set the left barButton
     /// - Parameters:
     ///     - barButton: The UIBarButtonItem to be set
-    ///     - animated: Should animate setting the left UIBarButtonItem
+    ///     - animated: Should animate setting the left UIBarButtonItem (Default: true)
     @discardableResult
     func navigateSetLeft(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         Navigate.shared.setLeft(barButton: barButton, animated: animated)
@@ -709,7 +709,7 @@ public extension UIView {
     /// Set the right barButton
     /// - Parameters:
     ///     - barButton: The UIBarButtonItem to be set
-    ///     - animated: Should animate setting the right UIBarButtonItem
+    ///     - animated: Should animate setting the right UIBarButtonItem (Default: true)
     @discardableResult
     func navigateSetRight(barButton: UIBarButtonItem?, animated: Bool = true) -> Self {
         Navigate.shared.setRight(barButton: barButton, animated: animated)
@@ -720,7 +720,7 @@ public extension UIView {
     /// Set the left barButtons
     /// - Parameters:
     ///     - barButton: The [UIBarButtonItem] to be set
-    ///     - animated: Should animate setting the left [UIBarButtonItem]
+    ///     - animated: Should animate setting the left [UIBarButtonItem] (Default: true)
     @discardableResult
     func navigateSetLeft(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         Navigate.shared.setLeft(barButtons: barButtons, animated: animated)
@@ -731,7 +731,7 @@ public extension UIView {
     /// Set the right barButtons
     /// - Parameters:
     ///     - barButton: The [UIBarButtonItem] to be set
-    ///     - animated: Should animate setting the right [UIBarButtonItem]
+    ///     - animated: Should animate setting the right [UIBarButtonItem] (Default: true)
     @discardableResult
     func navigateSetRight(barButtons: [UIBarButtonItem]?, animated: Bool = true) -> Self {
         Navigate.shared.setRight(barButtons: barButtons, animated: animated)

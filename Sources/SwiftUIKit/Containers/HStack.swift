@@ -17,14 +17,14 @@ public class HStack: UIView {
     private var alignment: UIStackView.Alignment
     private var distribution: UIStackView.Distribution
     /// The views that the HStack contains
-    private(set) var views = [UIView]()
+    private(set) public var views = [UIView]()
     
     /// Create a HStack
     /// - Parameters:
-    ///     - withSpacing: The amount of spacing between each child view
-    ///     - padding: The amount of space between this view and its parent view
-    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
-    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
+    ///     - withSpacing: The amount of spacing between each child view (Default: 0)
+    ///     - padding: The amount of space between this view and its parent view (Default: 0)
+    ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
+    ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
     ///     - closure: A trailing closure that accepts an array of views
     public init(
         withSpacing spacing: Float = 0,

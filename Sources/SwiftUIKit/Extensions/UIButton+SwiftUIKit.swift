@@ -11,7 +11,7 @@ public extension UIButton {
     /// Set the titleColor for a UIControl State
     /// - Parameters:
     ///     - titleColor: A color for the title
-    ///     - forState: The UIControl State for the titleColor
+    ///     - forState: The UIControl State for the titleColor (Default: .normal)
     @discardableResult
     func set(
         titleColor: UIColor?,

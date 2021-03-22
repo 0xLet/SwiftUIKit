@@ -17,10 +17,10 @@ public class Button: UIButton {
     /// Creates a UIButton
     /// - parameters:
     ///     - title: Text used for the button's title
-    ///     - titleColor: Color used for the title's font
-    ///     - backgroundColor: Color used for the button's background color
-    ///     - forEvent: UIControl event for when to fire action (Default: .touchUpInside)
-    ///     - action: Closure for the the button's action
+    ///     - titleColor: Color used for the title's font (Default: nil)
+    ///     - backgroundColor: Color used for the button's background color (Default: nil)
+    ///     - forEvent: UIControl event for when to fire action (Default: .touchUpInside) (Default: .touchUpInside)
+    ///     - action: Closure for the the button's action (Default: nil)
     public init(
         title: String,
         titleColor: UIColor? = nil,

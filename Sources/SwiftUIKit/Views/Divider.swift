@@ -7,8 +7,15 @@
 
 import UIKit
 
+/**
+ A UIView that divides vertically or horizontally
+ */
 @available(iOS 9.0, *)
 public class Divider: UIView {
+    /// Creates a UIView
+    /// - parameters:
+    ///     - axis: Axis to divide (Default: .horizontal)
+    ///     - color: Color of the divider (Default: .systemGray)
     public init(
         _ axis: NSLayoutConstraint.Axis = .horizontal,
         color: UIColor? = .systemGray

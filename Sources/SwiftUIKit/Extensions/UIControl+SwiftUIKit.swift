@@ -8,7 +8,7 @@
 import UIKit
 
 public extension UIControl {
-    /// Set isEnabled for the view
+    /// Set isEnabled for the view (Default: true)
     @discardableResult
     func enabled(if value: Bool = true) -> Self {
         isEnabled = value

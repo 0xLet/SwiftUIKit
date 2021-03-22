@@ -16,7 +16,7 @@ public class VScroll: UIView {
     /// Creates a new view with a `ScrollView` embedded inside of a parent view.
     ///
     /// - Parameters:
-    ///     - padding: Leading and Trailing padding of the scrollable view
+    ///     - padding: Leading and Trailing padding of the scrollable view (Default: 0)
     ///     - closure: A closure that returns the scrollable view
     public init(
         withPadding padding: Float = 0,

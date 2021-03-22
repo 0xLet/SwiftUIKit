@@ -75,7 +75,7 @@ public extension UIView {
     /// - parameters:
     ///     - link: A Chain of events that must be completed for the view to be shown
     ///     - update: A closure to handle updating the view when the chain is completed
-    ///     - centeredLoadingView: A view to show while the chain is running
+    ///     - centeredLoadingView: A view to show while the chain is running (Default: nil)
     static func chain(
         link: Chain,
         update: @escaping (UIView) -> Void,
@@ -109,7 +109,7 @@ public extension UIView {
     /// - parameters:
     ///     - link: A Chain of events that must be completed for the view to be shown
     ///     - update: A closure to handle updating the view when the chain is completed
-    ///     - centeredLoadingView: A view to show while the chain is running
+    ///     - centeredLoadingView: A view to show while the chain is running (Default: nil)
     static func background(
         link: Chain,
         update: @escaping (UIView) -> Void,
