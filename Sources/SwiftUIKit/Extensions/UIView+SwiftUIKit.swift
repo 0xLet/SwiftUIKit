@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Directional Padding
 public enum Padding {
     case leading(Float)
     case trailing(Float)
@@ -17,6 +18,11 @@ public enum Padding {
 @available(iOS 9.0, *)
 public extension UIView {
     
+    /// Create a UIView with an embedded view inside
+    /// - Parameters:
+    ///     - withPadding: The padding surrounding the embedded view
+    ///     - backgroundColor: The color to set as the backgroundColor of the parent view
+    ///     - closure: A trailing closure that accepts a view which will be embedded
     convenience init(
         withPadding padding: Float = 0,
         backgroundColor: UIColor? = .clear,
@@ -29,6 +35,11 @@ public extension UIView {
         _ = closure.map { embed(withPadding: padding, $0) }
     }
     
+    /// Create a UIView with an embedded view inside
+    /// - Parameters:
+    ///     - withPadding: The `Padding` surrounding the embedded view
+    ///     - backgroundColor: The color to set as the backgroundColor of the parent view
+    ///     - closure: A trailing closure that accepts a view which will be embedded
     convenience init(
         withPadding padding: [Padding],
         backgroundColor: UIColor? = .clear,
@@ -270,6 +281,7 @@ public extension UIView {
         return self
     }
     
+    /// Sets the vertical setContentHuggingPriority
     @discardableResult
     func setVertical(huggingPriority: UILayoutPriority) -> Self {
         setContentHuggingPriority(huggingPriority, for: .vertical)
@@ -277,6 +289,7 @@ public extension UIView {
         return self
     }
     
+    /// Sets the horizontal setContentHuggingPriority
     @discardableResult
     func setHorizontal(huggingPriority: UILayoutPriority) -> Self {
         setContentHuggingPriority(huggingPriority, for: .horizontal)
@@ -284,6 +297,7 @@ public extension UIView {
         return self
     }
     
+    /// Sets the vertical setContentCompressionResistancePriority
     @discardableResult
     func setVertical(compressionResistance: UILayoutPriority) -> Self {
         setContentCompressionResistancePriority(compressionResistance, for: .vertical)
@@ -291,6 +305,7 @@ public extension UIView {
         return self
     }
     
+    /// Sets the horizontal setContentCompressionResistancePriority
     @discardableResult
     func setHorizontal(compressionResistance: UILayoutPriority) -> Self {
         setContentCompressionResistancePriority(compressionResistance, for: .horizontal)
@@ -502,6 +517,11 @@ public extension UIView {
         return self
     }
     
+    /// Animate the current view
+    /// - parameters:
+    ///     - withDuration: Duration of the animation
+    ///     - animation: Closure which changes to the view are animated
+    ///     - completion: Closure which runs once the animation has been completed
     @discardableResult
     func animate(
         withDuration duration: TimeInterval,
@@ -519,6 +539,13 @@ public extension UIView {
         return self
     }
     
+    /// Animate the current view
+    /// - parameters:
+    ///     - withDuration: Duration of the animation
+    ///     - delay: The duration which the animation should be delayed
+    ///     - otions: The UIView.AnimationOptions for the animation
+    ///     - animation: Closure which changes to the view are animated
+    ///     - completion: Closure which runs once the animation has been completed
     @discardableResult
     func animate(
         withDuration duration: TimeInterval,
@@ -595,6 +622,7 @@ public extension UIView {
         return self
     }
     
+    /// Modify the transform of the view
     @discardableResult
     func transform(_ closure: (CGAffineTransform) -> CGAffineTransform) -> Self {
         transform = closure(transform)
@@ -602,6 +630,7 @@ public extension UIView {
         return self
     }
     
+    /// Sets the accessibility values of the view
     @discardableResult
     func accessibility(
         label: String? = nil,
@@ -628,6 +657,7 @@ public extension UIView {
         return self
     }
     
+    /// Sets the backgroundColor of the view to the color provided
     @discardableResult
     func background(color: UIColor?) -> Self {
         backgroundColor = color
@@ -635,6 +665,7 @@ public extension UIView {
         return self
     }
     
+    /// Sets clipsToBounds to the value provided
     @discardableResult
     func clipsToBounds(_ shouldClip: Bool = true) -> Self {
         self.clipsToBounds = shouldClip
@@ -710,10 +741,12 @@ public extension UIView {
 }
 
 public extension UIView {
+    /// Returns all subviews of the current view
     var allSubviews: [UIView] {
         getSubviews(forView: self)
     }
     
+    /// Useful debug function to change all subviews background color to a random color and count the number of subviews
     @discardableResult
     func debug() -> Self {
         var randomColor: UIColor {
@@ -736,6 +769,7 @@ public extension UIView {
         return self
     }
     
+    /// private function to get all subviews for a view
     private func getSubviews(forView view: UIView) -> [UIView] {
         var views: [UIView] = []
         for view in view.subviews {

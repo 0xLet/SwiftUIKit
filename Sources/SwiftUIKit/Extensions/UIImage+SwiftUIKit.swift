@@ -8,6 +8,7 @@
 import UIKit
 
 public extension UIImage {
+    /// Updates the renderingMode to be .alwaysTemplate
     var template: UIImage {
         guard renderingMode != .alwaysTemplate else {
             return self

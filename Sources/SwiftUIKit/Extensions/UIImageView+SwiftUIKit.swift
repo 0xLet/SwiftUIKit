@@ -8,6 +8,7 @@
 import UIKit
 
 public extension UIImageView {
+    /// Updates the current image to be the templated image of itself
     @discardableResult
     func templateImage() -> Self {
         image = image?.template
@@ -15,6 +16,7 @@ public extension UIImageView {
         return self
     }
     
+    /// Sets the tintColor for the UIImageView
     @discardableResult
     func tint(color: UIColor?) -> Self {
         tintColor = color

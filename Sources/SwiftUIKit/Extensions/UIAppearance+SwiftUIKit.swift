@@ -9,6 +9,7 @@ import UIKit
 
 @available(iOS 9.0, *)
 public extension UIAppearance where Self: UIView {
+    /// Create an `ObservedView` from any UIAppearance where Self is of type UIView
     func observed<Value>(
         initialValue: Value,
         onChangeHandler: @escaping (_ newValue: Value?, _ view: Self) -> Void

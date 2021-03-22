@@ -11,6 +11,13 @@ import Chain
 
 @available(iOS 9.0, *)
 private extension UIView {
+    /// Create a UIView using a chain of events with a centeredLoadingView or an embeddedLoadingView
+    /// - parameters:
+    ///     - link: A Chain of events that must be completed for the view to be shown
+    ///     - update: A closure to handle updating the view when the chain is completed
+    ///     - shouldBackground: Decides if the chain should be started in the background
+    ///     - centeredLoadingView: A centered view to show while the chain is running
+    ///     - embeddedLoadingView: An embedded view to show while the chain is running
     static func chain(
         link: Chain,
         update: @escaping (UIView) -> Void,
@@ -64,6 +71,11 @@ private extension UIView {
 
 @available(iOS 9.0, *)
 public extension UIView {
+    /// Create a UIView using a chain of events with a centeredLoadingView
+    /// - parameters:
+    ///     - link: A Chain of events that must be completed for the view to be shown
+    ///     - update: A closure to handle updating the view when the chain is completed
+    ///     - centeredLoadingView: A view to show while the chain is running
     static func chain(
         link: Chain,
         update: @escaping (UIView) -> Void,
@@ -76,6 +88,11 @@ public extension UIView {
               embeddedLoadingView: nil)
     }
     
+    /// Create a UIView using a chain of events with an embeddedLoadingView
+    /// - parameters:
+    ///     - link: A Chain of events that must be completed for the view to be shown
+    ///     - update: A closure to handle updating the view when the chain is completed
+    ///     - embeddedLoadingView: A view to show while the chain is running
     static func chain(
         link: Chain,
         update: @escaping (UIView) -> Void,
@@ -88,6 +105,11 @@ public extension UIView {
               embeddedLoadingView: embeddedLoadingView)
     }
     
+    /// Create a UIView using a backgrounded chain of events with a centeredLoadingView
+    /// - parameters:
+    ///     - link: A Chain of events that must be completed for the view to be shown
+    ///     - update: A closure to handle updating the view when the chain is completed
+    ///     - centeredLoadingView: A view to show while the chain is running
     static func background(
         link: Chain,
         update: @escaping (UIView) -> Void,
@@ -100,6 +122,11 @@ public extension UIView {
               embeddedLoadingView: nil)
     }
     
+    /// Create a UIView using a backgrounded chain of events with an embeddedLoadingView
+    /// - parameters:
+    ///     - link: A Chain of events that must be completed for the view to be shown
+    ///     - update: A closure to handle updating the view when the chain is completed
+    ///     - embeddedLoadingView: A view to show while the chain is running
     static func background(
         link: Chain,
         update: @escaping (UIView) -> Void,

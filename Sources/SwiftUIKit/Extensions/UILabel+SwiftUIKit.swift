@@ -8,6 +8,7 @@
 import UIKit
 
 public extension UILabel {
+    /// Sets the textColor for the UILabel with the provided color
     @discardableResult
     func text(color: UIColor?) -> Self {
         textColor = color
@@ -15,6 +16,7 @@ public extension UILabel {
         return self
     }
     
+    /// Sets the text for the UILabel with the provided text value
     @discardableResult
     func text(_ value: String?) -> Self {
         text = value
