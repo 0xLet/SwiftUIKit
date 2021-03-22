@@ -33,6 +33,7 @@ public class Image: UIImageView {
         self.image = image
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -32,6 +32,7 @@ public class Label: UILabel {
         accessibility(label: attributedText.mutableString.description, traits: .staticText)
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

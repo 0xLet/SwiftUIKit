@@ -15,6 +15,7 @@ public class ScrollView: UIScrollView {
         _ = closure.map { embed($0) }
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

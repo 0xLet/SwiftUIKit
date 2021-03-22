@@ -15,6 +15,7 @@ public class WebView: WKWebView {
         super.init(frame: .zero, configuration: configuration)
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

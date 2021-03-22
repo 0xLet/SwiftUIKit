@@ -28,6 +28,7 @@ public class Slider: UISlider {
         addTarget(self, action: #selector(handleValueChanged), for: .valueChanged)
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

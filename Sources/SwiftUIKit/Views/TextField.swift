@@ -31,6 +31,7 @@ public class TextField: UITextField {
         addTarget(self, action: #selector(valueDidChange), for: .editingChanged)
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

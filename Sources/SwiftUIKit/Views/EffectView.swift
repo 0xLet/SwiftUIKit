@@ -20,7 +20,8 @@ public class EffectView: UIVisualEffectView {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    /// not implemented
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -38,7 +39,8 @@ public class BlurView: UIVisualEffectView {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    /// not implemented
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
@@ -58,7 +60,8 @@ public class VibrancyView: UIVisualEffectView {
         }
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    /// not implemented
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
