@@ -64,10 +64,12 @@ public class VStack: UIView {
         draw(views: views)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    /// not implemented
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// internal function to redraw hstack
     internal func draw(views: [UIView]) {
         clear()
             .vstack(withSpacing: spacing,
@@ -77,6 +79,7 @@ public class VStack: UIView {
                 { views }
     }
     
+    /// Update the HStack with new views
     @discardableResult
     public func update(views closure: (inout [UIView]) -> Void) -> Self {
         closure(&views)

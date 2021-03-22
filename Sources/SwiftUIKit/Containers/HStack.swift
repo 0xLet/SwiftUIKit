@@ -7,7 +7,9 @@
 
 import UIKit
 
-/// Horizontal StackView
+/**
+A view that horizontally stacks views.
+ */
 @available(iOS 9.0, *)
 public class HStack: UIView {
     private var spacing: Float
@@ -64,10 +66,12 @@ public class HStack: UIView {
         draw(views: views)
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    /// not implemented
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// internal function to redraw hstack
     internal func draw(views: [UIView]) {
         clear()
             .hstack(withSpacing: spacing,
@@ -77,6 +81,8 @@ public class HStack: UIView {
                 { views }
     }
     
+    /// Update the HStack with new views
+    @discardableResult
     public func update(views closure: (inout [UIView]) -> Void) -> Self {
         closure(&views)
         draw(views: views)
