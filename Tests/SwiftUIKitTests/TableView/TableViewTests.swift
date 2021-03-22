@@ -117,7 +117,7 @@ class TableViewTests: XCTestCase {
 }
 
 @available(iOS 11.0, *)
-fileprivate class TableTestHelper {
+private class TableTestHelper {
     struct InfoData {
         let title: String
         let count: Int
