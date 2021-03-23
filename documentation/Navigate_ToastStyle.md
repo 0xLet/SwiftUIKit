@@ -1,5 +1,7 @@
 # Navigate.ToastStyle
 
+Different types of Toast Style
+
 ``` swift
 public enum ToastStyle
 ```
@@ -45,6 +47,8 @@ case custom
 ## Properties
 
 ### `color`
+
+The color chosen for the Toast Style
 
 ``` swift
 var color: UIColor

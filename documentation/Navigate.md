@@ -1,5 +1,7 @@
 # Navigate
 
+An object to help with navigation.
+
 ``` swift
 @available(iOS 9.0, *) public class Navigate
 ```
@@ -8,13 +10,21 @@
 
 ### `init(controller:)`
 
+Create a Navigate object to manage navigation
+
 ``` swift
 public init(controller: UINavigationController? = nil)
 ```
 
+#### Parameters
+
+  - controller: An optional UINavigationController to handle navigation (Default: nil)
+
 ## Properties
 
 ### `shared`
+
+The statically shared instance of Navigate
 
 ``` swift
 var shared: Navigate
@@ -53,7 +63,7 @@ Set the left barButton
 #### Parameters
 
   - barButton: The UIBarButtonItem to be set
-  - animated: Should animate setting the left UIBarButtonItem
+  - animated: Should animate setting the left UIBarButtonItem (Default: true)
 
 ### `setRight(barButton:animated:)`
 
@@ -66,7 +76,7 @@ Set the right barButton
 #### Parameters
 
   - barButton: The UIBarButtonItem to be set
-  - animated: Should animate setting the right UIBarButtonItem
+  - animated: Should animate setting the right UIBarButtonItem (Default: true)
 
 ### `setLeft(barButtons:animated:)`
 
@@ -79,7 +89,7 @@ Set the left barButtons
 #### Parameters
 
   - barButton: The \[UIBarButtonItem\] to be set
-  - animated: Should animate setting the left \[UIBarButtonItem\]
+  - animated: Should animate setting the left \[UIBarButtonItem\] (Default: true)
 
 ### `setRight(barButtons:animated:)`
 
@@ -92,7 +102,7 @@ Set the right barButtons
 #### Parameters
 
   - barButton: The \[UIBarButtonItem\] to be set
-  - animated: Should animate setting the right \[UIBarButtonItem\]
+  - animated: Should animate setting the right \[UIBarButtonItem\] (Default: true)
 
 ### `go(_:style:completion:)`
 
@@ -105,7 +115,7 @@ public func go(_ viewController: UIViewController, style: NavigationStyle, compl
 #### Parameters
 
   - viewController: UIViewController to navigate to
-  - style: Style of navigation
+  - style: Style of navigation (Default: nil)
 
 ### `go(from:to:style:completion:)`
 
@@ -119,7 +129,7 @@ public func go(from: UIViewController, to: UIViewController, style: NavigationSt
 
   - from: The UIViewController that is handling the navigation
   - viewController: UIViewController to navigate to
-  - style: Style of navigation
+  - style: Style of navigation (Default: nil)
 
 ### `back(toRoot:)`
 
@@ -131,7 +141,7 @@ public func back(toRoot: Bool = false)
 
 #### Parameters
 
-  - toRoot: Should navigate back to the rootViewController
+  - toRoot: Should navigate back to the rootViewController (Default: false)
 
 ### `dismiss()`
 
@@ -153,9 +163,9 @@ public func alert(title: String, message: String, withActions actions: [UIAlertA
 
   - title: Title of the UIAlertController
   - message: Message of the UIAlertController
-  - withactions: Array of action objects to be added to the Alert
+  - withactions: Array of action objects to be added to the Alert (Default: \[\])
   - secondsToPersist: Amount of seconds the Alert should show before dismissing itself
-  - closure: A closure that is passed the UIAlertController before presenting it
+  - closure: A closure that is passed the UIAlertController before presenting it (Default: nil)
 
 ### `actionSheet(title:message:withActions:_:)`
 
@@ -169,8 +179,8 @@ public func actionSheet(title: String, message: String, withActions actions: [UI
 
   - title: Title of the UIAlertController
   - message: Message of the UIAlertController
-  - withactions: Array of action objects to be added to the ActionSheet
-  - closure: A closure that is passed the UIAlertController before presenting it
+  - withactions: Array of action objects to be added to the ActionSheet (Default: \[\])
+  - closure: A closure that is passed the UIAlertController before presenting it (Default: nil)
 
 ### `toast(style:pinToTop:secondsToPersist:animationInDuration:animationOutDuration:padding:tapHandler:_:)`
 
@@ -182,13 +192,13 @@ Show a Toast Message
 
 #### Parameters
 
-  - style: The ToastStyle (default: .custom)
-  - pinToTop: Should the Toast pin to the top or bottom (default: true)
-  - secondsToPersist: Amount of seconds the Toast should show before dismissing itself
-  - animationInDuration: The amount of seconds the Toast should fade in (default: 0.5)
-  - animationOutDuration: The amount of seconds the Toast should fade out (default: 0.5)
-  - padding: The amount of spacing around the Toast
-  - tapHandler: What happens when the user taps on the Toast (default: { $0.removeFromSuperview() })
+  - style: The ToastStyle (Default: .custom)
+  - pinToTop: Should the Toast pin to the top or bottom (Default: true)
+  - secondsToPersist: Amount of seconds the Toast should show before dismissing itself (Default: nil)
+  - animationInDuration: The amount of seconds the Toast should fade in (Default: 0.5)
+  - animationOutDuration: The amount of seconds the Toast should fade out (Default: 0.5)
+  - padding: The amount of spacing around the Toast (Default: 8)
+  - tapHandler: What happens when the user taps on the Toast (Default: { $0.removeFromSuperview() })
   - closure: A trailing closure that accepts a view
 
 ### `destroyToast()`

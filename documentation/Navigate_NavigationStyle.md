@@ -1,5 +1,7 @@
 # Navigate.NavigationStyle
 
+Different types of Navigation Style
+
 ``` swift
 public enum NavigationStyle
 ```

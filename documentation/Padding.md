@@ -1,5 +1,7 @@
 # Padding
 
+Directional Padding
+
 ``` swift
 public enum Padding
 ```
