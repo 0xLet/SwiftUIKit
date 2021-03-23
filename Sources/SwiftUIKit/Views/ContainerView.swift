@@ -7,11 +7,25 @@
 
 import UIKit
 
+/**
+ A UIView that contains a child UIViewController
+ */
 @available(iOS 9.0, *)
 public class ContainerView: UIView {
     private weak var parentViewController: UIViewController?
-    var viewController: UIViewController?
+    /// The embedded child UIViewController
+    public var viewController: UIViewController
     
+    deinit {
+        viewController.willMove(toParent: nil)
+        viewController.removeFromParent()
+        viewController.view.removeFromSuperview()
+    }
+    
+    /// Creates a UIView
+    /// - parameters:
+    ///     - parent: The parent UIViewController of the view
+    ///     - child: The UIViewController to embed
     public init(
         parent: UIViewController,
         child: () -> UIViewController
@@ -32,16 +46,15 @@ public class ContainerView: UIView {
 @available(iOS 9.0, *)
 private extension ContainerView {
     func embedViewController() {
-        guard let parent = parentViewController,
-              let child = viewController else {
+        guard let parent = parentViewController else {
             return
         }
         
-        parent.addChild(child)
-        child.didMove(toParent: parent)
+        parent.addChild(viewController)
+        viewController.didMove(toParent: parent)
         
         embed {
-            child.view
+            viewController.view
         }
     }
 }

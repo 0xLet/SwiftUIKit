@@ -7,8 +7,15 @@
 
 import UIKit
 
+/**
+ A UIVisualEffectView that embeds a view
+ */
 @available(iOS 9.0, *)
 public class EffectView: UIVisualEffectView {
+    /// Creates a UIVisualEffectView
+    /// - parameters:
+    ///     - for: UIVisualEffect (Default: nil)
+    ///     - closure: View to embed into the contentView
     public init(
         for effect: UIVisualEffect? = nil,
         closure: () -> UIView
@@ -26,8 +33,15 @@ public class EffectView: UIVisualEffectView {
     }
 }
 
+/**
+ A UIVisualEffectView that embeds a view
+ */
 @available(iOS 10.0, *)
 public class BlurView: UIVisualEffectView {
+    /// Creates a UIVisualEffectView
+    /// - parameters:
+    ///     - style: UIBlurEffect.Style (Default: .regular)
+    ///     - closure: View to embed into the contentView
     public init(
         style blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
         closure: () -> UIView
@@ -45,8 +59,16 @@ public class BlurView: UIVisualEffectView {
     }
 }
 
+/**
+ A UIVisualEffectView that embeds a view
+ */
 @available(iOS 13.0, *)
 public class VibrancyView: UIVisualEffectView {
+    /// Creates a UIVisualEffectView
+    /// - parameters:
+    ///     - blurStyle: UIBlurEffect.Style (Default: .regular)
+    ///     - vibrancyStyle: UIVibrancyEffectStyle (Default: .fill)
+    ///     - closure: View to embed into the contentView
     public init(
         blurStyle blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
         vibrancyStyle vibrancy: UIVibrancyEffectStyle = .fill,

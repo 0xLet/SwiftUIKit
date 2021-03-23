@@ -7,18 +7,24 @@
 
 import UIKit
 
+/**
+ A UIImageView that can show colors
+ */
 @available(iOS 9.0, *)
 public class Image: UIImageView {
+    /// Creates a UIImageView with a UIImage from a UIImage
     public init(_ image: UIImage) {
         super.init(image: image)
     }
     
+    /// Creates a UIImageView with a UIImage from a UIColor
     public init(color: UIColor) {
         super.init(frame: .zero)
         
         self.image = Image.image(fromColor: color)
     }
     
+    /// Creates a UIImageView with a UIImage from a named asset
     public init(named name: String) {
         super.init(frame: .zero)
         
@@ -38,6 +44,7 @@ public class Image: UIImageView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    /// Sets the contentMode of the UIImageView
     @discardableResult
     public func contentMode(_ mode: UIView.ContentMode) -> Self {
         self.contentMode = mode
