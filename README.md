@@ -1,5 +1,5 @@
 # SwiftUIKit
-<img src="assets/SwiftUIKit_logo_v1.png" width="256">
+<img src="https://github.com/0xLeif/SwiftUIKit/blob/3.0.0/assets/SwiftUIKit_logo_v1.png?raw=true" width="256">
 
 UIKit code that is fun to write.
 
