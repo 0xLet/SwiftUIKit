@@ -7,11 +7,18 @@
 
 import UIKit
 
+/**
+ A UIView that expands unless a height or width is provided
+ */
 @available(iOS 9.0, *)
 public class Spacer: UIView {
     private var height: Float?
     private var width: Float?
     
+    /// Creates a UIView
+    /// - parameters:
+    ///     - height: Height for the Spacer, if nil the height will grow as much as possible (Default: nil)
+    ///     - width: Width for the Spacer, if nil the width will grow as much as possible (Default: nil)
     public init(height: Float? = nil, width: Float? = nil) {
         self.height = height
         self.width = width
@@ -30,6 +37,7 @@ public class Spacer: UIView {
         }
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

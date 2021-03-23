@@ -7,16 +7,21 @@
 
 import UIKit
 
+/**
+ A UIViewController which embeds the closure's view after the viewDidLoad
+ */
 @available(iOS 9.0, *)
 public class ViewController: UIViewController {
     private var closure: () -> UIView
     
+    /// Creates a UIViewController which only runs the closure after the viewDidLoad
     public init(_ closure: @escaping (() -> UIView)) {
         self.closure = closure
         
         super.init(nibName: nil, bundle: nil)
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -30,6 +35,8 @@ public class ViewController: UIViewController {
 
 @available(iOS 9.0, *)
 public extension UIViewController {
+    
+    /// Create a UIViewController and embed the trailing closure's view
     convenience init(_ closure: (() -> UIView)) {
         self.init()
         
@@ -59,10 +66,10 @@ public extension UIViewController {
                            completion: completion)
     }
     
-    @available(iOS 11.0, *)
     /// Create a ViewController with Safe Area
+    @available(iOS 11.0, *)
     class func safe(_ closure: (() -> UIView)) -> UIViewController {
-        return UIViewController {
+        UIViewController {
             SafeAreaView(closure)
         }
     }

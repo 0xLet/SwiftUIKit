@@ -24,6 +24,7 @@ public class MultiLineField: UITextView {
         delegate = self
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

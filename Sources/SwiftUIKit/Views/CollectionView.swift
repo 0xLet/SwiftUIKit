@@ -14,35 +14,35 @@ public typealias CollectionViewCell = DataIdentifiable & CellConfigurable & Cell
 public class CollectionView: UICollectionView {
     public var data: [[CellDisplayable]]
     
-    fileprivate var titles: [String]? = nil
-    fileprivate var sectionsInsets: [UIEdgeInsets]? = nil
-    fileprivate var footerSizeForSections: [CGSize]? = nil
-    fileprivate var headerSizesForSections: [CGSize]? = nil
-    fileprivate var minimumLineSpacingForSections: [CGFloat]? = nil
-    fileprivate var minimumInteritemSpacingForSections: [CGFloat]? = nil
+    private var titles: [String]? = nil
+    private var sectionsInsets: [UIEdgeInsets]? = nil
+    private var footerSizeForSections: [CGSize]? = nil
+    private var headerSizesForSections: [CGSize]? = nil
+    private var minimumLineSpacingForSections: [CGFloat]? = nil
+    private var minimumInteritemSpacingForSections: [CGFloat]? = nil
     
-    fileprivate var shouldSelectItemAtHandler: ((IndexPath) -> Bool)? = nil
-    fileprivate var didSelectItemAtHandler: ((IndexPath) -> ())? = nil
-    fileprivate var shouldDeselectItemAtHandler: ((IndexPath) -> Bool)? = nil
-    fileprivate var didDeselectItemAtHandler: ((IndexPath) -> ())? = nil
-    fileprivate var shouldHighlightItemAtHandler: ((IndexPath) -> Bool)? = nil
-    fileprivate var didHighlightItemAtHandler: ((IndexPath) -> ())? = nil
-    fileprivate var didUnhighlightItemAtHandler: ((IndexPath) -> ())? = nil
-    fileprivate var canFocusItemAtHandler: ((IndexPath) -> Bool)? = nil
+    private var shouldSelectItemAtHandler: ((IndexPath) -> Bool)? = nil
+    private var didSelectItemAtHandler: ((IndexPath) -> ())? = nil
+    private var shouldDeselectItemAtHandler: ((IndexPath) -> Bool)? = nil
+    private var didDeselectItemAtHandler: ((IndexPath) -> ())? = nil
+    private var shouldHighlightItemAtHandler: ((IndexPath) -> Bool)? = nil
+    private var didHighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    private var didUnhighlightItemAtHandler: ((IndexPath) -> ())? = nil
+    private var canFocusItemAtHandler: ((IndexPath) -> Bool)? = nil
     
-    fileprivate var willDisplayCellHandler: ((CollectionViewCell, IndexPath) -> ())? = nil
-    fileprivate var didEndDisplayingCell: ((CollectionViewCell, IndexPath) -> ())? = nil
+    private var willDisplayCellHandler: ((CollectionViewCell, IndexPath) -> ())? = nil
+    private var didEndDisplayingCell: ((CollectionViewCell, IndexPath) -> ())? = nil
     
-    fileprivate var numberOfItemsInSectionHandler: ((UICollectionView, Int) -> Int)? = nil
-    fileprivate var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
-    fileprivate var targetIndexPathForMoveHandler: ((_ from: IndexPath, _ to: IndexPath) -> IndexPath)? = nil
-    fileprivate var targetContentOffsetForHandler: ((_ proposed: CGPoint) -> CGPoint)? = nil
-    fileprivate var layoutSizeForItemHandler: ((UICollectionViewLayout, IndexPath) -> CGSize)? = nil
-    fileprivate var transitionLayoutForHandler: ((_ old: UICollectionViewLayout, _ new: UICollectionViewLayout) -> UICollectionViewTransitionLayout)? = nil
+    private var numberOfItemsInSectionHandler: ((UICollectionView, Int) -> Int)? = nil
+    private var cellForItemAtHandler: ((UICollectionView, IndexPath) -> (UICollectionViewCell))? = nil
+    private var targetIndexPathForMoveHandler: ((_ from: IndexPath, _ to: IndexPath) -> IndexPath)? = nil
+    private var targetContentOffsetForHandler: ((_ proposed: CGPoint) -> CGPoint)? = nil
+    private var layoutSizeForItemHandler: ((UICollectionViewLayout, IndexPath) -> CGSize)? = nil
+    private var transitionLayoutForHandler: ((_ old: UICollectionViewLayout, _ new: UICollectionViewLayout) -> UICollectionViewTransitionLayout)? = nil
     
-    fileprivate var didBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> ())? = nil
-    fileprivate var didEndMultipleSelectionInteractionHandler: ((UICollectionView) -> ())? = nil
-    fileprivate var shouldBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> Bool)? = nil
+    private var didBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> ())? = nil
+    private var didEndMultipleSelectionInteractionHandler: ((UICollectionView) -> ())? = nil
+    private var shouldBeginMultipleSelectionInteractionAtHandler: ((IndexPath) -> Bool)? = nil
     
     public init(initialData: [[CellDisplayable]] = [[CellDisplayable]]()) {
         data = initialData
@@ -56,6 +56,7 @@ public class CollectionView: UICollectionView {
         dataSource = self
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -34,6 +34,7 @@ public class List: UITableView {
         register(UITableViewCell.self, forCellReuseIdentifier: "cell")
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -1,0 +1,2163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TableView Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/TableView" class="dashAnchor"></a>
+    <a title="TableView Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html"> Docs</a> (42% documented)</p>
+        <p class="header-right"><a href="https://github.com/0xLeif/SwiftUIKit"><img src="../img/gh.png"/>View on GitHub</a></p>
+        <p class="header-right">
+          <form role="search" action="../search.json">
+            <input type="text" placeholder="Search documentation" data-typeahead>
+          </form>
+        </p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html"> Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        TableView Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/BlurView.html">BlurView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Button.html">Button</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/CollectionView.html">CollectionView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ContainerView.html">ContainerView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Divider.html">Divider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/EffectView.html">EffectView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HScroll.html">HScroll</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/HStack.html">HStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Image.html">Image</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Label.html">Label</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/List.html">List</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoadingImage.html">LoadingImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/LoadingView.html">LoadingView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Map.html">Map</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/MultiLineField.html">MultiLineField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/NavButton.html">NavButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Navigate.html">Navigate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Navigate/NavigationStyle.html">– NavigationStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Navigate/ToastStyle.html">– ToastStyle</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ObservedView.html">ObservedView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SafeAreaView.html">SafeAreaView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ScrollView.html">ScrollView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Slider.html">Slider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Spacer.html">Spacer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Switch.html">Switch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TableView.html">TableView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/TextField.html">TextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VScroll.html">VScroll</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VStack.html">VStack</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/VibrancyView.html">VibrancyView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewController.html">ViewController</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/WebView.html">WebView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ZStack.html">ZStack</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/Padding.html">Padding</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/NSLayoutConstraint.html">NSLayoutConstraint</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/NSMutableAttributedString.html">NSMutableAttributedString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/StringAttributes.html">StringAttributes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIAlertAction.html">UIAlertAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIAppearance.html">UIAppearance</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIBarButtonItem.html">UIBarButtonItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIButton.html">UIButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIControl.html">UIControl</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImage.html">UIImage</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIImageView.html">UIImageView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UILabel.html">UILabel</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UISlider.html">UISlider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UISwitch.html">UISwitch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UITextField.html">UITextField</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UITextView.html">UITextView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIViewController.html">UIViewController</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/CellConfigurable.html">CellConfigurable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CellDisplayable.html">CellDisplayable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/CellUpdatable.html">CellUpdatable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/DataIdentifiable.html">DataIdentifiable</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/MapPoint.html">MapPoint</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit16AttributedStringa">AttributedString</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit19AttributedStringKeya">AttributedStringKey</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit9BarButtona">BarButton</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit18CollectionViewCella">CollectionViewCell</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit16StringAttributesa">StringAttributes</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit30TableDidSelectIndexPathHandlera">TableDidSelectIndexPathHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit28TableHeaderFooterViewHandlera">TableHeaderFooterViewHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit30TableHighlightIndexPathHandlera">TableHighlightIndexPathHandler</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:10SwiftUIKit13TableViewCella">TableViewCell</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>TableView</h1>
+              <div class="declaration">
+                <div class="language">
+                  
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">TableView</span> <span class="p">:</span> <span class="kt">UITableView</span></code></pre>
+<pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">TableView</span><span class="p">:</span> <span class="kt">UITableViewDataSource</span><span class="p">,</span> <span class="kt">UITableViewDelegate</span></code></pre>
+
+                </div>
+              </div>
+            <p>Undocumented</p>
+
+              <div class="slightly-smaller">
+                <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L38-L81">Show on GitHub</a>
+              </div>
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC4dataSaySayAA15CellDisplayable_pGGvp"></a>
+                    <a name="//apple_ref/swift/Property/data" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC4dataSaySayAA15CellDisplayable_pGGvp">data</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">data</span><span class="p">:</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/CellDisplayable.html">CellDisplayable</a></span><span class="p">]]</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC10initalData5styleACSaySayAA15CellDisplayable_pGG_So07UITableD5StyleVtcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(initalData:style:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC10initalData5styleACSaySayAA15CellDisplayable_pGG_So07UITableD5StyleVtcfc">init(initalData:<wbr>style:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span>
+    <span class="nv">initalData</span><span class="p">:</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/CellDisplayable.html">CellDisplayable</a></span><span class="p">]]</span> <span class="o">=</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/CellDisplayable.html">CellDisplayable</a></span><span class="p">]](),</span>
+    <span class="nv">style</span><span class="p">:</span> <span class="kt">UITableView</span><span class="o">.</span><span class="kt">Style</span> <span class="o">=</span> <span class="o">.</span><span class="n">plain</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L66-L75">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC6update16shouldReloadData_ACXDSb_SaySayAA15CellDisplayable_pGGAHXEtF"></a>
+                    <a name="//apple_ref/swift/Method/update(shouldReloadData:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC6update16shouldReloadData_ACXDSb_SaySayAA15CellDisplayable_pGGAHXEtF">update(shouldReloadData:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">update</span><span class="p">(</span>
+    <span class="nv">shouldReloadData</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="p">([[</span><span class="kt"><a href="../Protocols/CellDisplayable.html">CellDisplayable</a></span><span class="p">]])</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/CellDisplayable.html">CellDisplayable</a></span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L86-L97">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC6append16shouldReloadData_ACXDSb_SaySayAA15CellDisplayable_pGGyXEtF"></a>
+                    <a name="//apple_ref/swift/Method/append(shouldReloadData:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC6append16shouldReloadData_ACXDSb_SaySayAA15CellDisplayable_pGGyXEtF">append(shouldReloadData:<wbr>_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">append</span><span class="p">(</span>
+    <span class="nv">shouldReloadData</span><span class="p">:</span> <span class="kt">Bool</span> <span class="o">=</span> <span class="kc">false</span><span class="p">,</span>
+    <span class="n">_</span> <span class="nv">closure</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[[</span><span class="kt"><a href="../Protocols/CellDisplayable.html">CellDisplayable</a></span><span class="p">]]</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L100-L111">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)numberOfSectionsInTableView:"></a>
+                    <a name="//apple_ref/swift/Method/numberOfSections(in:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)numberOfSectionsInTableView:">numberOfSections(in:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">numberOfSections</span><span class="p">(</span><span class="k">in</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L124-L126">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:numberOfRowsInSection:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:numberOfRowsInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:numberOfRowsInSection:">tableView(_:<wbr>numberOfRowsInSection:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">numberOfRowsInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L128-L130">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:indentationLevelForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:indentationLevelForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:indentationLevelForRowAtIndexPath:">tableView(_:<wbr>indentationLevelForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">indentationLevelForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L132-L134">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:cellForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:cellForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:cellForRowAtIndexPath:">tableView(_:<wbr>cellForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">cellForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L136-L154">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:heightForHeaderInSection:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:heightForHeaderInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:heightForHeaderInSection:">tableView(_:<wbr>heightForHeaderInSection:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">heightForHeaderInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L156-L158">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:heightForFooterInSection:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:heightForFooterInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:heightForFooterInSection:">tableView(_:<wbr>heightForFooterInSection:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">heightForFooterInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L160-L162">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/HeaderForSection"></a>
+                <a name="//apple_ref/swift/Section/HeaderForSection" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/HeaderForSection"></a>
+                  <h3 class="section-name"><p>HeaderForSection</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:viewForHeaderInSection:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:viewForHeaderInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:viewForHeaderInSection:">tableView(_:<wbr>viewForHeaderInSection:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">viewForHeaderInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L166-L168">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/FooterForSection"></a>
+                <a name="//apple_ref/swift/Section/FooterForSection" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/FooterForSection"></a>
+                  <h3 class="section-name"><p>FooterForSection</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:viewForFooterInSection:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:viewForFooterInSection:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:viewForFooterInSection:">tableView(_:<wbr>viewForFooterInSection:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">viewForFooterInSection</span> <span class="nv">section</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L172-L174">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/CanRowAt"></a>
+                <a name="//apple_ref/swift/Section/CanRowAt" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/CanRowAt"></a>
+                  <h3 class="section-name"><p>CanRowAt</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:canEditRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:canEditRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:canEditRowAtIndexPath:">tableView(_:<wbr>canEditRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">canEditRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L178-L180">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:canMoveRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:canMoveRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:canMoveRowAtIndexPath:">tableView(_:<wbr>canMoveRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">canMoveRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L182-L184">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:canFocusRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:canFocusRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:canFocusRowAtIndexPath:">tableView(_:<wbr>canFocusRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">canFocusRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L186-L188">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/ShouldRowAt"></a>
+                <a name="//apple_ref/swift/Section/ShouldRowAt" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/ShouldRowAt"></a>
+                  <h3 class="section-name"><p>ShouldRowAt</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:shouldHighlightRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:shouldHighlightRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:shouldHighlightRowAtIndexPath:">tableView(_:<wbr>shouldHighlightRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">shouldHighlightRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L192-L194">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:shouldIndentWhileEditingRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:shouldIndentWhileEditingRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:shouldIndentWhileEditingRowAtIndexPath:">tableView(_:<wbr>shouldIndentWhileEditingRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">shouldIndentWhileEditingRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L196-L198">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:shouldShowMenuForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:shouldShowMenuForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:shouldShowMenuForRowAtIndexPath:">tableView(_:<wbr>shouldShowMenuForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">shouldShowMenuForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L200-L202">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Editing"></a>
+                <a name="//apple_ref/swift/Section/Editing" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Editing"></a>
+                  <h3 class="section-name"><p>Editing</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:editingStyleForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:editingStyleForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:editingStyleForRowAtIndexPath:">tableView(_:<wbr>editingStyleForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">editingStyleForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span><span class="o">.</span><span class="kt">EditingStyle</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L206-L208">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:titleForDeleteConfirmationButtonForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:titleForDeleteConfirmationButtonForRowAtIndexPath:">tableView(_:<wbr>titleForDeleteConfirmationButtonForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">titleForDeleteConfirmationButtonForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L210-L212">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:editActionsForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:editActionsForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:editActionsForRowAtIndexPath:">tableView(_:<wbr>editActionsForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">editActionsForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UITableViewRowAction</span><span class="p">]?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L214-L216">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Actions"></a>
+                <a name="//apple_ref/swift/Section/Actions" class="dashAnchor"></a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Actions"></a>
+                  <h3 class="section-name"><p>Actions</p>
+</h3>
+                </div>
+              </div>
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:commitEditingStyle:forRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:commit:forRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:commitEditingStyle:forRowAtIndexPath:">tableView(_:<wbr>commit:<wbr>forRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span>
+    <span class="n">commit</span> <span class="nv">editingStyle</span><span class="p">:</span> <span class="kt">UITableViewCell</span><span class="o">.</span><span class="kt">EditingStyle</span><span class="p">,</span>
+    <span class="n">forRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L220-L226">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didSelectRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:didSelectRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didSelectRowAtIndexPath:">tableView(_:<wbr>didSelectRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">didSelectRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L228-L230">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didDeselectRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:didDeselectRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didDeselectRowAtIndexPath:">tableView(_:<wbr>didDeselectRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">didDeselectRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L232-L234">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:willBeginEditingRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:willBeginEditingRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:willBeginEditingRowAtIndexPath:">tableView(_:<wbr>willBeginEditingRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">willBeginEditingRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L236-L238">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didEndEditingRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:didEndEditingRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didEndEditingRowAtIndexPath:">tableView(_:<wbr>didEndEditingRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">didEndEditingRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L240-L242">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didHighlightRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:didHighlightRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didHighlightRowAtIndexPath:">tableView(_:<wbr>didHighlightRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">didHighlightRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L244-L246">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didUnhighlightRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:didUnhighlightRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:didUnhighlightRowAtIndexPath:">tableView(_:<wbr>didUnhighlightRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">didUnhighlightRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L248-L250">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:moveRowAtIndexPath:toIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:moveRowAt:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:moveRowAtIndexPath:toIndexPath:">tableView(_:<wbr>moveRowAt:<wbr>to:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span>
+    <span class="n">moveRowAt</span> <span class="nv">sourceIndexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">,</span>
+    <span class="n">to</span> <span class="nv">destinationIndexPath</span><span class="p">:</span> <span class="kt">IndexPath</span>
+<span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L252-L258">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:leadingSwipeActionsConfigurationForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:leadingSwipeActionsConfigurationForRowAtIndexPath:">tableView(_:<wbr>leadingSwipeActionsConfigurationForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">leadingSwipeActionsConfigurationForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UISwipeActionsConfiguration</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L261-L263">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:"></a>
+                    <a name="//apple_ref/swift/Method/tableView(_:trailingSwipeActionsConfigurationForRowAt:)" class="dashAnchor"></a>
+                    <a class="token" href="#/c:@CM@SwiftUIKit@objc(cs)TableView(im)tableView:trailingSwipeActionsConfigurationForRowAtIndexPath:">tableView(_:<wbr>trailingSwipeActionsConfigurationForRowAt:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">tableView</span><span class="p">(</span><span class="n">_</span> <span class="nv">tableView</span><span class="p">:</span> <span class="kt">UITableView</span><span class="p">,</span> <span class="n">trailingSwipeActionsConfigurationForRowAt</span> <span class="nv">indexPath</span><span class="p">:</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UISwipeActionsConfiguration</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L266-L268">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC3set10dataSourceACXDSo07UITabled4DataG0_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/set(dataSource:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC3set10dataSourceACXDSo07UITabled4DataG0_p_tF">set(dataSource:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">dataSource</span><span class="p">:</span> <span class="kt">UITableViewDataSource</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L274-L278">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC3set8delegateACXDSo07UITableD8Delegate_p_tF"></a>
+                    <a name="//apple_ref/swift/Method/set(delegate:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC3set8delegateACXDSo07UITableD8Delegate_p_tF">set(delegate:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">set</span><span class="p">(</span><span class="nv">delegate</span><span class="p">:</span> <span class="kt">UITableViewDelegate</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L281-L285">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC8register5cellsACXDSayAA16CellConfigurable_AA0G9UpdatableAA16DataIdentifiableSo07UITabledG0CXcXpG_tF"></a>
+                    <a name="//apple_ref/swift/Method/register(cells:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC8register5cellsACXDSayAA16CellConfigurable_AA0G9UpdatableAA16DataIdentifiableSo07UITabledG0CXcXpG_tF">register(cells:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">register</span><span class="p">(</span><span class="nv">cells</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:10SwiftUIKit13TableViewCella">TableViewCell</a></span><span class="o">.</span><span class="k">Type</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L288-L294">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC06headerD0yACXDSo6UIViewCSgSicF"></a>
+                    <a name="//apple_ref/swift/Method/headerView(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC06headerD0yACXDSo6UIViewCSgSicF">headerView(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">headerView</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:10SwiftUIKit28TableHeaderFooterViewHandlera">TableHeaderFooterViewHandler</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L297-L301">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC06footerD0yACXDSo6UIViewCSgSicF"></a>
+                    <a name="//apple_ref/swift/Method/footerView(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC06footerD0yACXDSo6UIViewCSgSicF">footerView(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">footerView</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:10SwiftUIKit28TableHeaderFooterViewHandlera">TableHeaderFooterViewHandler</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L304-L308">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC12headerHeightyACXD12CoreGraphics7CGFloatVSicF"></a>
+                    <a name="//apple_ref/swift/Method/headerHeight(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC12headerHeightyACXD12CoreGraphics7CGFloatVSicF">headerHeight(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">headerHeight</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L311-L315">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC12footerHeightyACXD12CoreGraphics7CGFloatVSicF"></a>
+                    <a name="//apple_ref/swift/Method/footerHeight(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC12footerHeightyACXD12CoreGraphics7CGFloatVSicF">footerHeight(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">footerHeight</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L318-L322">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC33indentationLevelForRowAtIndexPathyACXDSi10Foundation0jK0VcF"></a>
+                    <a name="//apple_ref/swift/Method/indentationLevelForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC33indentationLevelForRowAtIndexPathyACXDSi10Foundation0jK0VcF">indentationLevelForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">indentationLevelForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L325-L329">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC21canEditRowAtIndexPathyACXDSb10Foundation0iJ0VcF"></a>
+                    <a name="//apple_ref/swift/Method/canEditRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC21canEditRowAtIndexPathyACXDSb10Foundation0iJ0VcF">canEditRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">canEditRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L332-L336">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC21canMoveRowAtIndexPathyACXDSb10Foundation0iJ0VcF"></a>
+                    <a name="//apple_ref/swift/Method/canMoveRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC21canMoveRowAtIndexPathyACXDSb10Foundation0iJ0VcF">canMoveRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">canMoveRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L339-L343">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC22canFocusRowAtIndexPathyACXDSb10Foundation0iJ0VcF"></a>
+                    <a name="//apple_ref/swift/Method/canFocusRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC22canFocusRowAtIndexPathyACXDSb10Foundation0iJ0VcF">canFocusRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">canFocusRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L346-L350">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC18shouldHighlightRowyACXDSb10Foundation9IndexPathVcF"></a>
+                    <a name="//apple_ref/swift/Method/shouldHighlightRow(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC18shouldHighlightRowyACXDSb10Foundation9IndexPathVcF">shouldHighlightRow(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">shouldHighlightRow</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:10SwiftUIKit30TableHighlightIndexPathHandlera">TableHighlightIndexPathHandler</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L353-L357">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC38shouldIndentWhileEditingRowAtIndexPathyACXDSb10Foundation0kL0VcF"></a>
+                    <a name="//apple_ref/swift/Method/shouldIndentWhileEditingRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC38shouldIndentWhileEditingRowAtIndexPathyACXDSb10Foundation0kL0VcF">shouldIndentWhileEditingRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">shouldIndentWhileEditingRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L360-L364">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC31shouldShowMenuForRowAtIndexPathyACXDSb10Foundation0kL0VcF"></a>
+                    <a name="//apple_ref/swift/Method/shouldShowMenuForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC31shouldShowMenuForRowAtIndexPathyACXDSb10Foundation0kL0VcF">shouldShowMenuForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">shouldShowMenuForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L367-L371">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC29editingStyleForRowAtIndexPathyACXDSo07UITabled11CellEditingF0V10Foundation0jK0VcF"></a>
+                    <a name="//apple_ref/swift/Method/editingStyleForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC29editingStyleForRowAtIndexPathyACXDSo07UITabled11CellEditingF0V10Foundation0jK0VcF">editingStyleForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">editingStyleForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UITableViewCell</span><span class="o">.</span><span class="kt">EditingStyle</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L374-L378">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC032titleForDeleteConfirmationButtonF14RowAtIndexPathyACXDSS10Foundation0lM0VcF"></a>
+                    <a name="//apple_ref/swift/Method/titleForDeleteConfirmationButtonForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC032titleForDeleteConfirmationButtonF14RowAtIndexPathyACXDSS10Foundation0lM0VcF">titleForDeleteConfirmationButtonForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">titleForDeleteConfirmationButtonForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L381-L385">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC28editActionsForRowAtIndexPathyACXDSaySo07UITabledH6ActionCG10Foundation0jK0VcF"></a>
+                    <a name="//apple_ref/swift/Method/editActionsForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC28editActionsForRowAtIndexPathyACXDSaySo07UITabledH6ActionCG10Foundation0jK0VcF">editActionsForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">editActionsForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt">UITableViewRowAction</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L388-L392">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC35commitEditingStyleForRowAtIndexPathyACXDySo07UITabled4CellfG0V_10Foundation0kL0VtcF"></a>
+                    <a name="//apple_ref/swift/Method/commitEditingStyleForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC35commitEditingStyleForRowAtIndexPathyACXDySo07UITabled4CellfG0V_10Foundation0kL0VtcF">commitEditingStyleForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">commitEditingStyleForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">UITableViewCell</span><span class="o">.</span><span class="kt">EditingStyle</span><span class="p">,</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L395-L399">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC12didSelectRowyACXDy10Foundation9IndexPathVcF"></a>
+                    <a name="//apple_ref/swift/Method/didSelectRow(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC12didSelectRowyACXDy10Foundation9IndexPathVcF">didSelectRow(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">didSelectRow</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:10SwiftUIKit30TableDidSelectIndexPathHandlera">TableDidSelectIndexPathHandler</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L402-L406">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC25didDeselectRowAtIndexPathyACXDy10Foundation0iJ0VcF"></a>
+                    <a name="//apple_ref/swift/Method/didDeselectRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC25didDeselectRowAtIndexPathyACXDy10Foundation0iJ0VcF">didDeselectRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">didDeselectRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L409-L413">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC30willBeginEditingRowAtIndexPathyACXDy10Foundation0jK0VcF"></a>
+                    <a name="//apple_ref/swift/Method/willBeginEditingRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC30willBeginEditingRowAtIndexPathyACXDy10Foundation0jK0VcF">willBeginEditingRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">willBeginEditingRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L416-L420">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC27didEndEditingRowAtIndexPathyACXDy10Foundation0jK0VSgcF"></a>
+                    <a name="//apple_ref/swift/Method/didEndEditingRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC27didEndEditingRowAtIndexPathyACXDy10Foundation0jK0VSgcF">didEndEditingRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">didEndEditingRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L423-L427">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC26didHighlightRowAtIndexPathyACXDy10Foundation0iJ0VcF"></a>
+                    <a name="//apple_ref/swift/Method/didHighlightRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC26didHighlightRowAtIndexPathyACXDy10Foundation0iJ0VcF">didHighlightRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">didHighlightRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L430-L434">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC28didUnhighlightRowAtIndexPathyACXDy10Foundation0iJ0VcF"></a>
+                    <a name="//apple_ref/swift/Method/didUnhighlightRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC28didUnhighlightRowAtIndexPathyACXDy10Foundation0iJ0VcF">didUnhighlightRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">didUnhighlightRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L437-L441">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC037moveRowAtSourceIndexPathToDestinationiJ0yACXDy10Foundation0iJ0V_AGtcF"></a>
+                    <a name="//apple_ref/swift/Method/moveRowAtSourceIndexPathToDestinationIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC037moveRowAtSourceIndexPathToDestinationiJ0yACXDy10Foundation0iJ0V_AGtcF">moveRowAtSourceIndexPathToDestinationIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">moveRowAtSourceIndexPathToDestinationIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">,</span> <span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L444-L448">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC49leadingSwipeActionsConfigurationForRowAtIndexPathyACXDSo07UISwipegH0C10Foundation0lM0VcF"></a>
+                    <a name="//apple_ref/swift/Method/leadingSwipeActionsConfigurationForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC49leadingSwipeActionsConfigurationForRowAtIndexPathyACXDSo07UISwipegH0C10Foundation0lM0VcF">leadingSwipeActionsConfigurationForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">leadingSwipeActionsConfigurationForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UISwipeActionsConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L451-L455">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:10SwiftUIKit9TableViewC50trailingSwipeActionsConfigurationForRowAtIndexPathyACXDSo07UISwipegH0C10Foundation0lM0VcF"></a>
+                    <a name="//apple_ref/swift/Method/trailingSwipeActionsConfigurationForRowAtIndexPath(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:10SwiftUIKit9TableViewC50trailingSwipeActionsConfigurationForRowAtIndexPathyACXDSo07UISwipegH0C10Foundation0lM0VcF">trailingSwipeActionsConfigurationForRowAtIndexPath(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="kd">func</span> <span class="nf">trailingSwipeActionsConfigurationForRowAtIndexPath</span><span class="p">(</span><span class="n">_</span> <span class="nv">handler</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">(</span><span class="kt">IndexPath</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">UISwipeActionsConfiguration</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/0xLeif/SwiftUIKit/tree/3.0.0/Sources/SwiftUIKit/Views/TableView.swift#L458-L462">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2021 <a class="link" href="https://github.com/0xLeif" target="_blank" rel="external">Zach</a>. All rights reserved. (Last updated: 2021-03-22)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

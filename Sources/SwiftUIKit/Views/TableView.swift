@@ -38,30 +38,30 @@ public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool
 public class TableView: UITableView {
     public var data: [[CellDisplayable]]
     
-    fileprivate var headerViewForSection: TableHeaderFooterViewHandler?
-    fileprivate var footerViewForSection: TableHeaderFooterViewHandler?
-    fileprivate var didSelectRowAtIndexPath: TableDidSelectIndexPathHandler?
-    fileprivate var shouldHighlightRowAtIndexPath: TableHighlightIndexPathHandler?
-    fileprivate var canEditRowAtIndexPath: ((IndexPath) -> Bool)?
-    fileprivate var canMoveRowAtIndexPath: ((IndexPath) -> Bool)?
-    fileprivate var canFocusRowAtIndexPath: ((IndexPath) -> Bool)?
-    fileprivate var indentationLevelForRowAtIndexPath: ((IndexPath) -> Int)?
-    fileprivate var shouldIndentWhileEditingRowAtIndexPath: ((IndexPath) -> Bool)?
-    fileprivate var shouldShowMenuForRowAtIndexPath: ((IndexPath) -> Bool)?
-    fileprivate var editingStyleForRowAtIndexPath: ((IndexPath) -> UITableViewCell.EditingStyle)?
-    fileprivate var titleForDeleteConfirmationButtonForRowAtIndexPath: ((IndexPath) -> String)?
-    fileprivate var editActionsForRowAtIndexPath: ((IndexPath) -> [UITableViewRowAction])?
-    fileprivate var commitEditingStyleForRowAtIndexPath: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?
-    fileprivate var didDeselectRowAtIndexPath: ((IndexPath) -> Void)?
-    fileprivate var willBeginEditingRowAtIndexPath: ((IndexPath) -> Void)?
-    fileprivate var didEndEditingRowAtIndexPath: ((IndexPath?) -> Void)?
-    fileprivate var didHighlightRowAtIndexPath: ((IndexPath) -> Void)?
-    fileprivate var didUnhighlightRowAtIndexPath: ((IndexPath) -> Void)?
-    fileprivate var moveRowAtSourceIndexPathToDestinationIndexPath: ((IndexPath, IndexPath) -> Void)?
-    fileprivate var leadingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
-    fileprivate var trailingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
-    fileprivate var heightForHeaderInSection: ((Int) -> CGFloat)?
-    fileprivate var heightForFooterInSection: ((Int) -> CGFloat)?
+    private var headerViewForSection: TableHeaderFooterViewHandler?
+    private var footerViewForSection: TableHeaderFooterViewHandler?
+    private var didSelectRowAtIndexPath: TableDidSelectIndexPathHandler?
+    private var shouldHighlightRowAtIndexPath: TableHighlightIndexPathHandler?
+    private var canEditRowAtIndexPath: ((IndexPath) -> Bool)?
+    private var canMoveRowAtIndexPath: ((IndexPath) -> Bool)?
+    private var canFocusRowAtIndexPath: ((IndexPath) -> Bool)?
+    private var indentationLevelForRowAtIndexPath: ((IndexPath) -> Int)?
+    private var shouldIndentWhileEditingRowAtIndexPath: ((IndexPath) -> Bool)?
+    private var shouldShowMenuForRowAtIndexPath: ((IndexPath) -> Bool)?
+    private var editingStyleForRowAtIndexPath: ((IndexPath) -> UITableViewCell.EditingStyle)?
+    private var titleForDeleteConfirmationButtonForRowAtIndexPath: ((IndexPath) -> String)?
+    private var editActionsForRowAtIndexPath: ((IndexPath) -> [UITableViewRowAction])?
+    private var commitEditingStyleForRowAtIndexPath: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?
+    private var didDeselectRowAtIndexPath: ((IndexPath) -> Void)?
+    private var willBeginEditingRowAtIndexPath: ((IndexPath) -> Void)?
+    private var didEndEditingRowAtIndexPath: ((IndexPath?) -> Void)?
+    private var didHighlightRowAtIndexPath: ((IndexPath) -> Void)?
+    private var didUnhighlightRowAtIndexPath: ((IndexPath) -> Void)?
+    private var moveRowAtSourceIndexPathToDestinationIndexPath: ((IndexPath, IndexPath) -> Void)?
+    private var leadingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
+    private var trailingSwipeActionsConfigurationForRowAtIndexPath: ((IndexPath) -> UISwipeActionsConfiguration)?
+    private var heightForHeaderInSection: ((Int) -> CGFloat)?
+    private var heightForFooterInSection: ((Int) -> CGFloat)?
     
     public init(
         initalData: [[CellDisplayable]] = [[CellDisplayable]](),
@@ -74,6 +74,7 @@ public class TableView: UITableView {
         delegate = self
     }
     
+    /// not implemented
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

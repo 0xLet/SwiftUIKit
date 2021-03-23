@@ -8,6 +8,7 @@
 import UIKit
 
 public extension UITextField {
+    /// Updates the textColor of the UITextField with the color provided
     @discardableResult
     func text(color: UIColor?) -> Self {
         textColor = color
@@ -15,6 +16,7 @@ public extension UITextField {
         return self
     }
     
+    /// Updates the text of the UITextField with the text value provided
     @discardableResult
     func text(_ value: String?) -> Self {
         text = value

@@ -12,8 +12,7 @@ import UIKit
 public class SafeAreaView: UIView {
     
     /// Create a SafeAreaView
-    /// - Parameters:
-    ///     - closure: A trailing closure that accepts a view
+    /// - Parameter closure: A trailing closure that accepts a view
     public init(_ closure: () -> UIView) {
         let view = closure()
         super.init(frame: .zero)
@@ -31,7 +30,8 @@ public class SafeAreaView: UIView {
         ])
     }
     
-    required init?(coder aDecoder: NSCoder) {
+    /// not implemented
+    required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
