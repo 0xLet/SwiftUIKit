@@ -3,7 +3,7 @@
 
 UIKit code that is fun to write.
 
-## [Documentation](documentation/Home.md) (WIP)
+## [Documentation](docs/index.html) (WIP)
 
 
 ## Example Code
