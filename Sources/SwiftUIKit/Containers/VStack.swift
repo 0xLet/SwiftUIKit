@@ -15,7 +15,7 @@ public class VStack: UIView {
     private var alignment: UIStackView.Alignment
     private var distribution: UIStackView.Distribution
     /// The views that the VStack contains
-    private(set) var views = [UIView]()
+    private(set) public var views = [UIView]()
     
     /// Create a VStack
     /// - Parameters:
