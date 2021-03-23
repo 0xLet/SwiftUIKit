@@ -7,9 +7,13 @@
 
 import UIKit
 
+/**
+ A UILabel that embeds a view
+ */
 @available(iOS 9.0, *)
 public class Label: UILabel {
-    
+    /// Creates a UILabel
+    /// - parameter text: The text for the UILabel
     public init(_ text: String) {
         super.init(frame: .zero)
         
@@ -21,6 +25,8 @@ public class Label: UILabel {
         accessibility(label: text, traits: .staticText)
     }
     
+    /// Creates a UILabel
+    /// - parameter attributedText: The attributedText for the UILabel
     public init(_ attributedText: AttributedString) {
         super.init(frame: .zero)
         
@@ -36,107 +42,52 @@ public class Label: UILabel {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    @discardableResult
-    public func number(ofLines lines: Int) -> Self {
-        numberOfLines = lines
-        
-        return self
-    }
-    
-    @discardableResult
-    public func font(_ font: UIFont) -> Self {
-        self.font = font
-        
-        return self
-    }
-    
-    @discardableResult
-    public func font(_ textStyle: UIFont.TextStyle) -> Self {
-        return self.font(UIFont.preferredFont(forTextStyle: textStyle))
-    }
-    
-    @discardableResult
-    public func hideIfBlank() -> Self {
-        isHidden = text?.isEmpty ?? true
-        
-        return self
-    }
-    
-    @discardableResult
-    public func apply(attributes: StringAttributes) -> Self {
-        attributedText = AttributedString(string: text ?? "", attributes: attributes)
-        
-        return self
-    }
-    
-    @discardableResult
-    public func apply(attributes: StringAttributes, range: ClosedRange<Int>) -> Self {
-        attributedText = AttributedString(attributedString: attributedText ?? AttributedString(string: text ?? ""))
-            .set(attributes: attributes, range: range)
-        
-        return self
-    }
-    
-    @discardableResult
-    public func text(alignment: NSTextAlignment) -> Self {
-        textAlignment = alignment
-        
-        return self
-    }
-    
-    @discardableResult
-    public func text(color: UIColor) -> Self {
-        textColor = color
-        
-        return self
-    }
 }
 
 @available(iOS 9.0, *)
 public extension Label {
+    /// Creates a UILabel with the font of .title1
     class func title1(_ text: String) -> Label {
-        return Label(text)
-            .font(.title1)
+        Label(text).font(.title1)
     }
     
+    /// Creates a UILabel with the font of .title2
     class func title2(_ text: String) -> Label {
-        return Label(text)
-            .font(.title2)
+        Label(text).font(.title2)
     }
     
+    /// Creates a UILabel with the font of .title3
     class func title3(_ text: String) -> Label {
-        return Label(text)
-            .font(.title3)
+        Label(text).font(.title3)
     }
     
+    /// Creates a UILabel with the font of .headline
     class func headline(_ text: String) -> Label {
-        return Label(text)
-            .font(.headline)
+        Label(text).font(.headline)
     }
     
+    /// Creates a UILabel with the font of .subheadline
     class func subheadline(_ text: String) -> Label {
-        return Label(text)
-            .font(.subheadline)
+        Label(text).font(.subheadline)
     }
     
+    /// Creates a UILabel with the font of .body
     class func body(_ text: String) -> Label {
-        return Label(text)
-            .font(.body)
+        Label(text).font(.body)
     }
     
+    /// Creates a UILabel with the font of .callout
     class func callout(_ text: String) -> Label {
-        return Label(text)
-            .font(.callout)
+        Label(text).font(.callout)
     }
     
+    /// Creates a UILabel with the font of .caption1
     class func caption1(_ text: String) -> Label {
-        return Label(text)
-            .font(.caption1)
+        Label(text).font(.caption1)
     }
     
+    /// Creates a UILabel with the font of .caption2
     class func caption2(_ text: String) -> Label {
-        return Label(text)
-            .font(.caption2)
+        Label(text).font(.caption2)
     }
 }
