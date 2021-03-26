@@ -5,3 +5,4 @@
 xcuserdata/
 build
 *.resolved
+/UIKit-Testing.playground/timeline.xctimeline
