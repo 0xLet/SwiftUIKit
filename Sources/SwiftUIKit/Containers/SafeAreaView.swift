@@ -71,19 +71,19 @@ public class SafeAreaView: UIView {
         if let leadingPadding = leadingPadding {
             leadingConstraint.isActive = false
             
-            leadingConstraint = embeddedView.topAnchor.constraint(equalTo: topAnchor, constant: leadingPadding)
+            leadingConstraint = embeddedView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: leadingPadding)
         }
         
         if let trailingPadding = trailingPadding {
             trailingConstraint.isActive = false
             
-            trailingConstraint = embeddedView.topAnchor.constraint(equalTo: topAnchor, constant: trailingPadding)
+            trailingConstraint = embeddedView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: trailingPadding)
         }
         
         if let bottomPadding = bottomPadding {
             bottomConstraint.isActive = false
             
-            bottomConstraint = embeddedView.topAnchor.constraint(equalTo: topAnchor, constant: bottomPadding)
+            bottomConstraint = embeddedView.bottomAnchor.constraint(equalTo: bottomAnchor, constant: bottomPadding)
         }
         
         return self
