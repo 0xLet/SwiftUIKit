@@ -49,6 +49,15 @@ public class SafeAreaView: UIView {
         leadingConstraint =  embeddedView.leadingAnchor.constraint(equalTo: margins.leadingAnchor)
         trailingConstraint = embeddedView.trailingAnchor.constraint(equalTo: margins.trailingAnchor)
         bottomConstraint = embeddedView.bottomAnchor.constraint(equalToSystemSpacingBelow: guide.bottomAnchor, multiplier: 1.0)
+        
+        NSLayoutConstraint.activate(
+            [
+                topConstraint,
+                leadingConstraint,
+                trailingConstraint,
+                bottomConstraint
+            ]
+        )
     }
     
     /// not implemented
