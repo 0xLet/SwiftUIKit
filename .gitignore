@@ -6,3 +6,4 @@ xcuserdata/
 build
 *.resolved
 /.swiftpm/
+/UIKit-Testing.playground/timeline.xctimeline
