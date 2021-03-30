@@ -17,7 +17,7 @@ SwiftUIKit is mainly based off of two functions, embed and stack. Embedding a vi
 
 ### [Example Code](examples/index.md)
 
-### [Documentation](https://0xleif.github.io/SwiftUIKit)
+### [Documentation](https://0xlet.github.io/SwiftUIKit)
 
 
 ## GitHub Supporters
