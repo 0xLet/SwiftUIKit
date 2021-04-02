@@ -15,6 +15,15 @@ SwiftUIKit is mainly based off of two functions, embed and stack. Embedding a vi
 - [Suggest a new feature](https://github.com/0xLet/SwiftUIKit/issues/new?assignees=&labels=&template=feature_request.md&title=)
 - [Report a bug](https://github.com/0xLet/SwiftUIKit/issues/new?assignees=&labels=&template=bug_report.md&title=)
 
+### Get started contributing 
+1) Fork or clone the repo.
+
+2) Make a feature or bugfix branch. Make sure you branch off the most current commit on [develop](https://github.com/0xLet/SwiftUIKit/tree/develop). Preferably there would be a previously made issue related to your changed. Current SwiftUIKit [issues](https://github.com/0xLet/SwiftUIKit/issues).
+
+3) Make sure to add or update test per the changes made. When submitting a pull request you will need to make sure that the tests are passing. 
+
+4) Once your pull request is approve feel free to merge it.
+
 ### [Example Code](examples/index.md)
 
 ### [Documentation](https://0xlet.github.io/SwiftUIKit)
