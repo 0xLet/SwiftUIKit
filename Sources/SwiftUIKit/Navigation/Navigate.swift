@@ -216,20 +216,20 @@ public class Navigate {
     ///     - message: Message of the UIAlertController
     ///     - withactions: Array of action objects to be added to the Alert (Default: [])
     ///     - secondsToPersist: Amount of seconds the Alert should show before dismissing itself
-    ///     - closure: A closure that is passed the UIAlertController before presenting it (Default: nil)
+    ///     - content: A closure that is passed the UIAlertController before presenting it (Default: nil)
     public func alert(
         title: String,
         message: String,
         withActions actions: [UIAlertAction] = [],
         secondsToPersist: Double?,
-        _ closure: ((UIAlertController) -> Void)? = nil
+        content: ((UIAlertController) -> Void)? = nil
     ) {
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         
         actions.forEach { alert.addAction($0) }
         
-        closure?(alert)
+        content?(alert)
         
         if let timeToLive = secondsToPersist {
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + timeToLive) {
@@ -249,19 +249,19 @@ public class Navigate {
     ///     - title: Title of the UIAlertController
     ///     - message: Message of the UIAlertController
     ///     - withactions: Array of action objects to be added to the ActionSheet (Default: [])
-    ///     - closure: A closure that is passed the UIAlertController before presenting it (Default: nil)
+    ///     - content: A closure that is passed the UIAlertController before presenting it (Default: nil)
     public func actionSheet(
         title: String,
         message: String,
         withActions actions: [UIAlertAction] = [],
-        _ closure: ((UIAlertController) -> Void)? = nil
+        content: ((UIAlertController) -> Void)? = nil
     ) {
         
         let actionSheet = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         
         actions.forEach { actionSheet.addAction($0) }
         
-        closure?(actionSheet)
+        content?(actionSheet)
         
         go(actionSheet, style: .modal)
     }
@@ -277,7 +277,7 @@ public class Navigate {
     ///     - animationOutDuration: The amount of seconds the Toast should fade out (Default: 0.5)
     ///     - padding: The amount of spacing around the Toast (Default: 8)
     ///     - tapHandler: What happens when the user taps on the Toast (Default: { $0.removeFromSuperview() })
-    ///     - closure: A trailing closure that accepts a view
+    ///     - content: A trailing closure that accepts a view
     @available(iOS 11.0, *)
     public func toast(
         style: ToastStyle = .custom,
@@ -287,7 +287,7 @@ public class Navigate {
         animationOutDuration: Double = 0.5,
         padding: Float = 8,
         tapHandler: @escaping (UIView) -> Void = { $0.removeFromSuperview() },
-        _ closure: @escaping () -> UIView
+        content: @escaping () -> UIView
     ) {
         
         // Don't allow more than one Toast to be present
@@ -298,11 +298,11 @@ public class Navigate {
         
         switch style {
         case .custom:
-            toast = closure()
+            toast = content()
                 .gesture { UITapGestureRecognizer(target: self, action: #selector(userTappedOnToast)) }
         default:
             toast = UIView(backgroundColor: .clear) {
-                closure()
+                content()
                     .padding(8)
                     .configure {
                         $0.backgroundColor = style.color

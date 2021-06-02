@@ -255,10 +255,10 @@ public extension UIView {
     
     /// Modify the object's layer
     /// - Parameters:
-    ///     - closure: A trailing closure that receives itself.layer inside the closue
+    ///     - content: A trailing closure that receives itself.layer inside the closue
     @discardableResult
-    func layer(_ closure: (CALayer) -> Void) -> Self {
-        closure(layer)
+    func layer(content: (CALayer) -> Void) -> Self {
+        content(layer)
         
         return self
     }

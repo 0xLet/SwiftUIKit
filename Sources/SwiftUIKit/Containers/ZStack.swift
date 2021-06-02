@@ -16,9 +16,9 @@ public class ZStack: UIView {
     
     /// Create a ZStack
     /// - Parameters:
-    ///     - closure: A trailing closure that accepts an array of views
-    public init(_ closure: () -> [UIView]) {
-        views = closure()
+    ///     - content: A trailing closure that accepts an array of views
+    public init(content: () -> [UIView]) {
+        views = content()
         super.init(frame: .zero)
         
         views.forEach {
@@ -30,9 +30,9 @@ public class ZStack: UIView {
     
     /// Create a ZStack
     /// - Parameters:
-    ///     - closure: A trailing closure that accepts an array of optional views
-    public init(_ closure: () -> [UIView?]) {
-        views = closure()
+    ///     - content: A trailing closure that accepts an array of optional views
+    public init(content: () -> [UIView?]) {
+        views = content()
             .compactMap { $0 }
         super.init(frame: .zero)
         

@@ -13,11 +13,15 @@ import UIKit
 @available(iOS 9.0, *)
 public class ScrollView: UIScrollView {
     /// Creates a UIScrollView
-    /// - parameter closure: Scrollable view (Default: nil)
-    public init(_ closure: (() -> UIView)? = nil) {
+    /// - parameter content: Scrollable view (Default: nil)
+    public init(content: (() -> UIView)? = nil) {
         super.init(frame: .zero)
         
-        _ = closure.map { embed($0) }
+        guard let content = content else {
+            return
+        }
+        
+        embed(content: content)
     }
     
     /// not implemented

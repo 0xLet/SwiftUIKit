@@ -13,7 +13,7 @@ public typealias BarButton = UIBarButtonItem
 public extension UIBarButtonItem {
     
     /// Create a UIBarButtonItem with a CustomView
-    /// - Parameter closure: A trailing closure that accepts a view
+    /// - Parameter content: A trailing closure that accepts a view
     convenience init(customView: () -> UIView) {
         self.init(customView: customView())
     }

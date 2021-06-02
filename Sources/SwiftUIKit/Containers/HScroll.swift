@@ -17,14 +17,14 @@ public class HScroll: UIView {
     ///
     /// - Parameters:
     ///     - padding: Top and Bottom padding of the scrollable view (Default: 0)
-    ///     - closure: A closure that returns the scrollable view
+    ///     - content: A closure that returns the scrollable view
     public init(
         withPadding padding: Float = 0,
-        _ closure: () -> UIView
+        content: () -> UIView
     ) {
         super.init(frame: .zero)
         
-        let scrollableView = closure()
+        let scrollableView = content()
         
         let scrollView = ScrollView {
             scrollableView

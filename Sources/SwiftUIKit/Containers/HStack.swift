@@ -25,20 +25,20 @@ public class HStack: UIView {
     ///     - padding: The amount of space between this view and its parent view (Default: 0)
     ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment) (Default: .fill)
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution) (Default: .fill)
-    ///     - closure: A trailing closure that accepts an array of views
+    ///     - content: A trailing closure that accepts an array of views
     public init(
         withSpacing spacing: Float = 0,
         padding: Float = 0,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fill,
-        _ closure: () -> [UIView]
+        content: () -> [UIView]
     ) {
         self.spacing = spacing
         self.padding = padding
         self.alignment = alignment
         self.distribution = distribution
         super.init(frame: .zero)
-        views = closure()
+        views = content()
         draw(views: views)
     }
     
@@ -48,20 +48,20 @@ public class HStack: UIView {
     ///     - padding: The amount of space between this view and its parent view
     ///     - alignment: The layout of arranged views perpendicular to the stack view’s axis (source: UIStackView.Alignment)
     ///     - distribution: The layout that defines the size and position of the arranged views along the stack view’s axis (source: UIStackView.Distribution)
-    ///     - closure: A trailing closure that accepts an array of optional views
+    ///     - content: A trailing closure that accepts an array of optional views
     public init(
         withSpacing spacing: Float = 0,
         padding: Float = 0,
         alignment: UIStackView.Alignment = .fill,
         distribution: UIStackView.Distribution = .fill,
-        _ closure: () -> [UIView?]
+        content: () -> [UIView?]
     ) {
         self.spacing = spacing
         self.padding = padding
         self.alignment = alignment
         self.distribution = distribution
         super.init(frame: .zero)
-        views = closure()
+        views = content()
             .compactMap { $0 }
         draw(views: views)
     }
@@ -83,8 +83,8 @@ public class HStack: UIView {
     
     /// Update the HStack with new views
     @discardableResult
-    public func update(views closure: (inout [UIView]) -> Void) -> Self {
-        closure(&views)
+    public func update(views content: (inout [UIView]) -> Void) -> Self {
+        content(&views)
         draw(views: views)
         
         return self

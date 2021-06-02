@@ -15,15 +15,15 @@ public class EffectView: UIVisualEffectView {
     /// Creates a UIVisualEffectView
     /// - parameters:
     ///     - for: UIVisualEffect (Default: nil)
-    ///     - closure: View to embed into the contentView
+    ///     - content: View to embed into the contentView
     public init(
         for effect: UIVisualEffect? = nil,
-        closure: () -> UIView
+        content: () -> UIView
     ) {
         super.init(effect: effect)
         
         contentView.embed {
-            closure()
+            content()
         }
     }
     
@@ -41,15 +41,15 @@ public class BlurView: UIVisualEffectView {
     /// Creates a UIVisualEffectView
     /// - parameters:
     ///     - style: UIBlurEffect.Style (Default: .regular)
-    ///     - closure: View to embed into the contentView
+    ///     - content: View to embed into the contentView
     public init(
         style blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
-        closure: () -> UIView
+        content: () -> UIView
     ) {
         super.init(effect: UIBlurEffect(style: blur))
         
         contentView.embed {
-            closure()
+            content()
         }
     }
     
@@ -68,17 +68,17 @@ public class VibrancyView: UIVisualEffectView {
     /// - parameters:
     ///     - blurStyle: UIBlurEffect.Style (Default: .regular)
     ///     - vibrancyStyle: UIVibrancyEffectStyle (Default: .fill)
-    ///     - closure: View to embed into the contentView
+    ///     - content: View to embed into the contentView
     public init(
         blurStyle blur: UIBlurEffect.Style = UIBlurEffect.Style.regular,
         vibrancyStyle vibrancy: UIVibrancyEffectStyle = .fill,
-        closure: () -> UIView
+        content: () -> UIView
     ) {
         super.init(effect: UIVibrancyEffect(blurEffect: UIBlurEffect(style: blur),
                                             style: vibrancy))
         
         contentView.embed {
-            closure()
+            content()
         }
     }
     

@@ -19,12 +19,12 @@ public class List: UITableView {
     public init(
         defaultCellHeight: Float? = nil,
         estimatedCellHeight: Float? = nil,
-        _ closure: () -> [UIView]
+        content: () -> [UIView]
     ) {
         
         self.defaultCellHeight = defaultCellHeight
         self.estimatedCellHeight = estimatedCellHeight
-        self.data = closure()
+        self.data = content()
         
         super.init(frame: .zero, style: .plain)
         

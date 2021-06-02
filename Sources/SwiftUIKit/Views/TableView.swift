@@ -85,9 +85,9 @@ public extension TableView {
     @discardableResult
     func update(
         shouldReloadData: Bool = false,
-        _ closure: ([[CellDisplayable]]) -> [[CellDisplayable]]
+        content: ([[CellDisplayable]]) -> [[CellDisplayable]]
     ) -> Self {
-        data = closure(data)
+        data = content(data)
         
         if shouldReloadData {
             reloadData()
@@ -99,9 +99,9 @@ public extension TableView {
     @discardableResult
     func append(
         shouldReloadData: Bool = false,
-        _ closure: () -> [[CellDisplayable]]
+        content: () -> [[CellDisplayable]]
     ) -> Self {
-        data += closure()
+        data += content()
         
         if shouldReloadData {
             reloadData()

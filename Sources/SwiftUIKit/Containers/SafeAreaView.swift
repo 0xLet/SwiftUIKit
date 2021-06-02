@@ -34,9 +34,9 @@ public class SafeAreaView: UIView {
     private var embeddedView: UIView
     
     /// Create a SafeAreaView
-    /// - Parameter closure: A trailing closure that accepts a view
-    public init(_ closure: () -> UIView) {
-        embeddedView = closure()
+    /// - Parameter content: A trailing closure that accepts a view
+    public init(content: () -> UIView) {
+        embeddedView = content()
         super.init(frame: .zero)
         
         embeddedView.translatesAutoresizingMaskIntoConstraints = false

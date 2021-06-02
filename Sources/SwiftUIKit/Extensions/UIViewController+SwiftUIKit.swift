@@ -12,11 +12,11 @@ import UIKit
  */
 @available(iOS 9.0, *)
 public class ViewController: UIViewController {
-    private var closure: () -> UIView
+    private var content: () -> UIView
     
     /// Creates a UIViewController which only runs the closure after the viewDidLoad
-    public init(_ closure: @escaping (() -> UIView)) {
-        self.closure = closure
+    public init(content: @escaping (() -> UIView)) {
+        self.content = content
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,7 +29,7 @@ public class ViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.embed(closure)
+        view.embed(content: content)
     }
 }
 
@@ -37,10 +37,10 @@ public class ViewController: UIViewController {
 public extension UIViewController {
     
     /// Create a UIViewController and embed the trailing closure's view
-    convenience init(_ closure: (() -> UIView)) {
+    convenience init(content: () -> UIView) {
         self.init()
         
-        view.embed(closure)
+        view.embed(content: content)
     }
     
     /// Go without the Navigation Controller using the current ViewController to present the new ViewController 
@@ -68,9 +68,9 @@ public extension UIViewController {
     
     /// Create a ViewController with Safe Area
     @available(iOS 11.0, *)
-    class func safe(_ closure: (() -> UIView)) -> UIViewController {
+    class func safe(content: () -> UIView) -> UIViewController {
         UIViewController {
-            SafeAreaView(closure)
+            SafeAreaView(content: content)
         }
     }
 }
