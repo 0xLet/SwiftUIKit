@@ -855,9 +855,8 @@ public extension UIView {
         
         let subviews = allSubviews
         
-        print("DEBUG LOG:")
-        print("Root Debug View: \(self)")
-        print("Number of Views: \(subviews.count + 1)")
+        log(level: .info("Root Debug View: \(self)"))
+        log(level: .info("Number of Views: \(subviews.count + 1)"))
         
         subviews.forEach {
             $0.backgroundColor = randomColor

@@ -139,9 +139,7 @@ public class Navigate {
     ) {
         
         guard let controller = navigationController else {
-            print("Navigate \(#function) Error!")
-            print("Issue trying to navigate to \(viewController)")
-            print("Error: Could not unwrap navigationController")
+            log(level: .error("Navigate \(#function) Error! Issue trying to navigate to \(viewController). (Could not unwrap navigationController)", nil))
             return
         }
         
@@ -179,9 +177,7 @@ public class Navigate {
     ///     - toRoot: Should navigate back to the rootViewController (Default: false)
     public func back(toRoot: Bool = false) {
         guard let controller = navigationController else {
-            print("Navigate \(#function) Error!")
-            print("Issue trying to navigate back")
-            print("Error: Could not unwrap navigationController")
+            log(level: .error("Navigate \(#function) Error! Issue trying to navigate back. (Could not unwrap navigationController)", nil))
             return
         }
         
@@ -197,9 +193,7 @@ public class Navigate {
     /// Dismiss the visibleViewController
     public func dismiss() {
         guard let controller = navigationController else {
-            print("Navigate \(#function) Error!")
-            print("Issue trying to dismiss presentingViewController")
-            print("Error: Could not unwrap navigationController")
+            log(level: .error("Navigate \(#function) Error! Issue trying to dismiss presentingViewController. (Could not unwrap navigationController)", nil))
             return
         }
         
@@ -323,9 +317,7 @@ public class Navigate {
               let containerView = controller.visibleViewController?.view,
               let toast = toast else {
             destroyToast()
-            print("Navigate \(#function) Error!")
-            print("Issue trying to dismiss presentingViewController")
-            print("Error: Could not unwrap navigationController")
+            log(level: .error("Navigate \(#function) Error! Issue trying to dismiss presentingViewController. (Could not unwrap navigationController)", nil))
             return
         }
         
@@ -376,9 +368,7 @@ public class Navigate {
     /// private function to handle when the user taps on the toast
     @objc private func userTappedOnToast() {
         guard let toast = toast else {
-            print("Toast \(#function) Error!")
-            print("Issue trying to dismiss Toast")
-            print("Error: Could not unwrap Toast")
+            log(level: .error("Toast \(#function) Error! Issue trying to dismiss Toast. (Could not unwrap Toast)", nil))
             return
         }
         didTapToastHandler?(toast)

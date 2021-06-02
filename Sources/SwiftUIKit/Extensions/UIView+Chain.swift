@@ -63,7 +63,7 @@ private extension UIView {
             .run()
         }
         
-        print("\(#function): \(output)")
+        log(level: .info("\(#function): \(output)"))
         
         return view
     }

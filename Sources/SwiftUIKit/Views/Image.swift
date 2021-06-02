@@ -29,9 +29,7 @@ public class Image: UIImageView {
         super.init(frame: .zero)
         
         guard let image = UIImage(named: name) else {
-            print("Image \(#function) Error!")
-            print("Issue loading Image with name: \(name)")
-            print("Error: Could not locate Image")
+            log(level: .error("Image \(#function) Error! Issue loading Image with name: \(name). (Could not locate Image)", nil))
             update(color: .red)
             return
         }

@@ -81,8 +81,7 @@ public class LoadingImage: UIView {
         let request = URLRequest(url: url)
         let task = URLSession.shared.dataTask(with: request) { [weak self] (data, response, error) in
             guard let data = data else {
-                print("Image \(#function) Error!")
-                print("Issue loading Image with url: \(url.absoluteString)")
+                log(level: .error("Image \(#function) Error! Issue loading Image with url: \(url.absoluteString)", nil))
                 
                 self?.update(color: .systemRed)
                 self?.errorHandler?(self, error)
@@ -90,9 +89,7 @@ public class LoadingImage: UIView {
                 return
             }
             guard let image = UIImage(data: data) else {
-                print("Image \(#function) Error!")
-                print("Issue loading Image with url: \(url.absoluteString)")
-                print("Error: Could not create UIImage from data")
+                log(level: .error("Image \(#function) Error! Issue loading Image with url: \(url.absoluteString). (Could not create UIImage from data)", nil))
                 
                 self?.update(color: .systemRed)
                 self?.errorHandler?(self, error)
@@ -111,9 +108,7 @@ public class LoadingImage: UIView {
     public func update(image: UIImage) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
-                print("Image \(#function) Error!")
-                print("Issue loading Image: \(image)")
-                print("Error: Self was nil")
+                log(level: .error("Image \(#function) Error! Issue loading Image: \(image). (Self was nil)", nil))
                 return
             }
             self.clear()
@@ -127,9 +122,7 @@ public class LoadingImage: UIView {
     private func update(color: UIColor) {
         DispatchQueue.main.async { [weak self] in
             guard let self = self else {
-                print("Image \(#function) Error!")
-                print("Issue loading Color: \(color)")
-                print("Error: Self was nil")
+                log(level: .error("Image \(#function) Error! Issue loading Color: \(color). (Self was nil)", nil))
                 return
             }
             self.clear()
