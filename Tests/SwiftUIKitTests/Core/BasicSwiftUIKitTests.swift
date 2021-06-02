@@ -59,9 +59,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let viewToEmbed = UIView()
         
-        view.embed(withPadding: [
-            .leading(16)
-        ]) {
+        view.embed(leadingPadding: 16) {
             viewToEmbed
         }
         
@@ -72,8 +70,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         XCTAssertEqual(view.constraints.count, 1)
         XCTAssertEqual(constraint?.constant, 16)
         
-        view.update(padding: .leading(8))
-        view.update(padding: .trailing(16))
+        view.update(leadingPadding: 8)
+        view.update(trailingPadding: 16)
         
         XCTAssertEqual(constraint?.constant, 8)
         XCTAssertEqual(view.constraints.count, 1)
@@ -85,10 +83,10 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let viewToEmbed = UIView()
         
-        view.embed(withPadding: [
-            .leading(16),
-            .bottom(16)
-        ]) {
+        view.embed(
+            leadingPadding: 16,
+            bottomPadding: 16
+        ) {
             viewToEmbed
         }
         
@@ -101,8 +99,8 @@ final class BasicSwiftUIKitTests: XCTestCase {
         XCTAssertEqual(leadingConstraint?.constant, 16)
         XCTAssertEqual(bottomConstraint?.constant, -16)
         
-        view.update(padding: .leading(8))
-        view.update(padding: .bottom(32))
+        view.update(leadingPadding: 8)
+        view.update(bottomPadding: 32)
         
         XCTAssertEqual(view.constraints.count, 2)
         XCTAssertEqual(leadingConstraint?.constant, 8)
@@ -115,11 +113,11 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let viewToEmbed = UIView()
         
-        view.embed(withPadding: [
-            .leading(16),
-            .bottom(16),
-            .trailing(16)
-        ]) {
+        view.embed(
+            leadingPadding: 16,
+            trailingPadding: 16,
+            bottomPadding: 16
+        ) {
             viewToEmbed
         }
         
@@ -134,7 +132,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
         XCTAssertEqual(bottomConstraint?.constant, -16)
         XCTAssertEqual(trailingConstraint?.constant, -16)
         
-        view.update(padding: [.leading(32), .trailing(32), .bottom(32)])
+        view.update(leadingPadding: 32, trailingPadding: 32, bottomPadding: 32)
         
         XCTAssertEqual(view.constraints.count, 3)
         XCTAssertEqual(leadingConstraint?.constant, 32)
@@ -148,12 +146,12 @@ final class BasicSwiftUIKitTests: XCTestCase {
         
         let viewToEmbed = UIView()
         
-        view.embed(withPadding: [
-            .leading(16),
-            .bottom(16),
-            .trailing(16),
-            .top(16)
-        ]) {
+        view.embed(
+            leadingPadding: 16,
+            topPadding: 16,
+            trailingPadding: 16,
+            bottomPadding: 16
+        ) {
             viewToEmbed
         }
         
@@ -329,7 +327,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
                 $0.isHidden = true
                 $0.tintColor = .green
                 $0.clipsToBounds = true
-        }
+            }
         
         let otherView = UIView(backgroundColor: .blue)
             .hide(if: true)
@@ -353,7 +351,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
                 $0.borderWidth = 3
                 $0.cornerRadius = 8
                 $0.masksToBounds = true
-        }
+            }
         
         let otherView = UIView()
             .layer(cornerRadius: 8)
@@ -400,10 +398,10 @@ final class BasicSwiftUIKitTests: XCTestCase {
         /** Will fail unless...
          === (iOS >= 13) ===
          */
-         XCTAssertEqual(switchView.allSubviews.count, 8)
-         XCTAssertEqual(uiSwitchView.allSubviews.count, 8)
-         XCTAssertEqual(view.allSubviews.count, 12)
-         XCTAssertEqual(otherView.allSubviews.count, 12)
+        XCTAssertEqual(switchView.allSubviews.count, 8)
+        XCTAssertEqual(uiSwitchView.allSubviews.count, 8)
+        XCTAssertEqual(view.allSubviews.count, 12)
+        XCTAssertEqual(otherView.allSubviews.count, 12)
         /**
          === (End) ===
          */
@@ -441,7 +439,7 @@ final class BasicSwiftUIKitTests: XCTestCase {
                     innerView.centerXAnchor.constraint(equalTo: stack.centerXAnchor),
                     innerView.centerYAnchor.constraint(equalTo: stack.centerYAnchor)
                 ]
-        }
+            }
         
         XCTAssertEqual(innerView.constraints.count, 2)
         XCTAssertEqual(stack.constraints.count, 2)
