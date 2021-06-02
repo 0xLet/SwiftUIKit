@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIView that expands unless a height or width is provided
  */
-@available(iOS 9.0, *)
 public class Spacer: UIView {
     private var height: Float?
     private var width: Float?

@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIImageView that can show colors
  */
-@available(iOS 9.0, *)
 public class Image: UIImageView {
     /// Creates a UIImageView with a UIImage from a UIImage
     public init(_ image: UIImage) {

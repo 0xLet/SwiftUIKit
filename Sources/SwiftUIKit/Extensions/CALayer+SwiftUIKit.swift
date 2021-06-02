@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public extension UIView {
     
     /// Change layer's background color

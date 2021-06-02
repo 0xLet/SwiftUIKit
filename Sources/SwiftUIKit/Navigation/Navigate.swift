@@ -10,7 +10,6 @@ import UIKit
 /**
  An object to help with navigation.
  */
-@available(iOS 9.0, *)
 public class Navigate {
     /// Different types of Navigation Style
     public enum NavigationStyle {

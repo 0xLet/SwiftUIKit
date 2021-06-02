@@ -9,7 +9,6 @@ import E
 import UIKit
 import Chain
 
-@available(iOS 9.0, *)
 private extension UIView {
     /// Create a UIView using a chain of events with a centeredLoadingView or an embeddedLoadingView
     /// - parameters:
@@ -69,7 +68,6 @@ private extension UIView {
     }
 }
 
-@available(iOS 9.0, *)
 public extension UIView {
     /// Create a UIView using a chain of events with a centeredLoadingView
     /// - parameters:

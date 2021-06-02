@@ -8,7 +8,6 @@
 import UIKit
 
 /// Vertical StackView
-@available(iOS 9.0, *)
 public class VStack: UIView {
     private var spacing: Float
     private var padding: Float

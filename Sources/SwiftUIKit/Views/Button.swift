@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIButton that handles its own action.
  */
-@available(iOS 9.0, *)
 public class Button: UIButton {
     private var action: (() -> Void)?
     

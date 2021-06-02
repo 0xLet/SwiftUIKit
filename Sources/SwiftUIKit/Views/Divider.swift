@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIView that divides vertically or horizontally
  */
-@available(iOS 9.0, *)
 public class Divider: UIView {
     /// Creates a UIView
     /// - parameters:

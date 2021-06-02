@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 11.0, *)
 public typealias CollectionViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UICollectionViewCell
 
 @available(iOS 11, *)
@@ -85,7 +84,6 @@ public extension CollectionView {
 }
 
 // MARK: - Update data and layout
-@available(iOS 11.0, *)
 public extension CollectionView {
     /// Set a new layout for collection view.
     @discardableResult

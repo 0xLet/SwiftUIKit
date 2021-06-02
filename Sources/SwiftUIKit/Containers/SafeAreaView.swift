@@ -8,7 +8,6 @@
 import UIKit
 
 /// A View that respects the SafeArea
-@available(iOS 11.0, *)
 public class SafeAreaView: UIView {
     private var topConstraint: NSLayoutConstraint = NSLayoutConstraint() {
         didSet {

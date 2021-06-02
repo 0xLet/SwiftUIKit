@@ -10,7 +10,6 @@ import UIKit
 /**
  A UISlider that handles its change event
  */
-@available(iOS 9.0, *)
 public class Slider: UISlider {
     private var valueChangedHandler: ((Float) -> Void)?
     

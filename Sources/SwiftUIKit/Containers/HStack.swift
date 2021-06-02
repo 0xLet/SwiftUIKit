@@ -10,7 +10,6 @@ import UIKit
 /**
 A view that horizontally stacks views.
  */
-@available(iOS 9.0, *)
 public class HStack: UIView {
     private var spacing: Float
     private var padding: Float

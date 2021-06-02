@@ -10,7 +10,6 @@ import UIKit
 /**
  A UISwitch that handles its change event
  */
-@available(iOS 9.0, *)
 public class Switch: UISwitch {
     private var toggleChangedHandler: ((Bool) -> Void)?
     

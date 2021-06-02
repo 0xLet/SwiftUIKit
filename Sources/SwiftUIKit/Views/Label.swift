@@ -10,7 +10,6 @@ import UIKit
 /**
  A UILabel that embeds a view
  */
-@available(iOS 9.0, *)
 public class Label: UILabel {
     /// Creates a UILabel
     /// - parameter text: The text for the UILabel
@@ -44,7 +43,6 @@ public class Label: UILabel {
     }
 }
 
-@available(iOS 9.0, *)
 public extension Label {
     /// Creates a UILabel with the font of .title1
     class func title1(_ text: String) -> Label {

@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 10.0, *)
 public extension NSLayoutConstraint {
     
     /// Check if the `constraint` is connected to the `anchor`
@@ -16,7 +15,6 @@ public extension NSLayoutConstraint {
     }
 }
 
-@available(iOS 10.0, *)
 public extension UIView {
     
     /// The leading constraints held by the view

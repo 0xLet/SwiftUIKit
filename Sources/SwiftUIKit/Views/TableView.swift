@@ -7,34 +7,28 @@
 
 import UIKit
 
-@available(iOS 11.0, *)
 public protocol CellDisplayable {
     var cellID: String { get }
 }
 
-@available(iOS 11.0, *)
 public protocol DataIdentifiable {
     static var ID: String { get }
 }
 
-@available(iOS 11.0, *)
 public protocol CellUpdatable {
     func update(forData data: CellDisplayable)
 }
 
-@available(iOS 11.0, *)
 public protocol CellConfigurable {
     func configure(forData data: CellDisplayable)
 }
 
-@available(iOS 11.0, *)
 public typealias TableViewCell = DataIdentifiable & CellConfigurable & CellUpdatable & UITableViewCell
 
 public typealias TableHeaderFooterViewHandler = (Int) -> UIView?
 public typealias TableDidSelectIndexPathHandler = (IndexPath) -> Void
 public typealias TableHighlightIndexPathHandler = (IndexPath) -> Bool
 
-@available(iOS 11.0, *)
 public class TableView: UITableView {
     public var data: [[CellDisplayable]]
     
@@ -50,7 +44,6 @@ public class TableView: UITableView {
     private var shouldShowMenuForRowAtIndexPath: ((IndexPath) -> Bool)?
     private var editingStyleForRowAtIndexPath: ((IndexPath) -> UITableViewCell.EditingStyle)?
     private var titleForDeleteConfirmationButtonForRowAtIndexPath: ((IndexPath) -> String)?
-    private var editActionsForRowAtIndexPath: ((IndexPath) -> [UITableViewRowAction])?
     private var commitEditingStyleForRowAtIndexPath: ((UITableViewCell.EditingStyle, IndexPath) -> Void)?
     private var didDeselectRowAtIndexPath: ((IndexPath) -> Void)?
     private var willBeginEditingRowAtIndexPath: ((IndexPath) -> Void)?
@@ -80,7 +73,6 @@ public class TableView: UITableView {
     }
 }
 
-@available(iOS 11.0, *)
 public extension TableView {
     @discardableResult
     func update(
@@ -111,7 +103,6 @@ public extension TableView {
     }
 }
 
-@available(iOS 11.0, *)
 extension TableView: UITableViewDataSource, UITableViewDelegate {
     func sections() -> Int {
         data.count
@@ -211,10 +202,6 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
         titleForDeleteConfirmationButtonForRowAtIndexPath?(indexPath)
     }
     
-    public func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        editActionsForRowAtIndexPath?(indexPath)
-    }
-    
     // MARK: Actions
     
     public func tableView(
@@ -268,7 +255,6 @@ extension TableView: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-@available(iOS 11.0, *)
 public extension TableView {
     @discardableResult
     func set(dataSource: UITableViewDataSource) -> Self {
@@ -380,13 +366,6 @@ public extension TableView {
     @discardableResult
     func titleForDeleteConfirmationButtonForRowAtIndexPath(_ handler: @escaping (IndexPath) -> String) -> Self {
         titleForDeleteConfirmationButtonForRowAtIndexPath = handler
-        
-        return self
-    }
-    
-    @discardableResult
-    func editActionsForRowAtIndexPath(_ handler: @escaping (IndexPath) -> [UITableViewRowAction]) -> Self {
-        editActionsForRowAtIndexPath = handler
         
         return self
     }

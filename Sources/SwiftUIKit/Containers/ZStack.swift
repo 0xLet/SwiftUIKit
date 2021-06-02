@@ -9,7 +9,6 @@ import UIKit
 
 /// ZStack:
 /// A view which stacks its children views in order
-@available(iOS 9.0, *)
 public class ZStack: UIView {
     /// The views that the ZStack contains
     public var views: [UIView] = []

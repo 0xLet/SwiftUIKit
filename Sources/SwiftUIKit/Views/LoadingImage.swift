@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public class LoadingImage: UIView {
     private var loadingTint: UIColor?
     private var errorHandler: ((LoadingImage?, Error?) -> Void)?

@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public class TextField: UITextField {
     public typealias WillValueChangeHandler = (_ sender: UITextField, _ newValue: String, _ input: String) -> Bool
     public typealias DidValueChangeHandler = (String) -> Void
@@ -55,7 +54,6 @@ public class TextField: UITextField {
     }
 }
 
-@available(iOS 9.0, *)
 extension TextField: UITextFieldDelegate {
     public func textField(
         _ textField: UITextField,

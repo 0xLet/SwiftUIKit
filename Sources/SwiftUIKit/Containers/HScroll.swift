@@ -10,7 +10,6 @@ import UIKit
 /**
 A view that only allows for horizontal scrolling.
  */
-@available(iOS 9.0, *)
 public class HScroll: UIView {
     
     /// Creates a new view with a `ScrollView` embedded inside of a parent view.

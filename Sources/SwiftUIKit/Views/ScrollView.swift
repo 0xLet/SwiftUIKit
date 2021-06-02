@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIScrollView
  */
-@available(iOS 9.0, *)
 public class ScrollView: UIScrollView {
     /// Creates a UIScrollView
     /// - parameter content: Scrollable view (Default: nil)

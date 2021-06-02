@@ -366,7 +366,6 @@ public extension Map {
 }
 
 // MARK: - Creating Annotation Views
-@available(iOS 11.0, *)
 public extension Map {
     @discardableResult
     func register(classes: [String: AnyClass.Type]) -> Self {

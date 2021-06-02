@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIVisualEffectView that embeds a view
  */
-@available(iOS 9.0, *)
 public class EffectView: UIVisualEffectView {
     /// Creates a UIVisualEffectView
     /// - parameters:
@@ -36,7 +35,6 @@ public class EffectView: UIVisualEffectView {
 /**
  A UIVisualEffectView that embeds a view
  */
-@available(iOS 10.0, *)
 public class BlurView: UIVisualEffectView {
     /// Creates a UIVisualEffectView
     /// - parameters:

@@ -7,7 +7,6 @@
 
 import UIKit
 
-@available(iOS 9.0, *)
 public extension UIView {
     
     /// Create a UIView with an embedded view inside
@@ -771,7 +770,6 @@ public extension UIView {
     }
 }
 
-@available(iOS 9.0, *)
 public extension UIView {
     
     /// Configure the Navigate Singleton with the Root Navigation Controller

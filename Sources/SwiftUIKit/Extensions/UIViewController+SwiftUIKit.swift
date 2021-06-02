@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIViewController which embeds the closure's view after the viewDidLoad
  */
-@available(iOS 9.0, *)
 public class ViewController: UIViewController {
     private var content: () -> UIView
     
@@ -33,7 +32,6 @@ public class ViewController: UIViewController {
     }
 }
 
-@available(iOS 9.0, *)
 public extension UIViewController {
     
     /// Create a UIViewController and embed the trailing closure's view

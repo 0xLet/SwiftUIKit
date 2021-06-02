@@ -10,7 +10,6 @@ import UIKit
 /**
  A UIView that contains a child UIViewController
  */
-@available(iOS 9.0, *)
 public class ContainerView: UIView {
     private weak var parentViewController: UIViewController?
     /// The embedded child UIViewController
@@ -43,7 +42,6 @@ public class ContainerView: UIView {
     }
 }
 
-@available(iOS 9.0, *)
 private extension ContainerView {
     func embedViewController() {
         guard let parent = parentViewController else {
