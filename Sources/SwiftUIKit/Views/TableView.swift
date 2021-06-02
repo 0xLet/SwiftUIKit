@@ -64,10 +64,10 @@ public class TableView: UITableView {
     private var heightForFooterInSection: ((Int) -> CGFloat)?
     
     public init(
-        initalData: [[CellDisplayable]] = [[CellDisplayable]](),
+        initialData: [[CellDisplayable]] = [[CellDisplayable]](),
         style: UITableView.Style = .plain
     ) {
-        self.data = initalData
+        self.data = initialData
         super.init(frame: .zero, style: style)
         
         dataSource = self
